@@ -1,0 +1,37 @@
+@startuml
+
+left to right direction
+actor "Museum Visitor" as muser
+actor "User" as user
+
+ skinparam usecase {
+    BorderColor black
+    FontName Arial
+ }
+rectangle "WebXR Interactive Mission Timeline" as simulator {
+    usecase "Restart Timeline" as rt
+    usecase "View Mission Timeline" as vmt
+    usecase "Open via QR Code Scan" as ovQRcs
+    usecase "Go To Previous Phase" as gtpp
+    usecase "View Mission Phase" as vmp
+    usecase "Go To Next Phase" as gtnp
+    usecase "View Phase Facts" as vpf
+    usecase "View Phase Subtle Animation" as vpsa
+    usecase "View Phase Transition" as vpt
+
+    muser --|> user
+    muser -- ovQRcs
+    user -- rt 
+    user -- vmt
+    rt ..> vmt: <<include>>
+    ovQRcs ..> vmt: <<include>
+    vmt ..> vmp: <<include>>
+    gtpp ..> vmp: <<extend>
+    gtnp ..> vmp: <<extend>
+    vpf ..> vmp: <<extend>>
+    vmp ..> vpsa: <<include>>
+    gtnp ..> vpt: <<include>>
+
+}
+
+@enduml
