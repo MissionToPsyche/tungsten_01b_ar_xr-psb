@@ -8,10 +8,12 @@ actor "User" as user
     BorderColor black
     FontName Arial
  }
+usecase "Open via QR Code Scan" as ovQRcs
+
 rectangle "WebXR Interactive Mission Timeline" as simulator {
     usecase "Restart Timeline" as rt
     usecase "View Mission Timeline" as vmt
-    usecase "Open via QR Code Scan" as ovQRcs
+   
     usecase "Go To Previous Phase" as gtpp
     usecase "View Mission Phase" as vmp
     usecase "Go To Next Phase" as gtnp
