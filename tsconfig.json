@@ -18,7 +18,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "types": ["vitest/globals"]
   },
   "include": ["src"],
   "references": [
