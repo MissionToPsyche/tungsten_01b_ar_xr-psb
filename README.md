@@ -68,7 +68,7 @@ of choice.
 2. Run `ngrok http 5173` (WebRTC requires HTTPs)
 3. Access the url provided by ngrok
 4. Present the following marker to your camera.
-![Market Pattern](./public/assets/patt.png)
+   ![Market Pattern](./public/assets/patt.png)
 
 ## Testing
 
