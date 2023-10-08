@@ -8,6 +8,7 @@ module.exports = {
     'plugin:@typescript-eslint/stylistic-type-checked',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
+    "plugin:@react-three/recommended",
     'prettier'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
@@ -17,7 +18,8 @@ module.exports = {
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true }
-    ]
+    ],
+    "react/no-unknown-property": [1, { "ignore": ["position", "args"] }]
   },
   parserOptions: {
     ecmaVersion: 'latest',

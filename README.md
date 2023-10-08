@@ -1,5 +1,7 @@
 # Tungsten 01B AR/XR PSB
 
+Scaffold for the Tungsten 01B AR/XR PSB.
+
 ## Setup
 
 ### Node.js
@@ -8,7 +10,7 @@ This project uses Node `v18.18.0`.
 
 #### Node Version Manager (NVM)
 
-[NVM](https://github.com/nvm-sh/nvm) is our recommended method of managing Node versions if you are using a *NIX
+[NVM](https://github.com/nvm-sh/nvm) is our recommended method of managing Node versions if you are using a \*NIX
 machine. Follow the instructions at the linked page to get it installed.
 
 1. Install Node `v18.18.0`
@@ -26,7 +28,7 @@ machine. Follow the instructions at the linked page to get it installed.
 
 #### Manual Node Installation
 
-If you are not on a *NIX machine then you may need to manually install Node.js.
+If you are not on a \*NIX machine then you may need to manually install Node.js.
 
 1. Download the appropriate installer from the Node.js [distribution repository](https://nodejs.org/dist/v18.18.0/).
 2. Run the installer, be sure to select the option to add Node to your path.
@@ -62,7 +64,11 @@ of choice.
 
 ## Running Locally
 
-To run the project locally, simply run `npm run dev`.
+1. Run `npm run dev`.
+2. Run `ngrok http 5173` (WebRTC requires HTTPs)
+3. Access the url provided by ngrok
+4. Present the following marker to your camera.
+![Market Pattern](./public/assets/patt.png)
 
 ## Testing
 
