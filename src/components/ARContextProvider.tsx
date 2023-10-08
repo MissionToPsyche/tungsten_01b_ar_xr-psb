@@ -132,8 +132,7 @@ const ARContextProvider = React.memo(function AR({
             onCameraStreamReady();
           }
 
-          // TODO: This resize is necessary but currently causes issues
-          //onResize();
+          onResize();
         };
       }
     }, onCameraStreamError);
