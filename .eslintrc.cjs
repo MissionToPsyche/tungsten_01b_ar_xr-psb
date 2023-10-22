@@ -19,7 +19,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true }
     ],
-    'react/no-unknown-property': [1, { ignore: ['position', 'args'] }]
+    'react/no-unknown-property': [1, { ignore: ['position', 'args', 'intensity', 'geometry', 'material', 'instanceMatrix', 'dispose'] }]
   },
   parserOptions: {
     ecmaVersion: 'latest',
