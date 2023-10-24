@@ -1,12 +1,11 @@
 import './App.css';
-import ARCanvas from './components/ARCanvas.tsx';
-import ARMarker from './components/ARMarker.tsx';
-import { Box } from '@react-three/drei';
 import { CanvasProps, Vector3 } from '@react-three/fiber';
+import { ARCanvas, ARMarker } from '@artcom/react-three-arjs';
+import { cameraParametersUrl, markerPatternUrls } from './constants';
+import { FalconHeavy } from './components/artifacts/FalconHeavy.tsx';
 
-const markerPatternUrl = 'assets/patt.hiro';
 const lightPosition: Vector3 = [10, 10, 0];
-const boxPosition: Vector3 = [1, 1, 1];
+const boxPosition: Vector3 = [0, 1, 0];
 
 const onCanvasCreated: CanvasProps['onCreated'] = ({ gl }) => {
   gl.setSize(window.innerWidth, window.innerHeight);
@@ -14,11 +13,19 @@ const onCanvasCreated: CanvasProps['onCreated'] = ({ gl }) => {
 
 function App() {
   return (
-    <ARCanvas onCreated={onCanvasCreated}>
+    <ARCanvas
+      camera={{ position: [0, 0, 0] }}
+      onCreated={onCanvasCreated}
+      cameraParametersUrl={cameraParametersUrl}
+    >
       <ambientLight />
-      <pointLight position={lightPosition} />
-      <ARMarker patternUrl={markerPatternUrl}>
-        <Box position={boxPosition} />
+      <pointLight position={lightPosition} intensity={10} />
+      <ARMarker
+        type="pattern"
+        patternUrl={markerPatternUrls[0]}
+        params={{ smooth: true }}
+      >
+        <FalconHeavy position={boxPosition} scale={[0.5, 0.5, 0.5]} />
       </ARMarker>
     </ARCanvas>
   );

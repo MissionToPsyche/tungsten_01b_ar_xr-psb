@@ -1,8 +1,4 @@
 declare module '@ar-js-org/ar.js/three.js/build/ar-threex' {
-  import ARController from '@ar-js-org/artoolkit5-js/types/ARController';
-  import { Matrix4, Object3D, Renderer } from 'three';
-  import { Camera } from '@react-three/fiber';
-
   interface ArToolkitContextParameters {
     trackingBackend: 'artoolkit';
     debug: boolean;
@@ -27,23 +23,6 @@ declare module '@ar-js-org/ar.js/three.js/build/ar-threex' {
     imageSmoothingEnabled: boolean;
   }
 
-  declare class ArToolkitContext {
-    parameters: ArToolkitContextParameters;
-    arController: ARController | null;
-    initialized: boolean;
-
-    constructor(parameters: ContextParameters);
-
-    init(onCompleted?: () => void): void;
-    update(
-      srcElement: HTMLCanvasElement | HTMLImageElement | HTMLVideoElement
-    ): boolean;
-    addMarker(arMarkerControls: ArMarkerControls): void;
-    removeMarker(arMarkerControls: ArMarkerControls): void;
-    getProjectionMatrix(): THREE.Matrix4;
-    dispose(): void;
-  }
-
   interface ArToolkitSourceParameters {
     sourceType?: 'webcam' | 'image' | 'video';
     sourceUrl?: string | null;
@@ -53,33 +32,6 @@ declare module '@ar-js-org/ar.js/three.js/build/ar-threex' {
     displayWidth?: number;
     displayHeight?: number;
   }
-
-  declare class ArToolkitSource {
-    ready: boolean;
-    domElement: HTMLVideoElement | HTMLImageElement | null;
-    parameters: ArToolkitSourceParameters;
-
-    constructor(parameters: ArToolkitSourceParameters);
-
-    setParameters(parameters: ArToolkitSourceParameters): void;
-    onInitialClick(): void;
-    init(onReady?: () => void, onError?: (error: Error) => void): this;
-    dispose(): void;
-    hasMobileTorch(): boolean;
-    toggleMobileTorch(): void;
-    domElementWidth(): number;
-    domElementHeight(): number;
-    onResizeElement(): void;
-    copyElementSizeTo(otherElement: HTMLElement): void;
-    copySizeTo(): void; // Obsolete
-    onResize(
-      arToolkitContext: ArToolkitContext,
-      renderer: Renderer,
-      camera: Camera
-    ): void; // Obsolete
-  }
-
-  type MarkerType = 'pattern' | 'barcode' | 'nft' | 'unknown';
 
   interface ArMarkerControlsParameters {
     size?: number;
@@ -93,22 +45,5 @@ declare module '@ar-js-org/ar.js/three.js/build/ar-threex' {
     smoothCount?: number;
     smoothTolerance?: number;
     smoothThreshold?: number;
-  }
-
-  declare class ArMarkerControls extends ArBaseControls {
-    context: ArToolkitContext;
-    parameters: ArMarkerControlsParameters;
-    object3d: Object3D;
-    smoothMatrices: number[][];
-
-    constructor(
-      context: ArToolkitContext,
-      object3d: Object3D | undefined,
-      parameters: ArMarkerControlsParameters
-    );
-
-    dispose(): void;
-    updateWithModelViewMatrix(modelViewMatrix: Matrix4): boolean;
-    name(): string;
   }
 }

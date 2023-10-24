@@ -67,8 +67,9 @@ of choice.
 1. Run `npm run dev`.
 2. Run `ngrok http 5173` (WebRTC requires HTTPs)
 3. Access the url provided by ngrok
-4. Present the following marker to your camera.
-   ![Market Pattern](./public/assets/patt.png)
+4. Present the following marker to your camera. If the marker doesn't track very well, drop you screen brightness.
+
+<img src="./public/assets/patt.png" width="200" height="200" />
 
 ## Testing
 
