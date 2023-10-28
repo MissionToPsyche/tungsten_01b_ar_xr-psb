@@ -19,10 +19,15 @@
     "@ar-js-org/ar.js": "^3.4.5",
     "@ar-js-org/artoolkit5-js": "^0.3.0",
     "@artcom/react-three-arjs": "^0.5.5",
+    "@chakra-ui/react": "^2.8.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@react-three/drei": "^9.86.4",
     "@react-three/fiber": "^8.14.5",
+    "framer-motion": "^10.16.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
     "three": "^0.154.0"
   },
   "devDependencies": {
