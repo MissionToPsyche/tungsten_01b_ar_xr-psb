@@ -32,7 +32,9 @@ module.exports = {
           'dispose'
         ]
       }
-    ]
+    ],
+    // This rule is unnecessary with typescript, and it doesn't handle types
+    'react/prop-types': 0
   },
   parserOptions: {
     ecmaVersion: 'latest',
