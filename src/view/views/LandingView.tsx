@@ -34,8 +34,8 @@ const LandingView: ViewComponent = ({ changeView }) => {
         />
       </HStack>
       <Canvas style={{ height: '50vh' }}>
-        <ambientLight />
-        <pointLight position={[10, 10, 10]} />
+        <ambientLight intensity={0.1} />
+        <pointLight position={[10, 10, 10]} intensity={0.5} />
         <ModelSpinner position={[0, -8, -10]}>
           <FalconHeavy />
         </ModelSpinner>

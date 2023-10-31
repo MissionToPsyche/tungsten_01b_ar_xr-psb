@@ -23,8 +23,8 @@ const SceneManager: ViewComponent = () => {
       onCreated={fitGlToWindow}
       cameraParametersUrl={config.cameraParametersUrl}
     >
-      <ambientLight />
-      <pointLight position={lightPosition} intensity={10} />
+      <ambientLight intensity={0.1} />
+      <pointLight position={lightPosition} intensity={0.5} />
       <ARMarker type="pattern" patternUrl={markerUrl} params={{ smooth: true }}>
         <CurrentSceneComponent />
       </ARMarker>

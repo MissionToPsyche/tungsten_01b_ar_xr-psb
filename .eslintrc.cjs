@@ -29,7 +29,9 @@ module.exports = {
           'geometry',
           'material',
           'instanceMatrix',
-          'dispose'
+          'dispose',
+          'castShadow',
+          'receiveShadow'
         ]
       }
     ],
