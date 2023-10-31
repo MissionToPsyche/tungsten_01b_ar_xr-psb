@@ -31,12 +31,16 @@ export function FalconHeavy(props: JSX.IntrinsicElements['group']) {
       <mesh
         geometry={nodes.Cylinder.geometry}
         material={materials.Metal}
+        castShadow
+        receiveShadow
         position={[0, 0.66, 0]}
         scale={0.407}
       />
       <instancedMesh
         args={[nodes.Cylinder003.geometry, materials.Metal, 12]}
         instanceMatrix={nodes.Cylinder003.instanceMatrix}
+        castShadow
+        receiveShadow
       />
     </group>
   );
