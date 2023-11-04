@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { useState } from 'react';
 import {
   Button,
   Flex,
@@ -14,6 +15,9 @@ import { Canvas } from '@react-three/fiber';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import SceneLighting from '../../common/components/SceneLighting.tsx';
 import { FalconHeavy } from '../../artifacts/FalconHeavy.tsx';
+import { LaunchPad } from '../../artifacts/LaunchPad.tsx';
+
+
 
 /**
  * Landing page for the application, informs the user about the application
@@ -24,32 +28,53 @@ const LandingView: ViewComponent = ({ changeView }) => {
     changeView(ViewName.AR_SCENES);
   }, [changeView]);
 
+  const [isMouseOver, setMouseOver] = useState(false);
+
+  function handleOnMouseOver(){
+    setMouseOver(true);
+  }
+
+  function handleOnMouseOut(){
+    setMouseOver(false);
+  }
+
   return (
     <Flex height="82vh" flexDir="column" justifyContent="space-between" p={6}>
       <HStack divider={<StackDivider borderColor="#666666" />}>
-        <Image src="/assets/images/nasa.svg" alt="NASA Logo" height="68px" />
         <Image
-          src="/assets/images/psyche.svg"
+          src="/assets/images/nasa.svg"
+          alt="NASA Logo"
+          height="100px" />
+        <Image
+          src="/assets/images/Psyche_BadgeOutline_Color-SVG.svg"
           alt="Psyche Logo"
-          height="68px"
+          height="100px"
         />
       </HStack>
       <Canvas style={{ height: '50vh' }} linear flat>
         <SceneLighting />
-        <ModelSpinner position={[0, -8, -10]}>
+        <ModelSpinner position={[0, -5, -10]}>
           <FalconHeavy />
+          <LaunchPad />
         </ModelSpinner>
       </Canvas>
-      <Text fontSize="xl" fontWeight="medium" color="#302244">
-        Ready for an interstellar adventure?{' '}
-        <Text as="span" color="#A6405A">
-          Tap &lsquo;Launch&rsquo;
-        </Text>{' '}
-        to explore NASA&apos;s Psyche mission in AR. We&apos;ll just need your
+      <Text fontSize="20" fontWeight="medium" color="#302244">
+        Ready for an interstellar adventure?{' '} Tap
+        <Text fontSize="24" as="span" >
+           &lsquo;Start Mission Timeline&rsquo;
+        </Text>{' '} to explore
+        NASA&apos;s Psyche Mission in Augmented Reality. We&apos;ll just need your
         camera permission to blast off!
       </Text>
-      <Button size="lg" rightIcon={<FaRocket />} onClick={onClickStart}>
-        Launch
+      <Button
+       height="20" width="xlg"
+       color="white"
+       style={{backgroundColor: isMouseOver ? "#592651" : "#a53f5b"}}
+       rightIcon={<FaRocket />}
+       onClick={onClickStart}
+       onMouseOver={handleOnMouseOver}
+       onMouseOut={handleOnMouseOut}>
+        Start Misson Timeline
       </Button>
     </Flex>
   );
