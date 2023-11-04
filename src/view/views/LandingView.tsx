@@ -12,6 +12,7 @@ import { ViewComponent } from '../types/view-component.ts';
 import ViewName from '../types/view-name.ts';
 import { Canvas } from '@react-three/fiber';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
+import SceneLighting from '../../common/components/SceneLighting.tsx';
 import { FalconHeavy } from '../../artifacts/FalconHeavy.tsx';
 
 /**
@@ -33,9 +34,8 @@ const LandingView: ViewComponent = ({ changeView }) => {
           height="68px"
         />
       </HStack>
-      <Canvas style={{ height: '50vh' }}>
-        <ambientLight intensity={0.1} />
-        <pointLight position={[10, 10, 10]} intensity={0.5} />
+      <Canvas style={{ height: '50vh' }} linear flat>
+        <SceneLighting />
         <ModelSpinner position={[0, -8, -10]}>
           <FalconHeavy />
         </ModelSpinner>
