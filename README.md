@@ -95,7 +95,8 @@ npm run build
 1. Add your `.glb/gltf` file to `./public/assets/models`
 2. Use `gltfjsx` to generate a transformed version of your model and an associated React component
    ```shell
-   npx gltfjsx@6.2.13 ./public/assets/models/cool-box.gltf -tT -o CoolBox.tsx -r /assets/models
+   npx gltfjsx@6.2.13 ./public/assets/models/LaunchDate.gltf -tT -o LaunchDateq.tsx -r /assets/models
    ```
 3. Move the generated `*-transformed.glb` file to `./public/assets/models`
 4. Move the generated React component to `./src/artifacts`
+5. Change the absolute path in the `*.tsx` file to the path where `*-transformed.glb` file is located
