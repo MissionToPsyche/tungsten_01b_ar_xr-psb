@@ -9,7 +9,6 @@ import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 
-
 type GLTFResult = GLTF & {
   nodes: {
     Mesh_Mesh_head_geo001_lambert2SG001: THREE.Mesh;

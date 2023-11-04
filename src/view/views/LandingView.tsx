@@ -17,8 +17,6 @@ import SceneLighting from '../../common/components/SceneLighting.tsx';
 import { FalconHeavy } from '../../artifacts/FalconHeavy.tsx';
 import { LaunchPad } from '../../artifacts/LaunchPad.tsx';
 
-
-
 /**
  * Landing page for the application, informs the user about the application
  * and allows them to start it when ready.
@@ -30,21 +28,18 @@ const LandingView: ViewComponent = ({ changeView }) => {
 
   const [isMouseOver, setMouseOver] = useState(false);
 
-  function handleOnMouseOver(){
+  function handleOnMouseOver() {
     setMouseOver(true);
   }
 
-  function handleOnMouseOut(){
+  function handleOnMouseOut() {
     setMouseOver(false);
   }
 
   return (
     <Flex height="82vh" flexDir="column" justifyContent="space-between" p={6}>
       <HStack divider={<StackDivider borderColor="#666666" />}>
-        <Image
-          src="/assets/images/nasa.svg"
-          alt="NASA Logo"
-          height="100px" />
+        <Image src="/assets/images/nasa.svg" alt="NASA Logo" height="100px" />
         <Image
           src="/assets/images/Psyche_BadgeOutline_Color-SVG.svg"
           alt="Psyche Logo"
@@ -59,21 +54,23 @@ const LandingView: ViewComponent = ({ changeView }) => {
         </ModelSpinner>
       </Canvas>
       <Text fontSize="20" fontWeight="medium" color="#302244">
-        Ready for an interstellar adventure?{' '} Tap
-        <Text fontSize="24" as="span" >
-           &lsquo;Start Mission Timeline&rsquo;
-        </Text>{' '} to explore
-        NASA&apos;s Psyche Mission in Augmented Reality. We&apos;ll just need your
-        camera permission to blast off!
+        Ready for an interstellar adventure? Tap
+        <Text fontSize="24" as="span">
+          &lsquo;Start Mission Timeline&rsquo;
+        </Text>{' '}
+        to explore NASA&apos;s Psyche Mission in Augmented Reality. We&apos;ll
+        just need your camera permission to blast off!
       </Text>
       <Button
-       height="20" width="xlg"
-       color="white"
-       style={{backgroundColor: isMouseOver ? "#592651" : "#a53f5b"}}
-       rightIcon={<FaRocket />}
-       onClick={onClickStart}
-       onMouseOver={handleOnMouseOver}
-       onMouseOut={handleOnMouseOut}>
+        height="20"
+        width="xlg"
+        color="white"
+        style={{ backgroundColor: isMouseOver ? '#592651' : '#a53f5b' }}
+        rightIcon={<FaRocket />}
+        onClick={onClickStart}
+        onMouseOver={handleOnMouseOver}
+        onMouseOut={handleOnMouseOut}
+      >
         Start Misson Timeline
       </Button>
     </Flex>
