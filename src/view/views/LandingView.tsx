@@ -14,6 +14,8 @@ import { Canvas } from '@react-three/fiber';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import { FalconHeavy } from '../../artifacts/FalconHeavy.tsx';
 import { LaunchPad } from '../../artifacts/LaunchPad.tsx';
+import LoaderProvider from '../../common/loader/LoaderProvider.tsx';
+import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
 
 /**
  * Landing page for the application, informs the user about the application
@@ -34,14 +36,17 @@ const LandingView: ViewComponent = ({ changeView }) => {
           height="100px"
         />
       </HStack>
-      <Canvas style={{ height: '50vh' }}>
-        <ambientLight intensity={0.1} />
-        <pointLight position={[10, 10, 10]} intensity={0.5} />
-        <ModelSpinner position={[0, -5, -10]}>
-          <FalconHeavy />
-          <LaunchPad />
-        </ModelSpinner>
-      </Canvas>
+      <LoaderProvider>
+        <LoaderTracker />
+        <Canvas style={{ height: '50vh' }}>
+          <ambientLight intensity={0.1} />
+          <pointLight position={[10, 10, 10]} intensity={0.5} />
+          <ModelSpinner position={[0, -5, -10]}>
+            <FalconHeavy />
+            <LaunchPad />
+          </ModelSpinner>
+        </Canvas>
+      </LoaderProvider>
       <Text fontSize="20" fontWeight="medium" color="#302244">
         Ready for an interstellar adventure? Tap
         <Text fontSize="24" as="span">
