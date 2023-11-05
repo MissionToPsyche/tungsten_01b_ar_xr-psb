@@ -7,6 +7,7 @@ Files: ./LaunchPad.gltf [191.63KB] > launch-pad-transformed.glb [8.87KB] (95%)
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import LightBulb from '../common/components/LightBulb.tsx';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -29,6 +30,12 @@ export function LaunchPad(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
+      <LightBulb
+        position={[-2.175, 11.75, 0]}
+        color="blue"
+        intensity={0.2}
+        radius={0.1}
+      />
       <mesh
         name="BasePad"
         castShadow

@@ -15,6 +15,9 @@ import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import SceneLighting from '../../common/components/SceneLighting.tsx';
 import { FalconHeavy } from '../../artifacts/FalconHeavy.tsx';
 import { LaunchPad } from '../../artifacts/LaunchPad.tsx';
+import filledVector from '../../common/utils/filled-vector.ts';
+
+const falconScale = filledVector(0.75);
 
 /**
  * Landing page for the application, informs the user about the application
@@ -38,7 +41,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
       <Canvas style={{ height: '50vh' }} linear flat>
         <SceneLighting />
         <ModelSpinner position={[0, -5, -10]}>
-          <FalconHeavy />
+          <FalconHeavy position={[1.5, 1, 0]} scale={falconScale} />
           <LaunchPad />
         </ModelSpinner>
       </Canvas>
