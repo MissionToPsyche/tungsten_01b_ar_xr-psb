@@ -14,6 +14,7 @@ import { Canvas } from '@react-three/fiber';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import { FalconHeavy } from '../../artifacts/FalconHeavy.tsx';
 import { LaunchPad } from '../../artifacts/LaunchPad.tsx';
+import FactsModal from '../../facts/FactsModal.tsx';
 
 /**
  * Landing page for the application, informs the user about the application
@@ -38,7 +39,9 @@ const LandingView: ViewComponent = ({ changeView }) => {
         <ambientLight intensity={0.1} />
         <pointLight position={[10, 10, 10]} intensity={0.5} />
         <ModelSpinner position={[0, -5, -10]}>
-          <FalconHeavy />
+          <FactsModal model="Falcon Heavy">
+            <FalconHeavy />
+          </FactsModal>
           <LaunchPad />
         </ModelSpinner>
       </Canvas>
