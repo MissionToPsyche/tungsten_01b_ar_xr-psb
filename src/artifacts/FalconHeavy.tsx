@@ -23,9 +23,8 @@ type GLTFResult = GLTF & {
  * @param props for the object group.
  */
 export function FalconHeavy(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF(
-    '/assets/models/falcon-heavy-transformed.glb'
-  ) as GLTFResult;
+  const glbURL = `${process.env.PUBLIC_URL}/assets/models/falcon-heavy-transformed.glb`;
+  const { nodes, materials } = useGLTF(glbURL) as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <mesh
