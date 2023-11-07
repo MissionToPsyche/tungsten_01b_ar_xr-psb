@@ -19,7 +19,7 @@
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals", "vite/client"]
   },
   "include": ["src"],
   "references": [
