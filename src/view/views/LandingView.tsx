@@ -12,10 +12,14 @@ import { ViewComponent } from '../types/view-component.ts';
 import ViewName from '../types/view-name.ts';
 import { Canvas } from '@react-three/fiber';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
+import SceneLighting from '../../common/components/SceneLighting.tsx';
 import { FalconHeavy } from '../../artifacts/FalconHeavy.tsx';
 import { LaunchPad } from '../../artifacts/LaunchPad.tsx';
 import LoaderProvider from '../../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
+import filledVector from '../../common/utils/filled-vector.ts';
+
+const falconScale = filledVector(0.75);
 
 /**
  * Landing page for the application, informs the user about the application
@@ -38,11 +42,12 @@ const LandingView: ViewComponent = ({ changeView }) => {
       </HStack>
       <LoaderProvider>
         <LoaderTracker />
-        <Canvas style={{ height: '50vh' }}>
+        <Canvas style={{ height: '50vh' }} linear flat>
+          <SceneLighting />
           <ambientLight intensity={0.1} />
           <pointLight position={[10, 10, 10]} intensity={0.5} />
           <ModelSpinner position={[0, -5, -10]}>
-            <FalconHeavy />
+            <FalconHeavy position={[1.5, 1, 0]} scale={falconScale} />
             <LaunchPad />
           </ModelSpinner>
         </Canvas>
@@ -61,7 +66,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
         rightIcon={<FaRocket />}
         onClick={onClickStart}
       >
-        Start Misson Timeline
+        Start Mission Timeline
       </Button>
     </Flex>
   );
