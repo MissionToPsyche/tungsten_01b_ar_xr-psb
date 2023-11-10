@@ -85,6 +85,47 @@ const theme = extendTheme({
         }
       }
     }
+  },
+  fonts: {
+    heading: 'Helvetica, sans-serif', // For Headlines
+    body: 'Helvetica, sans-serif' // For body & captions
+  },
+  textStyles: {
+    title: {
+      // Knockout / JuniorWelterwt, 12pt/15, +50 Tracking
+      fontFamily: 'Knockout, JuniorWelterwt, sans-serif',
+      fontSize: '12pt',
+      lineHeight: '15pt',
+      letterSpacing: '50%',
+      color: 'magenta.500'
+    },
+    headline: {
+      // Helvetica / Light, 32pt/38, +20 Tracking
+      fontFamily: 'Helvetica, sans-serif',
+      fontWeight: 'light',
+      fontSize: '32pt',
+      lineHeight: '38pt',
+      letterSpacing: '20%',
+      color: 'darkPurple.500'
+    },
+    bodyCopy: {
+      // Helvetica / Light, 14pt/20, +20 Tracking
+      fontFamily: 'Helvetica, sans-serif',
+      fontWeight: 'light',
+      fontSize: '14pt',
+      lineHeight: '20pt',
+      letterSpacing: '20%',
+      color: 'darkPurple.500'
+    },
+    caption: {
+      // Helvetica / Regular, 10pt/14, +20 Tracking
+      fontFamily: 'Helvetica, sans-serif',
+      fontWeight: 'regular',
+      fontSize: '10pt',
+      lineHeight: '14pt',
+      letterSpacing: '20%',
+      color: 'darkPurple.500'
+    }
   }
 });
 
