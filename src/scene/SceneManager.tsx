@@ -7,8 +7,6 @@ import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
 import SceneLighting from '../common/components/SceneLighting.tsx';
 
-const lightPosition: Vector3 = [10, 10, 0];
-
 /**
  * Manages AR scenes.
  */
@@ -30,8 +28,6 @@ const SceneManager: ViewComponent = () => {
         flat
       >
         <SceneLighting />
-        <ambientLight intensity={0.1} />
-        <pointLight position={lightPosition} intensity={0.5} />
         <ARMarker
           type="pattern"
           patternUrl={markerUrl}

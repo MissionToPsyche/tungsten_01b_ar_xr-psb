@@ -44,8 +44,6 @@ const LandingView: ViewComponent = ({ changeView }) => {
         <LoaderTracker />
         <Canvas style={{ height: '50vh' }} linear flat>
           <SceneLighting />
-          <ambientLight intensity={0.1} />
-          <pointLight position={[10, 10, 10]} intensity={0.5} />
           <ModelSpinner position={[0, -5, -10]}>
             <FalconHeavy position={[1.5, 1, 0]} scale={falconScale} />
             <LaunchPad />
