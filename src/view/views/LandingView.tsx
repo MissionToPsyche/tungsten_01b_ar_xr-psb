@@ -15,7 +15,7 @@ import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import SceneLighting from '../../common/components/SceneLighting.tsx';
 import { FalconHeavy } from '../../artifacts/FalconHeavy.tsx';
 import { LaunchPad } from '../../artifacts/LaunchPad.tsx';
-import FactsModal from '../../facts/FactsModal.tsx';
+import FactsModal from '../../common/facts/FactsModal.tsx';
 import LoaderProvider from '../../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';

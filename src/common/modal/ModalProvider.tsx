@@ -8,10 +8,11 @@ import {
   ModalFooter
 } from '@chakra-ui/react';
 import { PropsWithChildren, useState } from 'react';
-import ModalContext from './ModalContext';
+import ModalContext from './modal-context';
 
 /**
- * This component serves as the modal context provider.
+ * Modal provider that manages displaying a modal that can be
+ * toggled and modified by its children.
  */
 export const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();

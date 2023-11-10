@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import MissionFacts from './mission-facts';
-import useModalContext from '../context/modal/use-context';
+import useModal from '../modal/use-modal';
 
 /**
  * This component makes a model clickable and updates the modal body with
@@ -13,7 +13,7 @@ function FactsModal({
   model: string;
   children: ReactNode;
 }) {
-  const { onOpen, setModalBody, setModalTitle } = useModalContext();
+  const { onOpen, setModalBody, setModalTitle } = useModal();
 
   const modelInfo = lookupModelInfo(model);
   if (modelInfo == null) {
