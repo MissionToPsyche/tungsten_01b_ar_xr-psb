@@ -3,6 +3,8 @@ import { ViewComponent } from '../view/types/view-component.ts';
 import getSceneConfig from './get-scene-config.ts';
 import { useMemo, useState } from 'react';
 import fitGlToWindow from './utils/fit-gl-to-window.ts';
+import LoaderProvider from '../common/loader/LoaderProvider.tsx';
+import LoaderTracker from '../common/loader/LoaderTracker.tsx';
 import SceneLighting from '../common/components/SceneLighting.tsx';
 
 /**
@@ -16,18 +18,25 @@ const SceneManager: ViewComponent = () => {
     config.scenes[currentScene];
 
   return (
-    <ARCanvas
-      camera={{ position: [0, 0, 0] }}
-      onCreated={fitGlToWindow}
-      cameraParametersUrl={config.cameraParametersUrl}
-      linear
-      flat
-    >
-      <SceneLighting />
-      <ARMarker type="pattern" patternUrl={markerUrl} params={{ smooth: true }}>
-        <CurrentSceneComponent />
-      </ARMarker>
-    </ARCanvas>
+    <LoaderProvider>
+      <LoaderTracker />
+      <ARCanvas
+        camera={{ position: [0, 0, 0] }}
+        onCreated={fitGlToWindow}
+        cameraParametersUrl={config.cameraParametersUrl}
+        linear
+        flat
+      >
+        <SceneLighting />
+        <ARMarker
+          type="pattern"
+          patternUrl={markerUrl}
+          params={{ smooth: true }}
+        >
+          <CurrentSceneComponent />
+        </ARMarker>
+      </ARCanvas>
+    </LoaderProvider>
   );
 };
 

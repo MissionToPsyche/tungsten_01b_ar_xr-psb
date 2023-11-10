@@ -15,6 +15,8 @@ import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import SceneLighting from '../../common/components/SceneLighting.tsx';
 import { FalconHeavy } from '../../artifacts/FalconHeavy.tsx';
 import { LaunchPad } from '../../artifacts/LaunchPad.tsx';
+import LoaderProvider from '../../common/loader/LoaderProvider.tsx';
+import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
 
 const falconScale = filledVector(0.75);
@@ -38,13 +40,16 @@ const LandingView: ViewComponent = ({ changeView }) => {
           height="100px"
         />
       </HStack>
-      <Canvas style={{ height: '50vh' }} linear flat>
-        <SceneLighting />
-        <ModelSpinner position={[0, -5, -10]}>
-          <FalconHeavy position={[1.5, 1, 0]} scale={falconScale} />
-          <LaunchPad />
-        </ModelSpinner>
-      </Canvas>
+      <LoaderProvider>
+        <LoaderTracker />
+        <Canvas style={{ height: '50vh' }} linear flat>
+          <SceneLighting />
+          <ModelSpinner position={[0, -5, -10]}>
+            <FalconHeavy position={[1.5, 1, 0]} scale={falconScale} />
+            <LaunchPad />
+          </ModelSpinner>
+        </Canvas>
+      </LoaderProvider>
       <Text fontSize="20" fontWeight="medium" color="#302244">
         Ready for an interstellar adventure? Tap
         <Text fontSize="24" as="span">
