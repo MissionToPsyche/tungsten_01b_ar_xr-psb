@@ -13,7 +13,7 @@ const ModelSpinner: React.FC<JSX.IntrinsicElements['group']> = (props) => {
       return;
     }
 
-    groupRef.current.rotation.y = clock.getElapsedTime();
+    groupRef.current.rotation.y = clock.getElapsedTime() * 0.5;
   });
 
   return <group ref={groupRef} {...props} />;

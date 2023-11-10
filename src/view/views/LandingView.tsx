@@ -12,9 +12,15 @@ import { ViewComponent } from '../types/view-component.ts';
 import ViewName from '../types/view-name.ts';
 import { Canvas } from '@react-three/fiber';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
+import SceneLighting from '../../common/components/SceneLighting.tsx';
 import { FalconHeavy } from '../../artifacts/FalconHeavy.tsx';
 import { LaunchPad } from '../../artifacts/LaunchPad.tsx';
 import FactsModal from '../../facts/FactsModal.tsx';
+import LoaderProvider from '../../common/loader/LoaderProvider.tsx';
+import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
+import filledVector from '../../common/utils/filled-vector.ts';
+
+const falconScale = filledVector(0.75);
 
 /**
  * Landing page for the application, informs the user about the application
@@ -35,16 +41,19 @@ const LandingView: ViewComponent = ({ changeView }) => {
           height="100px"
         />
       </HStack>
-      <Canvas style={{ height: '50vh' }}>
-        <ambientLight intensity={0.1} />
-        <pointLight position={[10, 10, 10]} intensity={0.5} />
-        <ModelSpinner position={[0, -5, -10]}>
-          <FactsModal model="Falcon Heavy">
-            <FalconHeavy />
-          </FactsModal>
-          <LaunchPad />
-        </ModelSpinner>
-      </Canvas>
+
+      <LoaderProvider>
+        <LoaderTracker />
+        <Canvas style={{ height: '50vh' }} linear flat>
+          <SceneLighting />
+          <ModelSpinner position={[0, -5, -10]}>
+            <FactsModal model="Falcon Heavy">
+              <FalconHeavy position={[1.5, 1, 0]} scale={falconScale} />
+            </FactsModal>
+            <LaunchPad />
+          </ModelSpinner>
+        </Canvas>
+      </LoaderProvider>
       <Text fontSize="20" fontWeight="medium" color="#302244">
         Ready for an interstellar adventure? Tap
         <Text fontSize="24" as="span">
@@ -59,7 +68,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
         rightIcon={<FaRocket />}
         onClick={onClickStart}
       >
-        Start Misson Timeline
+        Start Mission Timeline
       </Button>
     </Flex>
   );
