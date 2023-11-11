@@ -44,7 +44,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
         <LoaderTracker />
         <Canvas style={{ height: '50vh' }} linear flat>
           <SceneLighting />
-          <ModelSpinner position={[0, -5, -10]}>
+          <ModelSpinner position={[0, -5, -10]} speed={0.5}>
             <FalconHeavy position={[1.5, 1, 0]} scale={falconScale} />
             <LaunchPad />
           </ModelSpinner>

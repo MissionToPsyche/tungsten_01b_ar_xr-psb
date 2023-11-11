@@ -32,7 +32,12 @@ module.exports = {
           'dispose',
           'castShadow',
           'receiveShadow',
-          'rotation'
+          'rotation',
+          'map',
+          'transparent',
+          'blending',
+          'depthTest',
+          'depthWrite'
         ]
       }
     ],

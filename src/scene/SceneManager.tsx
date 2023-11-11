@@ -24,6 +24,7 @@ const SceneManager: ViewComponent = () => {
         camera={{ position: [0, 0, 0] }}
         onCreated={fitGlToWindow}
         cameraParametersUrl={config.cameraParametersUrl}
+        gl={{ logarithmicDepthBuffer: true }}
         linear
         flat
       >
