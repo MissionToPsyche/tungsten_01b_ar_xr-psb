@@ -5,7 +5,8 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
+  ModalCloseButton
 } from '@chakra-ui/react';
 import { PropsWithChildren, useState } from 'react';
 import ModalContext from './modal-context';
@@ -28,6 +29,7 @@ export const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>{modalTitle}</ModalHeader>
+          <ModalCloseButton />
           <ModalBody>{modalBody}</ModalBody>
           <ModalFooter></ModalFooter>
         </ModalContent>

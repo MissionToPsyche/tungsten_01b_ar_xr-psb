@@ -6,7 +6,7 @@ import ModalContext from './modal-context';
  */
 function useModal() {
   const context = useContext(ModalContext);
-  if (context === undefined) {
+  if (!context) {
     throw Error('Modal cannot be used outside of <ModalProvider>');
   }
   return context;

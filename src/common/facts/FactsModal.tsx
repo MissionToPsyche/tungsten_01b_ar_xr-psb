@@ -14,14 +14,9 @@ function FactsModal({
   children: ReactNode;
 }) {
   const { onOpen, setModalBody, setModalTitle } = useModal();
-
   const modelInfo = lookupModelInfo(model);
-  if (modelInfo == null) {
-    throw Error('Unable to find model info for model ' + model);
-  } else {
-    setModalBody(modelInfo.fact);
-    setModalTitle(modelInfo.title);
-  }
+  setModalBody(modelInfo.fact);
+  setModalTitle(modelInfo.title);
 
   return <group onClick={onOpen}>{children}</group>;
 }
@@ -29,5 +24,9 @@ function FactsModal({
 export default FactsModal;
 
 function lookupModelInfo(model: string) {
-  return MissionFacts.find((fact) => fact.name == model);
+  const modelInfo = MissionFacts.find((fact) => fact.name == model);
+  if (!modelInfo) {
+    throw Error('Unable to find model info for model ' + model);
+  }
+  return modelInfo;
 }
