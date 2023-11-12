@@ -37,7 +37,8 @@ module.exports = {
           'transparent',
           'blending',
           'depthTest',
-          'depthWrite'
+          'depthWrite',
+          'side'
         ]
       }
     ],

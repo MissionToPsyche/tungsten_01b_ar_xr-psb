@@ -1,5 +1,5 @@
 import ParticleSystem from '../../ParticleSystem.tsx';
-import { AdditiveBlending } from 'three';
+import { AdditiveBlending, DoubleSide } from 'three';
 import { useTexture } from '@react-three/drei';
 import onParticleInit from './on-particle-init.ts';
 import onParticleFrame from './on-particle-frame.ts';
@@ -25,6 +25,7 @@ const SmokeParticleSystem = (props: JSX.IntrinsicElements['instancedMesh']) => {
         opacity={0.025}
         blending={AdditiveBlending}
         depthWrite={false}
+        side={DoubleSide}
       />
     </ParticleSystem>
   );
