@@ -4,29 +4,36 @@ Command: npx gltfjsx@6.2.13 ./public/assets/models/LaunchDate.gltf -tT -o Launch
 Files: ./public/assets/models/LaunchDate.gltf [13.34MB] > LaunchDate-transformed.glb [228.34KB] (98%)
 */
 
-import * as THREE from 'three'
+import * as THREE from 'three';
 //import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import { useGLTF } from '@react-three/drei';
+import { GLTF } from 'three-stdlib';
 
 type GLTFResult = GLTF & {
   nodes: {
-    TextPlus001: THREE.Mesh
-  }
+    TextPlus001: THREE.Mesh;
+  };
   materials: {
-    M_01___Default: THREE.MeshPhysicalMaterial
-  }
-}
+    M_01___Default: THREE.MeshPhysicalMaterial;
+  };
+};
 
 //type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export function LaunchDate(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/assets/models/LaunchDate-transformed.glb') as GLTFResult
+  const { nodes, materials } = useGLTF(
+    '/assets/models/LaunchDate-transformed.glb'
+  ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.TextPlus001.geometry} material={materials.M_01___Default} position={[-0.305, 1.535, -0.272]} scale={0.025} />
+      <mesh
+        geometry={nodes.TextPlus001.geometry}
+        material={materials.M_01___Default}
+        position={[-0.305, 1.535, -0.272]}
+        scale={0.025}
+      />
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/assets/models/LaunchDate-transformed.glb')
+useGLTF.preload('/assets/models/LaunchDate-transformed.glb');

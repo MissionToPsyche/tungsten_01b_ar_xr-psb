@@ -8,28 +8,35 @@ Source: https://sketchfab.com/3d-models/explosion-as-solid-be45bff647324db5b12fe
 Title: Explosion as Solid
 */
 
-import * as THREE from 'three'
-import { useGLTF } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import * as THREE from 'three';
+import { useGLTF } from '@react-three/drei';
+import { GLTF } from 'three-stdlib';
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_2: THREE.Mesh
-  }
+    Object_2: THREE.Mesh;
+  };
   materials: {
-    Material__26: THREE.MeshBasicMaterial
-  }
-}
+    Material__26: THREE.MeshBasicMaterial;
+  };
+};
 
 //type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export function Explosion(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/assets/models/Explosion-transformed.glb') as GLTFResult
+  const { nodes, materials } = useGLTF(
+    '/assets/models/Explosion-transformed.glb'
+  ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_2.geometry} material={materials.Material__26} rotation={[-Math.PI / 2, 0, 0]} scale={0.026} />
+      <mesh
+        geometry={nodes.Object_2.geometry}
+        material={materials.Material__26}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={0.026}
+      />
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/assets/models/Explosion-transformed.glb')
+useGLTF.preload('/assets/models/Explosion-transformed.glb');

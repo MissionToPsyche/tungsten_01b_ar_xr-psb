@@ -31,7 +31,8 @@ module.exports = {
           'instanceMatrix',
           'dispose',
           'castShadow',
-          'receiveShadow'
+          'receiveShadow',
+          'rotation'
         ]
       }
     ],

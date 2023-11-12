@@ -8,28 +8,34 @@ Source: https://sketchfab.com/3d-models/fhm-c2fe3a4409a3431da5b5f2eb014f1ae4
 Title: FHM
 */
 
-import * as THREE from 'three'
-import { useGLTF } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import * as THREE from 'three';
+import { useGLTF } from '@react-three/drei';
+import { GLTF } from 'three-stdlib';
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_5: THREE.Mesh
-  }
+    Object_5: THREE.Mesh;
+  };
   materials: {
-    PaletteMaterial001: THREE.MeshStandardMaterial
-  }
-}
-
-//type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
+    PaletteMaterial001: THREE.MeshStandardMaterial;
+  };
+};
 
 export function FalconHeavyModel(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/assets/models/FalconHeavyModel-transformed.glb') as GLTFResult
+  const { nodes, materials } = useGLTF(
+    '/assets/models/FalconHeavyModel-transformed.glb'
+  ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_5.geometry} material={materials.PaletteMaterial001} position={[-1.515, 22.667, -0.01]} rotation={[-Math.PI / 2, 0, -0.786]} scale={0.025} />
+      <mesh
+        geometry={nodes.Object_5.geometry}
+        material={materials.PaletteMaterial001}
+        position={[-1.515, 22.667, -0.01]}
+        rotation={[-Math.PI / 2, 0, -0.786]}
+        scale={0.025}
+      />
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/assets/models/FalconHeavyModel-transformed.glb')
+useGLTF.preload('/assets/models/FalconHeavyModel-transformed.glb');
