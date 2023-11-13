@@ -41,13 +41,12 @@ const LandingView: ViewComponent = ({ changeView }) => {
           height="100px"
         />
       </HStack>
-
       <LoaderProvider>
         <LoaderTracker />
         <Canvas style={{ height: '50vh' }} linear flat>
           <SceneLighting />
           <ModelSpinner position={[0, -5, -10]}>
-            <FactsModal model="Falcon Heavy">
+            <FactsModal model="falconHeavy">
               <FalconHeavy position={[1.5, 1, 0]} scale={falconScale} />
             </FactsModal>
             <LaunchPad />

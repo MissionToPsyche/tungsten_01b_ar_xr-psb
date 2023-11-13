@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import MissionFacts from './mission-facts';
 import useModal from '../modal/use-modal';
+import { lookupFactByName } from './lookup-facts';
 
 /**
  * This component makes a model clickable and updates the modal body with
@@ -14,19 +14,15 @@ function FactsModal({
   children: ReactNode;
 }) {
   const { onOpen, setModalBody, setModalTitle } = useModal();
-  const modelInfo = lookupModelInfo(model);
-  setModalBody(modelInfo.fact);
-  setModalTitle(modelInfo.title);
+  const modelInfo = lookupFactByName(model);
 
-  return <group onClick={onOpen}>{children}</group>;
+  const callBack = () => {
+    setModalTitle(modelInfo.title);
+    setModalBody(modelInfo.fact);
+    onOpen();
+  };
+
+  return <group onClick={callBack}>{children}</group>;
 }
 
 export default FactsModal;
-
-function lookupModelInfo(model: string) {
-  const modelInfo = MissionFacts.find((fact) => fact.name == model);
-  if (!modelInfo) {
-    throw Error('Unable to find model info for model ' + model);
-  }
-  return modelInfo;
-}

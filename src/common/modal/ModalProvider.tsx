@@ -31,7 +31,7 @@ export const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
           <ModalHeader>{modalTitle}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>{modalBody}</ModalBody>
-          <ModalFooter></ModalFooter>
+          <ModalFooter />
         </ModalContent>
       </Modal>
     </>
