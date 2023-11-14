@@ -7,6 +7,7 @@ Files: ./public/assets/models/launch-date.gltf [4.36MB] > launch-date-transforme
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import degreesToRadians from '../common/utils/degrees-to-radians.ts';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -26,7 +27,7 @@ export function LaunchDate(props: JSX.IntrinsicElements['group']) {
       <mesh
         geometry={nodes.Mesh_Mesh_head_geo001_lambert2SG001.geometry}
         material={materials['lambert2SG.001']}
-        rotation={[-Math.PI / 2, 0, 0]}
+        rotation={[degreesToRadians(-90), 0, 0]}
       />
     </group>
   );
