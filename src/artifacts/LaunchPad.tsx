@@ -26,12 +26,13 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function LaunchPadModel(props: JSX.IntrinsicElements['group']) {
+export function LaunchPad(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/assets/models/launch-pad-model-transformed.glb'
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
+      <ambientLight intensity={0.3}/>
       <mesh
         geometry={nodes.Object_5.geometry}
         material={materials.RocketBackSupport}

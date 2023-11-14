@@ -17,12 +17,13 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function Launch(props: JSX.IntrinsicElements['group']) {
+export function LaunchSceneName(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/assets/models/launch-scene-name-transformed.glb'
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
+      <pointLight intensity={0.9}/>
       <mesh
         geometry={nodes.TextPlus001.geometry}
         material={materials.M_01___Default}

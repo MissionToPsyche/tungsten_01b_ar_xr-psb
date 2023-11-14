@@ -12,7 +12,7 @@ import { ViewComponent } from '../types/view-component.ts';
 import ViewName from '../types/view-name.ts';
 import { Canvas } from '@react-three/fiber';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
-import { FalconHeavyWithLogos } from '../../artifacts/falcon-heavy-with-logos.tsx';
+import { FalconHeavyWithLogos } from '../../artifacts/FalconHeavyWithLogos.tsx';
 /**
  * Landing page for the application, informs the user about the application
  * and allows them to start it when ready.

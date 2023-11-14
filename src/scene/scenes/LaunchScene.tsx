@@ -1,9 +1,9 @@
 import { SceneComponent } from '../types/scene-component.ts';
-import { Launch } from '../../artifacts/launch-scene-name.tsx';
-import { LaunchDate } from '../../artifacts/launch-date.tsx';
+import { LaunchSceneName } from '../../artifacts/LaunchSceneName.tsx';
+import { LaunchDate } from '../../artifacts/LaunchDate.tsx';
 import { Explosion } from '../../artifacts/Explosion.tsx';
-import { LaunchPadModel } from '../../artifacts/launch-pad-model.tsx'
-import { FalconHeavyWithLogos } from '../../artifacts/falcon-heavy-with-logos.tsx';
+import { FalconHeavyWithLogos } from '../../artifacts/FalconHeavyWithLogos.tsx';
+import { LaunchPad } from '../../artifacts/LaunchPad.tsx';
 
 const padScale = 0.2;
 const falconScale = 0.2;
@@ -16,19 +16,19 @@ const explosionScale = 0.25;
  */
 const LaunchScene: SceneComponent = () => (
   <>
-    <LaunchPadModel
+    <LaunchPad
       position={[0, 0, 0]}
       scale={[padScale, padScale, padScale]}
     />
     <FalconHeavyWithLogos
-      position={[1, 2, 0]}
+      position={[1.2, 3, 0]}
       scale={[falconScale, falconScale, falconScale]}
     />
     <Explosion
       position={[1, 0.75, 0]}
       scale={[explosionScale, explosionScale, explosionScale]}
     />
-    <Launch
+    <LaunchSceneName
       position={[0, 11, -2]}
       scale={[sceneNameScale, sceneNameScale, sceneNameScale]}
     />
