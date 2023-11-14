@@ -1,12 +1,5 @@
 import { useCallback } from 'react';
-import {
-  Button,
-  Flex,
-  HStack,
-  Image,
-  StackDivider,
-  Text
-} from '@chakra-ui/react';
+import { Button, Flex, Image, Text } from '@chakra-ui/react';
 import { FaRocket } from 'react-icons/fa';
 import { ViewComponent } from '../types/view-component.ts';
 import ViewName from '../types/view-name.ts';
@@ -32,14 +25,11 @@ const LandingView: ViewComponent = ({ changeView }) => {
 
   return (
     <Flex height="82vh" flexDir="column" justifyContent="space-between" p={6}>
-      <HStack divider={<StackDivider borderColor="#666666" />}>
-        <Image src="/assets/images/nasa.svg" alt="NASA Logo" height="100px" />
-        <Image
-          src="/assets/images/psyche-badge-outline-color.svg"
-          alt="Psyche Logo"
-          height="100px"
-        />
-      </HStack>
+      <Image
+        src="/assets/images/psyche-badge-outline-color.svg"
+        alt="Psyche Logo"
+        height="100px"
+      />
       <LoaderProvider>
         <LoaderTracker />
         <Canvas style={{ height: '50vh' }} linear flat>
