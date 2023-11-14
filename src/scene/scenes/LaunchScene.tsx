@@ -1,9 +1,9 @@
 import { SceneComponent } from '../types/scene-component.ts';
-import { Launch } from '../../artifacts/Launch.tsx';
-import { LaunchDate } from '../../artifacts/LaunchDate.tsx';
-import { FalconHeavyModel } from '../../artifacts/FalconHeavyModel.tsx';
+import { Launch } from '../../artifacts/launch-scene-name.tsx';
+import { LaunchDate } from '../../artifacts/launch-date.tsx';
 import { Explosion } from '../../artifacts/Explosion.tsx';
-import { LaunchPadModel } from '../../artifacts/LaunchPadModel.tsx';
+import { LaunchPadModel } from '../../artifacts/launch-pad-model.tsx'
+import { FalconHeavyWithLogos } from '../../artifacts/falcon-heavy-with-logos.tsx';
 
 const padScale = 0.2;
 const falconScale = 0.2;
@@ -20,7 +20,7 @@ const LaunchScene: SceneComponent = () => (
       position={[0, 0, 0]}
       scale={[padScale, padScale, padScale]}
     />
-    <FalconHeavyModel
+    <FalconHeavyWithLogos
       position={[1, 2, 0]}
       scale={[falconScale, falconScale, falconScale]}
     />

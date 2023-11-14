@@ -12,8 +12,7 @@ import { ViewComponent } from '../types/view-component.ts';
 import ViewName from '../types/view-name.ts';
 import { Canvas } from '@react-three/fiber';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
-import { FalconHeavy } from '../../artifacts/FalconHeavy.tsx';
-
+import { FalconHeavyWithLogos } from '../../artifacts/falcon-heavy-with-logos.tsx';
 /**
  * Landing page for the application, informs the user about the application
  * and allows them to start it when ready.
@@ -37,7 +36,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
         <ambientLight intensity={0.1} />
         <pointLight position={[10, 10, 10]} intensity={0.5} />
         <ModelSpinner position={[0, -8, -10]}>
-          <FalconHeavy />
+          <FalconHeavyWithLogos scale={0.6} />
         </ModelSpinner>
       </Canvas>
       <Text fontSize="xl" fontWeight="medium" color="#302244">

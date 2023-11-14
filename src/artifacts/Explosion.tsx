@@ -21,11 +21,9 @@ type GLTFResult = GLTF & {
   };
 };
 
-//type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
-
 export function Explosion(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
-    '/assets/models/Explosion-transformed.glb'
+    '/assets/models/explosion-transformed.glb'
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
@@ -39,4 +37,4 @@ export function Explosion(props: JSX.IntrinsicElements['group']) {
   );
 }
 
-useGLTF.preload('/assets/models/Explosion-transformed.glb');
+useGLTF.preload('/assets/models/explosion-transformed.glb');
