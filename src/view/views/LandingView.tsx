@@ -6,14 +6,14 @@ import ViewName from '../types/view-name.ts';
 import { Canvas } from '@react-three/fiber';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import SceneLighting from '../../common/components/SceneLighting.tsx';
-import { FalconHeavy } from '../../artifacts/FalconHeavy.tsx';
-import { LaunchPad } from '../../artifacts/LaunchPad.tsx';
 import FactsModal from '../../common/facts/FactsModal.tsx';
 import LoaderProvider from '../../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
+import { FalconHeavyWithLogos } from '../../artifacts/FalconHeavyWithLogos.tsx';
+import { LaunchPadModel } from '../../artifacts/LaunchPadModel.tsx';
 
-const falconScale = filledVector(0.75);
+const falconScale = filledVector(0.3);
 
 /**
  * Landing page for the application, informs the user about the application
@@ -35,11 +35,17 @@ const LandingView: ViewComponent = ({ changeView }) => {
         <LoaderTracker />
         <Canvas style={{ height: '50vh' }} linear flat>
           <SceneLighting />
-          <ModelSpinner position={[0, -5, -10]} speed={0.5}>
+          <pointLight intensity={0.3} position={[0, 5, 0]} />
+          <pointLight intensity={0.1} position={[3, 0, 0]} />
+          <pointLight intensity={0.1} position={[4, 5, -2]} />
+          <ModelSpinner position={[0, -6, -10]} speed={0.5}>
             <FactsModal model="falconHeavy">
-              <FalconHeavy position={[1.5, 1, 0]} scale={falconScale} />
+              <FalconHeavyWithLogos
+                position={[3.3, 2.2, 0]}
+                scale={falconScale}
+              />
             </FactsModal>
-            <LaunchPad />
+            <LaunchPadModel position={[1.5, 1, 0]} scale={falconScale} />
           </ModelSpinner>
         </Canvas>
       </LoaderProvider>
