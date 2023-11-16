@@ -25,8 +25,6 @@ const LaunchScene: SceneComponent = () => (
     <FactsModal model="launch">
       <LaunchDateModel position={[1.8, 4.7, -0.5]} scale={dateScale} />
     </FactsModal>
-    <FalconHeavyWithLogos position={[0.85, 0.7, 0]} scale={falconScale} />
-    <LaunchDateModel position={[1.8, 4.7, -0.5]} scale={dateScale} />
     <LaunchSceneName position={[-0.5, 7, -1]} scale={sceneNameScale} />
   </>
 );
