@@ -8,6 +8,9 @@ import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 import degreesToRadians from '../common/utils/degrees-to-radians.ts';
+import { useRef } from 'react';
+import { Mesh } from 'three';
+import { Select } from '@react-three/postprocessing';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,17 +21,24 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function LaunchDate(props: JSX.IntrinsicElements['group']) {
+export function LaunchDate({
+  outline,
+  ...props
+}: JSX.IntrinsicElements['group'] & { outline?: boolean }) {
+  const meshRef = useRef<Mesh>(null);
   const { nodes, materials } = useGLTF(
     '/assets/models/launch-date-transformed.glb'
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh
-        geometry={nodes.Mesh_Mesh_head_geo001_lambert2SG001.geometry}
-        material={materials['lambert2SG.001']}
-        rotation={[degreesToRadians(-90), 0, 0]}
-      />
+      <Select enabled={outline}>
+        <mesh
+          ref={meshRef}
+          geometry={nodes.Mesh_Mesh_head_geo001_lambert2SG001.geometry}
+          material={materials['lambert2SG.001']}
+          rotation={[degreesToRadians(-90), 0, 0]}
+        />
+      </Select>
     </group>
   );
 }

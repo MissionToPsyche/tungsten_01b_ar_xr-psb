@@ -7,6 +7,9 @@ Files: falcon-heavy.gltf [188.67KB] > falcon-heavy-transformed.glb [7.93KB] (96%
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import { useRef } from 'react';
+import { Select } from '@react-three/postprocessing';
+import { Mesh } from 'three';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -22,26 +25,34 @@ type GLTFResult = GLTF & {
  * A 3D falcon heavy component.
  * @param props for the object group.
  */
-export function FalconHeavy(props: JSX.IntrinsicElements['group']) {
+export function FalconHeavy({
+  outline,
+  ...props
+}: JSX.IntrinsicElements['group'] & { outline?: boolean }) {
+  const meshRef = useRef<Mesh>(null);
   const { nodes, materials } = useGLTF(
     '/assets/models/falcon-heavy-transformed.glb'
   ) as GLTFResult;
+
   return (
     <group {...props} dispose={null}>
-      <mesh
-        geometry={nodes.Cylinder.geometry}
-        material={materials.Metal}
-        castShadow
-        receiveShadow
-        position={[0, 0.66, 0]}
-        scale={0.407}
-      />
-      <instancedMesh
-        args={[nodes.Cylinder003.geometry, materials.Metal, 12]}
-        instanceMatrix={nodes.Cylinder003.instanceMatrix}
-        castShadow
-        receiveShadow
-      />
+      <Select enabled={outline}>
+        <mesh
+          ref={meshRef}
+          geometry={nodes.Cylinder.geometry}
+          material={materials.Metal}
+          castShadow
+          receiveShadow
+          position={[0, 0.66, 0]}
+          scale={0.407}
+        />
+        <instancedMesh
+          args={[nodes.Cylinder003.geometry, materials.Metal, 12]}
+          instanceMatrix={nodes.Cylinder003.instanceMatrix}
+          castShadow
+          receiveShadow
+        />
+      </Select>
     </group>
   );
 }
