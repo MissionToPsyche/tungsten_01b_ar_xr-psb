@@ -1,6 +1,6 @@
 # Tungsten 01B AR/XR PSB
 
-Scaffold for the Tungsten 01B AR/XR PSB.
+The Tungsten 01B AR/XR PSB.
 
 ## Setup
 
