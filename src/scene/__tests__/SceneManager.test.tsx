@@ -1,25 +1,45 @@
 import { expect, it, Mock, vi } from 'vitest';
-import { mockResizeObserver } from 'jsdom-testing-mocks';
-import { render } from '@testing-library/react';
 import getSceneConfig from '../get-scene-config.ts';
 import { SceneConfig } from '../types/scene-config.ts';
 import SceneName from '../types/scene-name.ts';
-import { Html } from '@react-three/drei';
 import SceneManager from '../SceneManager.tsx';
+import React from 'react';
+import ReactThreeTestRenderer from '@react-three/test-renderer';
+
+// The following mocks are required because they render things that are not compatible with ReactThreeTestRenderer
+vi.mock('@artcom/react-three-arjs', () => ({
+  ARCanvas: ({ children }: React.PropsWithChildren) => <>{children}</>,
+  ARMarker: ({ children }: React.PropsWithChildren) => <>{children}</>
+}));
+vi.mock('../../common/loader/LoaderTracker.tsx', () => ({
+  default: ({ children }: React.PropsWithChildren) => <>{children}</>
+}));
+vi.mock('@react-three/drei', async () => ({
+  ...(await vi.importActual<object>('@react-three/drei')),
+  Text: (props: { children: string }) => <group name={props.children} />
+}));
+// End compatibility mocks
 
 vi.mock('../get-scene-config.ts');
-mockResizeObserver();
 
 const mockConfig: SceneConfig = {
   defaultScene: SceneName.LAUNCH,
   scenes: {
     [SceneName.LAUNCH]: {
-      component: () => (
-        <Html>
-          <p>Launch Scene</p>
-        </Html>
-      ),
-      markerUrl: '/hello'
+      component: () => <group name="launch-scene" />,
+      markerUrl: '/hello',
+      nextSceneTransition: {
+        toScene: SceneName.CRUISE,
+        buttonText: 'Next Scene'
+      }
+    },
+    [SceneName.CRUISE]: {
+      component: () => <group name="cruise-scene" />,
+      markerUrl: '/hello',
+      previousSceneTransition: {
+        toScene: SceneName.LAUNCH,
+        buttonText: 'Prev Scene'
+      }
     }
   },
   cameraParametersUrl: '/hello'
@@ -28,13 +48,43 @@ const mockConfig: SceneConfig = {
 (getSceneConfig as Mock).mockReturnValue(mockConfig);
 const changeView = vi.fn();
 
-const setup = () => render(<SceneManager changeView={changeView} />);
+const setup = () =>
+  ReactThreeTestRenderer.create(<SceneManager changeView={changeView} />);
 
 describe('<SceneManager/>', () => {
-  it('should render the default scene initially', () => {
-    setup();
+  it('should render the default scene initially', async () => {
+    const renderer = await setup();
 
-    // TODO: Complete test once we figure out how to properly test 3D, likely https://docs.pmnd.rs/react-three-fiber/tutorials/testing
-    expect(true).toBeTruthy();
+    expect(renderer.scene.findByProps({ name: 'launch-scene' })).toBeDefined();
+  });
+
+  it('should render the next scene when the next scene button is clicked', async () => {
+    const renderer = await setup();
+
+    await renderer.fireEvent(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      renderer.scene.findByProps({ name: 'Next Scene' }).parent!,
+      'click'
+    );
+
+    expect(renderer.scene.findByProps({ name: 'cruise-scene' })).toBeDefined();
+  });
+
+  it('should render the previous scene when the next scene button is clicked', async () => {
+    const renderer = await setup();
+
+    await renderer.fireEvent(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      renderer.scene.findByProps({ name: 'Next Scene' }).parent!,
+      'click'
+    );
+
+    await renderer.fireEvent(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      renderer.scene.findByProps({ name: 'Prev Scene' }).parent!,
+      'click'
+    );
+
+    expect(renderer.scene.findByProps({ name: 'launch-scene' })).toBeDefined();
   });
 });

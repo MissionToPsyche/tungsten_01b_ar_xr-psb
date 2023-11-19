@@ -6,16 +6,22 @@ import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
 import SceneLighting from '../common/components/SceneLighting.tsx';
+import degreesToRadians from '../common/utils/degrees-to-radians.ts';
+import SceneControls from './SceneControls.tsx';
 
 /**
  * Manages AR scenes.
  */
 const SceneManager: ViewComponent = () => {
   const config = useMemo(getSceneConfig, []);
-  const [currentScene] = useState(config.defaultScene);
+  const [currentScene, setCurrentScene] = useState(config.defaultScene);
 
-  const { component: CurrentSceneComponent, markerUrl } =
-    config.scenes[currentScene];
+  const {
+    component: CurrentSceneComponent,
+    markerUrl,
+    previousSceneTransition,
+    nextSceneTransition
+  } = config.scenes[currentScene];
 
   return (
     <LoaderProvider>
@@ -35,6 +41,13 @@ const SceneManager: ViewComponent = () => {
           params={{ smooth: true }}
         >
           <CurrentSceneComponent />
+          <SceneControls
+            position={[0, 0, 3]}
+            rotation={[degreesToRadians(-45), 0, 0]}
+            onChangeScene={setCurrentScene}
+            previousSceneTransition={previousSceneTransition}
+            nextSceneTransition={nextSceneTransition}
+          />
         </ARMarker>
       </ARCanvas>
     </LoaderProvider>
