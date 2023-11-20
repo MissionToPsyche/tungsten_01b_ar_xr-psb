@@ -6,19 +6,20 @@ import ViewName from '../types/view-name.ts';
 import { Canvas } from '@react-three/fiber';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import SceneLighting from '../../common/components/SceneLighting.tsx';
-import FactsModal from '../../common/facts/FactsModal.tsx';
 import LoaderProvider from '../../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
-import { FalconHeavyWithLogos } from '../../artifacts/FalconHeavyWithLogos.tsx';
-import { LaunchPadModel } from '../../artifacts/LaunchPadModel.tsx';
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { TimeLine } from '../../artifacts/TimeLine.tsx';
 
-const falconScale = filledVector(0.3);
+const timelineScale = filledVector(0.5);
 
 /**
  * Landing page for the application, informs the user about the application
  * and allows them to start it when ready.
  */
+// Create a react root
+
 const LandingView: ViewComponent = ({ changeView }) => {
   const onClickStart = useCallback(() => {
     changeView(ViewName.AR_SCENES);
@@ -33,16 +34,13 @@ const LandingView: ViewComponent = ({ changeView }) => {
       />
       <LoaderProvider>
         <LoaderTracker />
-        <Canvas style={{ height: '50vh' }} linear flat>
+        <Canvas style={{ height: '50vh' }}>
+          <OrbitControls />
           <SceneLighting />
-          <ModelSpinner position={[0, -6, -10]} speed={0.5}>
-            <FactsModal model="falconHeavy">
-              <FalconHeavyWithLogos
-                position={[3.3, 2.2, 0]}
-                scale={falconScale}
-              />
-            </FactsModal>
-            <LaunchPadModel position={[1.5, 1, 0]} scale={falconScale} />
+          <directionalLight intensity={0.5} position={[8, 10, 40]} />
+          <PerspectiveCamera makeDefault position={[8, 10, 50]} />
+          <ModelSpinner position={[-10, -10, -100]} speed={0.3}>
+            <TimeLine position={[0, -12, -20]} scale={timelineScale} />
           </ModelSpinner>
         </Canvas>
       </LoaderProvider>
