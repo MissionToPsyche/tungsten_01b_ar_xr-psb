@@ -12,7 +12,7 @@ import filledVector from '../../common/utils/filled-vector.ts';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { TimeLine } from '../../artifacts/TimeLine.tsx';
 
-const timelineScale = filledVector(0.5);
+const timelineScale = filledVector(0.65);
 
 /**
  * Landing page for the application, informs the user about the application
@@ -39,7 +39,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
           <SceneLighting />
           <directionalLight intensity={0.5} position={[8, 10, 40]} />
           <PerspectiveCamera makeDefault position={[8, 10, 50]} />
-          <ModelSpinner position={[-10, -10, -100]} speed={0.3}>
+          <ModelSpinner position={[-10, -10, -100]} speed={-0.1}>
             <TimeLine position={[0, -12, -20]} scale={timelineScale} />
           </ModelSpinner>
         </Canvas>
