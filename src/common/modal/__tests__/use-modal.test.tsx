@@ -25,7 +25,7 @@ describe('useModal', () => {
       }
     } = setup();
 
-    expect(onOpen).not.toBeUndefined();
+    expect(onOpen).toEqual(value.onOpen);
     expect(setModalBody).not.toBeUndefined();
     expect(setModalTitle).not.toBeUndefined();
   });
