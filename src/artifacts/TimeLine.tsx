@@ -34,27 +34,9 @@ export function TimeLine(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh
-        geometry={nodes.TimelineBuble01.geometry}
-        material={materials.PaletteMaterial001}
-        position={[85.08, 22.86, 11.697]}
-        rotation={[0, 0.6, 0]}
-        scale={[0.025, 0.03, 0.025]}
-      />
-      <mesh
-        geometry={nodes.Object_9.geometry}
-        material={materials.PaletteMaterial002}
-        position={[-49.242, 35.538, 13.247]}
-        rotation={[-Math.PI / 2, 0, -0.209]}
-        scale={0.032}
-      />
-      <mesh
-        geometry={nodes.Base.geometry}
-        material={materials.PaletteMaterial003}
-        position={[-53.244, 0.713, 16.039]}
-        rotation={[-Math.PI / 2, 0, 0.577]}
-        scale={0.028}
-      />
+      <mesh geometry={nodes.TimelineBuble01.geometry} material={materials.PaletteMaterial001} position={[85.08, 22.86, 11.697]} rotation={[0, 0.6, 0]} scale={[0.025, 0.03, 0.025]} />
+      <mesh geometry={nodes.Object_9.geometry} material={materials.PaletteMaterial002} position={[-49.242, 35.538, 13.247]} rotation={[-Math.PI / 2, 0, -0.209]} scale={0.032} />
+      <mesh geometry={nodes.Base.geometry} material={materials.PaletteMaterial003} position={[-53.244, 0.713, 16.039]} rotation={[-Math.PI / 2, 0, 0.577]} scale={0.028} />
       <instancedMesh
         args={[nodes.mesh_8.geometry, materials.PaletteMaterial002, 14]}
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
