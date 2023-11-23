@@ -16,5 +16,6 @@ export interface Particle {
   timeAlive: number;
   // The speed of the particle
   speed: number;
+  // The color of the particle
   color?: Color;
 }
