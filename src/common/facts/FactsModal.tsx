@@ -21,7 +21,6 @@ function FactsModal({
     setModalBody(modelInfo.fact);
     onOpen();
   };
-
   return <group onClick={callBack}>{children}</group>;
 }
 

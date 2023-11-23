@@ -38,7 +38,8 @@ module.exports = {
           'blending',
           'depthTest',
           'depthWrite',
-          'side'
+          'side',
+          'wireframe'
         ]
       }
     ],

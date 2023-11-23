@@ -8,6 +8,7 @@ import LoaderTracker from '../common/loader/LoaderTracker.tsx';
 import SceneLighting from '../common/components/SceneLighting.tsx';
 import degreesToRadians from '../common/utils/degrees-to-radians.ts';
 import SceneControls from './SceneControls.tsx';
+import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchronizer.tsx';
 
 /**
  * Manages AR scenes.
@@ -27,13 +28,13 @@ const SceneManager: ViewComponent = () => {
     <LoaderProvider>
       <LoaderTracker />
       <ARCanvas
-        camera={{ position: [0, 0, 0] }}
         onCreated={fitGlToWindow}
         cameraParametersUrl={config.cameraParametersUrl}
         gl={{ logarithmicDepthBuffer: true }}
         linear
         flat
       >
+        <ARRenderSizeSynchronizer />
         <SceneLighting />
         <ARMarker
           type="pattern"
