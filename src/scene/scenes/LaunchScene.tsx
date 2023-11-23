@@ -9,7 +9,7 @@ import { LaunchSceneName } from '../../artifacts/LaunchSceneName.tsx';
 
 const padScale = filledVector(0.15);
 const falconScale = filledVector(0.15);
-const dateScale = filledVector(0.5);
+const dateScale = filledVector(0.15);
 const sceneNameScale = filledVector(0.6);
 
 /**
@@ -17,15 +17,16 @@ const sceneNameScale = filledVector(0.6);
  */
 const LaunchScene: SceneComponent = () => (
   <>
+    <spotLight intensity={0.5} position={[0, 10, 15]} decay={0.2} castShadow />
     <LaunchPadModel position={[0, 0, 0]} scale={padScale} />
     <SmokeParticleSystem position={[0.75, 1, 0]} />
     <FactsModal model="falconHeavy">
       <FalconHeavyWithLogos position={[0.85, 0.7, 0]} scale={falconScale} />
     </FactsModal>
     <FactsModal model="launch">
-      <LaunchDateModel position={[1.8, 4.7, -0.5]} scale={dateScale} />
+      <LaunchDateModel position={[-1.8, 0.2, 2]} scale={dateScale} />
     </FactsModal>
-    <LaunchSceneName position={[-0.5, 7, -1]} scale={sceneNameScale} />
+    <LaunchSceneName position={[-0.5, 7.5, 1]} scale={sceneNameScale} />
   </>
 );
 
