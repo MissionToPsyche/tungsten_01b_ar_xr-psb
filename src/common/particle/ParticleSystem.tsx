@@ -1,8 +1,9 @@
 import { useMemo, useRef, useState } from 'react';
-import { InstancedMesh, Object3D } from 'three';
+import { Color, InstancedMesh, Object3D } from 'three';
 import { RootState, useFrame } from '@react-three/fiber';
 import { Particle } from './particle.ts';
 import { ParticleSystemState } from './particle-system-state.ts';
+import updateMeshInstanceColor from './update-mesh-instance-color.ts';
 
 /**
  * Function that initializes a particle.
@@ -52,12 +53,15 @@ const ParticleSystem = ({
     return tempParticles;
   }, [count, onParticleInit]);
 
-  const dummy = useMemo(() => new Object3D(), []);
+  const dummyObj = useMemo(() => new Object3D(), []);
+  const dummyColor = useMemo(() => new Color(), []);
 
   useFrame((rootState, delta) => {
     if (!mesh.current) {
       return;
     }
+
+    let colorNeedsUpdate = false;
 
     particles.forEach((particle, index) => {
       if (!mesh.current) {
@@ -67,17 +71,27 @@ const ParticleSystem = ({
       onParticleFrame(particle, { time }, rootState);
       const { position, meshRotation, meshScale } = particle;
 
-      dummy.position.copy(position);
-      dummy.rotation.copy(meshRotation);
-      dummy.scale.copy(meshScale);
+      dummyObj.position.copy(position);
+      dummyObj.rotation.copy(meshRotation);
+      dummyObj.scale.copy(meshScale);
 
-      dummy.updateMatrix();
-      mesh.current.setMatrixAt(index, dummy.matrix);
+      dummyObj.updateMatrix();
+      mesh.current.setMatrixAt(index, dummyObj.matrix);
+
+      if (updateMeshInstanceColor(particle, mesh.current, index, dummyColor)) {
+        colorNeedsUpdate = true;
+      }
 
       particle.timeAlive += delta;
     });
 
     mesh.current.instanceMatrix.needsUpdate = true;
+
+    // Eslint bug, it thinks colorNeedsUpdate is always falsy
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    if (colorNeedsUpdate && mesh.current.instanceColor) {
+      mesh.current.instanceColor.needsUpdate = true;
+    }
 
     setTime(time + delta);
   });

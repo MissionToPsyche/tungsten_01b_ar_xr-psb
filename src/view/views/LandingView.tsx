@@ -12,6 +12,7 @@ import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
 import { FalconHeavyWithLogos } from '../../artifacts/FalconHeavyWithLogos.tsx';
 import { LaunchPadModel } from '../../artifacts/LaunchPadModel.tsx';
+import ThrusterParticleSystem from '../../common/particle/systems/thuster/ThrusterParticleSystem.tsx';
 
 const falconScale = filledVector(0.3);
 
@@ -35,6 +36,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
         <LoaderTracker />
         <Canvas style={{ height: '50vh' }} linear flat>
           <SceneLighting />
+          <ThrusterParticleSystem />
           <ModelSpinner position={[0, -6, -10]} speed={0.5}>
             <FactsModal model="falconHeavy">
               <FalconHeavyWithLogos
