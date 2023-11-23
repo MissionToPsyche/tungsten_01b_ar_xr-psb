@@ -1,17 +1,19 @@
 import { Particle } from '../../../particle.ts';
-import { Euler, Vector3 } from 'three';
-import onParticleFrame from '../on-particle-frame.ts';
+import { Color, Euler, Vector3 } from 'three';
 import { RootState } from '@react-three/fiber';
 import transformOnLocalAxis from '../../../../utils/transform-on-local-axis.ts';
 import { expect, vi } from 'vitest';
 import lookAtCamera from '../../../../utils/look-at-camera.ts';
-import onParticleInit from '../on-particle-init.ts';
 import resetParticleWhenScaleLte from '../../../utils/reset-particle-when-scale-lte.ts';
+import onParticleFrame from '../on-particle-frame.ts';
+import onParticleInit from '../on-particle-init.ts';
+import lerpColors from '../../../../utils/lerp-colors.ts';
 
 vi.mock('../../../../utils/transform-on-local-axis.ts');
 vi.mock('../../../../utils/look-at-camera.ts');
 vi.mock('../on-particle-init.ts');
 vi.mock('../../../utils/reset-particle-when-scale-lte.ts');
+vi.mock('../../../../utils/lerp-colors.ts');
 
 let particle: Particle;
 
@@ -33,7 +35,8 @@ describe('onParticleFrame', () => {
       rotation: new Euler(2, 2, 2),
       speed: 3,
       meshRotation: new Euler(4, 4, 4),
-      timeAlive: 5
+      timeAlive: 5,
+      color: new Color()
     };
   });
 
@@ -43,8 +46,8 @@ describe('onParticleFrame', () => {
     expect(transformOnLocalAxis).toHaveBeenCalledWith(
       particle.position,
       particle.rotation,
-      new Vector3(1, 0, 0),
-      particle.speed
+      new Vector3(0, -1, 0),
+      particle.speed * 6
     );
   });
 
@@ -56,6 +59,17 @@ describe('onParticleFrame', () => {
       particle.position,
       new Vector3(0, 1, 0),
       rootState.camera
+    );
+  });
+
+  it('should lerp the particle color', () => {
+    onParticleFrame(particle, systemState, rootState);
+
+    lerpColors(
+      particle.color as unknown as Color,
+      new Color('#FFDD00'),
+      new Color('#FFF2BD'),
+      particle.timeAlive
     );
   });
 

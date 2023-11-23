@@ -5,7 +5,7 @@ import randomRange from '../../../utils/random-range.ts';
 const startOffsetMax = 0.1;
 
 /**
- * Initializes a smoke particle.
+ * Initializes a thruster particle.
  */
 const onParticleInit: OnParticleInitFn = () => ({
   position: new Vector3(
@@ -18,7 +18,7 @@ const onParticleInit: OnParticleInitFn = () => ({
   meshScale: new Vector3().setScalar(randomRange(0.1, 1)),
   timeAlive: 0,
   speed: randomRange(0.01, 0.05),
-  color: new Color('red')
+  color: new Color()
 });
 
 export default onParticleInit;

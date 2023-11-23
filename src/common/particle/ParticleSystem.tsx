@@ -3,7 +3,7 @@ import { Color, InstancedMesh, Object3D } from 'three';
 import { RootState, useFrame } from '@react-three/fiber';
 import { Particle } from './particle.ts';
 import { ParticleSystemState } from './particle-system-state.ts';
-import updateMeshInstanceColor from './update-mesh-instance-color.ts';
+import updateMeshInstanceColor from './utils/update-mesh-instance-color.ts';
 
 /**
  * Function that initializes a particle.

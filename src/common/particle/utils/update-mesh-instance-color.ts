@@ -1,4 +1,4 @@
-import { Particle } from './particle.ts';
+import { Particle } from '../particle.ts';
 import { Color, InstancedMesh } from 'three';
 
 /**
