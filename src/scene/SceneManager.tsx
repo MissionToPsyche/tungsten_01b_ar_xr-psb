@@ -8,7 +8,7 @@ import LoaderTracker from '../common/loader/LoaderTracker.tsx';
 import SceneLighting from '../common/components/SceneLighting.tsx';
 import degreesToRadians from '../common/utils/degrees-to-radians.ts';
 import SceneControls from './SceneControls.tsx';
-import ARRenderSizeResolver from '../common/components/ARRenderSizeResolver.tsx';
+import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchronizer.tsx';
 
 /**
  * Manages AR scenes.
@@ -34,7 +34,7 @@ const SceneManager: ViewComponent = () => {
         linear
         flat
       >
-        <ARRenderSizeResolver />
+        <ARRenderSizeSynchronizer />
         <SceneLighting />
         <ARMarker
           type="pattern"
