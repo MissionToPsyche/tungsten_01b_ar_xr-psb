@@ -32,9 +32,31 @@ export function LaunchPadModel(props: JSX.IntrinsicElements['group']) {
   return (
     <group {...props} dispose={null}>
       <ambientLight intensity={0.1} position={[-2, 9, 3]} />
-      <mesh castShadow receiveShadow geometry={nodes.Object_4.geometry} material={materials.metal} position={[0, -0.591, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={[0.026, 0.026, 0.025]}/>
-      <mesh castShadow receiveShadow geometry={nodes.Object_8.geometry} material={materials.concrete} position={[0.687, 0.801, -0.022]} scale={[11, 1.2, 11]}/>
-      <mesh castShadow receiveShadow geometry={nodes.Object_10.geometry} material={materials.Material} position={[4.134, 2.97, -0.022]} scale={[3.071, 1.06, 2.161]}/>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_4.geometry}
+        material={materials.metal}
+        position={[0, -0.591, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[0.026, 0.026, 0.025]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_8.geometry}
+        material={materials.concrete}
+        position={[0.687, 0.801, -0.022]}
+        scale={[11, 1.2, 11]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_10.geometry}
+        material={materials.Material}
+        position={[4.134, 2.97, -0.022]}
+        scale={[3.071, 1.06, 2.161]}
+      />
     </group>
   );
 }

@@ -29,9 +29,19 @@ export function LaunchSceneName(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_5.geometry} material={materials.M_03___Default} position={[0.989, -1.696, 0]} scale={0.025}/>
-      <mesh geometry={nodes.Object_8.geometry} material={materials.M_08___Default} position={[0.992, -1.693, -0.115]} scale={0.025}/>
- </group>
+      <mesh
+        geometry={nodes.Object_5.geometry}
+        material={materials.M_03___Default}
+        position={[0.989, -1.696, 0]}
+        scale={0.025}
+      />
+      <mesh
+        geometry={nodes.Object_8.geometry}
+        material={materials.M_08___Default}
+        position={[0.992, -1.693, -0.115]}
+        scale={0.025}
+      />
+    </group>
   );
 }
 

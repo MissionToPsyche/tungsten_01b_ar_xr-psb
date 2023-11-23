@@ -33,10 +33,31 @@ export function LaunchDateModel(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_4.geometry} material={materials['TimelineBubblePlastic02.001']} position={[0.034, 7.234, -0.824]} scale={0.005} />
-      <mesh geometry={nodes.Object_7.geometry} material={materials['fallback_Material.006']} position={[-0.019, -1.217, -0.413]} rotation={[-Math.PI / 2, 0, 0]} scale={0.008}/>
-      <mesh geometry={nodes.Object_9.geometry} material={materials['fallback_Material.007']} position={[0.026, 7.224, -0.544]} scale={0.005}/>
-      <mesh geometry={nodes.Object_12.geometry} material={materials['M_01___Default.001']} position={[-0.048, 8.662, 0]} scale={0.07}/>
+      <mesh
+        geometry={nodes.Object_4.geometry}
+        material={materials['TimelineBubblePlastic02.001']}
+        position={[0.034, 7.234, -0.824]}
+        scale={0.005}
+      />
+      <mesh
+        geometry={nodes.Object_7.geometry}
+        material={materials['fallback_Material.006']}
+        position={[-0.019, -1.217, -0.413]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={0.008}
+      />
+      <mesh
+        geometry={nodes.Object_9.geometry}
+        material={materials['fallback_Material.007']}
+        position={[0.026, 7.224, -0.544]}
+        scale={0.005}
+      />
+      <mesh
+        geometry={nodes.Object_12.geometry}
+        material={materials['M_01___Default.001']}
+        position={[-0.048, 8.662, 0]}
+        scale={0.07}
+      />
     </group>
   );
 }
