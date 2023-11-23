@@ -8,36 +8,37 @@ Source: https://sketchfab.com/3d-models/date-bubble-d7ecbdc34c1340dd828616b88da5
 Title: date bubble
 */
 
-import * as THREE from 'three'
-import { useGLTF } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import * as THREE from 'three';
+import { useGLTF } from '@react-three/drei';
+import { GLTF } from 'three-stdlib';
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_4: THREE.Mesh
-    Object_7: THREE.Mesh
-    Object_9: THREE.Mesh
-    Object_12: THREE.Mesh
-  }
+    Object_4: THREE.Mesh;
+    Object_7: THREE.Mesh;
+    Object_9: THREE.Mesh;
+    Object_12: THREE.Mesh;
+  };
   materials: {
-    ['TimelineBubblePlastic02.001']: THREE.MeshStandardMaterial
-    ['fallback_Material.006']: THREE.MeshStandardMaterial
-    ['fallback_Material.007']: THREE.MeshStandardMaterial
-    ['M_01___Default.001']: THREE.MeshPhysicalMaterial
-  }
-}
+    ['TimelineBubblePlastic02.001']: THREE.MeshStandardMaterial;
+    ['fallback_Material.006']: THREE.MeshStandardMaterial;
+    ['fallback_Material.007']: THREE.MeshStandardMaterial;
+    ['M_01___Default.001']: THREE.MeshPhysicalMaterial;
+  };
+};
 
 export function LaunchDateModel(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/assets/models/launch-date-model-transformed.glb') as GLTFResult
+  const { nodes, materials } = useGLTF(
+    '/assets/models/launch-date-model-transformed.glb'
+  ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <spotLight intensity={1} position={[-6, 1, -4 ]} color={"white"}/>
       <mesh geometry={nodes.Object_4.geometry} material={materials['TimelineBubblePlastic02.001']} position={[0.034, 7.234, -0.824]} scale={0.005} />
-      <mesh geometry={nodes.Object_7.geometry} material={materials['fallback_Material.006']} position={[-0.019, -1.217, -0.413]}  rotation={[-Math.PI / 2, 0, 0]} scale={0.008} />
-      <mesh geometry={nodes.Object_9.geometry} material={materials['fallback_Material.007']} position={[0.026, 7.224, -0.544]} scale={0.005} />
-      <mesh geometry={nodes.Object_12.geometry} material={materials['M_01___Default.001']} position={[-0.048, 8.662, 0]} scale={0.07} />
+      <mesh geometry={nodes.Object_7.geometry} material={materials['fallback_Material.006']} position={[-0.019, -1.217, -0.413]} rotation={[-Math.PI / 2, 0, 0]} scale={0.008}/>
+      <mesh geometry={nodes.Object_9.geometry} material={materials['fallback_Material.007']} position={[0.026, 7.224, -0.544]} scale={0.005}/>
+      <mesh geometry={nodes.Object_12.geometry} material={materials['M_01___Default.001']} position={[-0.048, 8.662, 0]} scale={0.07}/>
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/assets/models/launch-date-model-transformed.glb')
+useGLTF.preload('/assets/models/launch-date-model-transformed.glb');
