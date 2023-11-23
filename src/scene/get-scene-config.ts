@@ -1,6 +1,7 @@
 import { SceneConfig } from './types/scene-config.ts';
 import SceneName from './types/scene-name.ts';
 import LaunchScene from './scenes/LaunchScene.tsx';
+import CruiseScene from './scenes/CruiseScene.tsx';
 
 /**
  * Function to get the scene configuration. Right now extracted into a method
@@ -14,7 +15,19 @@ const getSceneConfig = (): SceneConfig => ({
   scenes: {
     [SceneName.LAUNCH]: {
       component: LaunchScene,
-      markerUrl: 'assets/patt.hiro'
+      markerUrl: 'assets/patt.hiro',
+      nextSceneTransition: {
+        toScene: SceneName.CRUISE,
+        buttonText: 'Launch'
+      }
+    },
+    [SceneName.CRUISE]: {
+      component: CruiseScene,
+      markerUrl: 'assets/patt.hiro',
+      previousSceneTransition: {
+        toScene: SceneName.LAUNCH,
+        buttonText: 'Back'
+      }
     }
   },
   cameraParametersUrl: 'assets/camera_para.dat'
