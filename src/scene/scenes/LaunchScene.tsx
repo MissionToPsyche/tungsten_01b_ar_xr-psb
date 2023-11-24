@@ -19,22 +19,22 @@ const sceneNameScale = filledVector(0.6);
 const LaunchScene: SceneComponent = () => (
   <>
     <spotLight intensity={0.5} position={[-5, -2, 10]} castShadow />
-  <ModelOutliner color={0xffffff}>
-    <LaunchPadModel position={[0, 0, 0]} scale={padScale} />
-    <SmokeParticleSystem position={[0.75, 1, 0]} />
-    <FactsModal model="falconHeavy">
-      <FalconHeavyWithLogos
-        outline
-        position={[0.85, 0.7, 0]}
-        scale={falconScale}
-      />
-    </FactsModal>
-    <FactsModal model="launch">
-      <LaunchDateModel position={[-1.8, 0.2, 2]} scale={dateScale} />
-    </FactsModal>
-    <LaunchSceneName position={[-0.5, 7.5, -1]} scale={sceneNameScale} />
+    <ModelOutliner color={0xffffff}>
+      <LaunchPadModel position={[0, 0, 0]} scale={padScale} />
+      <SmokeParticleSystem position={[0.75, 1, 0]} />
+      <FactsModal model="falconHeavy">
+        <FalconHeavyWithLogos
+          outline
+          position={[0.85, 0.7, 0]}
+          scale={falconScale}
+        />
+      </FactsModal>
+      <FactsModal model="launch">
+        <LaunchDateModel position={[-1.8, 0.2, 2]} scale={dateScale} />
+      </FactsModal>
+      <LaunchSceneName position={[-0.5, 7.5, -1]} scale={sceneNameScale} />
+    </ModelOutliner>
   </>
-  </ModelOutliner>
 );
 
 export default LaunchScene;
