@@ -27,9 +27,9 @@ export const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
       </ModalContext.Provider>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent fontFamily="Helvetica" color="white" bg="magenta.700">
           <ModalHeader>{modalTitle}</ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton backgroundColor="white" />
           <ModalBody>{modalBody}</ModalBody>
           <ModalFooter />
         </ModalContent>

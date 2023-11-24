@@ -9,6 +9,7 @@ import SceneLighting from '../common/components/SceneLighting.tsx';
 import degreesToRadians from '../common/utils/degrees-to-radians.ts';
 import SceneControls from './SceneControls.tsx';
 import ViewName from '../view/types/view-name.ts';
+import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchronizer.tsx';
 
 /**
  * Manages AR scenes.
@@ -31,13 +32,13 @@ const SceneManager: ViewComponent = ({ changeView }) => {
     <LoaderProvider>
       <LoaderTracker />
       <ARCanvas
-        camera={{ position: [0, 0, 0] }}
         onCreated={fitGlToWindow}
         cameraParametersUrl={config.cameraParametersUrl}
         gl={{ logarithmicDepthBuffer: true }}
         linear
         flat
       >
+        <ARRenderSizeSynchronizer />
         <SceneLighting />
         <ARMarker
           type="pattern"
