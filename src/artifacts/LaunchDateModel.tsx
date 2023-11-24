@@ -11,6 +11,9 @@ Title: date bubble
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import { Mesh } from 'three';
+import { useRef } from 'react';
+import { Select } from '@react-three/postprocessing';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -27,7 +30,11 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function LaunchDateModel(props: JSX.IntrinsicElements['group']) {
+export function LaunchDateModel({
+  outline,
+  ...props
+}: JSX.IntrinsicElements['group'] & { outline?: boolean }) {
+  const meshRef = useRef<Mesh>(null);
   const { nodes, materials } = useGLTF(
     '/assets/models/launch-date-model-transformed.glb'
   ) as GLTFResult;
