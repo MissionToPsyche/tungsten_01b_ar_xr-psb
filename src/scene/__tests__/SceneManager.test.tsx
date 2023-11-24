@@ -5,6 +5,7 @@ import SceneName from '../types/scene-name.ts';
 import SceneManager from '../SceneManager.tsx';
 import React from 'react';
 import ReactThreeTestRenderer from '@react-three/test-renderer';
+import { AnimationProvider } from '../../animations/AnimationProvider.tsx';
 
 // The following mocks are required because they render things that are not compatible with ReactThreeTestRenderer
 vi.mock('@artcom/react-three-arjs', () => ({
@@ -40,6 +41,14 @@ const mockConfig: SceneConfig = {
         toScene: SceneName.LAUNCH,
         buttonText: 'Prev Scene'
       }
+    },
+    [SceneName.ORBIT]: {
+      component: () => <group name="orbit-scene" />,
+      markerUrl: '/hello',
+      previousSceneTransition: {
+        toScene: SceneName.CRUISE,
+        buttonText: 'Prev Scene'
+      }
     }
   },
   cameraParametersUrl: '/hello'
@@ -49,7 +58,11 @@ const mockConfig: SceneConfig = {
 const changeView = vi.fn();
 
 const setup = () =>
-  ReactThreeTestRenderer.create(<SceneManager changeView={changeView} />);
+  ReactThreeTestRenderer.create(
+    <AnimationProvider>
+      <SceneManager changeView={changeView} />
+    </AnimationProvider>
+  );
 
 describe('<SceneManager/>', () => {
   it('should render the default scene initially', async () => {

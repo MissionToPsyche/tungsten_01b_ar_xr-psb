@@ -1,18 +1,22 @@
 import { ARCanvas, ARMarker } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
 import getSceneConfig from './get-scene-config.ts';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
 import SceneLighting from '../common/components/SceneLighting.tsx';
 import degreesToRadians from '../common/utils/degrees-to-radians.ts';
 import SceneControls from './SceneControls.tsx';
+import ViewName from '../view/types/view-name.ts';
 
 /**
  * Manages AR scenes.
  */
-const SceneManager: ViewComponent = () => {
+const SceneManager: ViewComponent = ({ changeView }) => {
+  const onRestart = useCallback(() => {
+    changeView(ViewName.LANDING_PAGE);
+  }, [changeView]);
   const config = useMemo(getSceneConfig, []);
   const [currentScene, setCurrentScene] = useState(config.defaultScene);
 
@@ -45,6 +49,7 @@ const SceneManager: ViewComponent = () => {
             position={[0, 0, 3]}
             rotation={[degreesToRadians(-45), 0, 0]}
             onChangeScene={setCurrentScene}
+            onRestart={onRestart}
             previousSceneTransition={previousSceneTransition}
             nextSceneTransition={nextSceneTransition}
           />
