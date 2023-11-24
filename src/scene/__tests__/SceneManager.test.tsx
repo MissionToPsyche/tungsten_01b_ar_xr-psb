@@ -21,6 +21,7 @@ vi.mock('@react-three/drei', async () => ({
 // End compatibility mocks
 
 vi.mock('../get-scene-config.ts');
+vi.mock('../../common/hooks/use-sync-ar-to-window-size.ts');
 
 const mockConfig: SceneConfig = {
   defaultScene: SceneName.LAUNCH,

@@ -2,16 +2,18 @@ import { Camera, Euler, Matrix4, Vector3 } from 'three';
 
 /**
  * Returns an Euler looking at the `camera` based on the provided `position`
- * respective of the `upAxis`. Does not mutate the original values.
+ * respective of the `upAxis`
+ * @param rotation The rotation Euler to apply the look at rotation to. Will be mutated
  * @param position The position to look from
  * @param upAxis The up axis of the object
  * @param camera The camera to look to
  */
 const lookAtCamera = (
+  rotation: Euler,
   position: Vector3,
   upAxis: Vector3,
   camera: Camera
-): Euler => {
+) => {
   camera.updateMatrixWorld();
   const eyePosition = position
     .clone()
@@ -19,7 +21,7 @@ const lookAtCamera = (
 
   const lookAtMatrix = new Matrix4();
   lookAtMatrix.lookAt(eyePosition, camera.position, upAxis);
-  return new Euler().setFromRotationMatrix(lookAtMatrix);
+  rotation.setFromRotationMatrix(lookAtMatrix);
 };
 
 export default lookAtCamera;
