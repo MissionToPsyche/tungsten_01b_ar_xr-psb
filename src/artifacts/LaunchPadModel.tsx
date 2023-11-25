@@ -31,7 +31,6 @@ export function LaunchPadModel(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <ambientLight intensity={0.1} position={[-2, 9, 3]} />
       <mesh
         castShadow
         receiveShadow
