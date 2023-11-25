@@ -35,6 +35,7 @@ export function LaunchDateModel({
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
+       <Select enabled={outline}>
       <mesh
         geometry={nodes.Object_4.geometry}
         material={materials['TimelineBubblePlastic02.001']}
