@@ -6,7 +6,7 @@ import ViewName from '../types/view-name.ts';
 import { Canvas } from '@react-three/fiber';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import SceneLighting from '../../common/components/SceneLighting.tsx';
-import FactsModal from '../../common/facts/FactsModal.tsx';
+import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import LoaderProvider from '../../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
@@ -36,12 +36,12 @@ const LandingView: ViewComponent = ({ changeView }) => {
         <Canvas style={{ height: '50vh' }} linear flat>
           <SceneLighting />
           <ModelSpinner position={[0, -6, -10]} speed={0.5}>
-            <FactsModal model="falconHeavy">
+            <FactsModalTrigger factName="falconHeavy">
               <FalconHeavyWithLogos
                 position={[3.3, 2.2, 0]}
                 scale={falconScale}
               />
-            </FactsModal>
+            </FactsModalTrigger>
             <LaunchPadModel position={[1.5, 1, 0]} scale={falconScale} />
           </ModelSpinner>
         </Canvas>
