@@ -8,7 +8,7 @@ import SceneLighting from '../../common/components/SceneLighting.tsx';
 import LoaderProvider from '../../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
-import { PerspectiveCamera } from '@react-three/drei';
+import { PerspectiveCamera, PresentationControls } from '@react-three/drei';
 import { TimeLine } from '../../artifacts/TimeLine.tsx';
 
 const timelineScale = filledVector(0.08);
@@ -35,8 +35,17 @@ const LandingView: ViewComponent = ({ changeView }) => {
         <Canvas style={{ height: '50vh' }}>
           <SceneLighting />
           <directionalLight intensity={0.5} position={[8, 10, 40]} />
-          <PerspectiveCamera makeDefault position={[0, 70, 20]} />
-          <TimeLine position={[0, 67.5, 0]} scale={timelineScale} />
+          <PerspectiveCamera makeDefault position={[0, 2, 20]} />
+          <PresentationControls
+            global
+            config={{ mass: 2, tension: 500 }}
+            snap={{ mass: 4, tension: 1500 }}
+            rotation={[0, 0, 0]}
+            polar={[-Math.PI / 3, Math.PI / 3]}
+            azimuth={[-Math.PI / 3, Math.PI / 3]}
+          >
+            <TimeLine position={[0, 0, 0]} scale={timelineScale} />
+          </PresentationControls>
         </Canvas>
       </LoaderProvider>
       <Text fontSize="20" fontWeight="medium" color="#302244">

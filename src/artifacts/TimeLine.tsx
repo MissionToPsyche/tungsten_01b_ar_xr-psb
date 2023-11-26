@@ -9,7 +9,7 @@ Title: Time-line
 */
 
 import * as THREE from 'three';
-import { useGLTF, PresentationControls } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 
 type GLTFResult = GLTF & {
@@ -35,30 +35,20 @@ export function TimeLine(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <PresentationControls
-        global
-        config={{ mass: 2, tension: 500 }}
-        snap={{ mass: 4, tension: 1500 }}
-        rotation={[0, 0, 0]}
-        polar={[-Math.PI / 3, Math.PI / 3]}
-        azimuth={[-Math.PI / 1.4, Math.PI / 2]}
-      >
-        <mesh
-          geometry={nodes.Object_5.geometry}
-          material={materials.PaletteMaterial001}
-          position={[-53.511, 24.235, 6.4]}
-          rotation={[0, 0.306, 0]}
-          scale={[0.025, 0.03, 0.025]}
-        />
-        <mesh
-          geometry={nodes.Object_31.geometry}
-          material={materials.PaletteMaterial002}
-          position={[-48.945, 35.538, 6.451]}
-          rotation={[-Math.PI / 2, 0, -0.502]}
-          scale={0.032}
-        />
-      </PresentationControls>
-      {/* </Float> */}
+      <mesh
+        geometry={nodes.Object_5.geometry}
+        material={materials.PaletteMaterial001}
+        position={[-53.511, 24.235, 6.4]}
+        rotation={[0, 0.306, 0]}
+        scale={[0.025, 0.03, 0.025]}
+      />
+      <mesh
+        geometry={nodes.Object_31.geometry}
+        material={materials.PaletteMaterial002}
+        position={[-48.945, 35.538, 6.451]}
+        rotation={[-Math.PI / 2, 0, -0.502]}
+        scale={0.032}
+      />
     </group>
   );
 }
