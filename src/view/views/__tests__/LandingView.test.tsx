@@ -1,5 +1,5 @@
 import { mockResizeObserver } from 'jsdom-testing-mocks';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import LandingView from '../LandingView.tsx';
 import { expect, vi } from 'vitest';
 import ViewName from '../../types/view-name.ts';
@@ -22,8 +22,12 @@ describe('<LandingView/>', () => {
   it('should call changeView when the launch button is clicked', () => {
     setup();
 
-    fireEvent.click(screen.getAllByText('Start Mission Timeline')[0]);
+    fireEvent.click(screen.getByText('Start Mission Timeline'));
 
     expect(changeView).toHaveBeenCalledWith(ViewName.AR_SCENES);
   });
+});
+
+afterEach(() => {
+  cleanup();
 });
