@@ -1,6 +1,6 @@
 import { SceneComponent } from '../types/scene-component.ts';
 import filledVector from '../../common/utils/filled-vector.ts';
-import FactsModal from '../../common/facts/FactsModal.tsx';
+import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import { FalconHeavyWithLogos } from '../../artifacts/FalconHeavyWithLogos.tsx';
 import { LaunchPadModel } from '../../artifacts/LaunchPadModel.tsx';
 import { LaunchDateModel } from '../../artifacts/LaunchDateModel.tsx';
@@ -19,7 +19,7 @@ const sceneNameScale = filledVector(0.6);
 const LaunchScene: SceneComponent = () => (
   <ModelOutliner color={0xffffff}>
     <LaunchPadModel position={[0, 0, 0]} scale={padScale} />
-    <FactsModal model="falconHeavy">
+    <FactsModalTrigger factName="falconHeavy">
       <LiftoffAnimation>
         <FalconHeavyWithLogos
           outline
@@ -27,10 +27,10 @@ const LaunchScene: SceneComponent = () => (
           scale={falconScale}
         />
       </LiftoffAnimation>
-    </FactsModal>
-    <FactsModal model="launch">
+    </FactsModalTrigger>
+    <FactsModalTrigger factName="launch">
       <LaunchDateModel outline position={[1.8, 4.7, -0.5]} scale={dateScale} />
-    </FactsModal>
+    </FactsModalTrigger>
     <LaunchSceneName position={[-0.5, 7, -1]} scale={sceneNameScale} />
   </ModelOutliner>
 );
