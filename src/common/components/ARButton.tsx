@@ -1,5 +1,4 @@
 import { Plane, Text } from '@react-three/drei';
-import { useToken } from '@chakra-ui/react';
 import React, { useCallback, useMemo, useState } from 'react';
 
 /**
@@ -13,14 +12,17 @@ const ARButton: React.FC<
   Omit<JSX.IntrinsicElements['group'], 'children'> & {
     children: string;
     onClick: () => void;
+    backgroundColor: string;
+    backgroundActiveColor: string;
   }
-> = ({ children, onClick, ...props }) => {
+> = ({
+  children,
+  onClick,
+  backgroundColor,
+  backgroundActiveColor,
+  ...props
+}) => {
   const [isActive, setIsActive] = useState(false);
-
-  const [backgroundActiveColor, backgroundColor] = useToken('colors', [
-    'magenta.100',
-    'magenta.200'
-  ]);
 
   const color = useMemo(() => {
     if (isActive) {

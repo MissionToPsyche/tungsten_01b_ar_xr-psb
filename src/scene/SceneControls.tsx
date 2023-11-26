@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { SceneTransitionConfig } from './types/scene-config.ts';
 import SceneName from './types/scene-name.ts';
 import SceneTransitionButton from './SceneTransitionButton.tsx';
+import RestartTimelineButton from './RestartTimelineButton.tsx';
 
 /**
  * Provides 3D controls to transition from scene to scene
@@ -14,11 +15,13 @@ import SceneTransitionButton from './SceneTransitionButton.tsx';
 const SceneControls: React.FC<
   {
     onChangeScene: (sceneName: SceneName) => void;
+    onRestart: () => void;
     previousSceneTransition?: SceneTransitionConfig;
     nextSceneTransition?: SceneTransitionConfig;
   } & JSX.IntrinsicElements['group']
 > = ({
   onChangeScene,
+  onRestart,
   previousSceneTransition,
   nextSceneTransition,
   ...props
@@ -27,6 +30,7 @@ const SceneControls: React.FC<
     if (previousSceneTransition && nextSceneTransition) {
       return (
         <>
+          <RestartTimelineButton onClick={onRestart} />
           <SceneTransitionButton
             transitionConfig={previousSceneTransition}
             onClick={onChangeScene}
@@ -40,25 +44,29 @@ const SceneControls: React.FC<
         </>
       );
     }
-
     if (previousSceneTransition) {
       return (
-        <SceneTransitionButton
-          transitionConfig={previousSceneTransition}
-          onClick={onChangeScene}
-        />
+        <>
+          <RestartTimelineButton onClick={onRestart} />
+          <SceneTransitionButton
+            transitionConfig={previousSceneTransition}
+            onClick={onChangeScene}
+          />
+        </>
       );
     }
-
     if (nextSceneTransition) {
       return (
-        <SceneTransitionButton
-          transitionConfig={nextSceneTransition}
-          onClick={onChangeScene}
-        />
+        <>
+          <RestartTimelineButton onClick={onRestart} />
+          <SceneTransitionButton
+            transitionConfig={nextSceneTransition}
+            onClick={onChangeScene}
+          />
+        </>
       );
     }
-  }, [nextSceneTransition, onChangeScene, previousSceneTransition]);
+  }, [nextSceneTransition, onChangeScene, onRestart, previousSceneTransition]);
 
   return <group {...props}>{controls}</group>;
 };

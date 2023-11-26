@@ -2,6 +2,8 @@ import { SceneConfig } from './types/scene-config.ts';
 import SceneName from './types/scene-name.ts';
 import LaunchScene from './scenes/LaunchScene.tsx';
 import CruiseScene from './scenes/CruiseScene.tsx';
+import CruiseScene2 from './scenes/OrbitScene.tsx';
+import AnimationName from '../animations/types/animation-name.ts';
 
 /**
  * Function to get the scene configuration. Right now extracted into a method
@@ -18,6 +20,7 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       nextSceneTransition: {
         toScene: SceneName.CRUISE,
+        animation: AnimationName.LIFTOFF,
         buttonText: 'Launch'
       }
     },
@@ -26,6 +29,18 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.LAUNCH,
+        buttonText: 'Back'
+      },
+      nextSceneTransition: {
+        toScene: SceneName.ORBIT,
+        buttonText: 'Orbit'
+      }
+    },
+    [SceneName.ORBIT]: {
+      component: CruiseScene2,
+      markerUrl: 'assets/patt.hiro',
+      previousSceneTransition: {
+        toScene: SceneName.CRUISE,
         buttonText: 'Back'
       }
     }

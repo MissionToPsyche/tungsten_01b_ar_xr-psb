@@ -1,3 +1,4 @@
+import AnimationName from '../../animations/types/animation-name.ts';
 import { SceneComponent } from './scene-component.ts';
 import SceneName from './scene-name.ts';
 
@@ -7,6 +8,8 @@ import SceneName from './scene-name.ts';
 export interface SceneTransitionConfig {
   // The scene to transition to
   toScene: SceneName;
+  // The animation to play during transition
+  animation?: AnimationName;
   // The text to show for the transition button
   buttonText: string;
 }

@@ -12,7 +12,13 @@ const onClick = vi.fn();
 
 const setup = () =>
   ReactThreeTestRenderer.create(
-    <ARButton onClick={onClick}>Button Text</ARButton>
+    <ARButton
+      onClick={onClick}
+      backgroundColor="white"
+      backgroundActiveColor="black"
+    >
+      Button Text
+    </ARButton>
   );
 
 describe('<ARButton/>', () => {

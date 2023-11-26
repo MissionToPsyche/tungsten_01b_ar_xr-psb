@@ -3,7 +3,8 @@
  */
 enum SceneName {
   LAUNCH,
-  CRUISE
+  CRUISE,
+  ORBIT
 }
 
 export default SceneName;
