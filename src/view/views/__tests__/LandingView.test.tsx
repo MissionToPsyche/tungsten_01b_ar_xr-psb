@@ -3,6 +3,7 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import LandingView from '../LandingView.tsx';
 import { expect, vi } from 'vitest';
 import ViewName from '../../types/view-name.ts';
+import axe from 'axe-core';
 
 mockResizeObserver();
 
@@ -25,6 +26,14 @@ describe('<LandingView/>', () => {
     fireEvent.click(screen.getByText('Start Mission Timeline'));
 
     expect(changeView).toHaveBeenCalledWith(ViewName.AR_SCENES);
+  });
+
+  it('should have no accessibility violations', async () => {
+    const { container } = setup();
+
+    const results = await axe.run(container);
+
+    expect(results.violations.length).toEqual(0);
   });
 });
 

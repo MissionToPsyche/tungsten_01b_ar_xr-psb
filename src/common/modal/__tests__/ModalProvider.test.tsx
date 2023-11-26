@@ -8,6 +8,8 @@ import {
   screen,
   cleanup
 } from '@testing-library/react';
+import { expect } from 'vitest';
+import axe from 'axe-core';
 
 const modalTitle = 'title';
 const modalBody = 'body';
@@ -26,13 +28,12 @@ const ModalChild = () => {
   openModal = onOpen;
 };
 
-const setup = () => {
+const setup = () =>
   render(
     <ModalProvider>
       <ModalChild />
     </ModalProvider>
   );
-};
 
 describe('<ModalProvider/>', () => {
   it('should not render the modal until a consumer calls open', () => {
@@ -64,6 +65,18 @@ describe('<ModalProvider/>', () => {
     fireEvent.click(screen.getByLabelText('Close'));
 
     expect(screen.queryByText(modalTitle)).not.toBeVisible();
+  });
+
+  it('should have no accessibility violations', async () => {
+    const { container } = setup();
+
+    act(() => {
+      openModal();
+    });
+
+    const results = await axe.run(container);
+
+    expect(results.violations.length).toEqual(0);
   });
 
   afterEach(() => {

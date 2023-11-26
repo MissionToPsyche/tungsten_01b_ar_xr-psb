@@ -44,6 +44,7 @@
     "@vitejs/plugin-react": "^4.2.0",
     "@vitest/coverage-v8": "^0.34.6",
     "@vitest/ui": "^0.34.6",
+    "axe-core": "^4.8.2",
     "core-js": "^3.33.2",
     "eslint": "^8.54.0",
     "eslint-config-prettier": "^9.0.0",
