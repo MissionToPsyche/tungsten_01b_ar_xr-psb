@@ -4,6 +4,7 @@ import { Group } from 'three';
 import useAnimation from './use-animation';
 import AnimationName from './types/animation-name';
 import SmokeParticleSystem from '../common/particle/systems/smoke/SmokeParticleSystem';
+import ThrusterParticleSystem from '../common/particle/systems/thruster/ThrusterParticleSystem';
 
 /**
  * Liftoff animation for rocket
@@ -40,8 +41,12 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
 
   return (
     <group ref={groupRef} {...props}>
-      <SmokeParticleSystem
+      <ThrusterParticleSystem
+        position={[0.62, 0.65, 0]}
         visible={isAnimationActive(AnimationName.LIFTOFF)}
+      />
+      <SmokeParticleSystem
+        visible={!isAnimationActive(AnimationName.LIFTOFF)}
         position={[0.75, 1, 0]}
       />
       {children}
