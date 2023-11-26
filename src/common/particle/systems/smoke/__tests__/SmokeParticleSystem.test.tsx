@@ -4,6 +4,7 @@ import onParticleInit from '../on-particle-init.ts';
 import { expect, vi } from 'vitest';
 import * as drei from '@react-three/drei';
 import { Euler, Vector3 } from 'three';
+import onParticleFrame from '../on-particle-frame.ts';
 
 vi.mock('../on-particle-init.ts');
 vi.mock('../on-particle-frame.ts');
@@ -33,7 +34,7 @@ describe('<SmokeParticleSystem/>', () => {
 
     await renderer.advanceFrames(1, 10);
 
-    expect(onParticleInit).toHaveBeenCalled();
+    expect(onParticleFrame).toHaveBeenCalled();
   });
 
   it('should initialize 200 particles', async () => {

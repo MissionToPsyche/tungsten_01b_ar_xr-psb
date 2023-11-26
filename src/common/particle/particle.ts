@@ -1,4 +1,4 @@
-import { Euler, Vector3 } from 'three';
+import { Color, Euler, Vector3 } from 'three';
 
 /**
  * Represents a particle in a particle system.
@@ -16,4 +16,6 @@ export interface Particle {
   timeAlive: number;
   // The speed of the particle
   speed: number;
+  // The color of the particle
+  color?: Color;
 }

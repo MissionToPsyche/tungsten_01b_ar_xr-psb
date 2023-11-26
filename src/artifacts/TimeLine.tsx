@@ -8,49 +8,59 @@ Source: https://sketchfab.com/3d-models/time-line-b5fbdf533d62404aa783b17e72c737
 Title: Time-line
 */
 
-import * as THREE from 'three'
-import { useGLTF, Float, PresentationControls } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import * as THREE from 'three';
+import { useGLTF, PresentationControls } from '@react-three/drei';
+import { GLTF } from 'three-stdlib';
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_5: THREE.Mesh
-    Object_11: THREE.Mesh
-    Object_14: THREE.Mesh
-    Object_17: THREE.Mesh
-    Object_20: THREE.Mesh
-    Object_23: THREE.Mesh
-    Object_31: THREE.Mesh
-    Object_49: THREE.Mesh
-  }
+    Object_5: THREE.Mesh;
+    Object_11: THREE.Mesh;
+    Object_14: THREE.Mesh;
+    Object_17: THREE.Mesh;
+    Object_20: THREE.Mesh;
+    Object_23: THREE.Mesh;
+    Object_31: THREE.Mesh;
+    Object_49: THREE.Mesh;
+  };
   materials: {
-    PaletteMaterial001: THREE.MeshStandardMaterial
-    PaletteMaterial002: THREE.MeshStandardMaterial
-  }
-}
+    PaletteMaterial001: THREE.MeshStandardMaterial;
+    PaletteMaterial002: THREE.MeshStandardMaterial;
+  };
+};
 
 export function TimeLine(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/assets/models/time-line-transformed.glb') as GLTFResult
+  const { nodes, materials } = useGLTF(
+    '/assets/models/time-line-transformed.glb'
+  ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-        <Float
-        speed={1} // Animation speed, defaults to 1
-        rotationIntensity={0} // XYZ rotation intensity, defaults to 1
-        floatIntensity={10} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-      >
-        <PresentationControls
+      <PresentationControls
+        global
         config={{ mass: 2, tension: 500 }}
         snap={{ mass: 4, tension: 1500 }}
         rotation={[0, 0, 0]}
         polar={[-Math.PI / 3, Math.PI / 3]}
-        azimuth={[0, 0]}>
-        <mesh geometry={nodes.Object_5.geometry} material={materials.PaletteMaterial001} position={[-53.511, 24.235, 6.4]} rotation={[0, 0.306, 0]} scale={[0.025, 0.03, 0.025]} />
-        <mesh geometry={nodes.Object_31.geometry} material={materials.PaletteMaterial002} position={[-48.945, 35.538, 6.451]} rotation={[-Math.PI / 2, 0, -0.502]} scale={0.032} />
-        </PresentationControls>
-      </Float>
+        azimuth={[-Math.PI / 1.4, Math.PI / 2]}
+      >
+        <mesh
+          geometry={nodes.Object_5.geometry}
+          material={materials.PaletteMaterial001}
+          position={[-53.511, 24.235, 6.4]}
+          rotation={[0, 0.306, 0]}
+          scale={[0.025, 0.03, 0.025]}
+        />
+        <mesh
+          geometry={nodes.Object_31.geometry}
+          material={materials.PaletteMaterial002}
+          position={[-48.945, 35.538, 6.451]}
+          rotation={[-Math.PI / 2, 0, -0.502]}
+          scale={0.032}
+        />
+      </PresentationControls>
+      {/* </Float> */}
     </group>
-
-  )
+  );
 }
 
-useGLTF.preload('/assets/models/time-line-transformed.glb')
+useGLTF.preload('/assets/models/time-line-transformed.glb');

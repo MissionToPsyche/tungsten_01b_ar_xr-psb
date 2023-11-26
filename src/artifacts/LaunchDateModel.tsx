@@ -7,6 +7,9 @@ Files: ./public/assets/models/LaunchDate.gltf [13.34MB] > LaunchDate-transformed
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import { Mesh } from 'three';
+import { useRef } from 'react';
+import { Select } from '@react-three/postprocessing';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -17,18 +20,25 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function LaunchDateModel(props: JSX.IntrinsicElements['group']) {
+export function LaunchDateModel({
+  outline,
+  ...props
+}: JSX.IntrinsicElements['group'] & { outline?: boolean }) {
+  const meshRef = useRef<Mesh>(null);
   const { nodes, materials } = useGLTF(
     '/assets/models/launch-date-model-transformed.glb'
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh
-        geometry={nodes.TextPlus001.geometry}
-        material={materials.M_01___Default}
-        position={[-0.305, 1.535, -0.272]}
-        scale={0.025}
-      />
+      <Select enabled={outline}>
+        <mesh
+          ref={meshRef}
+          geometry={nodes.TextPlus001.geometry}
+          material={materials.M_01___Default}
+          position={[-0.305, 1.535, -0.272]}
+          scale={0.025}
+        />
+      </Select>
     </group>
   );
 }

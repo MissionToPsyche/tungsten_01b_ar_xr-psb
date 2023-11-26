@@ -1,7 +1,7 @@
 /**
  * Type representing the composition of a Mission Fact
  */
-interface MissionFact {
+export interface MissionFact {
   title: string;
   fact: string;
 }
@@ -17,15 +17,11 @@ interface MissionFact {
 const missionFacts: Record<string, MissionFact> = {
   falconHeavy: {
     title: 'Falcon Heavy',
-    fact: 'Falcon Heavy is a partially reusable super heavy-lift launch vehicle \
-    that can carry cargo into Earth orbit, and beyond. It is designed, manufactured \
-    and launched by American aerospace company SpaceX.'
+    fact: "The Falcon Heavy is SpaceX's semi-reusable, powerful rocket."
   },
   launch: {
     title: 'The Launch 🚀',
-    fact: "Psyche successfully launched at 10:19 a.m. EDT Friday, October 13, 2023 \
-    aboard a SpaceX Falcon Heavy rocket from Launch Pad 39A at NASA's Kennedy Space \
-    Center in Florida."
+    fact: "Psyche launched on SpaceX's Falcon Heavy, Oct 13, 2023."
   }
 };
 

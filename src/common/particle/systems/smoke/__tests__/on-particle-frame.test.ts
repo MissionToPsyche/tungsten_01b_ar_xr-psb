@@ -6,10 +6,12 @@ import transformOnLocalAxis from '../../../../utils/transform-on-local-axis.ts';
 import { expect, vi } from 'vitest';
 import lookAtCamera from '../../../../utils/look-at-camera.ts';
 import onParticleInit from '../on-particle-init.ts';
+import resetParticleWhenScaleLte from '../../../utils/reset-particle-when-scale-lte.ts';
 
 vi.mock('../../../../utils/transform-on-local-axis.ts');
 vi.mock('../../../../utils/look-at-camera.ts');
 vi.mock('../on-particle-init.ts');
+vi.mock('../../../utils/reset-particle-when-scale-lte.ts');
 
 let particle: Particle;
 
@@ -33,15 +35,11 @@ describe('onParticleFrame', () => {
       meshRotation: new Euler(4, 4, 4),
       timeAlive: 5
     };
-
-    vi.mocked(transformOnLocalAxis).mockReturnValue(new Vector3(1, 1, 1));
-    vi.mocked(lookAtCamera).mockReturnValue(new Euler(1, 1, 1));
   });
 
   it('should translate the particle forward along its axis', () => {
     onParticleFrame(particle, systemState, rootState);
 
-    expect(particle.position).toEqual(new Vector3(1, 1, 1));
     expect(transformOnLocalAxis).toHaveBeenCalledWith(
       particle.position,
       particle.rotation,
@@ -53,7 +51,12 @@ describe('onParticleFrame', () => {
   it('should rotate the mesh to look at the camera', () => {
     onParticleFrame(particle, systemState, rootState);
 
-    expect(particle.meshRotation).toEqual(new Euler(1, 1, 1));
+    expect(lookAtCamera).toHaveBeenCalledWith(
+      particle.meshRotation,
+      particle.position,
+      new Vector3(0, 1, 0),
+      rootState.camera
+    );
   });
 
   it('should reduce the scale of the particle', () => {
@@ -62,15 +65,14 @@ describe('onParticleFrame', () => {
     expect(particle.meshScale).toEqual(new Vector3(6, 6, 6));
   });
 
-  it('should reset the particle if it gets too small', () => {
-    vi.mocked(onParticleInit).mockReturnValueOnce(particle);
-
-    onParticleFrame(particle, systemState, rootState);
-    onParticleFrame(particle, systemState, rootState);
-    onParticleFrame(particle, systemState, rootState);
+  it('should call the reset if function', () => {
     onParticleFrame(particle, systemState, rootState);
 
-    expect(onParticleInit).toHaveBeenCalledTimes(1);
+    expect(resetParticleWhenScaleLte).toHaveBeenCalledWith(
+      particle,
+      onParticleInit,
+      0
+    );
   });
 
   afterEach(() => {

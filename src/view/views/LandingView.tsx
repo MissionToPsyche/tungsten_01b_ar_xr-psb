@@ -4,7 +4,6 @@ import { FaRocket } from 'react-icons/fa';
 import { ViewComponent } from '../types/view-component.ts';
 import ViewName from '../types/view-name.ts';
 import { Canvas } from '@react-three/fiber';
-import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import SceneLighting from '../../common/components/SceneLighting.tsx';
 import LoaderProvider from '../../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
@@ -37,9 +36,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
           <SceneLighting />
           <directionalLight intensity={0.5} position={[8, 10, 40]} />
           <PerspectiveCamera makeDefault position={[0, 70, 20]} />
-          <ModelSpinner position={[0, 0, 0]} speed={0.5}>
-            <TimeLine position={[1, 67.5, 0]} scale={timelineScale} />
-          </ModelSpinner>
+          <TimeLine position={[0, 67.5, 0]} scale={timelineScale} />
         </Canvas>
       </LoaderProvider>
       <Text fontSize="20" fontWeight="medium" color="#302244">
