@@ -16,8 +16,8 @@ describe('onParticleInit', () => {
     const actual = onParticleInit();
 
     expect(actual.position).toEqual(new Vector3(randomNumber, 0, randomNumber));
-    expect(randomRange).toHaveBeenNthCalledWith(1, -0.1, 0.1);
-    expect(randomRange).toHaveBeenNthCalledWith(2, -0.1, 0.1);
+    expect(randomRange).toHaveBeenNthCalledWith(1, -0.05, 0.05);
+    expect(randomRange).toHaveBeenNthCalledWith(2, -0.05, 0.05);
   });
 
   it('should initialize the particle rotation at all 0s', () => {
@@ -36,7 +36,7 @@ describe('onParticleInit', () => {
     const actual = onParticleInit();
 
     expect(actual.meshScale).toEqual(new Vector3().setScalar(randomNumber));
-    expect(randomRange).toHaveBeenNthCalledWith(3, 0.1, 1);
+    expect(randomRange).toHaveBeenNthCalledWith(3, 0.1, 0.7);
   });
 
   it('should initialize time alive as 0', () => {
