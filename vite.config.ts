@@ -2,6 +2,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import * as path from 'path';
+import { configDefaults } from 'vitest/config';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -27,6 +28,7 @@ export default defineConfig({
       jsdom: {
         resources: 'usable'
       }
-    }
+    },
+    exclude: [...configDefaults.exclude, './src/e2e']
   }
 });
