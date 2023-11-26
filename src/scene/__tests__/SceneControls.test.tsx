@@ -3,6 +3,7 @@ import SceneControls from '../SceneControls.tsx';
 import { SceneTransitionConfig } from '../types/scene-config.ts';
 import SceneName from '../types/scene-name.ts';
 import { expect } from 'vitest';
+import { AnimationProvider } from '../../animations/AnimationProvider.tsx';
 
 // The following mock is required because ReactThreeTestRenderer cannot render the <Text/> component
 vi.mock('@react-three/drei', async () => ({
@@ -11,6 +12,7 @@ vi.mock('@react-three/drei', async () => ({
 }));
 
 const onChangeScene = vi.fn();
+const onRestart = vi.fn();
 
 const mockNextSceneTransition: SceneTransitionConfig = {
   toScene: SceneName.LAUNCH,
@@ -27,11 +29,14 @@ const setup = (
   prevTransition?: SceneTransitionConfig
 ) =>
   ReactThreeTestRenderer.create(
-    <SceneControls
-      nextSceneTransition={nextTransition}
-      previousSceneTransition={prevTransition}
-      onChangeScene={onChangeScene}
-    />
+    <AnimationProvider>
+      <SceneControls
+        nextSceneTransition={nextTransition}
+        previousSceneTransition={prevTransition}
+        onChangeScene={onChangeScene}
+        onRestart={onRestart}
+      />
+    </AnimationProvider>
   );
 
 describe('<SceneControls/>', () => {
