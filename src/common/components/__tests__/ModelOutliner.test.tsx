@@ -3,15 +3,17 @@ import { expect } from 'vitest';
 import ModelOutliner from '../ModelOutliner.tsx';
 import { Sphere } from '@react-three/drei';
 
-// Mock the components used within ModelOutliner 
+// Mock the components used within ModelOutliner
 vi.mock('@react-three/postprocessing', async () => ({
   ...(await vi.importActual<object>('@react-three/postprocessing')),
   EffectComposer: () => <group name="EffectComposer" />,
   Outline: () => <group name="Outline" />,
-  Selection: (props: { children: React.ReactNode }) => <group name="Selection">{props.children}</group>,
+  Selection: (props: { children: React.ReactNode }) => (
+    <group name="Selection">{props.children}</group>
+  )
 }));
 
-const color = 0xffffff; 
+const color = 0xffffff;
 
 const setup = () =>
   ReactThreeTestRenderer.create(
