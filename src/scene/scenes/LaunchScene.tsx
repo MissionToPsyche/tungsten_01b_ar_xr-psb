@@ -6,7 +6,7 @@ import { LaunchPadModel } from '../../artifacts/LaunchPadModel.tsx';
 import { LaunchDateModel } from '../../artifacts/LaunchDateModel.tsx';
 import { LaunchSceneName } from '../../artifacts/LaunchSceneName.tsx';
 import ModelOutliner from '../../common/components/ModelOutliner.tsx';
-import Liftoff from '../../animations/Liftoff.tsx';
+import LiftoffAnimation from '../../animations/LiftoffAnimation.tsx';
 
 const padScale = filledVector(0.15);
 const falconScale = filledVector(0.15);
@@ -20,13 +20,13 @@ const LaunchScene: SceneComponent = () => (
   <ModelOutliner color={0xffffff}>
     <LaunchPadModel position={[0, 0, 0]} scale={padScale} />
     <FactsModal model="falconHeavy">
-      <Liftoff>
+      <LiftoffAnimation>
         <FalconHeavyWithLogos
           outline
           position={[0.85, 0.7, 0]}
           scale={falconScale}
         />
-      </Liftoff>
+      </LiftoffAnimation>
     </FactsModal>
     <FactsModal model="launch">
       <LaunchDateModel outline position={[1.8, 4.7, -0.5]} scale={dateScale} />

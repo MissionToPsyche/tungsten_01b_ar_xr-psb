@@ -6,32 +6,27 @@ import AnimationName from './types/animation-name';
  */
 interface AnimationContextType {
   /**
-   * Boolean value indicating whether animations are active
+   * Adds the specificed animation to the registry with the option to specify
+   * a completion callback
    */
-  active: boolean;
+  registerAnimation: (
+    animationName: AnimationName,
+    callback?: () => void
+  ) => void;
   /**
-   * Function to set the active state
-   * @param state The state of the animation to set
+   * Retrieves the active status of the specified animation
    */
-  setActive: (state: boolean) => void;
+  isAnimationActive: (animationName: AnimationName) => boolean;
   /**
-   * The current animation name
+   * Starts the specified animation
+   * @param name The animation name to start
    */
-  current: AnimationName;
+  startAnimation: (animationName: AnimationName) => void;
   /**
-   * Function to register the current animation name
-   * @param name The animation name to set as current
+   * Stops the specified animation
+   * @param name The animation name to stop
    */
-  setCurrent: (name: AnimationName) => void;
-  /**
-   * Callback function to execute after animation completes
-   */
-  onComplete?: () => void;
-  /**
-   * Registers the specified function as the onComplete callback
-   * @param onComplete The function to exexcute after animation completes
-   */
-  setOnComplete: (onComplete: () => void) => void;
+  stopAnimation: (animationName: AnimationName) => void;
 }
 const AnimationContext = createContext<AnimationContextType | null>(null);
 

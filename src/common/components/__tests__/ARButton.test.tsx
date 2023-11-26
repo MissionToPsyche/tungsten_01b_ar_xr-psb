@@ -14,8 +14,8 @@ const setup = () =>
   ReactThreeTestRenderer.create(
     <ARButton
       onClick={onClick}
-      backgroundColor={'white'}
-      backgroundActiveColor={'black'}
+      backgroundColor="white"
+      backgroundActiveColor="black"
     >
       Button Text
     </ARButton>

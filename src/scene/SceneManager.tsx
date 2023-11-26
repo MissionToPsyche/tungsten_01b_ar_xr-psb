@@ -15,11 +15,12 @@ import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchroni
  * Manages AR scenes.
  */
 const SceneManager: ViewComponent = ({ changeView }) => {
+  const config = useMemo(getSceneConfig, []);
+  const [currentScene, setCurrentScene] = useState(config.defaultScene);
+
   const onRestart = useCallback(() => {
     changeView(ViewName.LANDING_PAGE);
   }, [changeView]);
-  const config = useMemo(getSceneConfig, []);
-  const [currentScene, setCurrentScene] = useState(config.defaultScene);
 
   const {
     component: CurrentSceneComponent,

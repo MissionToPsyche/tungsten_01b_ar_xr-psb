@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import ARButton from '../common/components/ARButton.tsx';
 import { useToken } from '@chakra-ui/react';
 
@@ -13,9 +13,9 @@ const RestartTimelineButton: React.FC<
     onClick: () => void;
   }
 > = ({ onClick, ...props }) => {
-  const onClickButton = useCallback(() => {
+  const onClickButton = () => {
     onClick();
-  }, [onClick]);
+  };
 
   const [bg, bgActive] = useToken('colors', ['gold.200', 'gold.100']);
   return (

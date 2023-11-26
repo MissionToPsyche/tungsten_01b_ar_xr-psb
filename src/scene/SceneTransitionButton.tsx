@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import SceneName from './types/scene-name.ts';
 import { SceneTransitionConfig } from './types/scene-config.ts';
 import ARButton from '../common/components/ARButton.tsx';
@@ -18,14 +18,18 @@ const SceneTransitionButton: React.FC<
     onClick: (toScene: SceneName) => void;
   }
 > = ({ transitionConfig, onClick, ...props }) => {
-  const { setActive, setOnComplete, setCurrent } = useAnimation();
-  const onClickButton = useCallback(() => {
+  const { registerAnimation, startAnimation } = useAnimation();
+  useEffect(() => {
     if (transitionConfig.animation != null) {
-      setOnComplete(() => {
+      registerAnimation(transitionConfig.animation, () => {
         onClick(transitionConfig.toScene);
       });
-      setCurrent(transitionConfig.animation);
-      setActive(true);
+    }
+  });
+
+  const onClickButton = useCallback(() => {
+    if (transitionConfig.animation != null) {
+      startAnimation(transitionConfig.animation);
     } else {
       onClick(transitionConfig.toScene);
     }
@@ -33,9 +37,7 @@ const SceneTransitionButton: React.FC<
     onClick,
     transitionConfig.toScene,
     transitionConfig.animation,
-    setActive,
-    setCurrent,
-    setOnComplete
+    startAnimation
   ]);
   const [bg, bgActive] = useToken('colors', ['magenta.300', 'magenta.200']);
   return (
