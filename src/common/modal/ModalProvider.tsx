@@ -1,21 +1,21 @@
 import {
-  useDisclosure,
   Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
   ModalBody,
+  ModalCloseButton,
+  ModalContent,
   ModalFooter,
-  ModalCloseButton
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure
 } from '@chakra-ui/react';
-import { PropsWithChildren, useState } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import ModalContext from './modal-context';
 
 /**
  * Modal provider that manages displaying a modal that can be
  * toggled and modified by its children.
  */
-export const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
+const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalBody, setModalBody] = useState('');
   const [modalTitle, setModalTitle] = useState('');
@@ -37,3 +37,5 @@ export const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
     </>
   );
 };
+
+export default ModalProvider;

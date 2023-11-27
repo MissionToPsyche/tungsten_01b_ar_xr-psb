@@ -4,21 +4,20 @@ import { FaRocket } from 'react-icons/fa';
 import { ViewComponent } from '../types/view-component.ts';
 import ViewName from '../types/view-name.ts';
 import { Canvas } from '@react-three/fiber';
-import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import SceneLighting from '../../common/components/SceneLighting.tsx';
-import FactsModal from '../../common/facts/FactsModal.tsx';
 import LoaderProvider from '../../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
-import { FalconHeavyWithLogos } from '../../artifacts/FalconHeavyWithLogos.tsx';
-import { LaunchPadModel } from '../../artifacts/LaunchPadModel.tsx';
+import { PerspectiveCamera, PresentationControls } from '@react-three/drei';
+import { TimeLine } from '../../artifacts/TimeLine.tsx';
 
-const falconScale = filledVector(0.3);
+const timelineScale = filledVector(0.08);
 
 /**
  * Landing page for the application, informs the user about the application
  * and allows them to start it when ready.
  */
+
 const LandingView: ViewComponent = ({ changeView }) => {
   const onClickStart = useCallback(() => {
     changeView(ViewName.AR_SCENES);
@@ -33,17 +32,20 @@ const LandingView: ViewComponent = ({ changeView }) => {
       />
       <LoaderProvider>
         <LoaderTracker />
-        <Canvas style={{ height: '50vh' }} linear flat>
+        <Canvas style={{ height: '50vh' }}>
           <SceneLighting />
-          <ModelSpinner position={[0, -6, -10]} speed={0.5}>
-            <FactsModal model="falconHeavy">
-              <FalconHeavyWithLogos
-                position={[3.3, 2.2, 0]}
-                scale={falconScale}
-              />
-            </FactsModal>
-            <LaunchPadModel position={[1.5, 1, 0]} scale={falconScale} />
-          </ModelSpinner>
+          <directionalLight intensity={0.5} position={[8, 10, 40]} />
+          <PerspectiveCamera makeDefault position={[0, 2, 20]} />
+          <PresentationControls
+            global
+            config={{ mass: 2, tension: 500 }}
+            snap={{ mass: 4, tension: 1500 }}
+            rotation={[0, 0, 0]}
+            polar={[-Math.PI / 3, Math.PI / 3]}
+            azimuth={[-Math.PI / 3, Math.PI / 3]}
+          >
+            <TimeLine position={[0, 0, 0]} scale={timelineScale} />
+          </PresentationControls>
         </Canvas>
       </LoaderProvider>
       <Text fontSize="20" fontWeight="medium" color="#302244">

@@ -1,7 +1,15 @@
 import { useContext } from 'react';
 import ModalContext from '../modal-context';
-import { ModalProvider } from '../ModalProvider';
-import { act, render, screen } from '@testing-library/react';
+import ModalProvider from '../ModalProvider';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  cleanup
+} from '@testing-library/react';
+import { expect } from 'vitest';
+import axe from 'axe-core';
 
 const modalTitle = 'title';
 const modalBody = 'body';
@@ -20,13 +28,12 @@ const ModalChild = () => {
   openModal = onOpen;
 };
 
-const setup = () => {
+const setup = () =>
   render(
     <ModalProvider>
       <ModalChild />
     </ModalProvider>
   );
-};
 
 describe('<ModalProvider/>', () => {
   it('should not render the modal until a consumer calls open', () => {
@@ -41,7 +48,38 @@ describe('<ModalProvider/>', () => {
     act(() => {
       openModal();
     });
+
     expect(screen.getByText(modalTitle)).toBeInTheDocument();
     expect(screen.getByText(modalBody)).toBeInTheDocument();
+  });
+
+  it('should close the modal when the close indicator is clicked', () => {
+    setup();
+
+    act(() => {
+      openModal();
+    });
+
+    expect(screen.getByText(modalTitle)).toBeInTheDocument();
+
+    fireEvent.click(screen.getByLabelText('Close'));
+
+    expect(screen.queryByText(modalTitle)).not.toBeVisible();
+  });
+
+  it('should have no accessibility violations', async () => {
+    const { container } = setup();
+
+    act(() => {
+      openModal();
+    });
+
+    const results = await axe.run(container);
+
+    expect(results.violations.length).toEqual(0);
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 });
