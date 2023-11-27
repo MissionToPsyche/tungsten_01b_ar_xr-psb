@@ -19,7 +19,7 @@ const sceneNameScale = filledVector(0.6);
 const LaunchScene: SceneComponent = () => (
   <>
     <ModelOutliner color={0xffffff}>
-      <spotLight intensity={0.5} position={[-5, -2, 10]} castShadow />
+      <spotLight intensity={0.6} position={[20, 10, 25]} castShadow />
       <LaunchPadModel position={[0, 0, 0]} scale={padScale} />
       <FactsModalTrigger factName="falconHeavy">
         <LiftoffAnimation>
