@@ -10,29 +10,32 @@ import LiftoffAnimation from '../../animations/LiftoffAnimation.tsx';
 
 const padScale = filledVector(0.15);
 const falconScale = filledVector(0.15);
-const dateScale = filledVector(0.5);
+const dateScale = filledVector(0.15);
 const sceneNameScale = filledVector(0.6);
 
 /**
  * The launch scene which depicts the Psyche mission launch.
  */
 const LaunchScene: SceneComponent = () => (
-  <ModelOutliner color={0xffffff}>
-    <LaunchPadModel position={[0, 0, 0]} scale={padScale} />
-    <FactsModalTrigger factName="falconHeavy">
-      <LiftoffAnimation>
-        <FalconHeavyWithLogos
-          outline
-          position={[0.85, 0.7, 0]}
-          scale={falconScale}
-        />
-      </LiftoffAnimation>
-    </FactsModalTrigger>
-    <FactsModalTrigger factName="launch">
-      <LaunchDateModel outline position={[1.8, 4.7, -0.5]} scale={dateScale} />
-    </FactsModalTrigger>
-    <LaunchSceneName position={[-0.5, 7, -1]} scale={sceneNameScale} />
-  </ModelOutliner>
+  <>
+    <ModelOutliner color={0xffffff}>
+      <spotLight intensity={0.6} position={[20, 10, 25]} castShadow />
+      <LaunchPadModel position={[0, 0, 0]} scale={padScale} />
+      <FactsModalTrigger factName="falconHeavy">
+        <LiftoffAnimation>
+          <FalconHeavyWithLogos
+            outline
+            position={[0.85, 0.7, 0]}
+            scale={falconScale}
+          />
+        </LiftoffAnimation>
+      </FactsModalTrigger>
+      <FactsModalTrigger factName="launch">
+        <LaunchDateModel outline position={[-1.8, 0.2, 2]} scale={dateScale} />
+      </FactsModalTrigger>
+      <LaunchSceneName position={[-0.5, 7.5, -1]} scale={sceneNameScale} />
+    </ModelOutliner>
+  </>
 );
 
 export default LaunchScene;
