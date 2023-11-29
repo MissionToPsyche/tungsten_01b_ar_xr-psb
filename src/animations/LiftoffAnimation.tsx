@@ -6,6 +6,8 @@ import AnimationName from './types/animation-name';
 import SmokeParticleSystem from '../common/particle/systems/smoke/SmokeParticleSystem';
 import ThrusterParticleSystem from '../common/particle/systems/thruster/ThrusterParticleSystem';
 
+const speed = 2;
+
 /**
  * Liftoff animation for rocket
  */
@@ -17,23 +19,24 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
   const { isAnimationActive, stopAnimation } = useAnimation();
   const [elapsed, setElapsed] = useState(0);
 
-  useFrame((state, delta) => {
+  useFrame(({ camera }, delta) => {
     if (groupRef.current == null) {
       return;
     }
 
     if (isAnimationActive(AnimationName.LIFTOFF)) {
-      setElapsed(elapsed + delta);
+      setElapsed((currentElapsed) => currentElapsed + delta);
+      const deltaSpeed = delta * speed;
 
-      if (elapsed >= 0.4) {
-        groupRef.current.position.y += delta * elapsed;
+      if (elapsed >= 0.6) {
+        groupRef.current.position.y += deltaSpeed;
+        camera.position.y += deltaSpeed;
+        // groupRef.current.translateY(deltaSpeed);
       }
-      if (elapsed <= 5.5) {
-        state.camera.position.setY(groupRef.current.position.y);
-      }
-      if (elapsed >= 9) {
-        state.camera.position.setY(0);
+
+      if (elapsed >= 8) {
         setElapsed(0);
+        camera.position.setY(0);
         stopAnimation(AnimationName.LIFTOFF);
       }
     }

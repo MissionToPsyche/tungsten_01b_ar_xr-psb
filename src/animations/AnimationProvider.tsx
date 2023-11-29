@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import ModalContext from './animation-context';
 import AnimationName from './types/animation-name';
 import AnimationData from './types/animation-data';
@@ -10,22 +10,16 @@ export const AnimationProvider: React.FC<PropsWithChildren> = ({
   children
 }) => {
   const [registry, setRegistry] = useState<
-    Record<AnimationName, AnimationData>
-  >({} as Record<AnimationName, AnimationData>);
+    Partial<Record<AnimationName, AnimationData>>
+  >({});
 
   /**
    * Retrieves the active state of the specified animation, if registered.
    * @param animationName The animation name to check the active state of.
    * @returns boolean indicating whether the animation is active.
    */
-  const isAnimationActive = (animationName: AnimationName) => {
-    // Check if registered but don't enforce since animations may
-    // call this prior to registration
-    if (isRegistered(animationName, false)) {
-      return registry[animationName].active;
-    }
-    return false;
-  };
+  const isAnimationActive = (animationName: AnimationName): boolean =>
+    registry[animationName]?.active ?? false;
 
   /**
    * Adds the specified animation to the registry
@@ -71,17 +65,11 @@ export const AnimationProvider: React.FC<PropsWithChildren> = ({
    */
   const stopAnimation = (animationName: AnimationName) => {
     if (isRegistered(animationName)) {
-      setRegistry((reg) => ({
-        ...reg,
-        [animationName]: {
-          ...reg[animationName],
-          active: false
-        }
-      }));
-      const fn = registry[animationName].onComplete;
-      if (fn != null) {
-        fn();
-      }
+      const { [animationName]: stopped, ...remaining } = registry;
+
+      stopped?.onComplete?.();
+
+      setRegistry(remaining as Record<AnimationName, AnimationData>);
     }
   };
 
