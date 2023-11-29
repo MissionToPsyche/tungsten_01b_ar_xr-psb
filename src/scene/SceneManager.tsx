@@ -44,17 +44,19 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         <ARMarker
           type="pattern"
           patternUrl={markerUrl}
-          params={{ smooth: true }}
+          params={{ smooth: true, smoothCount: 10 }}
         >
-          <CurrentSceneComponent />
-          <SceneControls
-            position={[0, 0, 3]}
-            rotation={[degreesToRadians(-45), 0, 0]}
-            onChangeScene={setCurrentScene}
-            onRestart={onRestart}
-            previousSceneTransition={previousSceneTransition}
-            nextSceneTransition={nextSceneTransition}
-          />
+          <group rotation={[degreesToRadians(-75), 0, 0]}>
+            <CurrentSceneComponent />
+            <SceneControls
+              position={[0, 0, 3]}
+              rotation={[degreesToRadians(-45), 0, 0]}
+              onChangeScene={setCurrentScene}
+              onRestart={onRestart}
+              previousSceneTransition={previousSceneTransition}
+              nextSceneTransition={nextSceneTransition}
+            />
+          </group>
         </ARMarker>
       </ARCanvas>
     </LoaderProvider>
