@@ -1,9 +1,9 @@
-name: CI
+name: CD
 on:
-  pull_request:
+  push:
     branches: [ 'main' ]
 jobs:
-  test:
+  build_and_deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,28 +18,12 @@ jobs:
           cache: 'npm'
       - name: Install Dependencies
         run: npm ci
-      - name: Lint
-        run: npm run lint
-      - name: Test
-        run: npm test
-  build_and_preview:
-    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - name: Install Dependencies
-        run: npm ci
       - name: Build
         run: npm run build
-      - name: Deploy Preview
+      - name: Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TUNGSTEN_01B_AR_XR_PSB }}'
+          channelId: live
           projectId: tungsten-01b-ar-xr-psb
