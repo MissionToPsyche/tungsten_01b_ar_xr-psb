@@ -1,13 +1,13 @@
 name: CD
 on:
   push:
-    branches: [ 'main' ]
+    branches: ['main']
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 18.x ]
+        node-version: [18.x]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
