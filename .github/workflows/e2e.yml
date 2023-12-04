@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: ['main']
 jobs:
-  test:
+  e2e_test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -15,5 +15,7 @@ jobs:
           cache: 'npm'
       - name: Install Dependencies
         run: npm ci
+      - name: Download Browsers
+        run: npx playwright install
       - name: Test
         run: npm run test:e2e
