@@ -13,9 +13,11 @@ jobs:
         with:
           node-version: 18.x
           cache: 'npm'
-      - name: Install Dependencies
+      - name: Install NPM Dependencies
         run: npm ci
       - name: Download Browsers
         run: npx playwright install
+      - name: Install System Dependencies
+        run: npx playwright install-deps
       - name: Test
         run: npm run test:e2e
