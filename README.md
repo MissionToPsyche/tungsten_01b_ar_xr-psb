@@ -1,6 +1,8 @@
 # Tungsten 01B AR/XR PSB
 
-Scaffold for the Tungsten 01B AR/XR PSB.
+The Tungsten 01B AR/XR PSB project.
+
+[Live Deployment](https://tungsten-01b-ar-xr-psb.web.app/)
 
 ## Setup
 
@@ -83,6 +85,12 @@ the pre-commit hooks.
 - Run the tests with UI presentation of test progress `npm run test:ui`
 - Watch project files and continuously re-run tests `npm run test:watch`
 - Run the tests with a coverage report `npm run test:coverage`
+
+### E2E Tests
+
+E2E tests are ran with [playwright](https://playwright.dev/).
+
+- Run the tests `npm run test:e2e`
 
 ## Building
 
