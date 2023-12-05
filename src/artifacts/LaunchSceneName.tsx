@@ -45,4 +45,4 @@ export function LaunchSceneName(props: JSX.IntrinsicElements['group']) {
   );
 }
 
-useGLTF.preload('/assets/models/launch-scene-name-transformed.glb');
+//useGLTF.preload('/assets/models/launch-scene-name-transformed.glb');

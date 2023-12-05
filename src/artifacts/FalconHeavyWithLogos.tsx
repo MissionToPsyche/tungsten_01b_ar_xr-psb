@@ -108,4 +108,4 @@ export function FalconHeavyWithLogos({
   );
 }
 
-useGLTF.preload('/assets/models/falcon-heavy-with-logos-transformed.glb');
+//useGLTF.preload('/assets/models/falcon-heavy-with-logos-transformed.glb');
