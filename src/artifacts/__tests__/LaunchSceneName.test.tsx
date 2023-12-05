@@ -1,9 +1,10 @@
 import reactThreeTestRenderer from "@react-three/test-renderer";
 import { LaunchSceneName } from "../LaunchSceneName";
+import { vi } from 'vitest';
 
 // Mock useGLTF
 vi.mock('@react-three/drei', () => ({
-  useGLTF: vitest.fn(() => ({
+  useGLTF: vi.fn(() => ({
     nodes: {
       Object_5: { geometry: {} },
       Object_8: { geometry: {} },
