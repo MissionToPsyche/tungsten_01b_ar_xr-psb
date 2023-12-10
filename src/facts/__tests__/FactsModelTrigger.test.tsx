@@ -30,9 +30,7 @@ describe('<FactsModalTrigger/>', () => {
 
     await renderer.fireEvent(renderer.scene.children[0], 'click');
 
-    expect(useModal().setModalTitle).toHaveBeenCalledWith(fact.title);
-    expect(useModal().setModalBody).toHaveBeenCalledWith(fact.fact);
-    expect(useModal().onOpen).toHaveBeenCalled();
+    expect(useModal().open).toHaveBeenCalledWith(fact.title, fact.fact);
   });
 
   afterEach(() => {

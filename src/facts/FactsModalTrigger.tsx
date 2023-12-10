@@ -10,14 +10,12 @@ const FactsModalTrigger: React.FC<{
   factName: string;
   children: React.ReactNode;
 }> = ({ factName, children }) => {
-  const { onOpen, setModalBody, setModalTitle } = useModal();
-  const modelInfo = lookupFactByName(factName);
+  const { open } = useModal();
+  const { title, fact } = lookupFactByName(factName);
 
   const onClick = useCallback(() => {
-    setModalTitle(modelInfo.title);
-    setModalBody(modelInfo.fact);
-    onOpen();
-  }, [modelInfo.fact, modelInfo.title, onOpen, setModalBody, setModalTitle]);
+    open(title, fact);
+  }, [open, title, fact]);
 
   return <group onClick={onClick}>{children}</group>;
 };
