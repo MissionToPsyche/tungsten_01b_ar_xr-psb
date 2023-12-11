@@ -14,18 +14,16 @@ import axe from 'axe-core';
 const modalTitle = 'title';
 const modalBody = 'body';
 
-let openModal: () => void;
+let openModal: (title: string, body: string) => void;
 
 const ModalChild = () => {
   const context = useContext(ModalContext);
   if (!context) {
     return null;
   }
-  const { setModalTitle, setModalBody, onOpen } = context;
+  const { open } = context;
 
-  setModalTitle(modalTitle);
-  setModalBody(modalBody);
-  openModal = onOpen;
+  openModal = open;
 };
 
 const setup = () =>
@@ -46,7 +44,7 @@ describe('<ModalProvider/>', () => {
     setup();
 
     act(() => {
-      openModal();
+      openModal(modalTitle, modalBody);
     });
 
     expect(screen.getByText(modalTitle)).toBeInTheDocument();
@@ -57,7 +55,7 @@ describe('<ModalProvider/>', () => {
     setup();
 
     act(() => {
-      openModal();
+      openModal(modalTitle, modalBody);
     });
 
     expect(screen.getByText(modalTitle)).toBeInTheDocument();
@@ -71,7 +69,7 @@ describe('<ModalProvider/>', () => {
     const { container } = setup();
 
     act(() => {
-      openModal();
+      openModal(modalTitle, modalBody);
     });
 
     const results = await axe.run(container);

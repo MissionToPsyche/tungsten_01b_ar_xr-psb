@@ -5,19 +5,11 @@ import { createContext } from 'react';
  */
 interface ModalContextType {
   /**
-   * Callback to set truthy value for the isOpen modal parameter
+   * Opens the modal with the given title and body
+   * @param title The title to display
+   * @param body The body to display
    */
-  onOpen: () => void;
-  /**
-   *
-   * @param body The text to use for the modal body
-   */
-  setModalBody: (body: string) => void;
-  /**
-   *
-   * @param title The text to use for the modal title
-   */
-  setModalTitle: (title: string) => void;
+  open: (title: string, body: string) => void;
 }
 
 const ModalContext = createContext<ModalContextType | null>(null);

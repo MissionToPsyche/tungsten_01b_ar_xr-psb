@@ -6,9 +6,7 @@ import useModal from '../use-modal.ts';
 
 /* eslint-disable @typescript-eslint/no-empty-function */
 const value = {
-  onOpen: () => {},
-  setModalTitle: () => {},
-  setModalBody: () => {}
+  open: () => {}
 };
 
 const Wrapper = ({ children }: React.PropsWithChildren) => (
@@ -21,13 +19,11 @@ describe('useModal', () => {
   it('should expose the modal context', () => {
     const {
       result: {
-        current: { onOpen, setModalBody, setModalTitle }
+        current: { open }
       }
     } = setup();
 
-    expect(onOpen).toEqual(value.onOpen);
-    expect(setModalBody).not.toBeUndefined();
-    expect(setModalTitle).not.toBeUndefined();
+    expect(open).toEqual(value.open);
   });
 
   it('should throw if used outside of the provider', () => {

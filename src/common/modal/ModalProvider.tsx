@@ -8,7 +8,7 @@ import {
   ModalOverlay,
   useDisclosure
 } from '@chakra-ui/react';
-import React, { PropsWithChildren, useState } from 'react';
+import React, { PropsWithChildren, useCallback, useState } from 'react';
 import ModalContext from './modal-context';
 
 /**
@@ -20,11 +20,18 @@ const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [modalBody, setModalBody] = useState('');
   const [modalTitle, setModalTitle] = useState('');
 
+  const open = useCallback(
+    (title: string, body: string) => {
+      setModalTitle(title);
+      setModalBody(body);
+      onOpen();
+    },
+    [onOpen]
+  );
+
   return (
     <>
-      <ModalContext.Provider value={{ onOpen, setModalBody, setModalTitle }}>
-        {children}
-      </ModalContext.Provider>
+      <ModalContext.Provider value={{ open }}>{children}</ModalContext.Provider>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent fontFamily="Helvetica" color="white" bg="magenta.700">

@@ -1,13 +1,9 @@
 import { vi } from 'vitest';
 
-const onOpen = vi.fn();
-const setModalTitle = vi.fn();
-const setModalBody = vi.fn();
+const open = vi.fn();
 
 const useModal = vi.fn(() => ({
-  onOpen,
-  setModalBody,
-  setModalTitle
+  open
 }));
 
 export default useModal;
