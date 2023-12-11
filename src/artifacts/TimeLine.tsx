@@ -53,4 +53,4 @@ export function TimeLine(props: JSX.IntrinsicElements['group']) {
   );
 }
 
-useGLTF.preload('/assets/models/time-line-transformed.glb');
+//useGLTF.preload('/assets/models/time-line-transformed.glb');

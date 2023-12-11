@@ -60,4 +60,4 @@ export function LaunchPadModel(props: JSX.IntrinsicElements['group']) {
   );
 }
 
-useGLTF.preload('/assets/models/launch-pad-model-transformed.glb');
+//useGLTF.preload('/assets/models/launch-pad-model-transformed.glb');

@@ -68,4 +68,4 @@ export function LaunchDateModel({
   );
 }
 
-useGLTF.preload('/assets/models/launch-date-model-transformed.glb');
+//useGLTF.preload('/assets/models/launch-date-model-transformed.glb');
