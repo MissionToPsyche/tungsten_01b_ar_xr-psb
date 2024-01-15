@@ -8,17 +8,11 @@ import { describe, it, beforeEach, afterEach } from 'vitest';
 vi.mock('../../common/explode/use-explode.ts');
 vi.mock('../use-animation.ts');
 
-const setup = () => render(<AssembleAnimation>Hello</AssembleAnimation>);
+const setup = () => render(<AssembleAnimation />);
 
 describe('<AssembleAnimation/>', () => {
   beforeEach(() => {
     vi.useFakeTimers();
-  });
-
-  it('should render the provided children', () => {
-    const { getByText } = setup();
-
-    expect(getByText('Hello')).toBeInTheDocument();
   });
 
   it('do nothing if the animation is not running', () => {

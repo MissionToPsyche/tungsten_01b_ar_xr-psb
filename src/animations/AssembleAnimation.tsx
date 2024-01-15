@@ -5,11 +5,8 @@ import AnimationName from './types/animation-name.ts';
 
 /**
  * A component that manages the AssembleAnimation
- * @param children The children
  */
-const AssembleAnimation: React.FC<
-  React.PropsWithChildren<NonNullable<unknown>>
-> = ({ children }) => {
+const AssembleAnimation: React.FC = () => {
   const { isAnimationActive, stopAnimation } = useAnimation();
   const { isExploded, toggleExploded, isAtRest } = useExplode();
 
@@ -29,7 +26,7 @@ const AssembleAnimation: React.FC<
     }
   }, [isAnimationActive, isAtRest, isExploded, stopAnimation, toggleExploded]);
 
-  return children;
+  return null;
 };
 
 export default AssembleAnimation;
