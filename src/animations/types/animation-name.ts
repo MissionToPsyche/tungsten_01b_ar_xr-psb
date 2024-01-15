@@ -2,7 +2,8 @@
  * Enum representing the names of available animations
  */
 enum AnimationName {
-  'LIFTOFF'
+  LIFTOFF,
+  ASSEMBLE
 }
 
 export default AnimationName;

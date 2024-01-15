@@ -1,6 +1,7 @@
 import getSceneConfig from '../get-scene-config.ts';
-import { expect } from 'vitest';
+import { expect, it } from 'vitest';
 import SceneName from '../types/scene-name.ts';
+import AnimationName from '../../animations/types/animation-name.ts';
 
 describe('getSceneConfig', () => {
   it('should return the static scene config', () => {
@@ -9,11 +10,39 @@ describe('getSceneConfig', () => {
     expect(actual).not.toBeNull();
   });
 
-  it('should configure the launch scene as the default scene', () => {
-    // TODO: Update this test once we have the assembly/testing scene in
+  it('should configure the assembly scene as the default scene', () => {
     const actual = getSceneConfig();
 
-    expect(actual.defaultScene).toEqual(SceneName.LAUNCH);
+    expect(actual.defaultScene).toEqual(SceneName.ASSEMBLY);
+  });
+
+  it('should configure the launch scene as the next scene after assembly', () => {
+    const actual = getSceneConfig();
+
+    expect(actual.scenes[SceneName.ASSEMBLY].nextSceneTransition).toBeDefined();
+    expect(
+      actual.scenes[SceneName.ASSEMBLY].nextSceneTransition?.toScene
+    ).toEqual(SceneName.LAUNCH);
+  });
+
+  it('should configure the assembly animation as the transition animation for the assembly scene', () => {
+    const actual = getSceneConfig();
+
+    expect(actual.scenes[SceneName.ASSEMBLY].nextSceneTransition).toBeDefined();
+    expect(
+      actual.scenes[SceneName.ASSEMBLY].nextSceneTransition?.animation
+    ).toEqual(AnimationName.ASSEMBLE);
+  });
+
+  it('should configure the assembly scene as the previous scene before launch', () => {
+    const actual = getSceneConfig();
+
+    expect(
+      actual.scenes[SceneName.LAUNCH].previousSceneTransition
+    ).toBeDefined();
+    expect(
+      actual.scenes[SceneName.LAUNCH].previousSceneTransition?.toScene
+    ).toEqual(SceneName.ASSEMBLY);
   });
 
   it('should configure the cruise scene as the next scene after launch', () => {
@@ -23,6 +52,15 @@ describe('getSceneConfig', () => {
     expect(
       actual.scenes[SceneName.LAUNCH].nextSceneTransition?.toScene
     ).toEqual(SceneName.CRUISE);
+  });
+
+  it('should configure the liftoff animation as the transition animation for the launch scene', () => {
+    const actual = getSceneConfig();
+
+    expect(actual.scenes[SceneName.LAUNCH].nextSceneTransition).toBeDefined();
+    expect(
+      actual.scenes[SceneName.LAUNCH].nextSceneTransition?.animation
+    ).toEqual(AnimationName.LIFTOFF);
   });
 
   it('should configure the launch scene as the previous scene before cruise', () => {
