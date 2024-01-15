@@ -4,6 +4,7 @@ import ExplodeElement from '../../common/explode/ExplodeElement.tsx';
 import Explode from '../../common/explode/Explode.tsx';
 import { SceneComponent } from '../types/scene-component.ts';
 import AssembleAnimation from '../../animations/AssembleAnimation.tsx';
+import randomRange from '../../common/utils/random-range.ts';
 
 const AssemblyScene: SceneComponent = () => (
   <Explode initialExploded={true}>
@@ -11,38 +12,31 @@ const AssemblyScene: SceneComponent = () => (
     <ExplodeTrigger>
       <Box />
     </ExplodeTrigger>
-    <ExplodeElement
-      startPosition={[0, 0, 0]}
-      explodedPosition={[2, 2, 2]}
-      startRotation={[0, 0, 0]}
-      explodedRotation={[90, 0, 0]}
-    >
-      <Box />
-    </ExplodeElement>
-    <ExplodeElement
-      startPosition={[0, 0, 0]}
-      explodedPosition={[-2, 2, 2]}
-      startRotation={[0, 0, 0]}
-      explodedRotation={[90, 0, 0]}
-    >
-      <Box />
-    </ExplodeElement>
-    <ExplodeElement
-      startPosition={[0, 0, 0]}
-      explodedPosition={[2, -2, 2]}
-      startRotation={[0, 0, 0]}
-      explodedRotation={[90, 0, 0]}
-    >
-      <Box />
-    </ExplodeElement>
-    <ExplodeElement
-      startPosition={[0, 0, 0]}
-      explodedPosition={[-2, -2, 2]}
-      startRotation={[0, 0, 0]}
-      explodedRotation={[90, 0, 0]}
-    >
-      <Box />
-    </ExplodeElement>
+    {[
+      [2, 2, 2],
+      [-2, 2, 2],
+      [2, -2, 2],
+      [-2, -2, 2],
+      [2, 2, -2],
+      [-2, 2, -2],
+      [2, -2, -2],
+      [-2, -2, -2]
+    ].map((explodePosition, index) => (
+      <ExplodeElement
+        key={explodePosition.toString()}
+        startPosition={[0, 0, 0]}
+        explodedPosition={explodePosition as never}
+        startRotation={[0, 0, 0]}
+        explodedRotation={[
+          randomRange(-Math.PI, Math.PI),
+          randomRange(-Math.PI, Math.PI),
+          randomRange(-Math.PI, Math.PI)
+        ]}
+        delay={index * 50}
+      >
+        <Box />
+      </ExplodeElement>
+    ))}
   </Explode>
 );
 
