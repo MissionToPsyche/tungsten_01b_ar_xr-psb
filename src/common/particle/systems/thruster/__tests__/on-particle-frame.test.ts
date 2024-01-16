@@ -65,7 +65,7 @@ describe('onParticleFrame', () => {
   it('should lerp the particle color', () => {
     onParticleFrame(particle, systemState, rootState);
 
-    lerpColors(
+    expect(lerpColors).toHaveBeenCalledWith(
       particle.color as unknown as Color,
       new Color('#FFDD00'),
       new Color('#FFF2BD'),

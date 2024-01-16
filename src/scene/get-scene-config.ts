@@ -4,6 +4,7 @@ import LaunchScene from './scenes/LaunchScene.tsx';
 import CruiseScene from './scenes/CruiseScene.tsx';
 import CruiseScene2 from './scenes/OrbitScene.tsx';
 import AnimationName from '../animations/types/animation-name.ts';
+import AssemblyScene from './scenes/AssemblyScene.tsx';
 
 /**
  * Function to get the scene configuration. Right now extracted into a method
@@ -13,11 +14,24 @@ import AnimationName from '../animations/types/animation-name.ts';
  * @returns The scene configuration.
  */
 const getSceneConfig = (): SceneConfig => ({
-  defaultScene: SceneName.LAUNCH,
+  defaultScene: SceneName.ASSEMBLY,
   scenes: {
+    [SceneName.ASSEMBLY]: {
+      component: AssemblyScene,
+      markerUrl: 'assets/patt.hiro',
+      nextSceneTransition: {
+        toScene: SceneName.LAUNCH,
+        animation: AnimationName.ASSEMBLE,
+        buttonText: 'Assemble'
+      }
+    },
     [SceneName.LAUNCH]: {
       component: LaunchScene,
       markerUrl: 'assets/patt.hiro',
+      previousSceneTransition: {
+        toScene: SceneName.ASSEMBLY,
+        buttonText: 'Back'
+      },
       nextSceneTransition: {
         toScene: SceneName.CRUISE,
         animation: AnimationName.LIFTOFF,
