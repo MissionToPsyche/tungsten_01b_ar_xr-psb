@@ -15,6 +15,28 @@ export interface MissionFact {
  * fact: The fact(s) to display when a user clicks on the object in the scene
  */
 const missionFacts: Record<string, MissionFact> = {
+  // Assembly & Test Scene
+  multiSpectralImager: {
+    title: 'Multispectral Imager',
+    fact: 'Provides high-res images and metal-silicate discrimination.'
+  },
+  spectrometer: {
+    title: 'Gamma-Ray and Neutron Spectrometer',
+    fact: "Detects, measures and maps Psyche's elemental composition."
+  },
+  magnetometer: {
+    title: 'Magnetometer',
+    fact: 'Detects and measures the remanent magnetic field of Psyche.'
+  },
+  xBandRadio: {
+    title: 'X-band Radio Telecommunications System',
+    fact: "Measures Psyche's gravity field to high precision."
+  },
+  opticalCommunication: {
+    title: 'Deep Space Optical Communication',
+    fact: 'Advanced communication tech that encodes data in photons.'
+  },
+  // Launch Scene
   falconHeavy: {
     title: 'Falcon Heavy',
     fact: "The Falcon Heavy is SpaceX's semi-reusable, powerful rocket."
