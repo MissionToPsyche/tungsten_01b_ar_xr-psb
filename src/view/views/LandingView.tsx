@@ -14,6 +14,7 @@ import {
 } from '@react-three/drei';
 import { TimeLine } from '../../artifacts/TimeLine.tsx';
 import { useWindowSize } from '@uidotdev/usehooks';
+import AlertErrorBoundary from '../../common/components/AlertErrorBoundary.tsx';
 
 /**
  * Landing page for the application, informs the user about the application
@@ -38,26 +39,28 @@ const LandingView: ViewComponent = ({ changeView }) => {
         alt="Psyche Logo"
         height="100px"
       />
-      <LoaderProvider>
-        <LoaderTracker />
-        <Canvas style={{ flex: 1 }}>
-          <SceneLighting />
-          <directionalLight intensity={0.5} position={[8, 10, 40]} />
-          <PerspectiveCamera makeDefault position={[0, 50, 200]} />
-          <Bounds fit clip observe margin={1}>
-            <PresentationControls
-              global
-              config={{ mass: 2, tension: 500 }}
-              snap={{ mass: 4, tension: 1500 }}
-              rotation={[0, 0, 0]}
-              polar={[-Math.PI / 3, Math.PI / 3]}
-              azimuth={[-Math.PI / 3, Math.PI / 3]}
-            >
-              <TimeLine />
-            </PresentationControls>
-          </Bounds>
-        </Canvas>
-      </LoaderProvider>
+      <AlertErrorBoundary>
+        <LoaderProvider>
+          <LoaderTracker />
+          <Canvas style={{ flex: 1 }}>
+            <SceneLighting />
+            <directionalLight intensity={0.5} position={[8, 10, 40]} />
+            <PerspectiveCamera makeDefault position={[0, 50, 200]} />
+            <Bounds fit clip observe margin={1}>
+              <PresentationControls
+                global
+                config={{ mass: 2, tension: 500 }}
+                snap={{ mass: 4, tension: 1500 }}
+                rotation={[0, 0, 0]}
+                polar={[-Math.PI / 3, Math.PI / 3]}
+                azimuth={[-Math.PI / 3, Math.PI / 3]}
+              >
+                <TimeLine />
+              </PresentationControls>
+            </Bounds>
+          </Canvas>
+        </LoaderProvider>
+      </AlertErrorBoundary>
       <Text fontSize={18}>
         <Highlight
           query={['Start Mission Timeline', 'camera permission']}
