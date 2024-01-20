@@ -9,6 +9,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:@react-three/recommended',
+    'plugin:vitest/recommended',
     'prettier'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'playwright.config.ts'],
