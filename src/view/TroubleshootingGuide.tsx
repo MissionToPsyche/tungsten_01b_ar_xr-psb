@@ -1,13 +1,12 @@
+import { useState } from 'react';
 import {
   Heading,
   Text,
   UnorderedList,
-  ListItem,
-  Collapse,
   Box,
   ChakraProvider
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import TroubleshootingItem from './TroubleshootingItem';
 
 function TroubleshootingGuide() {
   const [openItem, setOpenItem] = useState<string | null>(null);
@@ -29,190 +28,85 @@ function TroubleshootingGuide() {
             troubleshoot and resolve common problems:
           </Text>
           <UnorderedList>
-            <ListItem>
-              <Box
-                as="button"
-                onClick={() => {
-                  handleToggle('crashing');
-                }}
-                color="blue.500"
-                fontWeight="bold"
-              >
-                <Text fontWeight="bold">Application Crashes</Text>
-              </Box>
-              <Collapse in={openItem === 'crashing'} animateOpacity>
-                <Box p={4} mt={2} bg="gray.100" rounded="md">
-                  <Text fontWeight="bold">If the browser keeps crashing.</Text>
-                  <UnorderedList>
-                    <ListItem>Close and reopen the the browser.</ListItem>
-                    <ListItem>
-                      Check for app updates on your device&apos;s app store.
-                    </ListItem>
-                    <ListItem>Restart your device.</ListItem>
-                    <ListItem>
-                      If the issue persists, uninstall and reinstall your
-                      browser app.
-                    </ListItem>
-                  </UnorderedList>
-                </Box>
-              </Collapse>
-            </ListItem>
-            <ListItem>
-              <Box
-                as="button"
-                onClick={() => {
-                  handleToggle('reloadPage');
-                }}
-                color="blue.500"
-                fontWeight="bold"
-              >
-                <Text fontWeight="bold">Application Not Responding</Text>
-              </Box>
-              <Collapse in={openItem === 'reloadPage'} animateOpacity>
-                <Box p={4} mt={2} bg="gray.100" rounded="md">
-                  <Text fontWeight="bold">
-                    If the application is not responding or freezing.
-                  </Text>
-                  <UnorderedList>
-                    <ListItem>Close and reopen the application.</ListItem>
-                    <ListItem>
-                      Check for updates to ensure you have the latest version.
-                    </ListItem>
-                    <ListItem>Restart your device.</ListItem>
-                    <ListItem>
-                      If the issue persists, uninstall and reinstall the
-                      application.
-                    </ListItem>
-                  </UnorderedList>
-                </Box>
-              </Collapse>
-            </ListItem>
-            <ListItem>
-              <Box
-                as="button"
-                onClick={() => {
-                  handleToggle('compatibilityIssue');
-                }}
-                color="blue.500"
-                fontWeight="bold"
-              >
-                <Text fontWeight="bold">Compatibility Issues</Text>
-              </Box>
-              <Collapse in={openItem === 'compatibilityIssue'} animateOpacity>
-                <Box p={4} mt={2} bg="gray.100" rounded="md">
-                  <Text fontWeight="bold">
-                    If the application is not working on a specific device or
-                    operating system.
-                  </Text>
-                  <UnorderedList>
-                    <ListItem>
-                      This application runs on iPhone IOS{' '}
-                      <Text fontWeight="bold">
-                        x and up & Android OS x and up
-                      </Text>
-                    </ListItem>
-                    <ListItem>
-                      Verify that your device security settings are not blocking
-                      the application.
-                    </ListItem>
-                  </UnorderedList>
-                </Box>
-              </Collapse>
-            </ListItem>
-
-            <ListItem>
-              <Box
-                as="button"
-                onClick={() => {
-                  handleToggle('internetConnection');
-                }}
-                color="blue.500"
-                fontWeight="bold"
-              >
-                Internet Connection
-              </Box>
-              <Collapse in={openItem === 'internetConnection'} animateOpacity>
-                <Box p={4} mt={2} bg="gray.100" rounded="md">
-                  <Text fontWeight="bold">
-                    Check your internet connection and ensure that you are
-                    connected
-                  </Text>
-                  <UnorderedList>
-                    <ListItem>
-                      Verify that your device is connected to the correct Wi-Fi
-                      network or using a wired connection.
-                    </ListItem>
-                    <ListItem>Restart the application</ListItem>
-                    <ListItem>
-                      Try accessing a different website or using a different
-                      online service to confirm if the issue is specific to a
-                      certain site or service.
-                    </ListItem>
-                  </UnorderedList>
-                </Box>
-              </Collapse>
-            </ListItem>
-
-            <ListItem>
-              <Box
-                as="button"
-                onClick={() => {
-                  handleToggle('securityPermission');
-                }}
-                color="blue.500"
-                fontWeight="bold"
-              >
-                <Text fontWeight="bold">Security Permissions</Text>
-              </Box>
-              <Collapse in={openItem === 'securityPermission'} animateOpacity>
-                <Box p={4} mt={2} bg="gray.100" rounded="md">
-                  <Text fontWeight="bold">
-                    If you&apos;re having issues accessing certain features due
-                    to permissions or security settings.
-                  </Text>
-                  <UnorderedList>
-                    <ListItem>
-                      Check your browser security setting for necessary
-                      permission
-                    </ListItem>
-                    <ListItem>
-                      Verify that your device security settings are not blocking
-                      the application.
-                    </ListItem>
-                  </UnorderedList>
-                </Box>
-              </Collapse>
-            </ListItem>
-            <ListItem>
-              <Box
-                as="button"
-                onClick={() => {
-                  handleToggle('slowPerformance');
-                }}
-                color="blue.500"
-                fontWeight="bold"
-              >
-                <Text fontWeight="bold">Slow Performance</Text>
-              </Box>
-              <Collapse in={openItem === 'slowPerformance'} animateOpacity>
-                <Box p={4} mt={2} bg="gray.100" rounded="md">
-                  <Text fontWeight="bold">
-                    If the application or device is running slow.
-                  </Text>
-                  <UnorderedList>
-                    <ListItem>Close and reopen the application.</ListItem>
-                    <ListItem>
-                      Check for updates to ensure you have the latest version.
-                    </ListItem>
-                    <ListItem>Restart your device.</ListItem>
-                    <ListItem>
-                      If the issue persists, completely close the browser and
-                      start over.
-                    </ListItem>
-                  </UnorderedList>
-                </Box>
-              </Collapse>
-            </ListItem>
+            <TroubleshootingItem
+              title="Application Crashes"
+              description="If the browser keeps crashing."
+              subItems={[
+                'Close and reopen the browser.',
+                "Check for app updates on your device's app store.",
+                'Restart your device.',
+                'If the issue persists, uninstall and reinstall your browser app.'
+              ]}
+              isOpen={openItem === 'crashing'}
+              onToggle={() => {
+                handleToggle('crashing');
+              }}
+            />
+            <TroubleshootingItem
+              title="Application Not Responding"
+              description="If the application is not responding or freezing."
+              subItems={[
+                'Close and reopen the application.',
+                'Check for updates to ensure you have the latest version.',
+                'Restart your device.',
+                'If the issue persists, uninstall and reinstall the application.'
+              ]}
+              isOpen={openItem === 'reloadPage'}
+              onToggle={() => {
+                handleToggle('reloadPage');
+              }}
+            />
+            <TroubleshootingItem
+              title="Compatibility Issues"
+              description="If the application is not working on a specific device or operating system."
+              subItems={[
+                'This application runs on iPhone IOS x and up & Android OS x and up',
+                'Verify that your device security settings are not blocking the application.'
+              ]}
+              isOpen={openItem === 'compatibilityIssue'}
+              onToggle={() => {
+                handleToggle('compatibilityIssue');
+              }}
+            />
+            <TroubleshootingItem
+              title="Internet Connection"
+              description="Check your internet connection and ensure that you are connected."
+              subItems={[
+                'Verify that your device is connected to the correct Wi-Fi network or using a wired connection.',
+                'Restart the application',
+                'Try accessing a different website or using a different online service to confirm if the issue is specific to a certain site or service.'
+              ]}
+              isOpen={openItem === 'internetConnection'}
+              onToggle={() => {
+                handleToggle('internetConnection');
+              }}
+            />
+            <TroubleshootingItem
+              title="Security Permissions"
+              description="If you're having issues accessing certain features due to permissions or security settings."
+              subItems={[
+                'Check your browser security setting for necessary permission',
+                'Verify that your device security settings are not blocking the application.'
+              ]}
+              isOpen={openItem === 'securityPermission'}
+              onToggle={() => {
+                handleToggle('securityPermission');
+              }}
+            />
+            <TroubleshootingItem
+              title="Slow Performance"
+              description="If the application or device is running slow."
+              subItems={[
+                'Close and reopen the application.',
+                'Check for updates to ensure you have the latest version.',
+                'Restart your device.',
+                'If the issue persists, completely close the browser and start over.'
+              ]}
+              isOpen={openItem === 'slowPerformance'}
+              onToggle={() => {
+                handleToggle('slowPerformance');
+              }}
+            />
           </UnorderedList>
           <Text mt={4}>
             If the issue persists, please contact our support team for further
@@ -223,4 +117,5 @@ function TroubleshootingGuide() {
     </ChakraProvider>
   );
 }
+
 export default TroubleshootingGuide;
