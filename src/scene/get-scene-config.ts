@@ -5,6 +5,8 @@ import CruiseScene from './scenes/CruiseScene.tsx';
 import CruiseScene2 from './scenes/OrbitScene.tsx';
 import AnimationName from '../animations/types/animation-name.ts';
 import AssemblyScene from './scenes/AssemblyScene.tsx';
+import getBoolFromEnv from '../common/utils/get-bool-from-env.ts';
+import getSceneNameFromEnv from './get-scene-name-from-env.ts';
 
 /**
  * Function to get the scene configuration. Right now extracted into a method
@@ -14,7 +16,7 @@ import AssemblyScene from './scenes/AssemblyScene.tsx';
  * @returns The scene configuration.
  */
 const getSceneConfig = (): SceneConfig => ({
-  defaultScene: SceneName.ASSEMBLY,
+  defaultScene: getSceneNameFromEnv('VITE_DEFAULT_SCENE', SceneName.ASSEMBLY),
   scenes: {
     [SceneName.ASSEMBLY]: {
       component: AssemblyScene,
@@ -59,7 +61,8 @@ const getSceneConfig = (): SceneConfig => ({
       }
     }
   },
-  cameraParametersUrl: 'assets/camera_para.dat'
+  cameraParametersUrl: 'assets/camera_para.dat',
+  disableAr: getBoolFromEnv('VITE_DISABLE_AR')
 });
 
 export default getSceneConfig;

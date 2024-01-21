@@ -64,7 +64,8 @@ const mockConfig: SceneConfig = {
       }
     }
   },
-  cameraParametersUrl: '/hello'
+  cameraParametersUrl: '/hello',
+  disableAr: false
 };
 
 (getSceneConfig as Mock).mockReturnValue(mockConfig);
