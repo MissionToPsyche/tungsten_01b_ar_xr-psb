@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
-function ErrorFallback() {
+function TroubleshootingGuide() {
   const [openItem, setOpenItem] = useState<string | null>(null);
 
   const handleToggle = (item: string) => {
@@ -223,4 +223,4 @@ function ErrorFallback() {
     </ChakraProvider>
   );
 }
-export default ErrorFallback;
+export default TroubleshootingGuide;

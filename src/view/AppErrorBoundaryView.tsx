@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import ErrorFallback from './ErrorFallBack';
+import TroubleshootingGuide from './TroubleshootingGuide.tsx';
 
 interface AppErrorBoundaryViewProps {
   children: ReactNode;
@@ -9,7 +9,7 @@ interface AppErrorBoundaryViewProps {
 function AppErrorBoundaryView({ children }: AppErrorBoundaryViewProps) {
   return (
     <ErrorBoundary
-      FallbackComponent={ErrorFallback}
+      FallbackComponent={TroubleshootingGuide}
       onError={(error, info) => {
         console.error('Error caught by boundary:', error, info);
       }}
