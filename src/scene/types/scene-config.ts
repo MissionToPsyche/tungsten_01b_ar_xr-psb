@@ -38,4 +38,6 @@ export interface SceneConfig {
   scenes: Record<SceneName, IndividualSceneConfig>;
   // Public URL of the camera parameters data file
   cameraParametersUrl: string;
+  // Disable AR if true
+  disableAr: boolean;
 }
