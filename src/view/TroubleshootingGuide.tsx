@@ -73,7 +73,7 @@ function TroubleshootingGuide() {
               description="Check your internet connection and ensure that you are connected."
               subItems={[
                 'Verify that your device is connected to the correct Wi-Fi network or using a wired connection.',
-                'Restart the application',
+                'Restart the application.',
                 'Try accessing a different website or using a different online service to confirm if the issue is specific to a certain site or service.'
               ]}
               isOpen={openItem === 'internetConnection'}
@@ -85,7 +85,7 @@ function TroubleshootingGuide() {
               title="Security Permissions"
               description="If you're having issues accessing certain features due to permissions or security settings."
               subItems={[
-                'Check your browser security setting for necessary permission',
+                'Check your browser security setting for necessary permission.',
                 'Verify that your device security settings are not blocking the application.'
               ]}
               isOpen={openItem === 'securityPermission'}
@@ -117,5 +117,4 @@ function TroubleshootingGuide() {
     </ChakraProvider>
   );
 }
-
 export default TroubleshootingGuide;
