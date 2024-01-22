@@ -4,20 +4,19 @@ import ViewManager from './view/ViewManager.tsx';
 import theme from './common/theme.ts';
 import ModalProvider from './common/modal/ModalProvider.tsx';
 import { AnimationProvider } from './animations/AnimationProvider.tsx';
-import DebugErrorBoundary from './common/components/DebugErrorBoundary.tsx';
+import AppErrorBoundaryView from './view/AppErrorBoundaryView.tsx';
 
 function App() {
   return (
     <ChakraProvider theme={theme} resetCSS={false}>
-      <DebugErrorBoundary>
+      <AppErrorBoundaryView>
         <ModalProvider>
           <AnimationProvider>
             <ViewManager />
           </AnimationProvider>
         </ModalProvider>
-      </DebugErrorBoundary>
+      </AppErrorBoundaryView>
     </ChakraProvider>
   );
 }
-
 export default App;

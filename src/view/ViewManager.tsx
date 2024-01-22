@@ -13,5 +13,4 @@ const ViewManager: React.FC = () => {
 
   return <CurrentViewComponent changeView={setCurrentView} />;
 };
-
 export default ViewManager;
