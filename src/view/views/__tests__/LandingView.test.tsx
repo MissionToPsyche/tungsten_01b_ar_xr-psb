@@ -23,7 +23,7 @@ describe('<LandingView/>', () => {
   it('should call changeView when the launch button is clicked', () => {
     setup();
 
-    fireEvent.click(screen.getByText('Start Mission Timeline'));
+    fireEvent.click(screen.getByRole('button'));
 
     expect(changeView).toHaveBeenCalledWith(ViewName.AR_SCENES);
   });
