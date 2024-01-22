@@ -11,6 +11,10 @@ Title: Psyche Orbiter
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import ExplodeElement from '../common/explode/ExplodeElement.tsx';
+import degreesToRadians from '../common/utils/degrees-to-radians.ts';
+import FactsModalTrigger from '../facts/FactsModalTrigger.tsx';
+import { Select } from '@react-three/postprocessing';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -62,254 +66,330 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_14.geometry}
-        material={materials.Box_Material}
-        position={[0, 1.143, 1.019]}
-        rotation={[0, 0, -Math.PI / 2]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_17.geometry}
-        material={materials['Thruster_Material.001']}
-        position={[0, 0.071, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_20.geometry}
-        material={materials.M_03___Default}
-        position={[0, 1.733, 1.054]}
-        rotation={[0.387, 0, 0]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_23.geometry}
-        material={materials.SolarPanelFrrame_Material}
-        position={[0, 0.466, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_41.geometry}
-        material={materials.SolarPanelFrrame_Material}
-        position={[0, 1.746, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_26.geometry}
-        material={materials.SolarPanelFrrame_Material}
-        position={[0, -0.154, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_29.geometry}
-        material={materials['Thruster_Material.001']}
-        position={[0, -0.053, -0.003]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={[0.04, 0.04, 0.025]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_32.geometry}
-        material={materials.SolarPanel_Material}
-        position={[1.169, 1.254, 0.495]}
-        rotation={[0, -Math.PI / 2, 0]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_35.geometry}
-        material={materials.SolarPanel_Material}
-        position={[-1.142, 1.254, 0.495]}
-        rotation={[0, -Math.PI / 2, 0]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_44.geometry}
-        material={materials.SolarPanelFrrame_Material}
-        position={[-4.295, 0.57, -0.008]}
-        rotation={[-1.258, 0, 0]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_45.geometry}
-        material={materials.SolarPanel_Material}
-        position={[-4.295, 0.57, -0.008]}
-        rotation={[-1.258, 0, 0]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_48.geometry}
-        material={materials.fallback_Material}
-        position={[0.907, 2.303, -1.078]}
-        rotation={[-Math.PI / 2, -0.963, -Math.PI]}
-        scale={[-0.025, 0.025, 0.025]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_51.geometry}
-        material={materials.BlackPlastic_Material}
-        position={[-1.018, 3.898, -1.084]}
-        rotation={[-Math.PI, 0, -Math.PI]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_54.geometry}
-        material={materials.BlackPlastic_Material}
-        position={[0.904, 3.994, -1.082]}
-        rotation={[-Math.PI, 0, -Math.PI]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_57.geometry}
-        material={materials.BlackPlastic_Material}
-        position={[0.904, 3.655, -1.082]}
-        rotation={[-Math.PI, 0, -Math.PI]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_60.geometry}
-        material={materials['Thruster_Material.001']}
-        position={[0.037, 0.157, -1.846]}
-        rotation={[-1.353, 0, 0]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_61.geometry}
-        material={materials.Thruster_Material}
-        position={[0.037, 0.157, -1.846]}
-        rotation={[-1.353, 0, 0]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_63.geometry}
-        material={materials['Thruster_Material.001']}
-        position={[0.037, 0.157, 1.844]}
-        rotation={[-1.789, 0, -Math.PI]}
-        scale={[-0.025, 0.025, 0.025]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_64.geometry}
-        material={materials.Thruster_Material}
-        position={[0.037, 0.157, 1.844]}
-        rotation={[-1.789, 0, -Math.PI]}
-        scale={[-0.025, 0.025, 0.025]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_70.geometry}
-        material={materials.Box_Material}
-        position={[-1.014, 4.416, -1.086]}
-        rotation={[-Math.PI, 0, -Math.PI]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_73.geometry}
-        material={materials.M_15___Default}
-        position={[-1.014, 4.307, -1.148]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_76.geometry}
-        material={materials.M_15___Default}
-        position={[0.074, 1.85, -1.205]}
-        rotation={[-Math.PI, 0, -Math.PI]}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_79.geometry}
-        material={materials.M_03___Default}
-        position={[-0.011, 2.286, 0.351]}
-        rotation={[-Math.PI / 2, 0, -0.325]}
-        scale={0.042}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_80.geometry}
-        material={materials.Box_Material}
-        position={[-0.011, 2.286, 0.351]}
-        rotation={[-Math.PI / 2, 0, -0.325]}
-        scale={0.042}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_81.geometry}
-        material={materials['Thruster_Material.001']}
-        position={[-0.011, 2.286, 0.351]}
-        rotation={[-Math.PI / 2, 0, -0.325]}
-        scale={0.042}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_84.geometry}
-        material={materials.SolarPanel_Material}
-        position={[10.906, 0.623, 0.006]}
-        rotation={[-1.258, 0, 0]}
-        scale={[-0.025, 0.025, 0.025]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_85.geometry}
-        material={materials.SolarPanelFrrame_Material}
-        position={[10.906, 0.623, 0.006]}
-        rotation={[-1.258, 0, 0]}
-        scale={[-0.025, 0.025, 0.025]}
-      />
-      <instancedMesh
-        args={[nodes.Object_0.geometry, materials.Box_Material, 5]}
-        castShadow
-        receiveShadow
-      />
+      {/*Bottom Stuff*/}
+      <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[0, -2.5, 0]}
+        explodedRotation={[0, 0, 0]}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_17.geometry}
+          material={materials['Thruster_Material.001']}
+          position={[0, 0.071, 0]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_23.geometry}
+          material={materials.SolarPanelFrrame_Material}
+          position={[0, 0.466, 0]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_41.geometry}
+          material={materials.SolarPanelFrrame_Material}
+          position={[0, 1.746, 0]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_26.geometry}
+          material={materials.SolarPanelFrrame_Material}
+          position={[0, -0.154, 0]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_29.geometry}
+          material={materials['Thruster_Material.001']}
+          position={[0, -0.053, -0.003]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={[0.04, 0.04, 0.025]}
+        />
+      </ExplodeElement>
+      {/*Right Stuff*/}
+      <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[1.5, 0, 0]}
+        explodedRotation={[0, 0, 0]}
+        explodeDelay={150}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_32.geometry}
+          material={materials.SolarPanel_Material}
+          position={[1.169, 1.254, 0.495]}
+          rotation={[0, -Math.PI / 2, 0]}
+          scale={0.025}
+        />
+      </ExplodeElement>
+      {/*Left Stuff*/}
+      <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[-1.5, 0, 0]}
+        explodedRotation={[0, 0, 0]}
+        explodeDelay={150}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_35.geometry}
+          material={materials.SolarPanel_Material}
+          position={[-1.142, 1.254, 0.495]}
+          rotation={[0, -Math.PI / 2, 0]}
+          scale={0.025}
+        />
+      </ExplodeElement>
+      {/*Left Panel*/}
+      <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[-2.5, 0, 0]}
+        explodedRotation={[degreesToRadians(-225), 0, 0]}
+        unExplodeDelay={150}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_44.geometry}
+          material={materials.SolarPanelFrrame_Material}
+          position={[-4.295, 0.57, -0.008]}
+          rotation={[-1.258, 0, 0]}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_45.geometry}
+          material={materials.SolarPanel_Material}
+          position={[-4.295, 0.57, -0.008]}
+          rotation={[-1.258, 0, 0]}
+          scale={0.025}
+        />
+      </ExplodeElement>
+      {/*Front Stuff*/}
+      <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[0, 0, 2.5]}
+        explodedRotation={[0, 0, 0]}
+        explodeDelay={100}
+        unExplodeDelay={100}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_20.geometry}
+          material={materials.M_03___Default}
+          position={[0, 1.733, 1.054]}
+          rotation={[0.387, 0, 0]}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_63.geometry}
+          material={materials['Thruster_Material.001']}
+          position={[0.037, 0.157, 1.844]}
+          rotation={[-1.789, 0, -Math.PI]}
+          scale={[-0.025, 0.025, 0.025]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_64.geometry}
+          material={materials.Thruster_Material}
+          position={[0.037, 0.157, 1.844]}
+          rotation={[-1.789, 0, -Math.PI]}
+          scale={[-0.025, 0.025, 0.025]}
+        />
+      </ExplodeElement>
+      {/*Bars*/}
+      <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[0, 2.5, -2.5]}
+        explodedRotation={[0, 0, 0]}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_48.geometry}
+          material={materials.fallback_Material}
+          position={[0.907, 2.303, -1.078]}
+          rotation={[-Math.PI / 2, -0.963, -Math.PI]}
+          scale={[-0.025, 0.025, 0.025]}
+        />
+        <FactsModalTrigger factName="spectrometer">
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_51.geometry}
+            material={materials.BlackPlastic_Material}
+            position={[-1.018, 3.898, -1.084]}
+            rotation={[-Math.PI, 0, -Math.PI]}
+            scale={0.025}
+          />
+        </FactsModalTrigger>
+        <FactsModalTrigger factName="magnetometer">
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_54.geometry}
+            material={materials.BlackPlastic_Material}
+            position={[0.904, 3.994, -1.082]}
+            rotation={[-Math.PI, 0, -Math.PI]}
+            scale={0.025}
+          />
+        </FactsModalTrigger>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_57.geometry}
+          material={materials.BlackPlastic_Material}
+          position={[0.904, 3.655, -1.082]}
+          rotation={[-Math.PI, 0, -Math.PI]}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_70.geometry}
+          material={materials.Box_Material}
+          position={[-1.014, 4.416, -1.086]}
+          rotation={[-Math.PI, 0, -Math.PI]}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_73.geometry}
+          material={materials.M_15___Default}
+          position={[-1.014, 4.307, -1.148]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={0.025}
+        />
+      </ExplodeElement>
+      {/*Back Stuff*/}
+      <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[0, 0, -2.5]}
+        explodedRotation={[0, 0, 0]}
+        explodeDelay={100}
+        unExplodeDelay={100}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_60.geometry}
+          material={materials['Thruster_Material.001']}
+          position={[0.037, 0.157, -1.846]}
+          rotation={[-1.353, 0, 0]}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_61.geometry}
+          material={materials.Thruster_Material}
+          position={[0.037, 0.157, -1.846]}
+          rotation={[-1.353, 0, 0]}
+          scale={0.025}
+        />
+        <FactsModalTrigger factName="multiSpectralImager">
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_76.geometry}
+            material={materials.M_15___Default}
+            position={[0.074, 1.85, -1.205]}
+            rotation={[-Math.PI, 0, -Math.PI]}
+            scale={0.025}
+          />
+        </FactsModalTrigger>
+      </ExplodeElement>
+      {/* Comms */}
+      <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[0, 2.5, 0]}
+        explodedRotation={[0, degreesToRadians(180), 0]}
+      >
+        <FactsModalTrigger factName="xBandRadio">
+          <Select>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_79.geometry}
+              material={materials.M_03___Default}
+              position={[-0.011, 2.286, 0.351]}
+              rotation={[-Math.PI / 2, 0, -0.325]}
+              scale={0.042}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_80.geometry}
+              material={materials.Box_Material}
+              position={[-0.011, 2.286, 0.351]}
+              rotation={[-Math.PI / 2, 0, -0.325]}
+              scale={0.042}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_81.geometry}
+              material={materials['Thruster_Material.001']}
+              position={[-0.011, 2.286, 0.351]}
+              rotation={[-Math.PI / 2, 0, -0.325]}
+              scale={0.042}
+            />
+          </Select>
+        </FactsModalTrigger>
+      </ExplodeElement>
+      {/* Right Panel */}
+      <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[2.5, 0, 0]}
+        explodedRotation={[degreesToRadians(225), 0, 0]}
+        unExplodeDelay={150}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_84.geometry}
+          material={materials.SolarPanel_Material}
+          position={[10.906, 0.623, 0.006]}
+          rotation={[-1.258, 0, 0]}
+          scale={[-0.025, 0.025, 0.025]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_85.geometry}
+          material={materials.SolarPanelFrrame_Material}
+          position={[10.906, 0.623, 0.006]}
+          rotation={[-1.258, 0, 0]}
+          scale={[-0.025, 0.025, 0.025]}
+        />
+      </ExplodeElement>
     </group>
   );
 }
