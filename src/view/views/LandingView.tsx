@@ -14,7 +14,7 @@ import {
 } from '@react-three/drei';
 import { TimeLine } from '../../artifacts/TimeLine.tsx';
 import { useWindowSize } from '@uidotdev/usehooks';
-import AlertErrorBoundary from '../../common/components/AlertErrorBoundary.tsx';
+import AlertErrorBoundary from '../../error/AlertErrorBoundary.tsx';
 
 /**
  * Landing page for the application, informs the user about the application

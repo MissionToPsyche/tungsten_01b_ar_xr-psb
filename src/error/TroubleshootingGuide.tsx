@@ -6,7 +6,7 @@ import {
   Box,
   ChakraProvider
 } from '@chakra-ui/react';
-import TroubleshootingItem from './TroubleshootingItem';
+import TroubleshootingItem from './TroubleshootingItem.tsx';
 
 function TroubleshootingGuide() {
   const [openItem, setOpenItem] = useState<string | null>(null);
