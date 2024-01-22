@@ -8,7 +8,7 @@ vi.mock('../use-explode.ts');
 const setup = () =>
   render(
     <ExplodeTrigger>
-      <p>Hello</p>
+      <p>ExplodeTriggerChild</p>
     </ExplodeTrigger>
   );
 
@@ -16,13 +16,13 @@ describe('<ExplodeTrigger/>', () => {
   it('should render the provided children', () => {
     const { getByText } = setup();
 
-    expect(getByText('Hello')).toBeInTheDocument();
+    expect(getByText('ExplodeTriggerChild')).toBeInTheDocument();
   });
 
   it('should call toggle explode when clicked', () => {
     const { getByText } = setup();
 
-    fireEvent.click(getByText('Hello'));
+    fireEvent.click(getByText('ExplodeTriggerChild'));
 
     expect(useExplode().toggleExploded).toHaveBeenCalled();
   });
