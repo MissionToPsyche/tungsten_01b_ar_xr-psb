@@ -66,23 +66,26 @@ export const AnimationProvider: React.FC<PropsWithChildren> = ({
   };
 
   /**
-   * Stops the specified animation and executes any onComplete callback
+   * Stops the specified animation, executes any onComplete callback and removes
+   * the animation from the registry
    * @param animationName The name of the animation to stop
    */
   const stopAnimation = (animationName: AnimationName) => {
     if (isRegistered(animationName)) {
-      setRegistry((reg) => ({
-        ...reg,
-        [animationName]: {
-          ...reg[animationName],
-          active: false
-        }
-      }));
-      const fn = registry[animationName].onComplete;
-      if (fn != null) {
-        fn();
-      }
+      // Pull the animation from the registry
+      const { [animationName]: animation, ...remaining } = registry;
+      // Call the completion callback if available
+      animation.onComplete?.();
+      // Remove animation from registry
+      setRegistry(remaining as Record<AnimationName, AnimationData>);
     }
+  };
+
+  /**
+   * Clears the animation registry.
+   */
+  const clearAnimations = () => {
+    setRegistry({} as Record<AnimationName, AnimationData>);
   };
 
   /**
@@ -114,7 +117,8 @@ export const AnimationProvider: React.FC<PropsWithChildren> = ({
         registerAnimation,
         isAnimationActive,
         startAnimation,
-        stopAnimation
+        stopAnimation,
+        clearAnimations
       }}
     >
       {children}

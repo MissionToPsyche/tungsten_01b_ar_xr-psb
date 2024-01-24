@@ -27,6 +27,10 @@ interface AnimationContextType {
    * @param name The animation name to stop
    */
   stopAnimation: (animationName: AnimationName) => void;
+  /**
+   * Deletes all animations from the registry
+   */
+  clearAnimations: () => void;
 }
 const AnimationContext = createContext<AnimationContextType | null>(null);
 
