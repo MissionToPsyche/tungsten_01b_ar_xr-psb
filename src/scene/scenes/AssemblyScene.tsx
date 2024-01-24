@@ -1,42 +1,24 @@
 import ExplodeTrigger from '../../common/explode/ExplodeTrigger.tsx';
-import { Box } from '@react-three/drei';
-import ExplodeElement from '../../common/explode/ExplodeElement.tsx';
 import Explode from '../../common/explode/Explode.tsx';
 import { SceneComponent } from '../types/scene-component.ts';
 import AssembleAnimation from '../../animations/AssembleAnimation.tsx';
-import randomRange from '../../common/utils/random-range.ts';
+import { Orbiter } from '../../artifacts/Orbiter.tsx';
+import filledVector from '../../common/utils/filled-vector.ts';
+import { AssembleTestSceneName } from '../../artifacts/AssembleTestSceneName.tsx';
+
+const orbiterScale = filledVector(0.5);
+const sceneNameScale = filledVector(0.5);
 
 const AssemblyScene: SceneComponent = () => (
   <Explode initialExploded={true}>
-    <AssembleAnimation />
+    <ambientLight intensity={0.1} position={[0, 20, 0]} />
+    <spotLight intensity={1} position={[-10, 6, 4]} color={'lightblue'} />
+    <spotLight intensity={2} position={[10, 10, 4]} color={'white'} />
     <ExplodeTrigger>
-      <Box />
+      <Orbiter position={[0, 2, 0]} scale={orbiterScale} />
     </ExplodeTrigger>
-    {[
-      [2, 2, 2],
-      [-2, 2, 2],
-      [2, -2, 2],
-      [-2, -2, 2],
-      [2, 2, -2],
-      [-2, 2, -2],
-      [2, -2, -2],
-      [-2, -2, -2]
-    ].map((explodePosition, index) => (
-      <ExplodeElement
-        key={explodePosition.toString()}
-        startPosition={[0, 0, 0]}
-        explodedPosition={explodePosition as never}
-        startRotation={[0, 0, 0]}
-        explodedRotation={[
-          randomRange(-Math.PI, Math.PI),
-          randomRange(-Math.PI, Math.PI),
-          randomRange(-Math.PI, Math.PI)
-        ]}
-        delay={index * 50}
-      >
-        <Box />
-      </ExplodeElement>
-    ))}
+    <AssembleTestSceneName position={[0, 7, 2]} scale={sceneNameScale} />
+    <AssembleAnimation />
   </Explode>
 );
 

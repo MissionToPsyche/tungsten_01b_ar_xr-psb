@@ -9,7 +9,8 @@ import useExplode from './use-explode.ts';
  * @param explodedPosition The position that the elements should end up at when exploded
  * @param startRotation The rotation that the elements should start at
  * @param explodedRotation The rotation that the elements should end up at when exploded
- * @param delay Optional delay to apply to the element
+ * @param explodeDelay Optional delay to apply to the element when exploding
+ * @param unExplodeDelay Optional delay to apply to the element when un-exploding
  * @param props Any additional props provided to the wrapping group
  */
 const ExplodeElement: React.FC<
@@ -19,7 +20,8 @@ const ExplodeElement: React.FC<
       explodedPosition: JSX.IntrinsicElements['group']['position'];
       startRotation: JSX.IntrinsicElements['group']['rotation'];
       explodedRotation: JSX.IntrinsicElements['group']['rotation'];
-      delay?: number;
+      explodeDelay?: number;
+      unExplodeDelay?: number;
     } & Omit<JSX.IntrinsicElements['group'], 'position'>
   >
 > = ({
@@ -28,7 +30,8 @@ const ExplodeElement: React.FC<
   explodedPosition,
   startRotation,
   explodedRotation,
-  delay,
+  explodeDelay,
+  unExplodeDelay,
   ...props
 }) => {
   const { isExploded, addExploding, removeExploding } = useExplode();
@@ -39,7 +42,7 @@ const ExplodeElement: React.FC<
     config: config.wobbly,
     onStart: addExploding,
     onRest: removeExploding,
-    delay
+    delay: isExploded ? explodeDelay : unExplodeDelay
   });
 
   return (

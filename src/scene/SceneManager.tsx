@@ -11,6 +11,8 @@ import SceneControls from './SceneControls.tsx';
 import ViewName from '../view/types/view-name.ts';
 import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchronizer.tsx';
 import useAnimation from '../animations/use-animation.ts';
+import { Backdrop } from '@react-three/drei';
+import RenderIf from '../common/components/RenderIf.tsx';
 
 /**
  * Manages AR scenes.
@@ -36,13 +38,26 @@ const SceneManager: ViewComponent = ({ changeView }) => {
     <LoaderProvider>
       <LoaderTracker />
       <ARCanvas
+        arEnabled={!config.disableAr}
         onCreated={fitGlToWindow}
         cameraParametersUrl={config.cameraParametersUrl}
         gl={{ logarithmicDepthBuffer: true }}
+        camera={config.disableAr ? { position: [0, 15, 15] } : undefined}
         linear
         flat
       >
         <ARRenderSizeSynchronizer />
+        <RenderIf shouldRender={config.disableAr}>
+          <Backdrop
+            scale={[60, 20, 10]}
+            position={[0, -5, -5]}
+            receiveShadow={true}
+            floor={50}
+            segments={20}
+          >
+            <meshStandardMaterial color="#faf7f0" />
+          </Backdrop>
+        </RenderIf>
         <SceneLighting />
         <ARMarker
           type="pattern"

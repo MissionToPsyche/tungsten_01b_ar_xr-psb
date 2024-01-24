@@ -4,17 +4,19 @@ import ViewManager from './view/ViewManager.tsx';
 import theme from './common/theme.ts';
 import ModalProvider from './common/modal/ModalProvider.tsx';
 import { AnimationProvider } from './animations/AnimationProvider.tsx';
+import AppErrorBoundary from './error/AppErrorBoundary.tsx';
 
 function App() {
   return (
     <ChakraProvider theme={theme} resetCSS={false}>
-      <ModalProvider>
-        <AnimationProvider>
-          <ViewManager />
-        </AnimationProvider>
-      </ModalProvider>
+      <AppErrorBoundary>
+        <ModalProvider>
+          <AnimationProvider>
+            <ViewManager />
+          </AnimationProvider>
+        </ModalProvider>
+      </AppErrorBoundary>
     </ChakraProvider>
   );
 }
-
 export default App;
