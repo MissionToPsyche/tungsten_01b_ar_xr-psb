@@ -19,6 +19,9 @@ vi.mock('@react-three/drei', async () => ({
   ...(await vi.importActual<object>('@react-three/drei')),
   Text: (props: { children: string }) => <group name={props.children} />
 }));
+vi.mock('../../common/components/ModelOutliner.tsx', () => ({
+  default: ({ children }: React.PropsWithChildren) => <>{children}</>
+}));
 // End compatibility mocks
 
 vi.mock('../get-scene-config.ts');

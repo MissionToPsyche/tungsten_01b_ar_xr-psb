@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import useModal from '../common/modal/use-modal.ts';
 import lookupFactByName from './lookup-fact-by-name.ts';
+import { Select } from '@react-three/postprocessing';
 
 /**
  * This component makes the children clickable and updates the modal body with
@@ -17,7 +18,11 @@ const FactsModalTrigger: React.FC<{
     open(title, fact);
   }, [open, title, fact]);
 
-  return <group onClick={onClick}>{children}</group>;
+  return (
+    <group onClick={onClick}>
+      <Select enabled>{children}</Select>
+    </group>
+  );
 };
 
 export default FactsModalTrigger;

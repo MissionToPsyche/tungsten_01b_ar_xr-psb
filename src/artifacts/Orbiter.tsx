@@ -14,7 +14,6 @@ import { GLTF } from 'three-stdlib';
 import ExplodeElement from '../common/explode/ExplodeElement.tsx';
 import degreesToRadians from '../common/utils/degrees-to-radians.ts';
 import FactsModalTrigger from '../facts/FactsModalTrigger.tsx';
-import { Select } from '@react-three/postprocessing';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -332,35 +331,33 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         explodedRotation={[0, degreesToRadians(180), 0]}
       >
         <FactsModalTrigger factName="xBandRadio">
-          <Select>
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_79.geometry}
-              material={materials.M_03___Default}
-              position={[-0.011, 2.286, 0.351]}
-              rotation={[-Math.PI / 2, 0, -0.325]}
-              scale={0.042}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_80.geometry}
-              material={materials.Box_Material}
-              position={[-0.011, 2.286, 0.351]}
-              rotation={[-Math.PI / 2, 0, -0.325]}
-              scale={0.042}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_81.geometry}
-              material={materials['Thruster_Material.001']}
-              position={[-0.011, 2.286, 0.351]}
-              rotation={[-Math.PI / 2, 0, -0.325]}
-              scale={0.042}
-            />
-          </Select>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_79.geometry}
+            material={materials.M_03___Default}
+            position={[-0.011, 2.286, 0.351]}
+            rotation={[-Math.PI / 2, 0, -0.325]}
+            scale={0.042}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_80.geometry}
+            material={materials.Box_Material}
+            position={[-0.011, 2.286, 0.351]}
+            rotation={[-Math.PI / 2, 0, -0.325]}
+            scale={0.042}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_81.geometry}
+            material={materials['Thruster_Material.001']}
+            position={[-0.011, 2.286, 0.351]}
+            rotation={[-Math.PI / 2, 0, -0.325]}
+            scale={0.042}
+          />
         </FactsModalTrigger>
       </ExplodeElement>
       {/* Right Panel */}
