@@ -95,7 +95,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         <mesh
           geometry={nodes.Object_41.geometry}
           material={materials.SolarPanelFrrame_Material}
-          position={[0, 3, 0]}
+          position={[0, 2, 0]}
           rotation={[-Math.PI / 2, 0, 0]}
           scale={0.025}
         />
@@ -137,7 +137,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         startRotation={[0, 0, 0]}
         explodedPosition={[1.5, 0, 0]}
         explodedRotation={[0, 0, 0]}
-        explodeDelay={500}
+        explodeDelay={150}
       >
         {/* right side pannels*/}
         <mesh
@@ -154,7 +154,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         startRotation={[0, 0, 0]}
         explodedPosition={[-1.5, 0, 0]}
         explodedRotation={[0, 0, 0]}
-        explodeDelay={500}
+        explodeDelay={150}
       >
         {/* left side side pannels*/}
         <mesh
