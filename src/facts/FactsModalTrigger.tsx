@@ -9,18 +9,23 @@ import { Select } from '@react-three/postprocessing';
  */
 const FactsModalTrigger: React.FC<{
   factName: string;
+  disable?: boolean;
   children: React.ReactNode;
-}> = ({ factName, children }) => {
+}> = ({ factName, disable, children }) => {
   const { open } = useModal();
   const { title, fact } = lookupFactByName(factName);
 
   const onClick = useCallback(() => {
+    if (disable) {
+      return;
+    }
+
     open(title, fact);
-  }, [open, title, fact]);
+  }, [disable, open, title, fact]);
 
   return (
     <group onClick={onClick}>
-      <Select enabled>{children}</Select>
+      <Select enabled={!disable}>{children}</Select>
     </group>
   );
 };
