@@ -15,6 +15,7 @@ import ExplodeElement from '../common/explode/ExplodeElement.tsx';
 import degreesToRadians from '../common/utils/degrees-to-radians.ts';
 import FactsModalTrigger from '../facts/FactsModalTrigger.tsx';
 import { Select } from '@react-three/postprocessing';
+import { Box } from '@react-three/drei';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -70,54 +71,65 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
       <ExplodeElement
         startPosition={[0, 0, 0]}
         startRotation={[0, 0, 0]}
-        explodedPosition={[0, -2.5, 0]}
+        explodedPosition={[0, -1.5, 0]}
         explodedRotation={[0, 0, 0]}
+        unExplodeDelay={200}
       >
+        {/* interior cylinder 1*/}
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Object_17.geometry}
           material={materials['Thruster_Material.001']}
-          position={[0, 0.071, 0]}
+          position={[0, 1.5, 0]}
           rotation={[-Math.PI / 2, 0, 0]}
           scale={0.025}
         />
+        {/* interior cylinder 2*/}
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Object_23.geometry}
           material={materials.SolarPanelFrrame_Material}
           position={[0, 0.466, 0]}
           rotation={[-Math.PI / 2, 0, 0]}
           scale={0.025}
         />
+        {/* interior cylinder 3*/}
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Object_41.geometry}
           material={materials.SolarPanelFrrame_Material}
-          position={[0, 1.746, 0]}
+          position={[0, 2, 0]}
           rotation={[-Math.PI / 2, 0, 0]}
           scale={0.025}
         />
+      <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[0, -1, 0]}
+        explodedRotation={[0, 0, 0]}
+        unExplodeDelay={200}
+      >
+       {/* exterior bottom cylinder 2*/} 
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Object_26.geometry}
           material={materials.SolarPanelFrrame_Material}
           position={[0, -0.154, 0]}
           rotation={[-Math.PI / 2, 0, 0]}
           scale={0.025}
         />
+      </ExplodeElement>
+       <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[0, -1.8, 0]}
+        explodedRotation={[0, 0, 0]}
+      >
+        {/* exterior gear 2*/}
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Object_29.geometry}
           material={materials['Thruster_Material.001']}
           position={[0, -0.053, -0.003]}
           rotation={[-Math.PI / 2, 0, 0]}
           scale={[0.04, 0.04, 0.025]}
         />
+      </ExplodeElement>  
       </ExplodeElement>
       {/*Right Stuff*/}
       <ExplodeElement
@@ -127,12 +139,11 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         explodedRotation={[0, 0, 0]}
         explodeDelay={150}
       >
+        {/* right side pannels*/}
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Object_32.geometry}
           material={materials.SolarPanel_Material}
-          position={[1.169, 1.254, 0.495]}
+          position={[1.26, 1.254, 0.495]}
           rotation={[0, -Math.PI / 2, 0]}
           scale={0.025}
         />
@@ -145,40 +156,12 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         explodedRotation={[0, 0, 0]}
         explodeDelay={150}
       >
+        {/* left side side pannels*/}
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Object_35.geometry}
           material={materials.SolarPanel_Material}
-          position={[-1.142, 1.254, 0.495]}
+          position={[-1.26, 1.254, 0.495]}
           rotation={[0, -Math.PI / 2, 0]}
-          scale={0.025}
-        />
-      </ExplodeElement>
-      {/*Left Panel*/}
-      <ExplodeElement
-        startPosition={[0, 0, 0]}
-        startRotation={[0, 0, 0]}
-        explodedPosition={[-2.5, 0, 0]}
-        explodedRotation={[degreesToRadians(-225), 0, 0]}
-        unExplodeDelay={150}
-      >
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_44.geometry}
-          material={materials.SolarPanelFrrame_Material}
-          position={[-4.295, 0.57, -0.008]}
-          rotation={[-1.258, 0, 0]}
-          scale={0.025}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_45.geometry}
-          material={materials.SolarPanel_Material}
-          position={[-4.295, 0.57, -0.008]}
-          rotation={[-1.258, 0, 0]}
           scale={0.025}
         />
       </ExplodeElement>
@@ -191,21 +174,20 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         explodeDelay={100}
         unExplodeDelay={100}
       >
+        {/*Front Square*/}
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Object_20.geometry}
           material={materials.M_03___Default}
-          position={[0, 1.733, 1.054]}
+          position={[0, 1.733, 1.2]}
           rotation={[0.387, 0, 0]}
           scale={0.025}
         />
+        {/*Front Thruster*/}
+        <group>
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Object_63.geometry}
           material={materials['Thruster_Material.001']}
-          position={[0.037, 0.157, 1.844]}
+          position={[0.037, 0.157, 1.95]}
           rotation={[-1.789, 0, -Math.PI]}
           scale={[-0.025, 0.025, 0.025]}
         />
@@ -214,10 +196,11 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
           receiveShadow
           geometry={nodes.Object_64.geometry}
           material={materials.Thruster_Material}
-          position={[0.037, 0.157, 1.844]}
+          position={[0.037, 0.157, 1.95]}
           rotation={[-1.789, 0, -Math.PI]}
           scale={[-0.025, 0.025, 0.025]}
         />
+        </group>
       </ExplodeElement>
       {/*Bars*/}
       <ExplodeElement
@@ -226,9 +209,8 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         explodedPosition={[0, 2.5, -2.5]}
         explodedRotation={[0, 0, 0]}
       >
+        {/*Magnometer Cylinder Bar*/}
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Object_48.geometry}
           material={materials.fallback_Material}
           position={[0.907, 2.303, -1.078]}
@@ -236,6 +218,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
           scale={[-0.025, 0.025, 0.025]}
         />
         <FactsModalTrigger factName="spectrometer">
+          {/*spectrometer*/}
           <mesh
             castShadow
             receiveShadow
@@ -247,6 +230,8 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
           />
         </FactsModalTrigger>
         <FactsModalTrigger factName="magnetometer">
+          {/*magnetometer*/}
+          <group>
           <mesh
             castShadow
             receiveShadow
@@ -256,8 +241,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
             rotation={[-Math.PI, 0, -Math.PI]}
             scale={0.025}
           />
-        </FactsModalTrigger>
-        <mesh
+          <mesh
           castShadow
           receiveShadow
           geometry={nodes.Object_57.geometry}
@@ -265,7 +249,11 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
           position={[0.904, 3.655, -1.082]}
           rotation={[-Math.PI, 0, -Math.PI]}
           scale={0.025}
-        />
+          />
+        </group>
+        </FactsModalTrigger>
+         {/*Neutron Spectrometer*/}
+        <group>
         <mesh
           castShadow
           receiveShadow
@@ -284,6 +272,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
           rotation={[-Math.PI / 2, 0, 0]}
           scale={0.025}
         />
+      </group>
       </ExplodeElement>
       {/*Back Stuff*/}
       <ExplodeElement
@@ -294,12 +283,14 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         explodeDelay={100}
         unExplodeDelay={100}
       >
+        {/*Back Thrusters*/}
+        <group>
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Object_60.geometry}
           material={materials['Thruster_Material.001']}
-          position={[0.037, 0.157, -1.846]}
+          position={[0.037, 0.157, -1.95]}
           rotation={[-1.353, 0, 0]}
           scale={0.025}
         />
@@ -308,17 +299,19 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
           receiveShadow
           geometry={nodes.Object_61.geometry}
           material={materials.Thruster_Material}
-          position={[0.037, 0.157, -1.846]}
+          position={[0.037, 0.157, -1.95]}
           rotation={[-1.353, 0, 0]}
           scale={0.025}
         />
+        </group>
         <FactsModalTrigger factName="multiSpectralImager">
+          {/*Neutron Spectrometer*/}
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.Object_76.geometry}
             material={materials.M_15___Default}
-            position={[0.074, 1.85, -1.205]}
+            position={[0.074, 1.85, -1.3]}
             rotation={[-Math.PI, 0, -Math.PI]}
             scale={0.025}
           />
@@ -333,6 +326,8 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
       >
         <FactsModalTrigger factName="xBandRadio">
           <Select>
+            {/*x-band radio*/}
+            <group>
             <mesh
               castShadow
               receiveShadow
@@ -360,36 +355,127 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
               rotation={[-Math.PI / 2, 0, -0.325]}
               scale={0.042}
             />
+            </group>
           </Select>
         </FactsModalTrigger>
       </ExplodeElement>
-      {/* Right Panel */}
+      {/*Left Solar Panel*/}
+      <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[-2.5, 0, 0]}
+        explodedRotation={[degreesToRadians(-150), 0, 0]}
+        unExplodeDelay={600}
+      >
+        <group >
+        <mesh
+          geometry={nodes.Object_45.geometry}
+          material={materials.SolarPanel_Material}
+          position={[-4.4, 0.57, -0.008]}
+          rotation={[-1.258, 0, 0]}
+          scale={0.025}
+        />
+        <mesh
+          geometry={nodes.Object_44.geometry}
+          material={materials.Box_Material}
+          position={[-4.4, 0.57, -0.008]}
+          rotation={[-1.258, 0, 0]}
+          scale={0.025}
+        />
+        </group>
+      </ExplodeElement>
+
+      {/*Right 2 Solar Panel*/}
       <ExplodeElement
         startPosition={[0, 0, 0]}
         startRotation={[0, 0, 0]}
         explodedPosition={[2.5, 0, 0]}
-        explodedRotation={[degreesToRadians(225), 0, 0]}
+        explodedRotation={[degreesToRadians(-150), 0, 0]}
+        unExplodeDelay={600}
+      >
+        <group >
+        <mesh
+          geometry={nodes.Object_45.geometry}
+          material={materials.SolarPanel_Material}
+          position={[4.4, 0.57, -0.008]}
+          rotation={[-1.258, 0, 0]}
+          scale={[-0.025, 0.025, 0.025]}
+        />
+        <mesh
+          geometry={nodes.Object_44.geometry}
+          material={materials.Box_Material}
+          position={[4.4, 0.57, -0.008]}
+          rotation={[-1.258, 0, 0]}
+          scale={[-0.025, 0.025, 0.025]}
+        />
+        </group>
+      </ExplodeElement>
+      
+      {/* back box */}
+      <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[0, 0, -2]}
+        explodedRotation={[0, 0, 0]}
         unExplodeDelay={150}
       >
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_84.geometry}
-          material={materials.SolarPanel_Material}
-          position={[10.906, 0.623, 0.006]}
-          rotation={[-1.258, 0, 0]}
-          scale={[-0.025, 0.025, 0.025]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_85.geometry}
-          material={materials.SolarPanelFrrame_Material}
-          position={[10.906, 0.623, 0.006]}
-          rotation={[-1.258, 0, 0]}
-          scale={[-0.025, 0.025, 0.025]}
-        />
-      </ExplodeElement>
+      <Box position={[0, 1, -1.2]} scale={[0.1, 2.5, 2.5]}
+      material={materials.SolarPanelFrrame_Material} rotation={[Math.PI/2, 0, Math.PI/2]}>
+      </Box>
+    </ExplodeElement>
+    {/* right box */}
+      <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[1.5, 0, 0]}
+        explodedRotation={[0, 0, 0]}
+        unExplodeDelay={150}
+      > 
+      <Box position={[1.2, 0.95, 0]} scale={[0.1, 2.5, 2.5]}
+      material={materials.SolarPanelFrrame_Material}
+      >
+      </Box> 
+    </ExplodeElement>
+     {/* left box */}
+        <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[-1.5, 0, 0]}
+        explodedRotation={[0, 0, 0]}
+        unExplodeDelay={150}
+      >  
+      <Box position={[-1.2, 0.95, 0]} scale={[0.1, 2.5, 2.5]}
+      material={materials.SolarPanelFrrame_Material} rotation={[Math.PI/2, 0, 0]}>
+      </Box>
+    </ExplodeElement>
+    {/* bottom box will not move */}
+    <Box position={[0, -0.3, 0]} scale={[0.1, 2.5, 2.5]}
+      material={materials.SolarPanelFrrame_Material} rotation={[Math.PI/2, Math.PI/2, 0]}>
+      </Box>
+    {/* top box */}
+     <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[0, 2, 0]}
+        explodedRotation={[0, 0, 0]}
+        unExplodeDelay={150}
+      >  
+      <Box position={[0, 2.2, 0]} scale={[0.1, 2.5, 2.5]}
+      material={materials.SolarPanelFrrame_Material} rotation={[Math.PI/2, Math.PI/2, 0]}>
+      </Box>
+    </ExplodeElement>
+    {/* front box */}  
+     <ExplodeElement
+        startPosition={[0, 0, 0]}
+        startRotation={[0, 0, 0]}
+        explodedPosition={[0, 0, 2.2]}
+        explodedRotation={[0, 0, 0]}
+        unExplodeDelay={150}
+      >  
+      <Box position={[0, 1, 1.2]} scale={[0.1, 2.5, 2.5]}
+      material={materials.SolarPanelFrrame_Material} rotation={[Math.PI/2, 0, Math.PI/2]}>
+      </Box>
+    </ExplodeElement>
     </group>
   );
 }
