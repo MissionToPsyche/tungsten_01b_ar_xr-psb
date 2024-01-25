@@ -11,8 +11,8 @@ import SceneControls from './SceneControls.tsx';
 import ViewName from '../view/types/view-name.ts';
 import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchronizer.tsx';
 import useAnimation from '../animations/use-animation.ts';
-import { Backdrop } from '@react-three/drei';
 import RenderIf from '../common/components/RenderIf.tsx';
+import ModelOutliner from '../common/components/ModelOutliner.tsx';
 
 /**
  * Manages AR scenes.
@@ -48,15 +48,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
       >
         <ARRenderSizeSynchronizer />
         <RenderIf shouldRender={config.disableAr}>
-          <Backdrop
-            scale={[60, 20, 10]}
-            position={[0, -5, -5]}
-            receiveShadow={true}
-            floor={50}
-            segments={20}
-          >
-            <meshStandardMaterial color="#faf7f0" />
-          </Backdrop>
+          <color attach="background" args={['skyblue']} />
         </RenderIf>
         <SceneLighting />
         <ARMarker
@@ -64,15 +56,17 @@ const SceneManager: ViewComponent = ({ changeView }) => {
           patternUrl={markerUrl}
           params={{ smooth: true }}
         >
-          <CurrentSceneComponent />
-          <SceneControls
-            position={[0, 0, 3]}
-            rotation={[degreesToRadians(-45), 0, 0]}
-            onChangeScene={setCurrentScene}
-            onRestart={onRestart}
-            previousSceneTransition={previousSceneTransition}
-            nextSceneTransition={nextSceneTransition}
-          />
+          <ModelOutliner color={0xffffff}>
+            <CurrentSceneComponent />
+            <SceneControls
+              position={[0, 0, 3]}
+              rotation={[degreesToRadians(-45), 0, 0]}
+              onChangeScene={setCurrentScene}
+              onRestart={onRestart}
+              previousSceneTransition={previousSceneTransition}
+              nextSceneTransition={nextSceneTransition}
+            />
+          </ModelOutliner>
         </ARMarker>
       </ARCanvas>
     </LoaderProvider>

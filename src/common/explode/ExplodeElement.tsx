@@ -14,16 +14,15 @@ import useExplode from './use-explode.ts';
  * @param props Any additional props provided to the wrapping group
  */
 const ExplodeElement: React.FC<
-  React.PropsWithChildren<
-    {
-      startPosition: JSX.IntrinsicElements['group']['position'];
-      explodedPosition: JSX.IntrinsicElements['group']['position'];
-      startRotation: JSX.IntrinsicElements['group']['rotation'];
-      explodedRotation: JSX.IntrinsicElements['group']['rotation'];
-      explodeDelay?: number;
-      unExplodeDelay?: number;
-    } & Omit<JSX.IntrinsicElements['group'], 'position'>
-  >
+  {
+    children: React.ReactNode | ((isExploded: boolean) => React.ReactNode);
+    startPosition: JSX.IntrinsicElements['group']['position'];
+    explodedPosition: JSX.IntrinsicElements['group']['position'];
+    startRotation: JSX.IntrinsicElements['group']['rotation'];
+    explodedRotation: JSX.IntrinsicElements['group']['rotation'];
+    explodeDelay?: number;
+    unExplodeDelay?: number;
+  } & Omit<JSX.IntrinsicElements['group'], 'position' | 'children'>
 > = ({
   children,
   startPosition,
@@ -51,7 +50,7 @@ const ExplodeElement: React.FC<
       position={position as never}
       rotation={rotation as never}
     >
-      {children}
+      {typeof children === 'function' ? children(isExploded) : children}
     </animated.group>
   );
 };

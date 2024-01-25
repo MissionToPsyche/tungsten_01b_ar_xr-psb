@@ -40,7 +40,8 @@ module.exports = {
           'depthTest',
           'depthWrite',
           'side',
-          'wireframe'
+          'wireframe',
+          'attach'
         ]
       }
     ],
