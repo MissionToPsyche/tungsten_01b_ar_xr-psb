@@ -36,6 +36,22 @@ const missionFacts: Record<string, MissionFact> = {
     title: 'Deep Space Optical Communication',
     fact: 'Advanced communication tech that encodes data in photons.'
   },
+  firstDateRange: {
+    title: 'Psyche Mission Proposal and Concept Study',
+    fact: 'NASA chose and gave approval to the Psyche Mission to develop an in-depth concept study.'
+  },
+  secondDateRange: {
+    title: 'Preliminary Design of All Instruments and Spacecraft',
+    fact: 'The science and engineering teams designed the spacecraft and asteroid analysis instruments.'
+  },
+  thirdDateRange: {
+    title: 'Final Design and Subsystem Fabrication',
+    fact: 'Science and engineering teams begin to build their instruments to complete the mission.'
+  },
+  fourthDateRange: {
+    title: 'Instrument & Scpacecraft Assembly and Test',
+    fact: 'The spacecraft subsystems are assembled onto the spacecraft and subjected to thorough testing.'
+  },
   // Launch Scene
   falconHeavy: {
     title: 'Falcon Heavy',

@@ -8,29 +8,41 @@ Source: https://sketchfab.com/3d-models/assembly-test-scene-name-97775a53c8ae411
 Title: Assembly-test-scene-name
 */
 
-import * as THREE from 'three'
-import { useGLTF } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import * as THREE from 'three';
+import { useGLTF } from '@react-three/drei';
+import { GLTF } from 'three-stdlib';
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_4: THREE.Mesh
-    Object_6: THREE.Mesh
-  }
+    Object_4: THREE.Mesh;
+    Object_6: THREE.Mesh;
+  };
   materials: {
-    Letters_Material: THREE.MeshStandardMaterial
-    Box_Material: THREE.MeshStandardMaterial
-  }
-}
+    Letters_Material: THREE.MeshStandardMaterial;
+    Box_Material: THREE.MeshStandardMaterial;
+  };
+};
 
 export function AssembleTestSceneName(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/assets/models/assemble-test-scene-name-transformed.glb') as GLTFResult
+  const { nodes, materials } = useGLTF(
+    '/assets/models/assemble-test-scene-name-transformed.glb'
+  ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_4.geometry} material={materials.Letters_Material} position={[0.989, 0.048, 0]} scale={0.025} />
-      <mesh geometry={nodes.Object_6.geometry} material={materials.Box_Material} position={[0.992, 0.394, -0.115]} scale={0.025} />
+      <mesh
+        geometry={nodes.Object_4.geometry}
+        material={materials.Letters_Material}
+        position={[0.989, 0.048, 0]}
+        scale={0.025}
+      />
+      <mesh
+        geometry={nodes.Object_6.geometry}
+        material={materials.Box_Material}
+        position={[0.992, 0.394, -0.115]}
+        scale={0.025}
+      />
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/assets/models/assemble-test-scene-name-transformed.glb')
+useGLTF.preload('/assets/models/assemble-test-scene-name-transformed.glb');
