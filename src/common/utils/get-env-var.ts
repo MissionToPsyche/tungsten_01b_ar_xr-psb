@@ -3,7 +3,7 @@
  * @param envVarName The name of the environment variable to evaluate.
  */
 const getEnvVar = (envVarName: string): string | undefined => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return import.meta.env[envVarName];
 };
 
