@@ -1,7 +1,6 @@
 import { ARCanvas, ARMarker } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
-import getSceneConfig from './get-scene-config.ts';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
@@ -12,12 +11,14 @@ import ViewName from '../view/types/view-name.ts';
 import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchronizer.tsx';
 import RenderIf from '../common/components/RenderIf.tsx';
 import ModelOutliner from '../common/components/ModelOutliner.tsx';
+import useConfig from '../error/useConfig.ts';
+import ARAvailabilityDeviceDetector from '../error/ARAvailabilityDeviceDetector.tsx';
 
 /**
  * Manages AR scenes.
  */
 const SceneManager: ViewComponent = ({ changeView }) => {
-  const config = useMemo(getSceneConfig, []);
+  const config = useConfig();
   const [currentScene, setCurrentScene] = useState(config.defaultScene);
 
   const onRestart = useCallback(() => {
@@ -34,6 +35,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
   return (
     <LoaderProvider>
       <LoaderTracker />
+      <ARAvailabilityDeviceDetector sceneConfig={config} />
       <ARCanvas
         arEnabled={!config.disableAr}
         onCreated={fitGlToWindow}

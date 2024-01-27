@@ -1,6 +1,13 @@
 import { useEffect } from 'react';
+import { SceneConfig } from '../scene/types/scene-config';
 
-function ARAvailabilityDeviceDetector() {
+interface ARAvailabilityDeviceDetectorProps {
+  sceneConfig: SceneConfig;
+}
+
+const ARAvailabilityDeviceDetector: React.FC<
+  ARAvailabilityDeviceDetectorProps
+> = ({ sceneConfig }) => {
   useEffect(() => {
     const checkWebXRSupport = async () => {
       try {
@@ -14,12 +21,18 @@ function ARAvailabilityDeviceDetector() {
           await navigator.xr.isSessionSupported('immersive-ar');
 
         if (!isSupported) {
-          throw new Error('WebXR AR not supported on this device.');
+          console.error('WebXR AR not supported on this device.');
+
+          // Disable AR in the scene configuration
+          sceneConfig.disableAr = true;
         }
       } catch (error) {
         if (error instanceof Error) {
           console.error('WebXR Error:', error.message);
         }
+
+        // Disable AR in the scene configuration on error
+        sceneConfig.disableAr = true;
       }
     };
 
@@ -34,9 +47,9 @@ function ARAvailabilityDeviceDetector() {
     console.log('Device:', device);
     console.log('OS Version:', osVersion);
     console.log('Browser:', browser);
-  }, []);
+  }, [sceneConfig]);
 
   return null;
-}
+};
 
 export default ARAvailabilityDeviceDetector;
