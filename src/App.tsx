@@ -5,11 +5,13 @@ import theme from './common/theme.ts';
 import ModalProvider from './common/modal/ModalProvider.tsx';
 import { AnimationProvider } from './animations/AnimationProvider.tsx';
 import AppErrorBoundary from './error/AppErrorBoundary.tsx';
+import DeviceDetector from './error/DeviceDetectorErrorBoundary.tsx';
 
 function App() {
   return (
     <ChakraProvider theme={theme} resetCSS={false}>
       <AppErrorBoundary>
+        <DeviceDetector />
         <ModalProvider>
           <AnimationProvider>
             <ViewManager />
