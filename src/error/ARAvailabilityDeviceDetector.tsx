@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-function DeviceDetectorErrorBoundary() {
+function ARAvailabilityDeviceDetector() {
   useEffect(() => {
     const checkWebXRSupport = async () => {
       try {
@@ -39,4 +39,4 @@ function DeviceDetectorErrorBoundary() {
   return null;
 }
 
-export default DeviceDetectorErrorBoundary;
+export default ARAvailabilityDeviceDetector;
