@@ -61,7 +61,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
           </Canvas>
         </LoaderProvider>
       </AlertErrorBoundary>
-      <Text fontSize={18}>
+      <Text fontSize={18} marginRight={4} marginLeft={4} marginBottom={8} >
         <Highlight
           query={['Start Mission Timeline', 'camera permission']}
           styles={{ px: '2', py: '1', rounded: 'full', bg: 'magenta.100' }}
