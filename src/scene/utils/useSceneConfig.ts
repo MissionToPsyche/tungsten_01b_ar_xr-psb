@@ -2,41 +2,33 @@ import { useEffect, useMemo, useState } from 'react';
 import { SceneConfig } from '../types/scene-config.ts';
 import getSceneConfig from '../get-scene-config.ts';
 
-const isArSupported = async () => {
+const isArSupported = () => {
   try {
-    // Check for WebXR support
-    if (!navigator.xr) {
-      return false;
-    }
+    // Check for WebGL support
+    const canvas = document.createElement('canvas');
+    const isWebGLSupported = !!(
+      canvas.getContext('webgl') ?? canvas.getContext('experimental-webgl')
+    );
 
-    // Check if the device supports WebXR
-    const isSupported = await navigator.xr.isSessionSupported('immersive-ar');
+    // Check for WebRTC support
+    const isWebRTCSupported = !!navigator.mediaDevices.getUserMedia;
 
-    if (!isSupported) {
-      return false;
-    }
+    return isWebGLSupported && isWebRTCSupported;
   } catch (error) {
     return false;
   }
-
-  return true;
 };
 
 const useSceneConfig = (): SceneConfig => {
   const [arSupported, setArSupported] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const isSupported = await isArSupported();
-        setArSupported(isSupported);
-      } catch (error) {
-        // Handle errors, e.g., log or set an error state
-        console.error('Error checking AR support:', error);
-      }
+    const fetchData = () => {
+      const isSupported = isArSupported();
+      setArSupported(isSupported);
     };
 
-    void fetchData();
+    fetchData();
   }, []);
 
   return useMemo(
