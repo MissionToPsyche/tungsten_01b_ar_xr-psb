@@ -1,4 +1,4 @@
-import { ARCanvas, ARMarker } from '@artcom/react-three-arjs';
+import { ARCanvas } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
 import getSceneConfig from './get-scene-config.ts';
 import { useCallback, useMemo, useState } from 'react';
@@ -12,6 +12,7 @@ import ViewName from '../view/types/view-name.ts';
 import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchronizer.tsx';
 import RenderIf from '../common/components/RenderIf.tsx';
 import ModelOutliner from '../common/components/ModelOutliner.tsx';
+import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
 
 /**
  * Manages AR scenes.
@@ -48,11 +49,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
           <color attach="background" args={['skyblue']} />
         </RenderIf>
         <SceneLighting />
-        <ARMarker
-          type="pattern"
-          patternUrl={markerUrl}
-          params={{ smooth: true }}
-        >
+        <PersistentARMarker markerUrl={markerUrl}>
           <ModelOutliner color={0xffffff}>
             <CurrentSceneComponent />
             <SceneControls
@@ -64,7 +61,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
               nextSceneTransition={nextSceneTransition}
             />
           </ModelOutliner>
-        </ARMarker>
+        </PersistentARMarker>
       </ARCanvas>
     </LoaderProvider>
   );
