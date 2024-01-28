@@ -19,7 +19,6 @@ import useSceneConfig from './utils/useSceneConfig.ts';
 const SceneManager: ViewComponent = ({ changeView }) => {
   const config = useSceneConfig();
   const [currentScene, setCurrentScene] = useState(config.defaultScene);
-  console.log(config.disableAr);
   const onRestart = useCallback(() => {
     changeView(ViewName.LANDING_PAGE);
   }, [changeView]);
