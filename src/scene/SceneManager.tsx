@@ -11,16 +11,15 @@ import ViewName from '../view/types/view-name.ts';
 import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchronizer.tsx';
 import RenderIf from '../common/components/RenderIf.tsx';
 import ModelOutliner from '../common/components/ModelOutliner.tsx';
-import useConfig from '../error/useConfig.ts';
-import ARAvailabilityDeviceDetector from '../error/ARAvailabilityDeviceDetector.tsx';
+import useSceneConfig from './utils/useSceneConfig.ts';
 
 /**
  * Manages AR scenes.
  */
 const SceneManager: ViewComponent = ({ changeView }) => {
-  const config = useConfig();
+  const config = useSceneConfig();
   const [currentScene, setCurrentScene] = useState(config.defaultScene);
-
+  console.log(config.disableAr);
   const onRestart = useCallback(() => {
     changeView(ViewName.LANDING_PAGE);
   }, [changeView]);
@@ -35,7 +34,6 @@ const SceneManager: ViewComponent = ({ changeView }) => {
   return (
     <LoaderProvider>
       <LoaderTracker />
-      <ARAvailabilityDeviceDetector sceneConfig={config} />
       <ARCanvas
         arEnabled={!config.disableAr}
         onCreated={fitGlToWindow}
