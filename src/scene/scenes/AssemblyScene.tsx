@@ -6,7 +6,6 @@ import { Orbiter } from '../../artifacts/Orbiter.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
 import { AssembleTestSceneName } from '../../artifacts/AssembleTestSceneName.tsx';
 import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
-import ModelOutliner from '../../common/components/ModelOutliner.tsx';
 import { Box } from '@react-three/drei';        
 
 const orbiterScale = filledVector(0.75);
@@ -26,9 +25,7 @@ const AssemblyScene: SceneComponent = () => (
     <Orbiter position={[0, 6, -2]} scale={orbiterScale} />
     <AssembleTestSceneName position={[0, 12, -1]} scale={sceneNameScale} />
     <AssembleAnimation />
-    <ModelOutliner color={0xffffff}>
-      <AssembleDate scale={sceneDateScale} position={[0, 3, 2]} />
-    </ModelOutliner>
+    <AssembleDate scale={sceneDateScale} position={[0, 3, 2]} />
   </Explode>
 );
 
