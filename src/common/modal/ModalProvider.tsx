@@ -6,8 +6,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  useDisclosure,
-  Container
+  useDisclosure
 } from '@chakra-ui/react';
 import React, { PropsWithChildren, useCallback, useState } from 'react';
 import ModalContext from './modal-context';
@@ -33,21 +32,12 @@ const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <ModalContext.Provider value={{ open }}>{children}</ModalContext.Provider>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent fontFamily="Helvetica" color="white" bg="magenta.700">
-          <Container
-            centerContent
-            maxWidth={'40ch'}
-            marginTop={5}
-            marginBottom={5}
-          >
-            <ModalHeader>{modalTitle}</ModalHeader>
-          </Container>
+        <ModalContent fontFamily="Helvetica" color="white" bg="magenta.700" alignItems={"center"} padding={8}>
+          <ModalHeader alignItems={"center"} padding={8}>{modalTitle}</ModalHeader>
           <ModalCloseButton backgroundColor="white" />
-          <Container centerContent maxWidth={'50ch'}>
-            <ModalBody>{modalBody}</ModalBody>
-          </Container>
+          <ModalBody>{modalBody}</ModalBody>
           <ModalFooter />
         </ModalContent>
       </Modal>
