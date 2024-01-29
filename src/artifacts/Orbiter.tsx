@@ -444,6 +444,8 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         startRotation={[0, 0, 0]}
         explodedPosition={[1.5, 0, 0]}
         explodedRotation={[0, 0, 0]}
+        explodeDelay={250}
+        unExplodeDelay={50}
       >
         <Box
           position={[1.2, 0.95, 0]}
