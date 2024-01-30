@@ -24,6 +24,13 @@ vi.mock('@react-three/drei', async () => ({
 vi.mock('../../common/components/ModelOutliner.tsx', () => ({
   default: ({ children }: React.PropsWithChildren) => <>{children}</>
 }));
+vi.mock('@chakra-ui/react', async () => ({
+  ...(await vi.importActual<object>('@chakra-ui/react')),
+  Button: (props: Record<string, string>) => (
+    <group {...props} name={props.children} />
+  ),
+  Stack: (props: Record<never, never>) => <group {...props} />
+}));
 // End compatibility mocks
 
 vi.mock('../get-scene-config.ts');
@@ -94,8 +101,7 @@ describe('<SceneManager/>', () => {
     const renderer = await setup();
 
     await renderer.fireEvent(
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      renderer.scene.findByProps({ name: 'Next Scene' }).parent!,
+      renderer.scene.findByProps({ name: 'Next Scene' }),
       'click'
     );
 
