@@ -34,8 +34,8 @@ const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
       <ModalContext.Provider value={{ open }}>{children}</ModalContext.Provider>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent fontFamily="Helvetica" color="white" bg="magenta.700">
-          <ModalHeader>{modalTitle}</ModalHeader>
+        <ModalContent fontFamily="Helvetica" color="white" bg="magenta.700" alignItems={"center"} padding={8}>
+          <ModalHeader alignItems={"center"} padding={8}>{modalTitle}</ModalHeader>
           <ModalCloseButton backgroundColor="white" />
           <ModalBody>{modalBody}</ModalBody>
           <ModalFooter />

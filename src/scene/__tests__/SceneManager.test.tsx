@@ -9,8 +9,10 @@ import { AnimationProvider } from '../../animations/AnimationProvider.tsx';
 
 // The following mocks are required because they render things that are not compatible with ReactThreeTestRenderer
 vi.mock('@artcom/react-three-arjs', () => ({
-  ARCanvas: ({ children }: React.PropsWithChildren) => <>{children}</>,
-  ARMarker: ({ children }: React.PropsWithChildren) => <>{children}</>
+  ARCanvas: ({ children }: React.PropsWithChildren) => <>{children}</>
+}));
+vi.mock('../../common/components/PersistentARMarker.tsx', () => ({
+  default: ({ children }: React.PropsWithChildren) => <>{children}</>
 }));
 vi.mock('../../common/loader/LoaderTracker.tsx', () => ({
   default: ({ children }: React.PropsWithChildren) => <>{children}</>
