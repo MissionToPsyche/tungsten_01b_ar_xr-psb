@@ -1,4 +1,4 @@
-import { ARCanvas, ARMarker } from '@artcom/react-three-arjs';
+import { ARCanvas } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
 import getSceneConfig from './get-scene-config.ts';
 import { useCallback, useMemo, useState } from 'react';
@@ -10,8 +10,10 @@ import degreesToRadians from '../common/utils/degrees-to-radians.ts';
 import SceneControls from './SceneControls.tsx';
 import ViewName from '../view/types/view-name.ts';
 import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchronizer.tsx';
+import useAnimation from '../animations/use-animation.ts';
 import RenderIf from '../common/components/RenderIf.tsx';
 import ModelOutliner from '../common/components/ModelOutliner.tsx';
+import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
 
 /**
  * Manages AR scenes.
@@ -19,10 +21,12 @@ import ModelOutliner from '../common/components/ModelOutliner.tsx';
 const SceneManager: ViewComponent = ({ changeView }) => {
   const config = useMemo(getSceneConfig, []);
   const [currentScene, setCurrentScene] = useState(config.defaultScene);
+  const { clearAnimations } = useAnimation();
 
   const onRestart = useCallback(() => {
+    clearAnimations();
     changeView(ViewName.LANDING_PAGE);
-  }, [changeView]);
+  }, [changeView, clearAnimations]);
 
   const {
     component: CurrentSceneComponent,
@@ -48,11 +52,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
           <color attach="background" args={['skyblue']} />
         </RenderIf>
         <SceneLighting />
-        <ARMarker
-          type="pattern"
-          patternUrl={markerUrl}
-          params={{ smooth: true }}
-        >
+        <PersistentARMarker markerUrl={markerUrl}>
           <ModelOutliner color={0xffffff}>
             <CurrentSceneComponent />
             <SceneControls
@@ -64,7 +64,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
               nextSceneTransition={nextSceneTransition}
             />
           </ModelOutliner>
-        </ARMarker>
+        </PersistentARMarker>
       </ARCanvas>
     </LoaderProvider>
   );
