@@ -6,7 +6,7 @@ import { Orbiter } from '../../artifacts/Orbiter.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
 import { AssembleTestSceneName } from '../../artifacts/AssembleTestSceneName.tsx';
 import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
-import { Box } from '@react-three/drei';        
+import { Box } from '@react-three/drei';
 
 const orbiterScale = filledVector(0.75);
 const sceneNameScale = filledVector(0.75);
