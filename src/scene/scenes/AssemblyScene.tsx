@@ -18,14 +18,14 @@ const AssemblyScene: SceneComponent = () => (
     <spotLight intensity={1} position={[-10, 6, 4]} color={'lightblue'} />
     <spotLight intensity={2} position={[10, 10, 4]} color={'white'} />
     <ExplodeTrigger>
-      <Box position={[0, 2.5, 0]} scale={2}>
+      <Box position={[0, 0.5, 0]} scale={2}>
         <meshBasicMaterial transparent opacity={0} />
       </Box>
     </ExplodeTrigger>
-    <Orbiter position={[0, 6, -2]} scale={orbiterScale} />
-    <AssembleTestSceneName position={[0, 12, -1]} scale={sceneNameScale} />
+    <Orbiter position={[0, 0, 0]} scale={orbiterScale} />
+    <AssembleTestSceneName position={[0, 8, 0]} scale={sceneNameScale} />
     <AssembleAnimation />
-    <AssembleDate scale={sceneDateScale} position={[0, 3, 2]} />
+    <AssembleDate scale={sceneDateScale} position={[0, 0, 5]} />
   </Explode>
 );
 

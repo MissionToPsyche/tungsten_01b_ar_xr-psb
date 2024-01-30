@@ -5,8 +5,6 @@ import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
 import SceneLighting from '../common/components/SceneLighting.tsx';
-import degreesToRadians from '../common/utils/degrees-to-radians.ts';
-import SceneControls from './SceneControls.tsx';
 import ViewName from '../view/types/view-name.ts';
 import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchronizer.tsx';
 import useAnimation from '../animations/use-animation.ts';
@@ -14,6 +12,8 @@ import RenderIf from '../common/components/RenderIf.tsx';
 import ModelOutliner from '../common/components/ModelOutliner.tsx';
 import useSceneConfig from './utils/useSceneConfig.ts';
 import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
+import { OrbitControls } from '@react-three/drei';
+import SceneControls from './SceneControls.tsx';
 
 /**
  * Manages AR scenes.
@@ -49,23 +49,22 @@ const SceneManager: ViewComponent = ({ changeView }) => {
       >
         <ARRenderSizeSynchronizer />
         <RenderIf shouldRender={config.disableAr}>
-          <color attach="background" args={['skyblue']} />
+          <color attach="background" args={['#3d3959']} />
+          <OrbitControls />
         </RenderIf>
         <SceneLighting />
         <PersistentARMarker markerUrl={markerUrl}>
           <ModelOutliner color={0xffffff}>
             <CurrentSceneComponent />
-            <SceneControls
-              position={[0, 0, 3]}
-              rotation={[degreesToRadians(-45), 0, 0]}
-              onChangeScene={setCurrentScene}
-              onRestart={onRestart}
-              previousSceneTransition={previousSceneTransition}
-              nextSceneTransition={nextSceneTransition}
-            />
           </ModelOutliner>
         </PersistentARMarker>
       </ARCanvas>
+      <SceneControls
+        onChangeScene={setCurrentScene}
+        onRestart={onRestart}
+        previousSceneTransition={previousSceneTransition}
+        nextSceneTransition={nextSceneTransition}
+      />
     </LoaderProvider>
   );
 };
