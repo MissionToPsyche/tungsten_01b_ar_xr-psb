@@ -5,10 +5,12 @@ import AssembleAnimation from '../../animations/AssembleAnimation.tsx';
 import { Orbiter } from '../../artifacts/Orbiter.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
 import { AssembleTestSceneName } from '../../artifacts/AssembleTestSceneName.tsx';
-import { Box } from '@react-three/drei';
+import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
+import { Box } from '@react-three/drei';        
 
-const orbiterScale = filledVector(0.5);
-const sceneNameScale = filledVector(0.5);
+const orbiterScale = filledVector(0.75);
+const sceneNameScale = filledVector(0.75);
+const sceneDateScale = filledVector(0.12);
 
 const AssemblyScene: SceneComponent = () => (
   <Explode initialExploded={true}>
@@ -20,9 +22,10 @@ const AssemblyScene: SceneComponent = () => (
         <meshBasicMaterial transparent opacity={0} />
       </Box>
     </ExplodeTrigger>
-    <Orbiter position={[0, 2, 0]} scale={orbiterScale} />
-    <AssembleTestSceneName position={[0, 7, 2]} scale={sceneNameScale} />
+    <Orbiter position={[0, 6, -2]} scale={orbiterScale} />
+    <AssembleTestSceneName position={[0, 12, -1]} scale={sceneNameScale} />
     <AssembleAnimation />
+    <AssembleDate scale={sceneDateScale} position={[0, 3, 2]} />
   </Explode>
 );
 
