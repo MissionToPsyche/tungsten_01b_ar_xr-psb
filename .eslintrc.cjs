@@ -41,7 +41,8 @@ module.exports = {
           'depthWrite',
           'side',
           'wireframe',
-          'attach'
+          'attach',
+          'visible'
         ]
       }
     ],
