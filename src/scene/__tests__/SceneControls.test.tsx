@@ -1,15 +1,9 @@
-import ReactThreeTestRenderer from '@react-three/test-renderer';
-import SceneControls from '../SceneControls.tsx';
 import { SceneTransitionConfig } from '../types/scene-config.ts';
 import SceneName from '../types/scene-name.ts';
 import { expect } from 'vitest';
 import { AnimationProvider } from '../../animations/AnimationProvider.tsx';
-
-// The following mock is required because ReactThreeTestRenderer cannot render the <Text/> component
-vi.mock('@react-three/drei', async () => ({
-  ...(await vi.importActual<object>('@react-three/drei')),
-  Text: (props: { children: string }) => <group name={props.children} />
-}));
+import SceneControls from '../SceneControls.tsx';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 
 const onChangeScene = vi.fn();
 const onRestart = vi.fn();
@@ -28,7 +22,7 @@ const setup = (
   nextTransition?: SceneTransitionConfig,
   prevTransition?: SceneTransitionConfig
 ) =>
-  ReactThreeTestRenderer.create(
+  render(
     <AnimationProvider>
       <SceneControls
         nextSceneTransition={nextTransition}
@@ -40,55 +34,43 @@ const setup = (
   );
 
 describe('<SceneControls/>', () => {
-  it('should render the next button if it is provided', async () => {
-    const renderer = await setup(mockNextSceneTransition);
+  it('should render the next button if it is provided', () => {
+    setup(mockNextSceneTransition);
 
-    expect(renderer.scene.findByProps({ name: 'NEXT' })).toBeDefined();
+    expect(screen.getByText('NEXT')).toBeInTheDocument();
   });
 
-  it('should render the prev button if it is provided', async () => {
-    const renderer = await setup(undefined, mockPrevSceneTransition);
+  it('should render the prev button if it is provided', () => {
+    setup(undefined, mockPrevSceneTransition);
 
-    expect(renderer.scene.findByProps({ name: 'PREV' })).toBeDefined();
+    expect(screen.getByText('PREV')).toBeInTheDocument();
   });
 
-  it('should render both buttons if they are both provided', async () => {
-    const renderer = await setup(
-      mockNextSceneTransition,
-      mockPrevSceneTransition
-    );
+  it('should render both buttons if they are both provided', () => {
+    setup(mockNextSceneTransition, mockPrevSceneTransition);
 
-    expect(renderer.scene.findByProps({ name: 'NEXT' })).toBeDefined();
-    expect(renderer.scene.findByProps({ name: 'PREV' })).toBeDefined();
+    expect(screen.getByText('NEXT')).toBeInTheDocument();
+    expect(screen.getByText('PREV')).toBeInTheDocument();
   });
 
-  it('should callback onChangeScene when the prev button is clicked', async () => {
-    const renderer = await setup(
-      mockNextSceneTransition,
-      mockPrevSceneTransition
-    );
+  it('should callback onChangeScene when the prev button is clicked', () => {
+    setup(mockNextSceneTransition, mockPrevSceneTransition);
 
-    await renderer.fireEvent(
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      renderer.scene.findByProps({ name: 'PREV' }).parent!,
-      'click'
-    );
+    fireEvent.click(screen.getByText('PREV'));
 
     expect(onChangeScene).toHaveBeenCalledWith(mockPrevSceneTransition.toScene);
   });
 
-  it('should callback onChangeScene when the next button is clicked', async () => {
-    const renderer = await setup(
-      mockNextSceneTransition,
-      mockPrevSceneTransition
-    );
+  it('should callback onChangeScene when the next button is clicked', () => {
+    setup(mockNextSceneTransition, mockPrevSceneTransition);
 
-    await renderer.fireEvent(
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      renderer.scene.findByProps({ name: 'NEXT' }).parent!,
-      'click'
-    );
+    fireEvent.click(screen.getByText('NEXT'));
 
     expect(onChangeScene).toHaveBeenCalledWith(mockNextSceneTransition.toScene);
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
+    cleanup();
   });
 });

@@ -1,74 +1,127 @@
-import React, { useMemo } from 'react';
-import { SceneTransitionConfig } from './types/scene-config.ts';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import SceneName from './types/scene-name.ts';
-import SceneTransitionButton from './SceneTransitionButton.tsx';
-import RestartTimelineButton from './RestartTimelineButton.tsx';
+import { SceneTransitionConfig } from './types/scene-config.ts';
+import { Button, Stack } from '@chakra-ui/react';
+import RenderIf from '../common/components/RenderIf.tsx';
+import useAnimation from '../animations/use-animation.ts';
 
-/**
- * Provides 3D controls to transition from scene to scene
- *
- * @param onChangeScene Callback for when the scene should be changed
- * @param previousSceneTransition The configuration for the transition to the previous scene
- * @param nextSceneTransition The configuration for the transition to the next scene
- * @param props The <group/> element props
- */
-const SceneControls: React.FC<
-  {
-    onChangeScene: (sceneName: SceneName) => void;
-    onRestart: () => void;
-    previousSceneTransition?: SceneTransitionConfig;
-    nextSceneTransition?: SceneTransitionConfig;
-  } & JSX.IntrinsicElements['group']
-> = ({
+const SceneTransitionButton: React.FC<{
+  transitionConfig: SceneTransitionConfig;
+  onClick: (toScene: SceneName) => void;
+  isSceneTransitioning: boolean;
+  isSceneTransitioningFromThis: boolean;
+}> = ({
+  transitionConfig,
+  onClick,
+  isSceneTransitioning,
+  isSceneTransitioningFromThis
+}) => {
+  const { registerAnimation, startAnimation } = useAnimation();
+
+  useEffect(() => {
+    if (transitionConfig.animation != null) {
+      registerAnimation(transitionConfig.animation, () => {
+        onClick(transitionConfig.toScene);
+      });
+    }
+  }, [
+    onClick,
+    registerAnimation,
+    transitionConfig.animation,
+    transitionConfig.toScene
+  ]);
+
+  const onClickButton = useCallback(() => {
+    if (transitionConfig.animation != null) {
+      startAnimation(transitionConfig.animation);
+    } else {
+      onClick(transitionConfig.toScene);
+    }
+  }, [
+    onClick,
+    transitionConfig.toScene,
+    transitionConfig.animation,
+    startAnimation
+  ]);
+
+  return (
+    <Button
+      onClick={onClickButton}
+      w="full"
+      colorScheme="magenta"
+      isLoading={isSceneTransitioningFromThis}
+      isDisabled={isSceneTransitioning && !isSceneTransitioningFromThis}
+    >
+      {transitionConfig.buttonText}
+    </Button>
+  );
+};
+
+const SceneControls: React.FC<{
+  onChangeScene: (sceneName: SceneName) => void;
+  onRestart: () => void;
+  previousSceneTransition?: SceneTransitionConfig;
+  nextSceneTransition?: SceneTransitionConfig;
+}> = ({
   onChangeScene,
   onRestart,
   previousSceneTransition,
-  nextSceneTransition,
-  ...props
+  nextSceneTransition
 }) => {
-  const controls = useMemo(() => {
-    if (previousSceneTransition && nextSceneTransition) {
-      return (
-        <>
-          <RestartTimelineButton onClick={onRestart} />
-          <SceneTransitionButton
-            transitionConfig={previousSceneTransition}
-            onClick={onChangeScene}
-            position={[-1.75, 0, 0]}
-          />
-          <SceneTransitionButton
-            transitionConfig={nextSceneTransition}
-            onClick={onChangeScene}
-            position={[1.75, 0, 0]}
-          />
-        </>
-      );
-    }
-    if (previousSceneTransition) {
-      return (
-        <>
-          <RestartTimelineButton onClick={onRestart} />
-          <SceneTransitionButton
-            transitionConfig={previousSceneTransition}
-            onClick={onChangeScene}
-          />
-        </>
-      );
-    }
-    if (nextSceneTransition) {
-      return (
-        <>
-          <RestartTimelineButton onClick={onRestart} />
-          <SceneTransitionButton
-            transitionConfig={nextSceneTransition}
-            onClick={onChangeScene}
-          />
-        </>
-      );
-    }
-  }, [nextSceneTransition, onChangeScene, onRestart, previousSceneTransition]);
+  const { isAnimationActive } = useAnimation();
 
-  return <group {...props}>{controls}</group>;
+  const isTransitioningToPrevious = useMemo(() => {
+    if (previousSceneTransition?.animation == null) {
+      return false;
+    }
+
+    return isAnimationActive(previousSceneTransition.animation);
+  }, [isAnimationActive, previousSceneTransition]);
+
+  const isTransitioningToNext = useMemo(() => {
+    if (nextSceneTransition?.animation == null) {
+      return false;
+    }
+
+    return isAnimationActive(nextSceneTransition.animation);
+  }, [isAnimationActive, nextSceneTransition]);
+
+  const isTransitioning = useMemo(() => {
+    return isTransitioningToPrevious || isTransitioningToNext;
+  }, [isTransitioningToNext, isTransitioningToPrevious]);
+
+  return (
+    <Stack direction="row" position="absolute" bottom={2} left={2} right={2}>
+      {previousSceneTransition && (
+        <SceneTransitionButton
+          transitionConfig={previousSceneTransition}
+          onClick={onChangeScene}
+          isSceneTransitioning={isTransitioning}
+          isSceneTransitioningFromThis={isTransitioningToPrevious}
+        />
+      )}
+      <RenderIf
+        shouldRender={!!previousSceneTransition || !!nextSceneTransition}
+      >
+        <Button
+          onClick={onRestart}
+          w="full"
+          colorScheme="gray"
+          isDisabled={isTransitioning}
+        >
+          Restart
+        </Button>
+      </RenderIf>
+      {nextSceneTransition && (
+        <SceneTransitionButton
+          transitionConfig={nextSceneTransition}
+          onClick={onChangeScene}
+          isSceneTransitioning={isTransitioning}
+          isSceneTransitioningFromThis={isTransitioningToNext}
+        />
+      )}
+    </Stack>
+  );
 };
 
 export default SceneControls;
