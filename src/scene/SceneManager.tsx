@@ -14,6 +14,7 @@ import RenderIf from '../common/components/RenderIf.tsx';
 import ModelOutliner from '../common/components/ModelOutliner.tsx';
 import useSceneConfig from './utils/useSceneConfig.ts';
 import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
+import { OrbitControls } from '@react-three/drei';
 
 /**
  * Manages AR scenes.
@@ -43,7 +44,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         onCreated={fitGlToWindow}
         cameraParametersUrl={config.cameraParametersUrl}
         gl={{ logarithmicDepthBuffer: true }}
-        camera={config.disableAr ? { position: [0, 15, 15] } : undefined}
+        camera={config.disableAr ? { position: [0, 10, 18] } : undefined}
         linear
         flat
       >
@@ -55,9 +56,11 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         <PersistentARMarker markerUrl={markerUrl}>
           <ModelOutliner color={0xffffff}>
             <CurrentSceneComponent />
+            <OrbitControls />
             <SceneControls
-              position={[0, 0, 3]}
+              position={[0, -3, 5]}
               rotation={[degreesToRadians(-45), 0, 0]}
+              scale={2}
               onChangeScene={setCurrentScene}
               onRestart={onRestart}
               previousSceneTransition={previousSceneTransition}
