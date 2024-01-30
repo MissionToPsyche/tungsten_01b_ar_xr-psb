@@ -1,7 +1,6 @@
 import { ARCanvas } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
-import getSceneConfig from './get-scene-config.ts';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
@@ -13,13 +12,14 @@ import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchroni
 import useAnimation from '../animations/use-animation.ts';
 import RenderIf from '../common/components/RenderIf.tsx';
 import ModelOutliner from '../common/components/ModelOutliner.tsx';
+import useSceneConfig from './utils/useSceneConfig.ts';
 import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
 
 /**
  * Manages AR scenes.
  */
 const SceneManager: ViewComponent = ({ changeView }) => {
-  const config = useMemo(getSceneConfig, []);
+  const config = useSceneConfig();
   const [currentScene, setCurrentScene] = useState(config.defaultScene);
   const { clearAnimations } = useAnimation();
 
