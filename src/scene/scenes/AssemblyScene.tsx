@@ -23,7 +23,11 @@ const AssemblyScene: SceneComponent = () => (
     <spotLight intensity={2} position={[-9.5, 30, -2]} color={'#b94204'} />
     <spotLight intensity={0.15} position={[-14.5, 28, -5]} color={'#70707e'} />
     <spotLight intensity={0.05} position={[8.5, 30, -7]} color={'#08029d'} />
-    <spotLight intensity={0.05} position={[-12.5, 15, -1.5]} color={'#646a85'} />
+    <spotLight
+      intensity={0.05}
+      position={[-12.5, 15, -1.5]}
+      color={'#646a85'}
+    />
     <spotLight intensity={0.5} position={[10.5, 26, -2]} color={'#441359'} />
     <ExplodeTrigger>
       <Box position={[0, 4, 0]} scale={4}>
