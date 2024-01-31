@@ -49,6 +49,11 @@ module.exports = {
     // This rule is unnecessary with typescript, and it doesn't handle types
     'react/prop-types': 0
   },
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
