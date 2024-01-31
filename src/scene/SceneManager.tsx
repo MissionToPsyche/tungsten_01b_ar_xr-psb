@@ -12,7 +12,7 @@ import RenderIf from '../common/components/RenderIf.tsx';
 import ModelOutliner from '../common/components/ModelOutliner.tsx';
 import useSceneConfig from './utils/useSceneConfig.ts';
 import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, Stars } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
 
 /**
@@ -43,16 +43,17 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         onCreated={fitGlToWindow}
         cameraParametersUrl={config.cameraParametersUrl}
         gl={{ logarithmicDepthBuffer: true }}
-        camera={config.disableAr ? { position: [0, 15, 15] } : undefined}
+        camera={config.disableAr ? { position: [0, 6, 18] } : undefined}
         linear
         flat
       >
         <ARRenderSizeSynchronizer />
         <RenderIf shouldRender={config.disableAr}>
-          <color attach="background" args={['#3d3959']} />
-          <OrbitControls />
+          <color attach="background" args={['#2e4371']} />
+          <OrbitControls zoomSpeed={0.8} rotateSpeed={0.8} panSpeed={0.5}/>
         </RenderIf>
         <SceneLighting />
+        <Stars radius={80} depth={70} count={4000} factor={4} saturation={5} fade={true} />
         <PersistentARMarker markerUrl={markerUrl}>
           <ModelOutliner color={0xffffff}>
             <CurrentSceneComponent />
