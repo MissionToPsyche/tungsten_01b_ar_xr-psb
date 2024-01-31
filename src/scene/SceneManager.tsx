@@ -51,16 +51,24 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         <RenderIf shouldRender={config.disableAr}>
           <color attach="background" args={['#2e4371']} />
           <OrbitControls zoomSpeed={0.8} rotateSpeed={0.8} panSpeed={0.5} />
+          <Stars
+            radius={50}
+            depth={50}
+            count={2000}
+            factor={6}
+            saturation={7}
+            fade={true}
+          />
+          <Stars
+            radius={100}
+            depth={80}
+            count={2000}
+            factor={4}
+            saturation={5}
+            fade={true}
+          />
         </RenderIf>
         <SceneLighting />
-        <Stars
-          radius={80}
-          depth={70}
-          count={4000}
-          factor={4}
-          saturation={5}
-          fade={true}
-        />
         <PersistentARMarker markerUrl={markerUrl}>
           <ModelOutliner color={0xffffff}>
             <CurrentSceneComponent />
