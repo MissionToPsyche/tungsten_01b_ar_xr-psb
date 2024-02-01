@@ -8,8 +8,8 @@ const nameScale = filledVector(1.5);
 
 const CruiseScene: SceneComponent = () => (
   <>
-  <CruiseDate position={[2, -2, 4]} scale={dateScale}/>
-  <CruiseName position={[-1.5, 10, -1]}  scale={nameScale}/>
+    <CruiseDate position={[2, -2, 4]} scale={dateScale} />
+    <CruiseName position={[-1.5, 10, -1]} scale={nameScale} />
   </>
 );
 

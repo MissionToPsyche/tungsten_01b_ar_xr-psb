@@ -4,29 +4,41 @@ Command: npx gltfjsx@6.2.13 ./public/assets/models/cruise-arrival-scene-name.glt
 Files: ./public/assets/models/cruise-arrival-scene-name.gltf [6.26KB] > cruise-arrival-scene-name-transformed.glb [47.68KB] (-662%)
 */
 
-import * as THREE from 'three'
-import { useGLTF } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import * as THREE from 'three';
+import { useGLTF } from '@react-three/drei';
+import { GLTF } from 'three-stdlib';
 
 type GLTFResult = GLTF & {
   nodes: {
-    Box003: THREE.Mesh
-    MissionLaunchText001: THREE.Mesh
-  }
+    Box003: THREE.Mesh;
+    MissionLaunchText001: THREE.Mesh;
+  };
   materials: {
-    M_08___Default: THREE.MeshStandardMaterial
-    M_03___Default: THREE.MeshStandardMaterial
-  }
-}
+    M_08___Default: THREE.MeshStandardMaterial;
+    M_03___Default: THREE.MeshStandardMaterial;
+  };
+};
 
 export function CruiseName(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/assets/models/cruise-arrival-scene-name-transformed.glb') as GLTFResult
+  const { nodes, materials } = useGLTF(
+    '/assets/models/cruise-arrival-scene-name-transformed.glb'
+  ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-        <mesh geometry={nodes.Box003.geometry} material={materials.M_08___Default} position={[0.992, 0.47, -0.115]} scale={0.025} />
-        <mesh geometry={nodes.MissionLaunchText001.geometry} material={materials.M_03___Default} position={[0.989, 0.466, 0]} scale={0.025} />    
+      <mesh
+        geometry={nodes.Box003.geometry}
+        material={materials.M_08___Default}
+        position={[0.992, 0.47, -0.115]}
+        scale={0.025}
+      />
+      <mesh
+        geometry={nodes.MissionLaunchText001.geometry}
+        material={materials.M_03___Default}
+        position={[0.989, 0.466, 0]}
+        scale={0.025}
+      />
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/assets/models/cruise-arrival-scene-name-transformed.glb')
+useGLTF.preload('/assets/models/cruise-arrival-scene-name-transformed.glb');

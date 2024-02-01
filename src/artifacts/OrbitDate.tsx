@@ -4,35 +4,37 @@ Command: npx gltfjsx@6.2.13 ./public/assets/models/cruise-date-bubble.gltf -tT -
 Files: ./public/assets/models/cruise-date-bubble.gltf [14.13KB] > cruise-date-bubble-transformed.glb [89.36KB] (-532%)
 */
 
-import * as THREE from 'three'
-import { useEffect, useRef } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import * as THREE from 'three';
+import { useEffect, useRef } from 'react';
+import { useGLTF, useAnimations } from '@react-three/drei';
+import { GLTF } from 'three-stdlib';
 
 type GLTFResult = GLTF & {
   nodes: {
-    TextPlus011: THREE.Mesh
-    TextPlus011_1: THREE.Mesh
-    TextPlus011_2: THREE.Mesh
-    TextPlus013: THREE.Mesh
-    TextPlus013_1: THREE.Mesh
-    TextPlus013_2: THREE.Mesh
-    TextPlus007003: THREE.Mesh
-    TextPlus007003_1: THREE.Mesh
-    TextPlus007003_2: THREE.Mesh
-    bottomOctagon: THREE.Mesh
-  }
+    TextPlus011: THREE.Mesh;
+    TextPlus011_1: THREE.Mesh;
+    TextPlus011_2: THREE.Mesh;
+    TextPlus013: THREE.Mesh;
+    TextPlus013_1: THREE.Mesh;
+    TextPlus013_2: THREE.Mesh;
+    TextPlus007003: THREE.Mesh;
+    TextPlus007003_1: THREE.Mesh;
+    TextPlus007003_2: THREE.Mesh;
+    bottomOctagon: THREE.Mesh;
+  };
   materials: {
-    M_01___Default: THREE.MeshPhysicalMaterial
-    Timeline_Bubble_Material: THREE.MeshStandardMaterial
-    Octagon_Material: THREE.MeshStandardMaterial
-  }
-}
+    M_01___Default: THREE.MeshPhysicalMaterial;
+    Timeline_Bubble_Material: THREE.MeshStandardMaterial;
+    Octagon_Material: THREE.MeshStandardMaterial;
+  };
+};
 
 export function OrbitDate(props: JSX.IntrinsicElements['group']) {
-  const group = useRef<THREE.Group>(null)
-  const { nodes, materials, animations } = useGLTF('/assets/models/cruise-date-bubble-transformed.glb') as GLTFResult
-  const { actions } = useAnimations(animations, group)
+  const group = useRef<THREE.Group>(null);
+  const { nodes, materials, animations } = useGLTF(
+    '/assets/models/cruise-date-bubble-transformed.glb'
+  ) as GLTFResult;
+  const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
     actions.thirdMove?.play();
@@ -40,14 +42,38 @@ export function OrbitDate(props: JSX.IntrinsicElements['group']) {
 
   return (
     <group ref={group} {...props} dispose={null}>
-        <group name="ThirdSceneDate" position={[13.995, 10, 0]} rotation={[0, -0.395, 0]} scale={[0.06, 0.06, 0.04]}>
-          <mesh name="TextPlus013" geometry={nodes.TextPlus013.geometry} material={materials.M_01___Default} />
-          <mesh name="TextPlus013_1" geometry={nodes.TextPlus013_1.geometry} material={materials.Timeline_Bubble_Material} />
-          <mesh name="TextPlus013_2" geometry={nodes.TextPlus013_2.geometry} material={materials.Octagon_Material} />
-        </group>
-        <mesh name="bottomOctagon" geometry={nodes.bottomOctagon.geometry} material={materials.M_01___Default} position={[14, -0.814, -0.8]} rotation={[-Math.PI / 2, 0, 0]} scale={0.006} />
+      <group
+        name="ThirdSceneDate"
+        position={[13.995, 10, 0]}
+        rotation={[0, -0.395, 0]}
+        scale={[0.06, 0.06, 0.04]}
+      >
+        <mesh
+          name="TextPlus013"
+          geometry={nodes.TextPlus013.geometry}
+          material={materials.M_01___Default}
+        />
+        <mesh
+          name="TextPlus013_1"
+          geometry={nodes.TextPlus013_1.geometry}
+          material={materials.Timeline_Bubble_Material}
+        />
+        <mesh
+          name="TextPlus013_2"
+          geometry={nodes.TextPlus013_2.geometry}
+          material={materials.Octagon_Material}
+        />
+      </group>
+      <mesh
+        name="bottomOctagon"
+        geometry={nodes.bottomOctagon.geometry}
+        material={materials.M_01___Default}
+        position={[14, -0.814, -0.8]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={0.006}
+      />
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/assets/models/cruise-date-bubble-transformed.glb')
+useGLTF.preload('/assets/models/cruise-date-bubble-transformed.glb');
