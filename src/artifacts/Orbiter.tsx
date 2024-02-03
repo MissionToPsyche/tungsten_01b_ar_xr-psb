@@ -212,7 +212,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
             {/*Magnometer Cylinder Bar*/}
             <mesh
               geometry={nodes.Object_48.geometry}
-              material={materials.fallback_Material}
+              material={materials['Thruster_Material.001']}
               position={[0.907, 2.303, -1.078]}
               rotation={[-Math.PI / 2, -0.963, -Math.PI]}
               scale={[-0.025, 0.025, 0.025]}
@@ -245,7 +245,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
                   castShadow
                   receiveShadow
                   geometry={nodes.Object_57.geometry}
-                  material={materials.BlackPlastic_Material}
+                  material={materials.M_03___Default}
                   position={[0.904, 3.655, -1.082]}
                   rotation={[-Math.PI, 0, -Math.PI]}
                   scale={0.025}
@@ -388,7 +388,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
           />
           <mesh
             geometry={nodes.Object_44.geometry}
-            material={materials.Box_Material}
+            material={materials['Thruster_Material.001']}
             position={[-4.4, 0.57, -0.008]}
             rotation={[-1.258, 0, 0]}
             scale={0.025}
@@ -414,7 +414,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
           />
           <mesh
             geometry={nodes.Object_44.geometry}
-            material={materials.Box_Material}
+            material={materials['Thruster_Material.001']}
             position={[4.4, 0.57, -0.008]}
             rotation={[-1.258, 0, 0]}
             scale={[-0.025, 0.025, 0.025]}

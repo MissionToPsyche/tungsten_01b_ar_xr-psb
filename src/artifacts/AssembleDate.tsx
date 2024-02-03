@@ -196,7 +196,7 @@ export function AssembleDate(props: JSX.IntrinsicElements['group']) {
       <mesh
         name="Cylinder002003"
         geometry={nodes.Cylinder002003.geometry}
-        material={materials.Bottom_Octagon_Material}
+        material={materials.Timeline_Bubble_Material}
         position={[-19.957, -4, -0.278]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={0.006}
@@ -204,7 +204,7 @@ export function AssembleDate(props: JSX.IntrinsicElements['group']) {
       <mesh
         name="Cylinder002003"
         geometry={nodes.Cylinder002003.geometry}
-        material={materials.Bottom_Octagon_Material}
+        material={materials.Timeline_Bubble_Material}
         position={[-5, -3, 10]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={0.006}
@@ -212,7 +212,7 @@ export function AssembleDate(props: JSX.IntrinsicElements['group']) {
       <mesh
         name="Cylinder002003"
         geometry={nodes.Cylinder002003.geometry}
-        material={materials.Bottom_Octagon_Material}
+        material={materials.Timeline_Bubble_Material}
         position={[9.5, -4, -0.278]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={0.006}
@@ -220,8 +220,8 @@ export function AssembleDate(props: JSX.IntrinsicElements['group']) {
       <mesh
         name="Cylinder002003"
         geometry={nodes.Cylinder002003.geometry}
-        material={materials.Bottom_Octagon_Material}
-        position={[24.5, -4, 9]}
+        material={materials.Timeline_Bubble_Material}
+        position={[24.56, -4, 9]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={0.006}
       />
