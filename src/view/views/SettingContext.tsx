@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useEffect, useMemo, useState, ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  ReactNode
+} from 'react';
 import { SceneConfig } from '../../scene/types/scene-config.ts';
 import getSceneConfig from '../../scene/get-scene-config.ts';
 
@@ -9,7 +16,9 @@ const SettingContext = createContext<SceneConfig | undefined>(undefined);
 export const useSettingContext = (): SceneConfig => {
   const context = useContext(SettingContext);
   if (!context) {
-    throw new Error('useSettingContext must be used within a SettingContextProvider');
+    throw new Error(
+      'useSettingContext must be used within a SettingContextProvider'
+    );
   }
   return context;
 };
@@ -35,7 +44,9 @@ const isArSupported = (): boolean => {
   }
 };
 
-export const SettingContextProvider: React.FC<SettingContextProviderProps> = ({ children }) => {
+export const SettingContextProvider: React.FC<SettingContextProviderProps> = ({
+  children
+}) => {
   const [arSupported, setArSupported] = useState(true);
 
   useEffect(() => {
@@ -48,7 +59,7 @@ export const SettingContextProvider: React.FC<SettingContextProviderProps> = ({ 
 
     return {
       ...originalConfig,
-      disableAr: arSupported ? originalConfig.disableAr : false,
+      disableAr: arSupported ? originalConfig.disableAr : false
     };
   }, [arSupported]);
 

@@ -9,7 +9,7 @@ const useSceneConfig = (): SceneConfig => {
   return useMemo(() => {
     return {
       ...getSceneConfig(),
-      disableAr,
+      disableAr
     };
   }, [disableAr]);
 };
