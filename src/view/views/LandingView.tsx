@@ -27,7 +27,8 @@ const LandingView: ViewComponent = ({ changeView }) => {
 
   const onClickStart = useCallback(() => {
     changeView(ViewName.AR_SCENES);
-  }, [changeView]);
+    setIsModalOpen(true);
+  }, [changeView, setIsModalOpen]);
 
   const onCloseModal = useCallback(() => {
     setIsModalOpen(false);
@@ -39,54 +40,54 @@ const LandingView: ViewComponent = ({ changeView }) => {
   );
 
   return (
-    <Flex height={`${windowHeight}px`} flexDir="column" p={6}>
-      <Image
-        src="/assets/images/psyche-badge-outline-color.svg"
-        alt="Psyche Logo"
-        height="100px"
-      />
-      <AlertErrorBoundary>
-        <LoaderProvider>
-          <LoaderTracker />
-          <Canvas style={{ flex: 1 }}>
-            <SceneLighting />
-            <directionalLight intensity={0.5} position={[8, 10, 40]} />
-            <PerspectiveCamera makeDefault position={[0, 50, 200]} />
-            <Bounds fit clip observe margin={1}>
-              <PresentationControls
-                global
-                config={{ mass: 2, tension: 500 }}
-                snap={{ mass: 4, tension: 1500 }}
-                rotation={[0, 0, 0]}
-                polar={[-Math.PI / 3, Math.PI / 3]}
-                azimuth={[-Math.PI / 3, Math.PI / 3]}
-              >
-                <TimeLine />
-              </PresentationControls>
-            </Bounds>
-          </Canvas>
-        </LoaderProvider>
-      </AlertErrorBoundary>
-      <Text fontSize={18} padding={4}>
-        <Highlight
-          query={['Start Mission Timeline', 'camera permission']}
-          styles={{ px: '2', py: '1', rounded: 'full', bg: 'magenta.100' }}
+      <Flex height={`${windowHeight}px`} flexDir="column" p={6}>
+        <Image
+          src="/assets/images/psyche-badge-outline-color.svg"
+          alt="Psyche Logo"
+          height="100px"
+        />
+        <AlertErrorBoundary>
+          <LoaderProvider>
+            <LoaderTracker />
+            <Canvas style={{ flex: 1 }}>
+              <SceneLighting />
+              <directionalLight intensity={0.5} position={[8, 10, 40]} />
+              <PerspectiveCamera makeDefault position={[0, 50, 200]} />
+              <Bounds fit clip observe margin={1}>
+                <PresentationControls
+                  global
+                  config={{ mass: 2, tension: 500 }}
+                  snap={{ mass: 4, tension: 1500 }}
+                  rotation={[0, 0, 0]}
+                  polar={[-Math.PI / 3, Math.PI / 3]}
+                  azimuth={[-Math.PI / 3, Math.PI / 3]}
+                >
+                  <TimeLine />
+                </PresentationControls>
+              </Bounds>
+            </Canvas>
+          </LoaderProvider>
+        </AlertErrorBoundary>
+        <Text fontSize={18} padding={4}>
+          <Highlight
+            query={['Start Mission Timeline', 'camera permission']}
+            styles={{ px: '2', py: '1', rounded: 'full', bg: 'magenta.100' }}
+          >
+            Ready for an interstellar adventure? Tap Start Mission Timeline to
+            explore NASA&apos;s Psyche Mission in Augmented Reality. We&apos;ll
+            just need your camera permission to blast off!
+          </Highlight>
+        </Text>
+        <Button
+          size="xl"
+          colorScheme="magenta"
+          rightIcon={<FaRocket />}
+          onClick={onClickStart}
         >
-          Ready for an interstellar adventure? Tap Start Mission Timeline to
-          explore NASA&apos;s Psyche Mission in Augmented Reality. We&apos;ll
-          just need your camera permission to blast off!
-        </Highlight>
-      </Text>
-      <Button
-        size="xl"
-        colorScheme="magenta"
-        rightIcon={<FaRocket />}
-        onClick={onClickStart}
-      >
-        Start Mission Timeline
-      </Button>
-      <ModalViewWindow isOpen={isModalOpen} onClose={onCloseModal} />
-    </Flex>
+          Start Mission Timeline
+        </Button>
+        <ModalViewWindow isOpen={isModalOpen} onClose={onCloseModal} />
+      </Flex>
   );
 };
 

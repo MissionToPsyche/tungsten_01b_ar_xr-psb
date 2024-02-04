@@ -17,13 +17,13 @@ interface ModalViewWindowProps {
 }
 
 function ModalViewWindow({ isOpen, onClose }: ModalViewWindowProps) {
-  const [isAROn, setAROn] = useState(false);
-  const [isMusicEnabled, setMusicEnabled] = useState(false);
   const { disableAr } = useSceneConfig();
+  const [isAROn, setAROn] = useState(!disableAr);
+  const [isMusicEnabled, setMusicEnabled] = useState(false);
 
   useEffect(() => {
-    setAROn((prev) => prev && !disableAr);
-  }, [disableAr]);
+    setAROn(!disableAr);
+  }, [disableAr, isOpen]);
 
   const handleARButtonClick = () => {
     setAROn((prev) => !prev);
@@ -49,14 +49,14 @@ function ModalViewWindow({ isOpen, onClose }: ModalViewWindowProps) {
               colorScheme={isAROn ? 'green' : 'red'}
               onClick={handleARButtonClick}
               isDisabled={disableAr}
-              flex={1} // Equal space for both buttons
+              flex={1}
             >
               {isAROn ? 'AR is ON' : 'AR is OFF'}
             </Button>
             <Button
               colorScheme={isMusicEnabled ? 'green' : 'red'}
               onClick={handleMusicButtonClick}
-              flex={1} // Equal space for both buttons
+              flex={1}
             >
               {isMusicEnabled ? 'Music is Enabled' : 'Music is Disabled'}
             </Button>
