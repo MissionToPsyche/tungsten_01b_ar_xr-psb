@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { SceneConfig } from '../types/scene-config.ts';
-import { useSettingContext } from '../../view/views/SettingContext.tsx';
+import { useSettingContext } from '../../view/views/SettingsContext.tsx';
 import getSceneConfig from '../get-scene-config.ts';
 
 const useSceneConfig = (): SceneConfig => {

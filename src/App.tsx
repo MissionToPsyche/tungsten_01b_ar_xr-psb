@@ -5,7 +5,7 @@ import theme from './common/theme.ts';
 import ModalProvider from './common/modal/ModalProvider.tsx';
 import { AnimationProvider } from './animations/AnimationProvider.tsx';
 import AppErrorBoundary from './error/AppErrorBoundary.tsx';
-import { SettingContextProvider } from './view/views/SettingContext.tsx';
+import { SettingsProvider } from './view/views/SettingsContext.tsx';
 
 function App() {
   return (
@@ -13,9 +13,9 @@ function App() {
       <AppErrorBoundary>
         <ModalProvider>
           <AnimationProvider>
-            <SettingContextProvider>
+            <SettingsProvider>
               <ViewManager />
-            </SettingContextProvider>
+            </SettingsProvider>
           </AnimationProvider>
         </ModalProvider>
       </AppErrorBoundary>
