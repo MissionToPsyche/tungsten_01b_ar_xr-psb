@@ -15,7 +15,7 @@ import {
 import { TimeLine } from '../../artifacts/TimeLine.tsx';
 import { useWindowSize } from '@uidotdev/usehooks';
 import AlertErrorBoundary from '../../error/AlertErrorBoundary.tsx';
-import ModalViewWindow from './ModalWindowView.tsx';
+import ModalViewWindow from './modal/ModalWindowView.tsx';
 
 /**
  * Landing page for the application, informs the user about the application

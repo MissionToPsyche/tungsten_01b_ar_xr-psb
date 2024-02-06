@@ -9,7 +9,7 @@ import {
   Button,
   Flex
 } from '@chakra-ui/react';
-import useSceneConfig from '../../scene/utils/useSceneConfig.ts';
+import useSceneConfig from '../../../scene/utils/useSceneConfig.ts';
 
 interface ModalViewWindowProps {
   isOpen: boolean;
