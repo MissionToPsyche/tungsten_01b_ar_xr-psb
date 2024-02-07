@@ -16,6 +16,7 @@ import { TimeLine } from '../../artifacts/TimeLine.tsx';
 import { useWindowSize } from '@uidotdev/usehooks';
 import AlertErrorBoundary from '../../error/AlertErrorBoundary.tsx';
 import ModalViewWindow from './modal/ModalWindowView.tsx';
+import getSceneConfig from '../../scene/get-scene-config.ts';
 
 /**
  * Landing page for the application, informs the user about the application
@@ -24,6 +25,7 @@ import ModalViewWindow from './modal/ModalWindowView.tsx';
 const LandingView: ViewComponent = ({ changeView }) => {
   const windowSize = useWindowSize();
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const sceneConfig = getSceneConfig();
 
   const onClickStart = useCallback(() => {
     changeView(ViewName.AR_SCENES);
@@ -86,7 +88,11 @@ const LandingView: ViewComponent = ({ changeView }) => {
       >
         Start Mission Timeline
       </Button>
-      <ModalViewWindow isOpen={isModalOpen} onClose={onCloseModal} />
+      <ModalViewWindow
+        isOpen={isModalOpen}
+        onClose={onCloseModal}
+        sceneConfig={sceneConfig}
+      />
     </Flex>
   );
 };

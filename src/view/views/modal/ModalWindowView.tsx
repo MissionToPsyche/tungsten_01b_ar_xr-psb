@@ -10,6 +10,7 @@ import {
   Flex
 } from '@chakra-ui/react';
 import useSetting from './use-settings.ts';
+import { SceneConfig } from '../../../scene/types/scene-config.ts';
 
 /**
  * ModalViewWindow Component
@@ -25,12 +26,12 @@ import useSetting from './use-settings.ts';
 interface ModalViewWindowProps {
   isOpen: boolean;
   onClose: () => void;
+  sceneConfig: SceneConfig;
 }
 
 function ModalViewWindow({ isOpen, onClose }: ModalViewWindowProps) {
   const { arEnabled, toggleAR } = useSetting();
   const [isMusicEnabled, setMusicEnabled] = useState(false);
-
   const handleARButtonClick = () => {
     toggleAR();
   };
