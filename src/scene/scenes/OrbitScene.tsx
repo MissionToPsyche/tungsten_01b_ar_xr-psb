@@ -8,8 +8,12 @@ const nameScale = filledVector(1.2);
 
 const OrbitScene: SceneComponent = () => (
   <>
-    <OrbitDate position={[-4.5, -2, 4]} scale={dateScale} />
-    <OrbitName position={[0, 10, -1]} scale={nameScale} />
+    <OrbitDate
+      position={[-4.5, -6, 4]}
+      scale={dateScale}
+      rotation={[-Math.PI / 8, 0, 0]}
+    />
+    <OrbitName position={[0, 7.5, -4]} scale={nameScale} />
   </>
 );
 
