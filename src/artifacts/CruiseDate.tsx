@@ -44,28 +44,6 @@ export function CruiseDate(props: JSX.IntrinsicElements['group']) {
   return (
     <group ref={group} {...props} dispose={null}>
       <group
-        name="SecondSceneDate"
-        position={[0, 10, 0]}
-        rotation={[0, 0.395, 0]}
-        scale={[0.06, 0.06, 0.04]}
-      >
-        <mesh
-          name="TextPlus011"
-          geometry={nodes.TextPlus011.geometry}
-          material={materials.M_01___Default}
-        />
-        <mesh
-          name="TextPlus011_1"
-          geometry={nodes.TextPlus011_1.geometry}
-          material={materials.Timeline_Bubble_Material}
-        />
-        <mesh
-          name="TextPlus011_2"
-          geometry={nodes.TextPlus011_2.geometry}
-          material={materials.Octagon_Material}
-        />
-      </group>
-      <group
         name="FirstSceneDate"
         position={[-15, 8, 0]}
         rotation={[0, -0.395, 0]}
@@ -91,15 +69,7 @@ export function CruiseDate(props: JSX.IntrinsicElements['group']) {
         name="bottomOctagon"
         geometry={nodes.bottomOctagon.geometry}
         material={materials.M_01___Default}
-        position={[-15, -0.814, -0.413]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.006}
-      />
-      <mesh
-        name="bottomOctagon"
-        geometry={nodes.bottomOctagon.geometry}
-        material={materials.M_01___Default}
-        position={[0.2, -0.814, -0.413]}
+        position={[-15, 0, -1]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={0.006}
       />

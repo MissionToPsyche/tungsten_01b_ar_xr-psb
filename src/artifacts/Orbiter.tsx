@@ -375,7 +375,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         startPosition={[0, 0, 0]}
         startRotation={[0, 0, 0]}
         explodedPosition={[-2.5, 0, 0]}
-        explodedRotation={[degreesToRadians(-150), 0, 0]}
+        explodedRotation={[degreesToRadians(360), 0, 0]}
         unExplodeDelay={600}
       >
         <group>
@@ -401,7 +401,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         startPosition={[0, 0, 0]}
         startRotation={[0, 0, 0]}
         explodedPosition={[2.5, 0, 0]}
-        explodedRotation={[degreesToRadians(-150), 0, 0]}
+        explodedRotation={[degreesToRadians(360), 0, 0]}
         unExplodeDelay={600}
       >
         <group>
