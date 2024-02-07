@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import SettingsContext from './settings-context.ts';
+import SettingsContext from './settings-context';
 
 /**
  * Custom hook to access AR settings from the context.
