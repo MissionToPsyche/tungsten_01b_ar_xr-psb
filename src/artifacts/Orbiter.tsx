@@ -433,8 +433,8 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
       >
         <Box
           position={[0, 1, -1.2]}
-          scale={[0.1, 2.5, 2.5]}
-          material={materials.SolarPanelFrrame_Material}
+          scale={[0.098, 2.48, 2.48]}
+          material={materials['Thruster_Material.001']}
           rotation={[Math.PI / 2, 0, Math.PI / 2]}
         ></Box>
       </ExplodeElement>
@@ -449,8 +449,8 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
       >
         <Box
           position={[1.2, 0.95, 0]}
-          scale={[0.1, 2.5, 2.5]}
-          material={materials.SolarPanelFrrame_Material}
+          scale={[0.098, 2.48, 2.48]}
+          material={materials['Thruster_Material.001']}
         ></Box>
       </ExplodeElement>
       {/* left box */}
@@ -464,16 +464,16 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
       >
         <Box
           position={[-1.2, 0.95, 0]}
-          scale={[0.1, 2.5, 2.5]}
-          material={materials.SolarPanelFrrame_Material}
+          scale={[0.098, 2.48, 2.48]}
+          material={materials['Thruster_Material.001']}
           rotation={[Math.PI / 2, 0, 0]}
         ></Box>
       </ExplodeElement>
       {/* bottom box will not move */}
       <Box
         position={[0, -0.3, 0]}
-        scale={[0.1, 2.5, 2.5]}
-        material={materials.SolarPanelFrrame_Material}
+        scale={[0.098, 2.48, 2.48]}
+        material={materials['Thruster_Material.001']}
         rotation={[Math.PI / 2, Math.PI / 2, 0]}
       ></Box>
       {/* top box */}
@@ -487,8 +487,8 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
       >
         <Box
           position={[0, 2.2, 0]}
-          scale={[0.1, 2.5, 2.5]}
-          material={materials.SolarPanelFrrame_Material}
+          scale={[0.098, 2.48, 2.48]}
+          material={materials['Thruster_Material.001']}
           rotation={[Math.PI / 2, Math.PI / 2, 0]}
         ></Box>
       </ExplodeElement>
@@ -502,9 +502,9 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         unExplodeDelay={150}
       >
         <Box
-          position={[0, 1, 1.2]}
-          scale={[0.1, 2.5, 2.5]}
-          material={materials.SolarPanelFrrame_Material}
+          position={[0, 1, 1.22]}
+          scale={[0.098, 2.48, 2.48]}
+          material={materials['Thruster_Material.001']}
           rotation={[Math.PI / 2, 0, Math.PI / 2]}
         ></Box>
       </ExplodeElement>
