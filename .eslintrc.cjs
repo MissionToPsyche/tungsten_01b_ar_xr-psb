@@ -47,8 +47,7 @@ module.exports = {
           'side',
           'wireframe',
           'attach',
-          'visible',
-          'angle'
+          'visible'
         ]
       }
     ],
