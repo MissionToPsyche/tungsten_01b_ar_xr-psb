@@ -215,7 +215,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
               material={materials['Thruster_Material.001']}
               position={[1.15, 2.303, -1.078]}
               rotation={[-Math.PI / 2, -0.963, -Math.PI]}
-              scale={[-0.030, 0.030, 0.030]}
+              scale={[-0.03, 0.03, 0.03]}
             />
             <FactsModalTrigger factName="spectrometer" disable={!isExploded}>
               {/*spectrometer*/}
