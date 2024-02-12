@@ -36,7 +36,7 @@ describe('onParticleInit', () => {
     const actual = onParticleInit();
 
     expect(actual.meshScale).toEqual(new Vector3().setScalar(randomNumber));
-    expect(randomRange).toHaveBeenNthCalledWith(3, 0.1, 0.7);
+    expect(randomRange).toHaveBeenNthCalledWith(3, 0.1, 1.7);
   });
 
   it('should initialize time alive as 0', () => {
