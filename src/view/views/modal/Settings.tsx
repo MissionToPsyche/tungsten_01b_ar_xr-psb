@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SettingsIcon } from '@chakra-ui/icons';
 import { IconButton, Box } from '@chakra-ui/react';
-import SettingsWindow from './SettingsWindow'; // Import your SettingsWindow component
+import SettingsWindow from './SettingsWindow';
 import getSceneConfig from '../../../scene/get-scene-config';
 
 const Settings: React.FC = () => {
