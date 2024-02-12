@@ -59,7 +59,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
           maxAzimuthAngle={Math.PI / 1.2}
           minPolarAngle={Math.PI / 2.5}
           maxPolarAngle={Math.PI / 2}
-          maxZoom={0.05}
+          maxZoom={0.04}
           maxDistance={30}
           />
           <Stars
