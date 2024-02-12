@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Button, Flex, Highlight, Image, Text } from '@chakra-ui/react';
 import { FaRocket } from 'react-icons/fa';
 import { ViewComponent } from '../types/view-component.ts';
@@ -15,8 +15,6 @@ import {
 import { TimeLine } from '../../artifacts/TimeLine.tsx';
 import { useWindowSize } from '@uidotdev/usehooks';
 import AlertErrorBoundary from '../../error/AlertErrorBoundary.tsx';
-import ModalViewWindow from './modal/ModalWindowView.tsx';
-import getSceneConfig from '../../scene/get-scene-config.ts';
 
 /**
  * Landing page for the application, informs the user about the application
@@ -24,17 +22,10 @@ import getSceneConfig from '../../scene/get-scene-config.ts';
  */
 const LandingView: ViewComponent = ({ changeView }) => {
   const windowSize = useWindowSize();
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  const sceneConfig = getSceneConfig();
 
   const onClickStart = useCallback(() => {
     changeView(ViewName.AR_SCENES);
-    setIsModalOpen(true);
-  }, [changeView, setIsModalOpen]);
-
-  const onCloseModal = useCallback(() => {
-    setIsModalOpen(false);
-  }, [setIsModalOpen]);
+  }, [changeView]);
 
   const windowHeight = useMemo(
     () => windowSize.height ?? window.innerHeight,
@@ -88,11 +79,6 @@ const LandingView: ViewComponent = ({ changeView }) => {
       >
         Start Mission Timeline
       </Button>
-      <ModalViewWindow
-        isOpen={isModalOpen}
-        onClose={onCloseModal}
-        sceneConfig={sceneConfig}
-      />
     </Flex>
   );
 };

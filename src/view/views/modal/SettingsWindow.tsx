@@ -23,13 +23,13 @@ import { SceneConfig } from '../../../scene/types/scene-config.ts';
  *
  * @returns JSX element representing the modal window.
  */
-interface ModalViewWindowProps {
+interface SettingsWindowProps {
   isOpen: boolean;
   onClose: () => void;
   sceneConfig: SceneConfig;
 }
 
-function ModalViewWindow({ isOpen, onClose }: ModalViewWindowProps) {
+function SettingsWindow({ isOpen, onClose }: SettingsWindowProps) {
   const { arEnabled, toggleAR } = useSetting();
   const [isMusicEnabled, setMusicEnabled] = useState(false);
   const handleARButtonClick = () => {
@@ -73,4 +73,4 @@ function ModalViewWindow({ isOpen, onClose }: ModalViewWindowProps) {
   );
 }
 
-export default ModalViewWindow;
+export default SettingsWindow;

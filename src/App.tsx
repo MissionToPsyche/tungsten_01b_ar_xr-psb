@@ -6,6 +6,7 @@ import ModalProvider from './common/modal/ModalProvider.tsx';
 import { AnimationProvider } from './animations/AnimationProvider.tsx';
 import AppErrorBoundary from './error/AppErrorBoundary.tsx';
 import { SettingsProvider } from './view/views/modal/SettingsProvider.tsx';
+import Settings from './view/views/modal/Settings.tsx';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <ModalProvider>
           <AnimationProvider>
             <SettingsProvider>
+              <Settings />
               <ViewManager />
             </SettingsProvider>
           </AnimationProvider>
