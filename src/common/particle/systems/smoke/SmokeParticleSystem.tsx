@@ -22,7 +22,7 @@ const SmokeParticleSystem = (props: JSX.IntrinsicElements['instancedMesh']) => {
       <meshBasicMaterial
         map={smokeTexture}
         transparent
-        opacity={0.025}
+        opacity={0.5}
         blending={AdditiveBlending}
         depthWrite={false}
         side={DoubleSide}

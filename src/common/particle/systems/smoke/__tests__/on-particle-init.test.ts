@@ -50,7 +50,7 @@ describe('onParticleInit', () => {
     const actual = onParticleInit();
 
     expect(actual.speed).toEqual(randomNumber);
-    expect(randomRange).toHaveBeenNthCalledWith(5, 0.001, 0.005);
+    expect(randomRange).toHaveBeenNthCalledWith(5, 0.001, 0.008);
   });
 
   afterEach(() => {
