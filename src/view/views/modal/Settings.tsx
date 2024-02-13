@@ -4,7 +4,11 @@ import { IconButton, Box } from '@chakra-ui/react';
 import SettingsWindow from './SettingsWindow';
 import getSceneConfig from '../../../scene/get-scene-config';
 
-const Settings: React.FC = () => {
+interface SettingsProps {
+  muteARButton?: boolean;
+}
+
+const Settings: React.FC<SettingsProps> = ({ muteARButton }) => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const sceneConfig = getSceneConfig();
 
@@ -30,6 +34,7 @@ const Settings: React.FC = () => {
           isOpen={isSettingsOpen}
           onClose={handleCloseSettings}
           sceneConfig={sceneConfig}
+          muteARButton={muteARButton}
         />
       )}
     </>

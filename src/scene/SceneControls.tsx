@@ -4,6 +4,7 @@ import { SceneTransitionConfig } from './types/scene-config.ts';
 import { Button, Stack } from '@chakra-ui/react';
 import RenderIf from '../common/components/RenderIf.tsx';
 import useAnimation from '../animations/use-animation.ts';
+import Settings from '../view/views/modal/Settings.tsx';
 
 const SceneTransitionButton: React.FC<{
   transitionConfig: SceneTransitionConfig;
@@ -91,36 +92,48 @@ const SceneControls: React.FC<{
   }, [isTransitioningToNext, isTransitioningToPrevious]);
 
   return (
-    <Stack direction="row" position="absolute" bottom={2} left={2} right={2}>
-      {previousSceneTransition && (
-        <SceneTransitionButton
-          transitionConfig={previousSceneTransition}
-          onClick={onChangeScene}
-          isSceneTransitioning={isTransitioning}
-          isSceneTransitioningFromThis={isTransitioningToPrevious}
-        />
-      )}
-      <RenderIf
-        shouldRender={!!previousSceneTransition || !!nextSceneTransition}
+    <>
+      <Stack
+        padding={[2]}
+        direction="row"
+        position="absolute"
+        top={0}
+        right={2}
       >
-        <Button
-          onClick={onRestart}
-          w="full"
-          colorScheme="gray"
-          isDisabled={isTransitioning}
+        {' '}
+        <Settings muteARButton={true} />
+      </Stack>
+      <Stack direction="row" position="absolute" bottom={2} left={2} right={2}>
+        {previousSceneTransition && (
+          <SceneTransitionButton
+            transitionConfig={previousSceneTransition}
+            onClick={onChangeScene}
+            isSceneTransitioning={isTransitioning}
+            isSceneTransitioningFromThis={isTransitioningToPrevious}
+          />
+        )}
+        <RenderIf
+          shouldRender={!!previousSceneTransition || !!nextSceneTransition}
         >
-          Restart
-        </Button>
-      </RenderIf>
-      {nextSceneTransition && (
-        <SceneTransitionButton
-          transitionConfig={nextSceneTransition}
-          onClick={onChangeScene}
-          isSceneTransitioning={isTransitioning}
-          isSceneTransitioningFromThis={isTransitioningToNext}
-        />
-      )}
-    </Stack>
+          <Button
+            onClick={onRestart}
+            w="full"
+            colorScheme="gray"
+            isDisabled={isTransitioning}
+          >
+            Restart
+          </Button>
+        </RenderIf>
+        {nextSceneTransition && (
+          <SceneTransitionButton
+            transitionConfig={nextSceneTransition}
+            onClick={onChangeScene}
+            isSceneTransitioning={isTransitioning}
+            isSceneTransitioningFromThis={isTransitioningToNext}
+          />
+        )}
+      </Stack>
+    </>
   );
 };
 

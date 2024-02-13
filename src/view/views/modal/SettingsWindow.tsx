@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -12,28 +12,30 @@ import {
 import useSetting from './use-settings.ts';
 import { SceneConfig } from '../../../scene/types/scene-config.ts';
 
-/**
- * ModalViewWindow Component
- *
- * This component renders a modal window for adjusting settings such as AR and Music.
- * It utilizes Chakra UI components and custom hooks for managing settings.
- *
- * @param isOpen - A boolean indicating whether the modal is open or closed.
- * @param onClose - A function to handle closing the modal.
- *
- * @returns JSX element representing the modal window.
- */
 interface SettingsWindowProps {
   isOpen: boolean;
   onClose: () => void;
   sceneConfig: SceneConfig;
+  muteARButton?: boolean;
 }
 
-function SettingsWindow({ isOpen, onClose }: SettingsWindowProps) {
+function SettingsWindow({
+  isOpen,
+  onClose,
+  muteARButton
+}: SettingsWindowProps) {
   const { arEnabled, toggleAR } = useSetting();
   const [isMusicEnabled, setMusicEnabled] = useState(false);
+  const [arButtonDisabled, setArButtonDisabled] = useState(false);
+
+  useEffect(() => {
+    setArButtonDisabled(!arEnabled);
+  }, [arEnabled]);
+
   const handleARButtonClick = () => {
-    toggleAR();
+    if (!muteARButton) {
+      toggleAR();
+    }
   };
 
   const handleMusicButtonClick = () => {
@@ -42,6 +44,7 @@ function SettingsWindow({ isOpen, onClose }: SettingsWindowProps) {
 
   const saveChangesAndClose = () => {
     onClose();
+    setArButtonDisabled(true);
   };
 
   return (
@@ -56,6 +59,7 @@ function SettingsWindow({ isOpen, onClose }: SettingsWindowProps) {
               colorScheme={arEnabled ? 'green' : 'red'}
               onClick={handleARButtonClick}
               flex={1}
+              disabled={arButtonDisabled || muteARButton}
             >
               {arEnabled ? 'AR is ON' : 'AR is OFF'}
             </Button>
