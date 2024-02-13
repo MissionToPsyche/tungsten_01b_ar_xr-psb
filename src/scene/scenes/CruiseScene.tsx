@@ -31,9 +31,9 @@ const CruiseScene: SceneComponent = () => (
     <CruiseName position={[-1.5, 10, -1]} scale={nameScale} />
     <FactsModalTrigger factName="cruiseDate">
       <CruiseDate
-        position={[10, -4, 8]}
+        position={[9, -3, 8]}
         scale={dateScale}
-        rotation={[-Math.PI / 8, 0, 0]}
+        rotation={[-Math.PI / 16, 0, 0]}
       />
     </FactsModalTrigger>
     <ModelSpinner position={[0, 2, 0]} speed={0.15}>

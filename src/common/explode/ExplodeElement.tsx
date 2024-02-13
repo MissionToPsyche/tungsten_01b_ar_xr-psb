@@ -2,6 +2,16 @@ import React from 'react';
 import { animated, config, useSpring } from '@react-spring/three';
 import useExplode from './use-explode.ts';
 
+export type ExplodeElementProps = {
+  children: React.ReactNode | ((isExploded: boolean) => React.ReactNode);
+  startPosition: JSX.IntrinsicElements['group']['position'];
+  explodedPosition: JSX.IntrinsicElements['group']['position'];
+  startRotation: JSX.IntrinsicElements['group']['rotation'];
+  explodedRotation: JSX.IntrinsicElements['group']['rotation'];
+  explodeDelay?: number;
+  unExplodeDelay?: number;
+} & Omit<JSX.IntrinsicElements['group'], 'position' | 'children'>;
+
 /**
  * A wrapper for an element that should
  * @param children The child elements that should be wrapped
@@ -13,17 +23,7 @@ import useExplode from './use-explode.ts';
  * @param unExplodeDelay Optional delay to apply to the element when un-exploding
  * @param props Any additional props provided to the wrapping group
  */
-const ExplodeElement: React.FC<
-  {
-    children: React.ReactNode | ((isExploded: boolean) => React.ReactNode);
-    startPosition: JSX.IntrinsicElements['group']['position'];
-    explodedPosition: JSX.IntrinsicElements['group']['position'];
-    startRotation: JSX.IntrinsicElements['group']['rotation'];
-    explodedRotation: JSX.IntrinsicElements['group']['rotation'];
-    explodeDelay?: number;
-    unExplodeDelay?: number;
-  } & Omit<JSX.IntrinsicElements['group'], 'position' | 'children'>
-> = ({
+const ExplodeElement: React.FC<ExplodeElementProps> = ({
   children,
   startPosition,
   explodedPosition,
