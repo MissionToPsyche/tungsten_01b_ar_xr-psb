@@ -19,6 +19,14 @@ interface SettingsWindowProps {
   muteARButton?: boolean;
 }
 
+/**
+ * SettingsWindow component for managing settings.
+ *
+ * @param {object} props - Component props
+ * @param {boolean} props.isOpen - Indicates whether the modal is open.
+ * @param {function} props.onClose - Function to call when closing the modal.
+ * @param {boolean} [props.muteARButton] - Optional flag to control whether the AR button should be disabled.
+ */
 function SettingsWindow({
   isOpen,
   onClose,

@@ -25,8 +25,19 @@ const Settings: React.FC<SettingsProps> = ({ muteARButton }) => {
       <Box position="absolute" right="0rem">
         <IconButton
           aria-label="Settings"
-          icon={<SettingsIcon />}
+          icon={
+            <SettingsIcon
+              boxSize={6}
+              color="black.500"
+              _hover={{ bg: 'rgb(178,69,99)' }}
+            />
+          }
           onClick={handleSettingsClick}
+          backgroundColor="transparent"
+          border="none"
+          variant="unstyled"
+          boxShadow="none"
+          p={0}
         />
       </Box>
       {isSettingsOpen && (
