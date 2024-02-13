@@ -50,7 +50,17 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         <ARRenderSizeSynchronizer />
         <RenderIf shouldRender={config.disableAr}>
           <color attach="background" args={['#2e4371']} />
-          <OrbitControls zoomSpeed={0.8} rotateSpeed={0.8} panSpeed={0.5} />
+          <OrbitControls
+            zoomSpeed={0.8}
+            rotateSpeed={0.8}
+            panSpeed={0.5}
+            minAzimuthAngle={-Math.PI / 1.2}
+            maxAzimuthAngle={Math.PI / 1.2}
+            minPolarAngle={Math.PI / 2.5}
+            maxPolarAngle={Math.PI / 2}
+            maxZoom={0.04}
+            maxDistance={30}
+          />
           <Stars
             radius={50}
             depth={50}
