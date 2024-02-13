@@ -6,6 +6,7 @@ import SceneManager from '../SceneManager.tsx';
 import React from 'react';
 import ReactThreeTestRenderer from '@react-three/test-renderer';
 import { AnimationProvider } from '../../animations/AnimationProvider.tsx';
+import { AudioProvider } from '../../audio/AudioProvider.tsx';
 
 // The following mocks are required because they render things that are not compatible with ReactThreeTestRenderer
 vi.mock('@artcom/react-three-arjs', () => ({
@@ -77,7 +78,8 @@ const mockConfig: SceneConfig = {
     }
   },
   cameraParametersUrl: '/hello',
-  disableAr: false
+  disableAr: false,
+  disableAudio: true
 };
 
 (getSceneConfig as Mock).mockReturnValue(mockConfig);
@@ -85,9 +87,11 @@ const changeView = vi.fn();
 
 const setup = () =>
   ReactThreeTestRenderer.create(
-    <AnimationProvider>
-      <SceneManager changeView={changeView} />
-    </AnimationProvider>
+    <AudioProvider>
+      <AnimationProvider>
+        <SceneManager changeView={changeView} />
+      </AnimationProvider>
+    </AudioProvider>
   );
 
 describe('<SceneManager/>', () => {

@@ -11,7 +11,8 @@ interface AnimationContextType {
    */
   registerAnimation: (
     animationName: AnimationName,
-    callback?: () => void
+    callback?: () => void,
+    audio?: string
   ) => void;
   /**
    * Retrieves the active status of the specified animation

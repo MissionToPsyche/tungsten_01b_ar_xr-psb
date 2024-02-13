@@ -21,9 +21,13 @@ const SceneTransitionButton: React.FC<
   const { registerAnimation, startAnimation } = useAnimation();
   useEffect(() => {
     if (transitionConfig.animation != null) {
-      registerAnimation(transitionConfig.animation, () => {
-        onClick(transitionConfig.toScene);
-      });
+      registerAnimation(
+        transitionConfig.animation,
+        () => {
+          onClick(transitionConfig.toScene);
+        },
+        transitionConfig.audio
+      );
     }
   });
 
