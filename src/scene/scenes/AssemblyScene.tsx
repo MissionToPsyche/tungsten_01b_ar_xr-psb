@@ -121,7 +121,7 @@ const AssemblyScene: SceneComponent = () => (
     <AssembleDate
       scale={sceneDateScale}
       position={[0, -5, 5]}
-      rotation={[-Math.PI / 8, 0, 0]}
+      rotation={[-Math.PI / 14, 0, 0]}
     />
   </Explode>
 );

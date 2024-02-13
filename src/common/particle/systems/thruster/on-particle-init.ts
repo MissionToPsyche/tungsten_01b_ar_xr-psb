@@ -15,7 +15,7 @@ const onParticleInit: OnParticleInitFn = () => ({
   ),
   rotation: new Euler(0, 0, 0),
   meshRotation: new Euler(0, 0, 0),
-  meshScale: new Vector3().setScalar(randomRange(0.1, 0.7)),
+  meshScale: new Vector3().setScalar(randomRange(0.1, 1.7)),
   timeAlive: 0,
   speed: randomRange(0.01, 0.05),
   color: new Color()
