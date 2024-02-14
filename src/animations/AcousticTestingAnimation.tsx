@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useAnimation from './use-animation';
 import AnimationName from './types/animation-name';
 import { Amplifier } from '../artifacts/Amplifier';
@@ -7,6 +7,7 @@ import { Euler } from 'three';
 import degreesToRadians from '../common/utils/degrees-to-radians';
 import { animated, config, useSpring } from '@react-spring/three';
 import useAudio from '../audio/use-audio';
+import RenderIf from '../common/components/RenderIf';
 
 const initialAmpPositionRight = [20, 7, -3];
 const initialAmpPositionLeft = [-20, 7, -3];
@@ -31,7 +32,10 @@ const AcousticTestingAnimation: React.FC = () => {
   const [showOnScreen, setShowOnScreen] = useState(false);
   const { isAnimationActive, stopAnimation } = useAnimation();
   const { loadAudio, stopAudio } = useAudio();
-  const active = isAnimationActive(AnimationName.ACOUSTIC_TESTING);
+
+  const animationActive = useMemo(() => {
+    return isAnimationActive(AnimationName.ACOUSTIC_TESTING);
+  }, [isAnimationActive]);
 
   // Positioning for right amplifier
   const { position: rightPosition, rotation: rightRotation } = useSpring({
@@ -55,7 +59,7 @@ const AcousticTestingAnimation: React.FC = () => {
   });
 
   useEffect(() => {
-    if (!active) {
+    if (!animationActive) {
       return;
     }
 
@@ -75,7 +79,7 @@ const AcousticTestingAnimation: React.FC = () => {
       stopAnimation(AnimationName.ACOUSTIC_TESTING);
     }, 7000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active]);
+  }, [animationActive]);
 
   return (
     <>
@@ -83,10 +87,14 @@ const AcousticTestingAnimation: React.FC = () => {
         position={rightPosition as never}
         rotation={rightRotation}
       >
-        <Amplifier scale={5} />
+        <RenderIf shouldRender={animationActive}>
+          <Amplifier scale={5} />
+        </RenderIf>
       </animated.group>
       <animated.group position={leftPosition as never} rotation={leftRotation}>
-        <Amplifier scale={5} />
+        <RenderIf shouldRender={animationActive}>
+          <Amplifier scale={5} />
+        </RenderIf>
       </animated.group>
       <SoundParticleSystem visible={particlesVisible} position={[4, 7, -2]} />
       <SoundParticleSystem visible={particlesVisible} position={[-4, 7, -2]} />
