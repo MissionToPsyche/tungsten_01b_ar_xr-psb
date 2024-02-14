@@ -22,7 +22,7 @@ const AssembleAnimation: React.FC = () => {
     if (!isExploded && isAtRest) {
       setTimeout(() => {
         stopAnimation(AnimationName.ASSEMBLE);
-      }, 1000);
+      }, 2000);
     }
   }, [isAnimationActive, isAtRest, isExploded, stopAnimation, toggleExploded]);
 
