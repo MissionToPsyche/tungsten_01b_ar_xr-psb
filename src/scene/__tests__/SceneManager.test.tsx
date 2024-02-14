@@ -40,6 +40,22 @@ vi.mock('../../common/hooks/use-sync-ar-to-window-size.ts');
 const mockConfig: SceneConfig = {
   defaultScene: SceneName.LAUNCH,
   scenes: {
+    [SceneName.VIBRATION_TESTING]: {
+      component: () => <group name="vibration-scene" />,
+      markerUrl: '/hello',
+      nextSceneTransition: {
+        toScene: SceneName.ACOUSTIC_TESTING,
+        buttonText: 'Next Scene'
+      }
+    },
+    [SceneName.ACOUSTIC_TESTING]: {
+      component: () => <group name="acoustic-scene" />,
+      markerUrl: '/hello',
+      nextSceneTransition: {
+        toScene: SceneName.ASSEMBLY,
+        buttonText: 'Next Scene'
+      }
+    },
     [SceneName.ASSEMBLY]: {
       component: () => <group name="assemble-scene" />,
       markerUrl: '/hello',
