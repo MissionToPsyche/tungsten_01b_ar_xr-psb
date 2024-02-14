@@ -32,11 +32,12 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.ASSEMBLY,
-        buttonText: 'Back'
+        buttonText: 'Assembly'
       },
       nextSceneTransition: {
         toScene: SceneName.CRUISE,
         animation: AnimationName.LIFTOFF,
+        audio: 'sounds/launch.wav',
         buttonText: 'Launch'
       }
     },
@@ -45,7 +46,7 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.LAUNCH,
-        buttonText: 'Back'
+        buttonText: 'Launch'
       },
       nextSceneTransition: {
         toScene: SceneName.ORBIT,
@@ -57,12 +58,13 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.CRUISE,
-        buttonText: 'Back'
+        buttonText: 'Orbit'
       }
     }
   },
   cameraParametersUrl: 'assets/camera_para.dat',
-  disableAr: getBoolFromEnv('VITE_DISABLE_AR')
+  disableAr: getBoolFromEnv('VITE_DISABLE_AR'),
+  disableAudio: getBoolFromEnv('VITE_DISABLE_AUDIO')
 });
 
 export default getSceneConfig;

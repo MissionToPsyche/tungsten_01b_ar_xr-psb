@@ -10,6 +10,8 @@ export interface SceneTransitionConfig {
   toScene: SceneName;
   // The animation to play during transition
   animation?: AnimationName;
+  // The audio to play on animation start
+  audio?: string;
   // The text to show for the transition button
   buttonText: string;
 }
@@ -40,4 +42,6 @@ export interface SceneConfig {
   cameraParametersUrl: string;
   // Disable AR if true
   disableAr: boolean;
+  // Disable audio if true
+  disableAudio: boolean;
 }
