@@ -8,6 +8,11 @@ import * as THREE from 'three';
 import { useRef, useEffect } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import { Color } from 'three';
+import ThrusterParticleSystem from '../common/particle/systems/thruster/ThrusterParticleSystem.tsx';
+
+const thrusterStartingColor = new Color('#0065cb');
+const thrusterEndingColor = new Color('#06307a');
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -78,6 +83,10 @@ export function CruiseOrbiter(props: JSX.IntrinsicElements['group']) {
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
+        <ThrusterParticleSystem
+          particleStartColor={thrusterStartingColor}
+          particleEndColor={thrusterEndingColor}
+        />
         <group
           name="SolarPanelLeft_1"
           position={[-1.7, 0.6, 0]}

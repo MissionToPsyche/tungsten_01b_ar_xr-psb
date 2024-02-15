@@ -1,10 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Group } from 'three';
+import { Color, Group } from 'three';
 import useAnimation from './use-animation';
 import AnimationName from './types/animation-name';
 import SmokeParticleSystem from '../common/particle/systems/smoke/SmokeParticleSystem';
 import ThrusterParticleSystem from '../common/particle/systems/thruster/ThrusterParticleSystem';
+
+const thrusterStartingColor = new Color('#FFDD00');
+const thrusterEndingColor = new Color('#FFF2BD');
 
 /**
  * Liftoff animation for rocket
@@ -41,6 +44,8 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       <ThrusterParticleSystem
         position={[0.62, -4.4, 1]}
         visible={isAnimationActive(AnimationName.LIFTOFF)}
+        particleStartColor={thrusterStartingColor}
+        particleEndColor={thrusterEndingColor}
       />
       <SmokeParticleSystem
         visible={!isAnimationActive(AnimationName.LIFTOFF)}

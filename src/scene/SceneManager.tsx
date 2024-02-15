@@ -1,6 +1,6 @@
 import { ARCanvas } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
@@ -25,6 +25,11 @@ const SceneManager: ViewComponent = ({ changeView }) => {
   const { clearAnimations } = useAnimation();
   const { setEnabled } = useAudio();
 
+  useEffect(() => {
+    // Set audio state
+    setEnabled(!config.disableAudio);
+  }, [config.disableAudio, setEnabled]);
+
   const onRestart = useCallback(() => {
     clearAnimations();
     changeView(ViewName.LANDING_PAGE);
@@ -37,8 +42,6 @@ const SceneManager: ViewComponent = ({ changeView }) => {
     nextSceneTransition
   } = config.scenes[currentScene];
 
-  // Set audio state
-  setEnabled(!config.disableAudio);
   return (
     <LoaderProvider>
       <LoaderTracker />
