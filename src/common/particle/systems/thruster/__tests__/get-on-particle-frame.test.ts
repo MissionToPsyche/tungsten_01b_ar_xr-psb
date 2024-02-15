@@ -5,9 +5,9 @@ import transformOnLocalAxis from '../../../../utils/transform-on-local-axis.ts';
 import { expect, vi } from 'vitest';
 import lookAtCamera from '../../../../utils/look-at-camera.ts';
 import resetParticleWhenScaleLte from '../../../utils/reset-particle-when-scale-lte.ts';
-import onParticleFrame from '../on-particle-frame.ts';
 import onParticleInit from '../on-particle-init.ts';
 import lerpColors from '../../../../utils/lerp-colors.ts';
+import getOnParticleFrame from '../get-on-particle-frame.ts';
 
 vi.mock('../../../../utils/transform-on-local-axis.ts');
 vi.mock('../../../../utils/look-at-camera.ts');
@@ -27,7 +27,10 @@ const rootState: RootState = {
   }
 } as unknown as never;
 
-describe('onParticleFrame', () => {
+const startColor = new Color('#FFDD00');
+const endColor = new Color('#FFF2BD');
+
+describe('getOnParticleFrame', () => {
   beforeEach(() => {
     particle = {
       position: new Vector3(0, 0, 0),
@@ -41,7 +44,7 @@ describe('onParticleFrame', () => {
   });
 
   it('should translate the particle forward along its axis', () => {
-    onParticleFrame(particle, systemState, rootState);
+    getOnParticleFrame(startColor, endColor)(particle, systemState, rootState);
 
     expect(transformOnLocalAxis).toHaveBeenCalledWith(
       particle.position,
@@ -52,7 +55,7 @@ describe('onParticleFrame', () => {
   });
 
   it('should rotate the mesh to look at the camera', () => {
-    onParticleFrame(particle, systemState, rootState);
+    getOnParticleFrame(startColor, endColor)(particle, systemState, rootState);
 
     expect(lookAtCamera).toHaveBeenCalledWith(
       particle.meshRotation,
@@ -63,24 +66,24 @@ describe('onParticleFrame', () => {
   });
 
   it('should lerp the particle color', () => {
-    onParticleFrame(particle, systemState, rootState);
+    getOnParticleFrame(startColor, endColor)(particle, systemState, rootState);
 
     expect(lerpColors).toHaveBeenCalledWith(
       particle.color as unknown as Color,
-      new Color('#FFDD00'),
-      new Color('#FFF2BD'),
+      startColor,
+      endColor,
       particle.timeAlive
     );
   });
 
   it('should reduce the scale of the particle', () => {
-    onParticleFrame(particle, systemState, rootState);
+    getOnParticleFrame(startColor, endColor)(particle, systemState, rootState);
 
     expect(particle.meshScale).toEqual(new Vector3(6, 6, 6));
   });
 
   it('should call the reset if function', () => {
-    onParticleFrame(particle, systemState, rootState);
+    getOnParticleFrame(startColor, endColor)(particle, systemState, rootState);
 
     expect(resetParticleWhenScaleLte).toHaveBeenCalledWith(
       particle,
