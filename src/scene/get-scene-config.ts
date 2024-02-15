@@ -7,7 +7,6 @@ import AnimationName from '../animations/types/animation-name.ts';
 import AssemblyScene from './scenes/AssemblyScene.tsx';
 import getBoolFromEnv from '../common/utils/get-bool-from-env.ts';
 import getSceneNameFromEnv from './get-scene-name-from-env.ts';
-import useSetting from '../view/views/modal/use-settings.ts';
 
 /**
  * Function to get the scene configuration. Right now extracted into a method
@@ -16,7 +15,7 @@ import useSetting from '../view/views/modal/use-settings.ts';
  *
  * @returns The scene configuration.
  */
-const getSceneConfig = (): SceneConfig => ({
+const getSceneConfig = (arEnabled?: boolean): SceneConfig => ({
   defaultScene: getSceneNameFromEnv('VITE_DEFAULT_SCENE', SceneName.ASSEMBLY),
   scenes: {
     [SceneName.ASSEMBLY]: {
@@ -63,10 +62,7 @@ const getSceneConfig = (): SceneConfig => ({
     }
   },
   cameraParametersUrl: 'assets/camera_para.dat',
-  disableAr: (() => {
-    const { arEnabled } = useSetting();
-    return getBoolFromEnv('VITE_DISABLE_AR') || !arEnabled;
-  })()
+  disableAr: getBoolFromEnv('VITE_DISABLE_AR') || !arEnabled
 });
 
 export default getSceneConfig;

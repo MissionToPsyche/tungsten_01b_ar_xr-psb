@@ -31,6 +31,15 @@ vi.mock('@chakra-ui/react', async () => ({
   ),
   Stack: (props: Record<never, never>) => <group {...props} />
 }));
+vi.mock('../../common/components/Settings.tsx', () => ({
+  default: ({
+    onClick,
+    children
+  }: {
+    onClick: () => void;
+    children: React.ReactNode;
+  }) => <button onClick={onClick}>{children}</button>
+}));
 // End compatibility mocks
 
 vi.mock('../get-scene-config.ts');

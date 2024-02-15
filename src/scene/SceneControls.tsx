@@ -100,7 +100,6 @@ const SceneControls: React.FC<{
         top={0}
         right={2}
       >
-        {' '}
         <Settings muteARButton={true} />
       </Stack>
       <Stack direction="row" position="absolute" bottom={2} left={2} right={2}>

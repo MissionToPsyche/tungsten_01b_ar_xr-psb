@@ -1,50 +1,48 @@
-import React, { useState } from 'react';
-import { SettingsIcon } from '@chakra-ui/icons';
-import { IconButton, Box } from '@chakra-ui/react';
+import React from 'react';
+import { useDisclosure, Box } from '@chakra-ui/react';
+import { IoMdSettings } from 'react-icons/io';
 import SettingsWindow from './SettingsWindow';
-import getSceneConfig from '../../../scene/get-scene-config';
+import useSetting from './use-settings.ts';
 
 interface SettingsProps {
   muteARButton?: boolean;
 }
 
 const Settings: React.FC<SettingsProps> = ({ muteARButton }) => {
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const sceneConfig = getSceneConfig();
-
-  const handleSettingsClick = () => {
-    setIsSettingsOpen(true);
-  };
-
-  const handleCloseSettings = () => {
-    setIsSettingsOpen(false);
-  };
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { arEnabled, toggleAR } = useSetting();
 
   return (
     <>
       <Box position="absolute" right="0rem">
-        <IconButton
+        <button
           aria-label="Settings"
-          icon={
-            <SettingsIcon
-              boxSize={6}
-              color="black.500"
-              _hover={{ bg: 'rgb(178,69,99)' }}
-            />
-          }
-          onClick={handleSettingsClick}
-          backgroundColor="transparent"
-          border="none"
-          variant="unstyled"
-          boxShadow="none"
-          p={0}
-        />
+          onClick={onOpen}
+          style={{
+            backgroundColor: 'transparent',
+            border: 'none',
+            boxShadow: 'none',
+            padding: 0,
+            cursor: 'pointer',
+            transition: 'color 0.3s',
+            color: 'gray'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = 'red';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = 'inherit';
+          }}
+        >
+          <IoMdSettings size={24} />
+        </button>
       </Box>
-      {isSettingsOpen && (
+      {isOpen && (
         <SettingsWindow
-          isOpen={isSettingsOpen}
-          onClose={handleCloseSettings}
-          sceneConfig={sceneConfig}
+          isOpen={isOpen}
+          onClose={onClose}
+          arEnabled={arEnabled}
+          toggleAR={toggleAR}
           muteARButton={muteARButton}
         />
       )}
