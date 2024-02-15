@@ -63,21 +63,33 @@ const AcousticTestingAnimation: React.FC = () => {
       return;
     }
 
-    if (!showOnScreen) {
-      loadAudio('sounds/whoosh.mp3', true);
-      setShowOnScreen(true);
-    }
+    loadAudio('sounds/whoosh.mp3', true);
+    setShowOnScreen(true);
 
-    setTimeout(() => {
+    const musicTimeout = setTimeout(() => {
       loadAudio('sounds/whoosh.mp3', true);
       setShowOnScreen(false);
       setParticlesVisible(false);
+
+      return () => {
+        clearTimeout(musicTimeout);
+        stopAudio();
+        stopAnimation(AnimationName.ACOUSTIC_TESTING);
+      };
     }, 5000);
 
-    setTimeout(() => {
+    const animationTimeout = setTimeout(() => {
       stopAudio();
       stopAnimation(AnimationName.ACOUSTIC_TESTING);
+
+      return () => {
+        clearTimeout(animationTimeout);
+        stopAudio();
+        stopAnimation(AnimationName.ACOUSTIC_TESTING);
+      };
     }, 7000);
+    // Only trigger on animation state change. Exhaustive deps
+    // cause multiple triggers here that break animation.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animationActive]);
 

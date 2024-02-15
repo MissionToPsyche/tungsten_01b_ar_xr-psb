@@ -23,32 +23,26 @@ const VibrationTestingAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       return;
     }
 
-    if (isAnimationActive(AnimationName.VIBRATION_TESTING)) {
-      setElapsed((prev) => delta + prev);
+    setElapsed((prev) => delta + prev);
 
-      meshRef.current.position.x += oscillationSpeed;
+    meshRef.current.position.x += oscillationSpeed;
 
-      if (
-        meshRef.current.position.x >= xBound ||
-        meshRef.current.position.x <= -xBound
-      ) {
-        oscillationSpeed = -oscillationSpeed;
-      }
+    if (
+      meshRef.current.position.x >= xBound ||
+      meshRef.current.position.x <= -xBound
+    ) {
+      oscillationSpeed = -oscillationSpeed;
+    }
 
-      if (elapsed >= 2.0) {
-        if (isAnimationActive(AnimationName.VIBRATION_TESTING)) {
-          stopAnimation(AnimationName.VIBRATION_TESTING);
-        }
-      }
+    if (elapsed >= 2.0 && isAnimationActive(AnimationName.VIBRATION_TESTING)) {
+      stopAnimation(AnimationName.VIBRATION_TESTING);
     }
   });
 
   return (
-    <>
-      <group ref={meshRef} {...props}>
-        {children}
-      </group>
-    </>
+    <group ref={meshRef} {...props}>
+      {children}
+    </group>
   );
 };
 
