@@ -63,11 +63,13 @@ const SceneTransitionButton: React.FC<{
 };
 
 const SceneControls: React.FC<{
+  onTransition: (state: boolean) => void;
   onChangeScene: (sceneName: SceneName) => void;
   onRestart: () => void;
   previousSceneTransition?: SceneTransitionConfig;
   nextSceneTransition?: SceneTransitionConfig;
 }> = ({
+  onTransition,
   onChangeScene,
   onRestart,
   previousSceneTransition,
@@ -94,6 +96,10 @@ const SceneControls: React.FC<{
   const isTransitioning = useMemo(() => {
     return isTransitioningToPrevious || isTransitioningToNext;
   }, [isTransitioningToNext, isTransitioningToPrevious]);
+
+  useEffect(() => {
+    onTransition(isTransitioning);
+  }, [isTransitioning, onTransition]);
 
   return (
     <Stack direction="row" position="absolute" bottom={2} left={2} right={2}>

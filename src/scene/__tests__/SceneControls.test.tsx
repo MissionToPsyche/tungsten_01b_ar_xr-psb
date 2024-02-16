@@ -8,6 +8,7 @@ import { AudioProvider } from '../../audio/AudioProvider.tsx';
 
 const onChangeScene = vi.fn();
 const onRestart = vi.fn();
+const onTransition = vi.fn();
 
 const mockNextSceneTransition: SceneTransitionConfig = {
   toScene: SceneName.LAUNCH,
@@ -27,6 +28,7 @@ const setup = (
     <AudioProvider>
       <AnimationProvider>
         <SceneControls
+          onTransition={onTransition}
           nextSceneTransition={nextTransition}
           previousSceneTransition={prevTransition}
           onChangeScene={onChangeScene}

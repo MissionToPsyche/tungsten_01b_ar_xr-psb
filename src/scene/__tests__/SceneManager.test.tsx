@@ -7,6 +7,7 @@ import React from 'react';
 import ReactThreeTestRenderer from '@react-three/test-renderer';
 import { AnimationProvider } from '../../animations/AnimationProvider.tsx';
 import { AudioProvider } from '../../audio/AudioProvider.tsx';
+import { Vector3 } from 'three';
 
 // The following mocks are required because they render things that are not compatible with ReactThreeTestRenderer
 vi.mock('@artcom/react-three-arjs', () => ({
@@ -79,7 +80,8 @@ const mockConfig: SceneConfig = {
   },
   cameraParametersUrl: '/hello',
   disableAr: false,
-  disableAudio: true
+  disableAudio: true,
+  defaultCameraPosition: new Vector3(0, 6, 18)
 };
 
 (getSceneConfig as Mock).mockReturnValue(mockConfig);

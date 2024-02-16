@@ -1,6 +1,6 @@
 import { ARCanvas } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
@@ -15,6 +15,7 @@ import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
 import { OrbitControls, Stars } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
 import useAudio from '../audio/use-audio.ts';
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
 /**
  * Manages AR scenes.
@@ -22,13 +23,32 @@ import useAudio from '../audio/use-audio.ts';
 const SceneManager: ViewComponent = ({ changeView }) => {
   const config = useSceneConfig();
   const [currentScene, setCurrentScene] = useState(config.defaultScene);
+  const [orbitDisabled, setOrbitDisabled] = useState(false);
   const { clearAnimations } = useAnimation();
   const { setEnabled } = useAudio();
-
+  const cameraRef = useRef<THREE.Camera | null>(null);
+  const orbitControls = useRef<OrbitControlsImpl>(null);
   const onRestart = useCallback(() => {
     clearAnimations();
     changeView(ViewName.LANDING_PAGE);
   }, [changeView, clearAnimations]);
+
+  useEffect(() => {
+    setEnabled(!config.disableAudio);
+
+    if (cameraRef.current) {
+      cameraRef.current.position.copy(config.defaultCameraPosition);
+      cameraRef.current.rotation.set(-0.25, 0, 0);
+      if (orbitControls.current) {
+        orbitControls.current.target.set(0, 0, 0);
+      }
+    }
+  }, [
+    config.disableAudio,
+    setEnabled,
+    currentScene,
+    config.defaultCameraPosition
+  ]);
 
   const {
     component: CurrentSceneComponent,
@@ -37,17 +57,22 @@ const SceneManager: ViewComponent = ({ changeView }) => {
     nextSceneTransition
   } = config.scenes[currentScene];
 
-  // Set audio state
-  setEnabled(!config.disableAudio);
   return (
     <LoaderProvider>
       <LoaderTracker />
       <ARCanvas
         arEnabled={!config.disableAr}
-        onCreated={fitGlToWindow}
+        onCreated={(state) => {
+          fitGlToWindow(state);
+          cameraRef.current = state.camera;
+        }}
         cameraParametersUrl={config.cameraParametersUrl}
         gl={{ logarithmicDepthBuffer: true }}
-        camera={config.disableAr ? { position: [0, 6, 18] } : undefined}
+        camera={
+          config.disableAr
+            ? { position: config.defaultCameraPosition.toArray() }
+            : undefined
+        }
         linear
         flat
       >
@@ -55,6 +80,8 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         <RenderIf shouldRender={config.disableAr}>
           <color attach="background" args={['#2e4371']} />
           <OrbitControls
+            enabled={!orbitDisabled}
+            ref={orbitControls}
             zoomSpeed={0.8}
             rotateSpeed={0.8}
             panSpeed={0.5}
@@ -90,6 +117,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         </PersistentARMarker>
       </ARCanvas>
       <SceneControls
+        onTransition={setOrbitDisabled}
         onChangeScene={setCurrentScene}
         onRestart={onRestart}
         previousSceneTransition={previousSceneTransition}
