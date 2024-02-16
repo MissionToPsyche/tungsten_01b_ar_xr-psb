@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import SceneName from './types/scene-name.ts';
 import { SceneTransitionConfig } from './types/scene-config.ts';
-import { Button, Stack } from '@chakra-ui/react';
+import { Button, Flex, Spacer } from '@chakra-ui/react';
 import RenderIf from '../common/components/RenderIf.tsx';
 import useAnimation from '../animations/use-animation.ts';
+import { MdOutlineArrowForward, MdOutlineArrowBack } from 'react-icons/md';
+import RestartButton from './RestartButton.tsx';
 
 const SceneTransitionButton: React.FC<{
   transitionConfig: SceneTransitionConfig;
@@ -52,12 +54,24 @@ const SceneTransitionButton: React.FC<{
   return (
     <Button
       onClick={onClickButton}
-      w="full"
+      w="lg"
       colorScheme="magenta"
       isLoading={isSceneTransitioningFromThis}
       isDisabled={isSceneTransitioning && !isSceneTransitioningFromThis}
     >
-      {transitionConfig.buttonText}
+      {transitionConfig.buttonText === 'Back to Assembly' ||
+      transitionConfig.buttonText === 'Back to Launch' ||
+      transitionConfig.buttonText === 'Back to Cruise' ? (
+        <>
+          <MdOutlineArrowBack />
+          {transitionConfig.buttonText}
+        </>
+      ) : (
+        <>
+          {transitionConfig.buttonText}
+          <MdOutlineArrowForward />
+        </>
+      )}
     </Button>
   );
 };
@@ -96,36 +110,41 @@ const SceneControls: React.FC<{
   }, [isTransitioningToNext, isTransitioningToPrevious]);
 
   return (
-    <Stack direction="row" position="absolute" bottom={2} left={2} right={2}>
-      {previousSceneTransition && (
-        <SceneTransitionButton
-          transitionConfig={previousSceneTransition}
-          onClick={onChangeScene}
-          isSceneTransitioning={isTransitioning}
-          isSceneTransitioningFromThis={isTransitioningToPrevious}
-        />
-      )}
+    <>
+      <Flex
+        flexDirection={'row'}
+        position="absolute"
+        bottom={4}
+        left={2}
+        right={2}
+        alignItems={'center'}
+        alignContent={'center'}
+        alignSelf={'center'}
+      >
+        {previousSceneTransition && (
+          <SceneTransitionButton
+            transitionConfig={previousSceneTransition}
+            onClick={onChangeScene}
+            isSceneTransitioning={isTransitioning}
+            isSceneTransitioningFromThis={isTransitioningToPrevious}
+          />
+        )}
+        <Spacer />
+        {nextSceneTransition && (
+          <SceneTransitionButton
+            transitionConfig={nextSceneTransition}
+            onClick={onChangeScene}
+            isSceneTransitioning={isTransitioning}
+            isSceneTransitioningFromThis={isTransitioningToNext}
+          />
+        )}
+      </Flex>
       <RenderIf
         shouldRender={!!previousSceneTransition || !!nextSceneTransition}
       >
-        <Button
-          onClick={onRestart}
-          w="full"
-          colorScheme="gray"
-          isDisabled={isTransitioning}
-        >
-          Restart
-        </Button>
+        <RestartButton onClick={onRestart} disabled={isTransitioning} />
       </RenderIf>
-      {nextSceneTransition && (
-        <SceneTransitionButton
-          transitionConfig={nextSceneTransition}
-          onClick={onChangeScene}
-          isSceneTransitioning={isTransitioning}
-          isSceneTransitioningFromThis={isTransitioningToNext}
-        />
-      )}
-    </Stack>
+    </>
   );
 };
 

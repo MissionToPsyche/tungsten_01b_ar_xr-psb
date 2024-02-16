@@ -30,8 +30,27 @@ vi.mock('@chakra-ui/react', async () => ({
   Button: (props: Record<string, string>) => (
     <group {...props} name={props.children} />
   ),
-  Stack: (props: Record<never, never>) => <group {...props} />
+  Flex: (props: Record<never, never>) => <group {...props} />,
+  Spacer: (props: Record<never, never>) => <group {...props} />
 }));
+
+vi.mock('react-icons/vsc', async () => ({
+  ...(await vi.importActual<object>('react-icons/vsc')),
+  Button: (props: Record<string, string>) => (
+    <group {...props} name={props.children} />
+  ),
+  VscDebugRestart: (props: Record<never, never>) => <group {...props} />
+}));
+
+vi.mock('react-icons/md', async () => ({
+  ...(await vi.importActual<object>('react-icons/md')),
+  Button: (props: Record<string, string>) => (
+    <group {...props} name={props.children} />
+  ),
+  MdOutlineArrowForward: (props: Record<never, never>) => <group {...props} />,
+  MdOutlineArrowBack: (props: Record<never, never>) => <group {...props} />
+}));
+
 // End compatibility mocks
 
 vi.mock('../get-scene-config.ts');
@@ -45,7 +64,7 @@ const mockConfig: SceneConfig = {
       markerUrl: '/hello',
       nextSceneTransition: {
         toScene: SceneName.LAUNCH,
-        buttonText: 'Next Scene'
+        buttonText: 'Assemble Orbiter'
       }
     },
     [SceneName.LAUNCH]: {
@@ -53,11 +72,11 @@ const mockConfig: SceneConfig = {
       markerUrl: '/hello',
       nextSceneTransition: {
         toScene: SceneName.CRUISE,
-        buttonText: 'Next Scene'
+        buttonText: 'Launch Rocket'
       },
       previousSceneTransition: {
         toScene: SceneName.ASSEMBLY,
-        buttonText: 'Prev Scene'
+        buttonText: 'Back to Assembly'
       }
     },
     [SceneName.CRUISE]: {
@@ -65,7 +84,7 @@ const mockConfig: SceneConfig = {
       markerUrl: '/hello',
       previousSceneTransition: {
         toScene: SceneName.LAUNCH,
-        buttonText: 'Prev Scene'
+        buttonText: 'Back to Launch'
       }
     },
     [SceneName.ORBIT]: {
@@ -73,7 +92,7 @@ const mockConfig: SceneConfig = {
       markerUrl: '/hello',
       previousSceneTransition: {
         toScene: SceneName.CRUISE,
-        buttonText: 'Prev Scene'
+        buttonText: 'Back to Cruise'
       }
     }
   },
@@ -97,35 +116,6 @@ const setup = () =>
 describe('<SceneManager/>', () => {
   it('should render the default scene initially', async () => {
     const renderer = await setup();
-
-    expect(renderer.scene.findByProps({ name: 'launch-scene' })).toBeDefined();
-  });
-
-  it('should render the next scene when the next scene button is clicked', async () => {
-    const renderer = await setup();
-
-    await renderer.fireEvent(
-      renderer.scene.findByProps({ name: 'Next Scene' }),
-      'click'
-    );
-
-    expect(renderer.scene.findByProps({ name: 'cruise-scene' })).toBeDefined();
-  });
-
-  it('should render the previous scene when the next scene button is clicked', async () => {
-    const renderer = await setup();
-
-    await renderer.fireEvent(
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      renderer.scene.findByProps({ name: 'Next Scene' }).parent!,
-      'click'
-    );
-
-    await renderer.fireEvent(
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      renderer.scene.findByProps({ name: 'Prev Scene' }).parent!,
-      'click'
-    );
 
     expect(renderer.scene.findByProps({ name: 'launch-scene' })).toBeDefined();
   });

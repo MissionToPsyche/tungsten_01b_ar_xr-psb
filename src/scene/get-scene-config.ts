@@ -24,7 +24,7 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.LAUNCH,
         animation: AnimationName.ASSEMBLE,
-        buttonText: 'Assemble'
+        buttonText: 'Assemble Orbiter'
       }
     },
     [SceneName.LAUNCH]: {
@@ -32,13 +32,13 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.ASSEMBLY,
-        buttonText: 'Assembly'
+        buttonText: 'Back to Assembly'
       },
       nextSceneTransition: {
         toScene: SceneName.CRUISE,
         animation: AnimationName.LIFTOFF,
-        audio: 'sounds/launch.wav',
-        buttonText: 'Launch'
+        buttonText: 'Launch Rocket',
+        audio: 'sounds/launch.wav'
       }
     },
     [SceneName.CRUISE]: {
@@ -46,11 +46,11 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.LAUNCH,
-        buttonText: 'Launch'
+        buttonText: 'Back to Launch'
       },
       nextSceneTransition: {
         toScene: SceneName.ORBIT,
-        buttonText: 'Orbit'
+        buttonText: 'Cruise to Psyche'
       }
     },
     [SceneName.ORBIT]: {
@@ -58,7 +58,7 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.CRUISE,
-        buttonText: 'Orbit'
+        buttonText: 'Back to Cruise'
       }
     }
   },
