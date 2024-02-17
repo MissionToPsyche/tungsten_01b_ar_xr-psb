@@ -1,6 +1,6 @@
 import { ARCanvas } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
@@ -23,8 +23,7 @@ import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 const SceneManager: ViewComponent = ({ changeView }) => {
   const config = useSceneConfig();
   const [currentScene, setCurrentScene] = useState(config.defaultScene);
-  const [transitioning, setTransitioning] = useState(false);
-  const { clearAnimations } = useAnimation();
+  const { isAnimationActive, clearAnimations } = useAnimation();
   const { setEnabled } = useAudio();
   const orbitControls = useRef<OrbitControlsImpl>(null);
 
@@ -33,20 +32,40 @@ const SceneManager: ViewComponent = ({ changeView }) => {
     changeView(ViewName.LANDING_PAGE);
   }, [changeView, clearAnimations]);
 
-  useEffect(() => {
-    setEnabled(!config.disableAudio);
-
-    if (orbitControls.current && transitioning) {
-      orbitControls.current.reset();
-    }
-  }, [config.disableAudio, setEnabled, transitioning]);
-
   const {
     component: CurrentSceneComponent,
     markerUrl,
     previousSceneTransition,
     nextSceneTransition
   } = config.scenes[currentScene];
+
+  const isTransitioningToPrevious = useMemo(() => {
+    if (previousSceneTransition?.animation == null) {
+      return false;
+    }
+
+    return isAnimationActive(previousSceneTransition.animation);
+  }, [isAnimationActive, previousSceneTransition]);
+
+  const isTransitioningToNext = useMemo(() => {
+    if (nextSceneTransition?.animation == null) {
+      return false;
+    }
+
+    return isAnimationActive(nextSceneTransition.animation);
+  }, [isAnimationActive, nextSceneTransition]);
+
+  const isTransitioning = useMemo(() => {
+    return isTransitioningToPrevious || isTransitioningToNext;
+  }, [isTransitioningToNext, isTransitioningToPrevious]);
+
+  useEffect(() => {
+    setEnabled(!config.disableAudio);
+
+    if (orbitControls.current && isTransitioning) {
+      orbitControls.current.reset();
+    }
+  }, [config.disableAudio, isTransitioning, setEnabled]);
 
   return (
     <LoaderProvider>
@@ -68,7 +87,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         <RenderIf shouldRender={config.disableAr}>
           <color attach="background" args={['#2e4371']} />
           <OrbitControls
-            enabled={!transitioning}
+            enabled={!isTransitioning}
             ref={orbitControls}
             zoomSpeed={0.8}
             rotateSpeed={0.8}
@@ -105,7 +124,9 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         </PersistentARMarker>
       </ARCanvas>
       <SceneControls
-        onTransition={setTransitioning}
+        transitionToNext={isTransitioningToNext}
+        transitionToPrev={isTransitioningToPrevious}
+        transitioning={isTransitioning}
         onChangeScene={setCurrentScene}
         onRestart={onRestart}
         previousSceneTransition={previousSceneTransition}
