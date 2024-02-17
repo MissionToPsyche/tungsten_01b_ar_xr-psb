@@ -7,11 +7,12 @@ import { LaunchDateModel } from '../../artifacts/LaunchDateModel.tsx';
 import { LaunchSceneName } from '../../artifacts/LaunchSceneName.tsx';
 import LiftoffAnimation from '../../animations/LiftoffAnimation.tsx';
 import { LaunchPadModel } from '../../artifacts/LaunchPadModel.jsx';
+import { Cloud, Clouds, Sky } from '@react-three/drei';
 
-const padScale = filledVector(0.4);
-const falconScale = filledVector(0.4);
+const padScale = filledVector(0.38);
+const falconScale = filledVector(0.38);
 const dateScale = filledVector(0.35);
-const sceneNameScale = filledVector(1.2);
+const sceneNameScale = filledVector(1.3);
 
 /**
  * The launch scene which depicts the Psyche mission launch.
@@ -27,7 +28,11 @@ const LaunchScene: SceneComponent = () => (
     />
     <hemisphereLight position={[-5, -20, 0]} intensity={0.1} color={'white'} />
     <spotLight intensity={3} position={[-1, 5, -10]} color={'#08029d'} />
-    <spotLight intensity={1} position={[-11, 40, -25]} color={'#441359'} />
+    <directionalLight
+      intensity={1}
+      position={[-11, 40, -25]}
+      color={'#441359'}
+    />
     <spotLight intensity={1} position={[11, 40, -25]} color={'#441359'} />
     <LaunchPadModel position={[-1, -6, 1]} scale={padScale} />
     <LiftoffAnimation>
@@ -41,12 +46,17 @@ const LaunchScene: SceneComponent = () => (
     </LiftoffAnimation>
     <FactsModalTrigger factName="launch">
       <LaunchDateModel
-        position={[12, -5, 5]}
+        position={[11, -5, 6.5]}
         scale={dateScale}
-        rotation={[0, 0, 0]}
+        rotation={[-Math.PI / 30, 0, 0]}
       />
     </FactsModalTrigger>
-    <LaunchSceneName position={[-2, 12.5, 0]} scale={sceneNameScale} />
+    <LaunchSceneName position={[0, 14, -5]} scale={sceneNameScale} />
+    <Sky sunPosition={[2, 40, 100]} />
+    <Clouds>
+      <Cloud position={[-8, 10, -8]} opacity={0.5} />
+      <Cloud position={[8, 12, -8]} opacity={0.4} />
+    </Clouds>
   </>
 );
 
