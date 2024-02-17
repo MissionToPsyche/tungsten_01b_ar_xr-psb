@@ -6,21 +6,21 @@ import ModalProvider from './common/modal/ModalProvider.tsx';
 import { AnimationProvider } from './animations/AnimationProvider.tsx';
 import AppErrorBoundary from './error/AppErrorBoundary.tsx';
 import { AudioProvider } from './audio/AudioProvider.tsx';
-import SettingsProvider from './settings/SettingsProvider.tsx';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
     <ChakraProvider theme={theme} resetCSS={false}>
       <AppErrorBoundary>
-        <ModalProvider>
-          <AudioProvider>
-            <AnimationProvider>
-              <SettingsProvider>
+        <RecoilRoot>
+          <ModalProvider>
+            <AudioProvider>
+              <AnimationProvider>
                 <ViewManager />
-              </SettingsProvider>
-            </AnimationProvider>
-          </AudioProvider>
-        </ModalProvider>
+              </AnimationProvider>
+            </AudioProvider>
+          </ModalProvider>
+        </RecoilRoot>
       </AppErrorBoundary>
     </ChakraProvider>
   );

@@ -42,6 +42,4 @@ export interface SceneConfig {
   cameraParametersUrl: string;
   // Disable AR if true
   disableAr: boolean;
-  // Disable audio if true
-  disableAudio: boolean;
 }

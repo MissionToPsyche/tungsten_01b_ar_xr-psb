@@ -1,8 +1,10 @@
-import { SettingsContextType } from '../settings-context.ts';
+import { SettingsState } from '../use-settings.ts';
 
-const value: SettingsContextType = {
+const value: SettingsState = {
   arEnabled: false,
-  toggleAR: vi.fn()
+  audioEnabled: false,
+  setArEnabled: vi.fn(),
+  setAudioEnabled: vi.fn()
 };
 
 const useSettings = vi.fn(() => value);
