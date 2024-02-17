@@ -23,7 +23,7 @@ import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 const SceneManager: ViewComponent = ({ changeView }) => {
   const config = useSceneConfig();
   const [currentScene, setCurrentScene] = useState(config.defaultScene);
-  const [orbitDisabled, setOrbitDisabled] = useState(false);
+  const [transitioning, setTransitioning] = useState(false);
   const { clearAnimations } = useAnimation();
   const { setEnabled } = useAudio();
   const cameraRef = useRef<THREE.Camera | null>(null);
@@ -36,19 +36,10 @@ const SceneManager: ViewComponent = ({ changeView }) => {
   useEffect(() => {
     setEnabled(!config.disableAudio);
 
-    if (cameraRef.current) {
-      cameraRef.current.position.copy(config.defaultCameraPosition);
-      cameraRef.current.rotation.set(-0.25, 0, 0);
-      if (orbitControls.current) {
-        orbitControls.current.target.set(0, 0, 0);
-      }
+    if (orbitControls.current && transitioning) {
+      orbitControls.current.reset();
     }
-  }, [
-    config.disableAudio,
-    setEnabled,
-    currentScene,
-    config.defaultCameraPosition
-  ]);
+  }, [config.disableAudio, setEnabled, transitioning]);
 
   const {
     component: CurrentSceneComponent,
@@ -80,7 +71,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         <RenderIf shouldRender={config.disableAr}>
           <color attach="background" args={['#2e4371']} />
           <OrbitControls
-            enabled={!orbitDisabled}
+            enabled={!transitioning}
             ref={orbitControls}
             zoomSpeed={0.8}
             rotateSpeed={0.8}
@@ -117,7 +108,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         </PersistentARMarker>
       </ARCanvas>
       <SceneControls
-        onTransition={setOrbitDisabled}
+        onTransition={setTransitioning}
         onChangeScene={setCurrentScene}
         onRestart={onRestart}
         previousSceneTransition={previousSceneTransition}
