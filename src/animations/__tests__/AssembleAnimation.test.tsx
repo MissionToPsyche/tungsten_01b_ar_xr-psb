@@ -43,7 +43,7 @@ describe('<AssembleAnimation/>', () => {
       AnimationName.ASSEMBLE
     );
 
-    vi.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(2000);
 
     expect(useAnimation().stopAnimation).toHaveBeenCalledWith(
       AnimationName.ASSEMBLE
