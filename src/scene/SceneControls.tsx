@@ -2,10 +2,8 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import SceneName from './types/scene-name.ts';
 import { SceneTransitionConfig } from './types/scene-config.ts';
 import { Button, Flex, Spacer } from '@chakra-ui/react';
-import RenderIf from '../common/components/RenderIf.tsx';
 import useAnimation from '../animations/use-animation.ts';
 import { MdOutlineArrowBack, MdOutlineArrowForward } from 'react-icons/md';
-import { VscDebugRestart } from 'react-icons/vsc';
 import MenuBar from '../common/components/MenuBar.tsx';
 
 const SceneTransitionButton: React.FC<{
@@ -114,7 +112,12 @@ const SceneControls: React.FC<SceneControlsProps> = ({
 
   return (
     <>
-      <MenuBar hideArButton />
+      <MenuBar
+        hideArButton
+        onClickRestartButton={onRestart}
+        disableRestartButton={isTransitioning}
+        hideRestartButton={!previousSceneTransition && !nextSceneTransition}
+      />
       <Flex
         flexDirection={'row'}
         position="absolute"
@@ -146,20 +149,6 @@ const SceneControls: React.FC<SceneControlsProps> = ({
           />
         )}
       </Flex>
-      <RenderIf
-        shouldRender={!!previousSceneTransition || !!nextSceneTransition}
-      >
-        <Button
-          onClick={onRestart}
-          colorScheme="gray"
-          isDisabled={isTransitioning}
-          position="absolute"
-          top={4}
-          right={4}
-        >
-          <VscDebugRestart />
-        </Button>
-      </RenderIf>
     </>
   );
 };
