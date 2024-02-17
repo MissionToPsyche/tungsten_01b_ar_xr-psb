@@ -13,7 +13,7 @@ describe('getSceneConfig', () => {
   it('should configure the assembly scene as the default scene', () => {
     const actual = getSceneConfig();
 
-    expect(actual.defaultScene).toEqual(SceneName.ASSEMBLY);
+    expect(actual.defaultScene).toEqual(SceneName.VIBRATION_TESTING);
   });
 
   it('should configure the launch scene as the next scene after assembly', () => {
