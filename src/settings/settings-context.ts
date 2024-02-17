@@ -6,9 +6,11 @@ import { createContext } from 'react';
  * This context provides access to settings related to AR (Augmented Reality).
  * It includes information about whether AR is enabled and a function to toggle its state.
  */
-interface SettingsContextType {
+export interface SettingsContextType {
   arEnabled: boolean;
   toggleAR: () => void;
 }
+
 const SettingsContext = createContext<SettingsContextType | null>(null);
+
 export default SettingsContext;

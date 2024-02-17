@@ -1,10 +1,12 @@
 import { SceneTransitionConfig } from '../types/scene-config.ts';
 import SceneName from '../types/scene-name.ts';
-import { expect } from 'vitest';
+import { expect, vi } from 'vitest';
 import { AnimationProvider } from '../../animations/AnimationProvider.tsx';
 import SceneControls from '../SceneControls.tsx';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { AudioProvider } from '../../audio/AudioProvider.tsx';
+
+vi.mock('../../settings/use-settings.ts');
 
 const onChangeScene = vi.fn();
 const onRestart = vi.fn();

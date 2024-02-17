@@ -4,7 +4,7 @@ import { SceneTransitionConfig } from './types/scene-config.ts';
 import { Button, Stack } from '@chakra-ui/react';
 import RenderIf from '../common/components/RenderIf.tsx';
 import useAnimation from '../animations/use-animation.ts';
-import Settings from '../view/views/modal/Settings.tsx';
+import MenuBar from '../common/components/MenuBar.tsx';
 
 const SceneTransitionButton: React.FC<{
   transitionConfig: SceneTransitionConfig;
@@ -63,12 +63,14 @@ const SceneTransitionButton: React.FC<{
   );
 };
 
-const SceneControls: React.FC<{
+export interface SceneControlsProps {
   onChangeScene: (sceneName: SceneName) => void;
   onRestart: () => void;
   previousSceneTransition?: SceneTransitionConfig;
   nextSceneTransition?: SceneTransitionConfig;
-}> = ({
+}
+
+const SceneControls: React.FC<SceneControlsProps> = ({
   onChangeScene,
   onRestart,
   previousSceneTransition,
@@ -98,15 +100,7 @@ const SceneControls: React.FC<{
 
   return (
     <>
-      <Stack
-        padding={[2]}
-        direction="row"
-        position="absolute"
-        top={0}
-        right={2}
-      >
-        <Settings muteARButton={true} />
-      </Stack>
+      <MenuBar hideArButton />
       <Stack direction="row" position="absolute" bottom={2} left={2} right={2}>
         {previousSceneTransition && (
           <SceneTransitionButton

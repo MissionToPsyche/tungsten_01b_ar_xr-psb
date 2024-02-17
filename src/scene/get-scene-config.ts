@@ -15,7 +15,7 @@ import getSceneNameFromEnv from './get-scene-name-from-env.ts';
  *
  * @returns The scene configuration.
  */
-const getSceneConfig = (arEnabled?: boolean): SceneConfig => ({
+const getSceneConfig = (): SceneConfig => ({
   defaultScene: getSceneNameFromEnv('VITE_DEFAULT_SCENE', SceneName.ASSEMBLY),
   scenes: {
     [SceneName.ASSEMBLY]: {
@@ -63,7 +63,7 @@ const getSceneConfig = (arEnabled?: boolean): SceneConfig => ({
     }
   },
   cameraParametersUrl: 'assets/camera_para.dat',
-  disableAr: getBoolFromEnv('VITE_DISABLE_AR') || !arEnabled,
+  disableAr: getBoolFromEnv('VITE_DISABLE_AR'),
   disableAudio: getBoolFromEnv('VITE_DISABLE_AUDIO')
 });
 

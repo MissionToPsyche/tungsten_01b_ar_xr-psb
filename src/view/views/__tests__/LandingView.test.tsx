@@ -6,6 +6,8 @@ import ViewName from '../../types/view-name.ts';
 import axe from 'axe-core';
 
 mockResizeObserver();
+vi.mock('../../../audio/use-audio.ts');
+vi.mock('../../../settings/use-settings.ts');
 
 const changeView = vi.fn();
 
@@ -23,7 +25,9 @@ describe('<LandingView/>', () => {
   it('should call changeView when the launch button is clicked', () => {
     setup();
 
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(
+      screen.getByText('Start Mission Timeline', { selector: 'button' })
+    );
 
     expect(changeView).toHaveBeenCalledWith(ViewName.AR_SCENES);
   });

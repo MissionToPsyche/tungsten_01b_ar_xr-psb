@@ -3,7 +3,7 @@ import { createContext } from 'react';
 /**
  * Context type for audio
  */
-interface AudioContextType {
+export interface AudioContextType {
   /**
    * Loads an audio file for playback
    * @param src The path to the audio file
@@ -40,7 +40,13 @@ interface AudioContextType {
    * Enables or disables audio
    */
   setEnabled: (state: boolean) => void;
+
+  /**
+   * Indicates whether audio is enabled
+   */
+  enabled: boolean;
 }
+
 const AudioContext = createContext<AudioContextType | null>(null);
 
 export default AudioContext;

@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { Button, Flex, Highlight, Image, Stack, Text } from '@chakra-ui/react';
+import { Button, Flex, Highlight, Image, Text } from '@chakra-ui/react';
 import { FaRocket } from 'react-icons/fa';
 import { ViewComponent } from '../types/view-component.ts';
 import ViewName from '../types/view-name.ts';
@@ -15,7 +15,7 @@ import {
 import { TimeLine } from '../../artifacts/TimeLine.tsx';
 import { useWindowSize } from '@uidotdev/usehooks';
 import AlertErrorBoundary from '../../error/AlertErrorBoundary.tsx';
-import Settings from './modal/Settings.tsx';
+import MenuBar from '../../common/components/MenuBar.tsx';
 
 /**
  * Landing page for the application, informs the user about the application
@@ -35,16 +35,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
 
   return (
     <Flex height={`${windowHeight}px`} flexDir="column" p={6}>
-      <Stack
-        padding={[2]}
-        direction="row"
-        position="absolute"
-        top={0}
-        right={2}
-      >
-        {' '}
-        <Settings />
-      </Stack>
+      <MenuBar />
       <Image
         src="/assets/images/psyche-badge-outline-color.svg"
         alt="Psyche Logo"
