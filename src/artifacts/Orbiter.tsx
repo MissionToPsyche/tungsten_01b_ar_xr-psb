@@ -213,9 +213,9 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
             <mesh
               geometry={nodes.Object_48.geometry}
               material={materials['Thruster_Material.001']}
-              position={[0.907, 2.303, -1.078]}
+              position={[1.15, 2.303, -1.078]}
               rotation={[-Math.PI / 2, -0.963, -Math.PI]}
-              scale={[-0.025, 0.025, 0.025]}
+              scale={[-0.03, 0.03, 0.03]}
             />
             <FactsModalTrigger factName="spectrometer" disable={!isExploded}>
               {/*spectrometer*/}
@@ -223,10 +223,10 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
                 castShadow
                 receiveShadow
                 geometry={nodes.Object_51.geometry}
-                material={materials.BlackPlastic_Material}
-                position={[-1.018, 3.898, -1.084]}
+                material={materials['Thruster_Material.001']}
+                position={[-1.15, 3.898, -1.084]}
                 rotation={[-Math.PI, 0, -Math.PI]}
-                scale={0.025}
+                scale={0.06}
               />
             </FactsModalTrigger>
             <FactsModalTrigger factName="magnetometer" disable={!isExploded}>
@@ -236,19 +236,19 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
                   castShadow
                   receiveShadow
                   geometry={nodes.Object_54.geometry}
-                  material={materials.BlackPlastic_Material}
-                  position={[0.904, 3.994, -1.082]}
+                  material={materials['Thruster_Material.001']}
+                  position={[1.16, 4.2, -1.082]}
                   rotation={[-Math.PI, 0, -Math.PI]}
-                  scale={0.025}
+                  scale={0.06}
                 />
                 <mesh
                   castShadow
                   receiveShadow
                   geometry={nodes.Object_57.geometry}
-                  material={materials.M_03___Default}
-                  position={[0.904, 3.655, -1.082]}
+                  material={materials['Thruster_Material.001']}
+                  position={[1.16, 3.8, -1.082]}
                   rotation={[-Math.PI, 0, -Math.PI]}
-                  scale={0.025}
+                  scale={0.06}
                 />
               </group>
             </FactsModalTrigger>
@@ -258,19 +258,19 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
                 castShadow
                 receiveShadow
                 geometry={nodes.Object_70.geometry}
-                material={materials.Box_Material}
-                position={[-1.014, 4.416, -1.086]}
+                material={materials['Thruster_Material.001']}
+                position={[-1.15, 4.7, -1.086]}
                 rotation={[-Math.PI, 0, -Math.PI]}
-                scale={0.025}
+                scale={0.06}
               />
               <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.Object_73.geometry}
-                material={materials.M_15___Default}
-                position={[-1.014, 4.307, -1.148]}
+                material={materials['Thruster_Material.001']}
+                position={[-1.14, 4.407, -1.148]}
                 rotation={[-Math.PI / 2, 0, 0]}
-                scale={0.025}
+                scale={0.07}
               />
             </group>
           </>
@@ -318,9 +318,9 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
                 receiveShadow
                 geometry={nodes.Object_76.geometry}
                 material={materials.M_15___Default}
-                position={[0.074, 1.85, -1.3]}
+                position={[0.074, 1.85, -1.42]}
                 rotation={[-Math.PI, 0, -Math.PI]}
-                scale={0.025}
+                scale={0.05}
               />
             </FactsModalTrigger>
           </>
@@ -375,7 +375,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         startPosition={[0, 0, 0]}
         startRotation={[0, 0, 0]}
         explodedPosition={[-2.5, 0, 0]}
-        explodedRotation={[degreesToRadians(-150), 0, 0]}
+        explodedRotation={[degreesToRadians(360), 0, 0]}
         unExplodeDelay={600}
       >
         <group>
@@ -401,7 +401,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         startPosition={[0, 0, 0]}
         startRotation={[0, 0, 0]}
         explodedPosition={[2.5, 0, 0]}
-        explodedRotation={[degreesToRadians(-150), 0, 0]}
+        explodedRotation={[degreesToRadians(360), 0, 0]}
         unExplodeDelay={600}
       >
         <group>
@@ -433,8 +433,8 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
       >
         <Box
           position={[0, 1, -1.2]}
-          scale={[0.1, 2.5, 2.5]}
-          material={materials.SolarPanelFrrame_Material}
+          scale={[0.098, 2.48, 2.48]}
+          material={materials['Thruster_Material.001']}
           rotation={[Math.PI / 2, 0, Math.PI / 2]}
         ></Box>
       </ExplodeElement>
@@ -449,8 +449,8 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
       >
         <Box
           position={[1.2, 0.95, 0]}
-          scale={[0.1, 2.5, 2.5]}
-          material={materials.SolarPanelFrrame_Material}
+          scale={[0.098, 2.48, 2.48]}
+          material={materials['Thruster_Material.001']}
         ></Box>
       </ExplodeElement>
       {/* left box */}
@@ -464,16 +464,16 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
       >
         <Box
           position={[-1.2, 0.95, 0]}
-          scale={[0.1, 2.5, 2.5]}
-          material={materials.SolarPanelFrrame_Material}
+          scale={[0.098, 2.48, 2.48]}
+          material={materials['Thruster_Material.001']}
           rotation={[Math.PI / 2, 0, 0]}
         ></Box>
       </ExplodeElement>
       {/* bottom box will not move */}
       <Box
         position={[0, -0.3, 0]}
-        scale={[0.1, 2.5, 2.5]}
-        material={materials.SolarPanelFrrame_Material}
+        scale={[0.098, 2.48, 2.48]}
+        material={materials['Thruster_Material.001']}
         rotation={[Math.PI / 2, Math.PI / 2, 0]}
       ></Box>
       {/* top box */}
@@ -487,8 +487,8 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
       >
         <Box
           position={[0, 2.2, 0]}
-          scale={[0.1, 2.5, 2.5]}
-          material={materials.SolarPanelFrrame_Material}
+          scale={[0.098, 2.48, 2.48]}
+          material={materials['Thruster_Material.001']}
           rotation={[Math.PI / 2, Math.PI / 2, 0]}
         ></Box>
       </ExplodeElement>
@@ -502,9 +502,9 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         unExplodeDelay={150}
       >
         <Box
-          position={[0, 1, 1.2]}
-          scale={[0.1, 2.5, 2.5]}
-          material={materials.SolarPanelFrrame_Material}
+          position={[0, 1, 1.22]}
+          scale={[0.098, 2.48, 2.48]}
+          material={materials['Thruster_Material.001']}
           rotation={[Math.PI / 2, 0, Math.PI / 2]}
         ></Box>
       </ExplodeElement>

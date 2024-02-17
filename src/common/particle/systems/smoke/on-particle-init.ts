@@ -22,7 +22,7 @@ const onParticleInit: OnParticleInitFn = () => ({
   meshRotation: new Euler(0, 0, 0),
   meshScale: new Vector3().setScalar(randomRange(1, 2)),
   timeAlive: 0,
-  speed: randomRange(0.001, 0.005)
+  speed: randomRange(0.001, 0.008)
 });
 
 export default onParticleInit;

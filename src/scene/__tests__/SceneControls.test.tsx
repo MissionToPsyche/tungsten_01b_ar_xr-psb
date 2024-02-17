@@ -4,6 +4,7 @@ import { expect } from 'vitest';
 import { AnimationProvider } from '../../animations/AnimationProvider.tsx';
 import SceneControls from '../SceneControls.tsx';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { AudioProvider } from '../../audio/AudioProvider.tsx';
 
 const onChangeScene = vi.fn();
 const onRestart = vi.fn();
@@ -23,14 +24,16 @@ const setup = (
   prevTransition?: SceneTransitionConfig
 ) =>
   render(
-    <AnimationProvider>
-      <SceneControls
-        nextSceneTransition={nextTransition}
-        previousSceneTransition={prevTransition}
-        onChangeScene={onChangeScene}
-        onRestart={onRestart}
-      />
-    </AnimationProvider>
+    <AudioProvider>
+      <AnimationProvider>
+        <SceneControls
+          nextSceneTransition={nextTransition}
+          previousSceneTransition={prevTransition}
+          onChangeScene={onChangeScene}
+          onRestart={onRestart}
+        />
+      </AnimationProvider>
+    </AudioProvider>
   );
 
 describe('<SceneControls/>', () => {

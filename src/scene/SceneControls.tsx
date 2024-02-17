@@ -21,15 +21,20 @@ const SceneTransitionButton: React.FC<{
 
   useEffect(() => {
     if (transitionConfig.animation != null) {
-      registerAnimation(transitionConfig.animation, () => {
-        onClick(transitionConfig.toScene);
-      });
+      registerAnimation(
+        transitionConfig.animation,
+        () => {
+          onClick(transitionConfig.toScene);
+        },
+        transitionConfig.audio
+      );
     }
   }, [
     onClick,
     registerAnimation,
     transitionConfig.animation,
-    transitionConfig.toScene
+    transitionConfig.toScene,
+    transitionConfig.audio
   ]);
 
   const onClickButton = useCallback(() => {

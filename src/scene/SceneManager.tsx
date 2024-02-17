@@ -14,6 +14,7 @@ import useSceneConfig from './utils/useSceneConfig.ts';
 import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
 import { OrbitControls, Stars } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
+import useAudio from '../audio/use-audio.ts';
 
 /**
  * Manages AR scenes.
@@ -22,6 +23,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
   const config = useSceneConfig();
   const [currentScene, setCurrentScene] = useState(config.defaultScene);
   const { clearAnimations } = useAnimation();
+  const { setEnabled } = useAudio();
 
   const onRestart = useCallback(() => {
     clearAnimations();
@@ -35,6 +37,8 @@ const SceneManager: ViewComponent = ({ changeView }) => {
     nextSceneTransition
   } = config.scenes[currentScene];
 
+  // Set audio state
+  setEnabled(!config.disableAudio);
   return (
     <LoaderProvider>
       <LoaderTracker />
@@ -50,7 +54,17 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         <ARRenderSizeSynchronizer />
         <RenderIf shouldRender={config.disableAr}>
           <color attach="background" args={['#2e4371']} />
-          <OrbitControls zoomSpeed={0.8} rotateSpeed={0.8} panSpeed={0.5} />
+          <OrbitControls
+            zoomSpeed={0.8}
+            rotateSpeed={0.8}
+            panSpeed={0.5}
+            minAzimuthAngle={-Math.PI / 1.2}
+            maxAzimuthAngle={Math.PI / 1.2}
+            minPolarAngle={Math.PI / 2.5}
+            maxPolarAngle={Math.PI / 2}
+            maxZoom={0.04}
+            maxDistance={30}
+          />
           <Stars
             radius={50}
             depth={50}

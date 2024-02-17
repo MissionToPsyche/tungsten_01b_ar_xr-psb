@@ -1,7 +1,8 @@
 import { PropsWithChildren, useState } from 'react';
-import ModalContext from './animation-context';
+import AnimationContext from './animation-context';
 import AnimationName from './types/animation-name';
 import AnimationData from './types/animation-data';
+import useAudio from '../audio/use-audio';
 
 /**
  * Animation provider that manages the state of any animations within a scene.
@@ -12,6 +13,7 @@ export const AnimationProvider: React.FC<PropsWithChildren> = ({
   const [registry, setRegistry] = useState<
     Record<AnimationName, AnimationData>
   >({} as Record<AnimationName, AnimationData>);
+  const { loadAudio, stopAudio } = useAudio();
 
   /**
    * Retrieves the active state of the specified animation, if registered.
@@ -34,7 +36,8 @@ export const AnimationProvider: React.FC<PropsWithChildren> = ({
    */
   const registerAnimation = (
     animationName: AnimationName,
-    callback?: () => void
+    callback?: () => void,
+    audio?: string
   ) => {
     // Verify the animation isn't already registered
     if (isRegistered(animationName, false)) {
@@ -44,7 +47,8 @@ export const AnimationProvider: React.FC<PropsWithChildren> = ({
       ...reg,
       [animationName]: {
         active: false,
-        onComplete: callback
+        onComplete: callback,
+        audioFile: audio
       }
     }));
   };
@@ -55,6 +59,10 @@ export const AnimationProvider: React.FC<PropsWithChildren> = ({
    */
   const startAnimation = (animationName: AnimationName) => {
     if (isRegistered(animationName)) {
+      const { [animationName]: animation } = registry;
+      if (animation.audioFile) {
+        loadAudio(animation.audioFile, true);
+      }
       setRegistry((reg) => ({
         ...reg,
         [animationName]: {
@@ -74,6 +82,10 @@ export const AnimationProvider: React.FC<PropsWithChildren> = ({
     if (isRegistered(animationName)) {
       // Pull the animation from the registry
       const { [animationName]: animation, ...remaining } = registry;
+      // Stop any audio
+      if (animation.audioFile) {
+        stopAudio();
+      }
       // Call the completion callback if available
       animation.onComplete?.();
       // Remove animation from registry
@@ -112,7 +124,7 @@ export const AnimationProvider: React.FC<PropsWithChildren> = ({
   };
 
   return (
-    <ModalContext.Provider
+    <AnimationContext.Provider
       value={{
         registerAnimation,
         isAnimationActive,
@@ -122,6 +134,6 @@ export const AnimationProvider: React.FC<PropsWithChildren> = ({
       }}
     >
       {children}
-    </ModalContext.Provider>
+    </AnimationContext.Provider>
   );
 };

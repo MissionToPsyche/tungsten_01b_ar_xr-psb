@@ -5,6 +5,7 @@ import theme from './common/theme.ts';
 import ModalProvider from './common/modal/ModalProvider.tsx';
 import { AnimationProvider } from './animations/AnimationProvider.tsx';
 import AppErrorBoundary from './error/AppErrorBoundary.tsx';
+import { AudioProvider } from './audio/AudioProvider.tsx';
 import { SettingsProvider } from './view/views/modal/SettingsProvider.tsx';
 
 function App() {
@@ -12,14 +13,17 @@ function App() {
     <ChakraProvider theme={theme} resetCSS={false}>
       <AppErrorBoundary>
         <ModalProvider>
-          <AnimationProvider>
-            <SettingsProvider>
-              <ViewManager />
-            </SettingsProvider>
-          </AnimationProvider>
+          <AudioProvider>
+            <AnimationProvider>
+              <SettingsProvider>
+                <ViewManager />
+              </SettingsProvider>
+            </AnimationProvider>
+          </AudioProvider>
         </ModalProvider>
       </AppErrorBoundary>
     </ChakraProvider>
   );
 }
+
 export default App;
