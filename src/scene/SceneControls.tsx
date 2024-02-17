@@ -76,12 +76,14 @@ const SceneTransitionButton: React.FC<{
   );
 };
 
-const SceneControls: React.FC<{
+export interface SceneControlsProps {
   onChangeScene: (sceneName: SceneName) => void;
   onRestart: () => void;
   previousSceneTransition?: SceneTransitionConfig;
   nextSceneTransition?: SceneTransitionConfig;
-}> = ({
+}
+
+const SceneControls: React.FC<SceneControlsProps> = ({
   onChangeScene,
   onRestart,
   previousSceneTransition,

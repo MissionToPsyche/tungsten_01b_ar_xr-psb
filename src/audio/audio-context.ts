@@ -3,7 +3,7 @@ import { createContext } from 'react';
 /**
  * Context type for audio
  */
-interface AudioContextType {
+export interface AudioContextType {
   /**
    * Loads an audio file for playback
    * @param src The path to the audio file
