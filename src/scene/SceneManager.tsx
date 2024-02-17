@@ -26,7 +26,6 @@ const SceneManager: ViewComponent = ({ changeView }) => {
   const [transitioning, setTransitioning] = useState(false);
   const { clearAnimations } = useAnimation();
   const { setEnabled } = useAudio();
-  const cameraRef = useRef<THREE.Camera | null>(null);
   const orbitControls = useRef<OrbitControlsImpl>(null);
 
   const onRestart = useCallback(() => {
@@ -54,10 +53,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
       <LoaderTracker />
       <ARCanvas
         arEnabled={!config.disableAr}
-        onCreated={(state) => {
-          fitGlToWindow(state);
-          cameraRef.current = state.camera;
-        }}
+        onCreated={fitGlToWindow}
         cameraParametersUrl={config.cameraParametersUrl}
         gl={{ logarithmicDepthBuffer: true }}
         camera={
