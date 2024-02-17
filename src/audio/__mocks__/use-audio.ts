@@ -6,7 +6,8 @@ const value: AudioContextType = {
   pauseAudio: vi.fn(),
   playAudio: vi.fn(),
   setEnabled: vi.fn(),
-  stopAudio: vi.fn()
+  stopAudio: vi.fn(),
+  enabled: false
 };
 
 const useAudio = vi.fn(() => value);

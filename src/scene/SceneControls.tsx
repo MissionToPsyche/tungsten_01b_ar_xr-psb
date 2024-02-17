@@ -6,6 +6,7 @@ import RenderIf from '../common/components/RenderIf.tsx';
 import useAnimation from '../animations/use-animation.ts';
 import { MdOutlineArrowBack, MdOutlineArrowForward } from 'react-icons/md';
 import { VscDebugRestart } from 'react-icons/vsc';
+import MenuBar from '../common/components/MenuBar.tsx';
 
 const SceneTransitionButton: React.FC<{
   transitionConfig: SceneTransitionConfig;
@@ -113,6 +114,7 @@ const SceneControls: React.FC<SceneControlsProps> = ({
 
   return (
     <>
+      <MenuBar hideArButton />
       <Flex
         flexDirection={'row'}
         position="absolute"

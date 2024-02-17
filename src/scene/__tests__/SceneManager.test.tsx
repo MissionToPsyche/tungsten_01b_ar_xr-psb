@@ -13,6 +13,7 @@ let onChangeSceneFn: SceneControlsProps['onChangeScene'];
 // The following mocks are required because they render things that are not compatible with ReactThreeTestRenderer
 vi.mock('../../animations/use-animation.ts');
 vi.mock('../../audio/use-audio.ts');
+vi.mock('../../settings/use-settings.ts');
 vi.mock('../SceneControls.tsx', () => ({
   default: ({ onChangeScene }: SceneControlsProps) => {
     onChangeSceneFn = onChangeScene;

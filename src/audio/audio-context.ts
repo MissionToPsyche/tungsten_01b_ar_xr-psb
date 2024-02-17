@@ -40,7 +40,13 @@ export interface AudioContextType {
    * Enables or disables audio
    */
   setEnabled: (state: boolean) => void;
+
+  /**
+   * Indicates whether audio is enabled
+   */
+  enabled: boolean;
 }
+
 const AudioContext = createContext<AudioContextType | null>(null);
 
 export default AudioContext;

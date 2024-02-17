@@ -15,6 +15,7 @@ import {
 import { TimeLine } from '../../artifacts/TimeLine.tsx';
 import { useWindowSize } from '@uidotdev/usehooks';
 import AlertErrorBoundary from '../../error/AlertErrorBoundary.tsx';
+import MenuBar from '../../common/components/MenuBar.tsx';
 
 /**
  * Landing page for the application, informs the user about the application
@@ -34,6 +35,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
 
   return (
     <Flex height={`${windowHeight}px`} flexDir="column" p={6}>
+      <MenuBar />
       <Image
         src="/assets/images/psyche-badge-outline-color.svg"
         alt="Psyche Logo"

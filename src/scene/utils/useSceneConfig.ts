@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { SceneConfig } from '../types/scene-config.ts';
 import getSceneConfig from '../get-scene-config.ts';
+import useSettings from '../../settings/use-settings.ts';
 
 const isArSupported = (): boolean => {
   try {
@@ -20,6 +21,7 @@ const isArSupported = (): boolean => {
 
 const useSceneConfig = (): SceneConfig => {
   const [arSupported, setArSupported] = useState(true);
+  const { arEnabled } = useSettings();
 
   useEffect(() => {
     const isSupported = isArSupported();
@@ -28,12 +30,13 @@ const useSceneConfig = (): SceneConfig => {
 
   return useMemo(() => {
     const originalConfig = getSceneConfig();
+    const disableAr = !arSupported || originalConfig.disableAr || !arEnabled;
 
     return {
       ...originalConfig,
-      disableAr: arSupported ? originalConfig.disableAr : false
+      disableAr
     };
-  }, [arSupported]);
+  }, [arEnabled, arSupported]);
 };
 
 export default useSceneConfig;

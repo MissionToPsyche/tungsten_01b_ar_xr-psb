@@ -34,16 +34,16 @@ const LaunchScene: SceneComponent = () => (
       color={'#441359'}
     />
     <spotLight intensity={1} position={[11, 40, -25]} color={'#441359'} />
-      <LaunchPadModel position={[-1, -6, 1]} scale={padScale} />
-      <LiftoffAnimation>
-        <FactsModalTrigger factName="falconHeavy">
-          <FalconHeavyWithLogos
-            position={[1.2, -4, 1]}
-            scale={falconScale}
-            rotation={[0, 0, 0]}
-          />
-        </FactsModalTrigger>
-      </LiftoffAnimation>
+    <LaunchPadModel position={[-1, -6, 1]} scale={padScale} />
+    <LiftoffAnimation>
+      <FactsModalTrigger factName="falconHeavy">
+        <FalconHeavyWithLogos
+          position={[1.2, -4, 1]}
+          scale={falconScale}
+          rotation={[0, 0, 0]}
+        />
+      </FactsModalTrigger>
+    </LiftoffAnimation>
     <FactsModalTrigger factName="launch">
       <LaunchDateModel
         position={[11, -5, 6.5]}
