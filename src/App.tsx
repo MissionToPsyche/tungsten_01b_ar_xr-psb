@@ -6,6 +6,7 @@ import ModalProvider from './common/modal/ModalProvider.tsx';
 import { AnimationProvider } from './animations/AnimationProvider.tsx';
 import AppErrorBoundary from './error/AppErrorBoundary.tsx';
 import { AudioProvider } from './audio/AudioProvider.tsx';
+import SettingsProvider from './settings/SettingsProvider.tsx';
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
         <ModalProvider>
           <AudioProvider>
             <AnimationProvider>
-              <ViewManager />
+              <SettingsProvider>
+                <ViewManager />
+              </SettingsProvider>
             </AnimationProvider>
           </AudioProvider>
         </ModalProvider>
@@ -22,4 +25,5 @@ function App() {
     </ChakraProvider>
   );
 }
+
 export default App;

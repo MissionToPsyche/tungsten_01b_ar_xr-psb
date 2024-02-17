@@ -98,6 +98,11 @@ E2E tests are ran with [playwright](https://playwright.dev/).
 npm run build
 ```
 
+## Using Build Script Instead
+
+1. chmod +x build.bash # run this one first
+2. ./build.bash # run this one second
+
 ## Generating React Components From Models
 
 1. Add your `.glb/gltf` file to `./public/assets/models`

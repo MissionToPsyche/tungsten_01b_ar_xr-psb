@@ -5,11 +5,22 @@ import SceneName from '../types/scene-name.ts';
 import SceneManager from '../SceneManager.tsx';
 import React from 'react';
 import ReactThreeTestRenderer from '@react-three/test-renderer';
-import { AnimationProvider } from '../../animations/AnimationProvider.tsx';
-import { AudioProvider } from '../../audio/AudioProvider.tsx';
 import { Vector3 } from 'three';
+import { SceneControlsProps } from '../SceneControls.tsx';
+import { act } from '@testing-library/react';
+
+let onChangeSceneFn: SceneControlsProps['onChangeScene'];
 
 // The following mocks are required because they render things that are not compatible with ReactThreeTestRenderer
+vi.mock('../../animations/use-animation.ts');
+vi.mock('../../audio/use-audio.ts');
+vi.mock('../../settings/use-settings.ts');
+vi.mock('../SceneControls.tsx', () => ({
+  default: ({ onChangeScene }: SceneControlsProps) => {
+    onChangeSceneFn = onChangeScene;
+    return <></>;
+  }
+}));
 vi.mock('@artcom/react-three-arjs', () => ({
   ARCanvas: ({ children }: React.PropsWithChildren) => <>{children}</>
 }));
@@ -19,19 +30,8 @@ vi.mock('../../common/components/PersistentARMarker.tsx', () => ({
 vi.mock('../../common/loader/LoaderTracker.tsx', () => ({
   default: ({ children }: React.PropsWithChildren) => <>{children}</>
 }));
-vi.mock('@react-three/drei', async () => ({
-  ...(await vi.importActual<object>('@react-three/drei')),
-  Text: (props: { children: string }) => <group name={props.children} />
-}));
 vi.mock('../../common/components/ModelOutliner.tsx', () => ({
   default: ({ children }: React.PropsWithChildren) => <>{children}</>
-}));
-vi.mock('@chakra-ui/react', async () => ({
-  ...(await vi.importActual<object>('@chakra-ui/react')),
-  Button: (props: Record<string, string>) => (
-    <group {...props} name={props.children} />
-  ),
-  Stack: (props: Record<never, never>) => <group {...props} />
 }));
 // End compatibility mocks
 
@@ -39,7 +39,7 @@ vi.mock('../get-scene-config.ts');
 vi.mock('../../common/hooks/use-sync-ar-to-window-size.ts');
 
 const mockConfig: SceneConfig = {
-  defaultScene: SceneName.LAUNCH,
+  defaultScene: SceneName.ASSEMBLY,
   scenes: {
     [SceneName.VIBRATION_TESTING]: {
       component: () => <group name="vibration-scene" />,
@@ -74,26 +74,10 @@ const mockConfig: SceneConfig = {
       },
       previousSceneTransition: {
         toScene: SceneName.ASSEMBLY,
-        buttonText: 'Prev Scene'
-      }
-    },
-    [SceneName.CRUISE]: {
-      component: () => <group name="cruise-scene" />,
-      markerUrl: '/hello',
-      previousSceneTransition: {
-        toScene: SceneName.LAUNCH,
-        buttonText: 'Prev Scene'
-      }
-    },
-    [SceneName.ORBIT]: {
-      component: () => <group name="orbit-scene" />,
-      markerUrl: '/hello',
-      previousSceneTransition: {
-        toScene: SceneName.CRUISE,
-        buttonText: 'Prev Scene'
+        buttonText: 'Previous Scene'
       }
     }
-  },
+  } as unknown as SceneConfig['scenes'],
   cameraParametersUrl: '/hello',
   disableAr: false,
   disableAudio: true,
@@ -104,46 +88,23 @@ const mockConfig: SceneConfig = {
 const changeView = vi.fn();
 
 const setup = () =>
-  ReactThreeTestRenderer.create(
-    <AudioProvider>
-      <AnimationProvider>
-        <SceneManager changeView={changeView} />
-      </AnimationProvider>
-    </AudioProvider>
-  );
+  ReactThreeTestRenderer.create(<SceneManager changeView={changeView} />);
 
 describe('<SceneManager/>', () => {
   it('should render the default scene initially', async () => {
     const renderer = await setup();
 
-    expect(renderer.scene.findByProps({ name: 'launch-scene' })).toBeDefined();
+    expect(
+      renderer.scene.findByProps({ name: 'assemble-scene' })
+    ).toBeDefined();
   });
 
-  it('should render the next scene when the next scene button is clicked', async () => {
+  it('should transition scenes when triggered', async () => {
     const renderer = await setup();
 
-    await renderer.fireEvent(
-      renderer.scene.findByProps({ name: 'Next Scene' }),
-      'click'
-    );
-
-    expect(renderer.scene.findByProps({ name: 'cruise-scene' })).toBeDefined();
-  });
-
-  it('should render the previous scene when the next scene button is clicked', async () => {
-    const renderer = await setup();
-
-    await renderer.fireEvent(
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      renderer.scene.findByProps({ name: 'Next Scene' }).parent!,
-      'click'
-    );
-
-    await renderer.fireEvent(
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      renderer.scene.findByProps({ name: 'Prev Scene' }).parent!,
-      'click'
-    );
+    act(() => {
+      onChangeSceneFn(SceneName.LAUNCH);
+    });
 
     expect(renderer.scene.findByProps({ name: 'launch-scene' })).toBeDefined();
   });
