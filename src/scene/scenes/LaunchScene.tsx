@@ -8,7 +8,6 @@ import { LaunchSceneName } from '../../artifacts/LaunchSceneName.tsx';
 import LiftoffAnimation from '../../animations/LiftoffAnimation.tsx';
 import { LaunchPadModel } from '../../artifacts/LaunchPadModel.jsx';
 import { Cloud, Clouds, Sky } from '@react-three/drei';
-import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 
 const padScale = filledVector(0.38);
 const falconScale = filledVector(0.38);
@@ -35,7 +34,6 @@ const LaunchScene: SceneComponent = () => (
       color={'#441359'}
     />
     <spotLight intensity={1} position={[11, 40, -25]} color={'#441359'} />
-    <ModelSpinner speed={0.15}>
       <LaunchPadModel position={[-1, -6, 1]} scale={padScale} />
       <LiftoffAnimation>
         <FactsModalTrigger factName="falconHeavy">
@@ -46,7 +44,6 @@ const LaunchScene: SceneComponent = () => (
           />
         </FactsModalTrigger>
       </LiftoffAnimation>
-    </ModelSpinner>
     <FactsModalTrigger factName="launch">
       <LaunchDateModel
         position={[11, -5, 6.5]}
