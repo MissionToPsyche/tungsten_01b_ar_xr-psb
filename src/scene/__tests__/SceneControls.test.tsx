@@ -10,7 +10,6 @@ vi.mock('../../settings/use-settings.ts');
 
 const onChangeScene = vi.fn();
 const onRestart = vi.fn();
-const onTransition = vi.fn();
 
 const mockNextSceneTransition: SceneTransitionConfig = {
   toScene: SceneName.LAUNCH,
@@ -30,11 +29,13 @@ const setup = (
     <AudioProvider>
       <AnimationProvider>
         <SceneControls
-          onTransition={onTransition}
           nextSceneTransition={nextTransition}
           previousSceneTransition={prevTransition}
           onChangeScene={onChangeScene}
           onRestart={onRestart}
+          transitionToNext={false}
+          transitionToPrev={false}
+          transitioning={false}
         />
       </AnimationProvider>
     </AudioProvider>
