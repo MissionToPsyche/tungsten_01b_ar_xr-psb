@@ -28,6 +28,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
   const { setEnabled } = useAudio();
   const cameraRef = useRef<THREE.Camera | null>(null);
   const orbitControls = useRef<OrbitControlsImpl>(null);
+
   const onRestart = useCallback(() => {
     clearAnimations();
     changeView(ViewName.LANDING_PAGE);

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import AudioContext from './audio-context';
 
 /**
- * Hook to retrieve the AnimationContext
+ * Hook to retrieve the AudioContext
  */
 function useAudio() {
   const context = useContext(AudioContext);
