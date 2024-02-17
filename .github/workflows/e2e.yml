@@ -8,10 +8,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Use Node.js 18.18.0
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.18.0
+          node-version: 18.x
           cache: 'npm'
       - name: Install NPM Dependencies
         run: npm ci
