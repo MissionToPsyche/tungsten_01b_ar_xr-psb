@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import LoaderUI from '../LoaderUI.tsx';
 import { expect } from 'vitest';
 
@@ -34,6 +34,4 @@ describe('<LoaderUI/>', () => {
       '75'
     );
   });
-
-  afterEach(cleanup);
 });

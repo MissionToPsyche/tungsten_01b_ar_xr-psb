@@ -1,7 +1,7 @@
-import { cleanup, fireEvent, render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import ExplodeTrigger from '../ExplodeTrigger.tsx';
 import useExplode from '../use-explode.ts';
-import { describe, it, afterEach } from 'vitest';
+import { describe, it } from 'vitest';
 
 vi.mock('../use-explode.ts');
 
@@ -25,9 +25,5 @@ describe('<ExplodeTrigger/>', () => {
     fireEvent.click(getByText('ExplodeTriggerChild'));
 
     expect(useExplode().toggleExploded).toHaveBeenCalled();
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 });

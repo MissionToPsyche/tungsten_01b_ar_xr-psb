@@ -1,5 +1,5 @@
 import { mockResizeObserver } from 'jsdom-testing-mocks';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import LandingView from '../LandingView.tsx';
 import { expect, vi } from 'vitest';
 import ViewName from '../../types/view-name.ts';
@@ -39,8 +39,4 @@ describe('<LandingView/>', () => {
 
     expect(results.violations.length).toEqual(0);
   });
-});
-
-afterEach(() => {
-  cleanup();
 });
