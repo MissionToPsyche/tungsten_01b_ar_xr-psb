@@ -13,7 +13,7 @@ const setup = () =>
       startRotation={[0, 0, 0]}
       explodedRotation={[1, 1, 1]}
     >
-      <p>Hello</p>
+      <p>ExplodeElement Child</p>
     </ExplodeElement>
   );
 
@@ -21,13 +21,13 @@ describe('<ExplodeElement/>', () => {
   it('should render the provided children', () => {
     setup();
 
-    expect(screen.getByText('Hello')).toBeInTheDocument();
+    expect(screen.getByText('ExplodeElement Child')).toBeInTheDocument();
   });
 
   it('should start at the start rotation and position', () => {
     setup();
 
-    const group = screen.getByText('Hello').parentElement;
+    const group = screen.getByText('ExplodeElement Child').parentElement;
     expect(group).toHaveAttribute('position', '0,0,0');
     expect(group).toHaveAttribute('rotation', '0,0,0');
   });
@@ -39,7 +39,7 @@ describe('<ExplodeElement/>', () => {
 
     setup();
 
-    const group = screen.getByText('Hello').parentElement;
+    const group = screen.getByText('ExplodeElement Child').parentElement;
     expect(group).toHaveAttribute('position', '1,1,1');
     expect(group).toHaveAttribute('rotation', '1,1,1');
   });

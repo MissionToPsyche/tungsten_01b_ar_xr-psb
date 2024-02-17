@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import SceneName from './types/scene-name.ts';
 import { SceneTransitionConfig } from './types/scene-config.ts';
-import { Button, Stack } from '@chakra-ui/react';
-import RenderIf from '../common/components/RenderIf.tsx';
+import { Button, Flex, Spacer } from '@chakra-ui/react';
 import useAnimation from '../animations/use-animation.ts';
+import { MdOutlineArrowBack, MdOutlineArrowForward } from 'react-icons/md';
 import MenuBar from '../common/components/MenuBar.tsx';
 
 const SceneTransitionButton: React.FC<{
@@ -11,11 +11,13 @@ const SceneTransitionButton: React.FC<{
   onClick: (toScene: SceneName) => void;
   isSceneTransitioning: boolean;
   isSceneTransitioningFromThis: boolean;
+  direction: 'forward' | 'back';
 }> = ({
   transitionConfig,
   onClick,
   isSceneTransitioning,
-  isSceneTransitioningFromThis
+  isSceneTransitioningFromThis,
+  direction
 }) => {
   const { registerAnimation, startAnimation } = useAnimation();
 
@@ -53,12 +55,22 @@ const SceneTransitionButton: React.FC<{
   return (
     <Button
       onClick={onClickButton}
-      w="full"
+      w="lg"
       colorScheme="magenta"
       isLoading={isSceneTransitioningFromThis}
       isDisabled={isSceneTransitioning && !isSceneTransitioningFromThis}
     >
-      {transitionConfig.buttonText}
+      {direction === 'back' ? (
+        <>
+          <MdOutlineArrowBack />
+          {transitionConfig.buttonText}
+        </>
+      ) : (
+        <>
+          {transitionConfig.buttonText}
+          <MdOutlineArrowForward />
+        </>
+      )}
     </Button>
   );
 };
@@ -100,37 +112,43 @@ const SceneControls: React.FC<SceneControlsProps> = ({
 
   return (
     <>
-      <MenuBar hideArButton />
-      <Stack direction="row" position="absolute" bottom={2} left={2} right={2}>
+      <MenuBar
+        hideArButton
+        onClickRestartButton={onRestart}
+        disableRestartButton={isTransitioning}
+        hideRestartButton={!previousSceneTransition && !nextSceneTransition}
+      />
+      <Flex
+        flexDirection={'row'}
+        position="absolute"
+        bottom={4}
+        left={2}
+        right={2}
+        alignItems={'center'}
+        alignContent={'center'}
+        alignSelf={'center'}
+        gap={1}
+      >
         {previousSceneTransition && (
           <SceneTransitionButton
             transitionConfig={previousSceneTransition}
             onClick={onChangeScene}
             isSceneTransitioning={isTransitioning}
             isSceneTransitioningFromThis={isTransitioningToPrevious}
+            direction="back"
           />
         )}
-        <RenderIf
-          shouldRender={!!previousSceneTransition || !!nextSceneTransition}
-        >
-          <Button
-            onClick={onRestart}
-            w="full"
-            colorScheme="gray"
-            isDisabled={isTransitioning}
-          >
-            Restart
-          </Button>
-        </RenderIf>
+        <Spacer />
         {nextSceneTransition && (
           <SceneTransitionButton
             transitionConfig={nextSceneTransition}
             onClick={onChangeScene}
             isSceneTransitioning={isTransitioning}
             isSceneTransitioningFromThis={isTransitioningToNext}
+            direction="forward"
           />
         )}
-      </Stack>
+      </Flex>
     </>
   );
 };

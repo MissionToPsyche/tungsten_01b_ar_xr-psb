@@ -35,7 +35,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
 
   return (
     <Flex height={`${windowHeight}px`} flexDir="column" p={6}>
-      <MenuBar />
+      <MenuBar hideRestartButton />
       <Image
         src="/assets/images/psyche-badge-outline-color.svg"
         alt="Psyche Logo"
