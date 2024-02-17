@@ -4,19 +4,21 @@ import { SceneTransitionConfig } from './types/scene-config.ts';
 import { Button, Flex, Spacer } from '@chakra-ui/react';
 import RenderIf from '../common/components/RenderIf.tsx';
 import useAnimation from '../animations/use-animation.ts';
-import { MdOutlineArrowForward, MdOutlineArrowBack } from 'react-icons/md';
-import RestartButton from './RestartButton.tsx';
+import { MdOutlineArrowBack, MdOutlineArrowForward } from 'react-icons/md';
+import { VscDebugRestart } from 'react-icons/vsc';
 
 const SceneTransitionButton: React.FC<{
   transitionConfig: SceneTransitionConfig;
   onClick: (toScene: SceneName) => void;
   isSceneTransitioning: boolean;
   isSceneTransitioningFromThis: boolean;
+  direction: 'forward' | 'back';
 }> = ({
   transitionConfig,
   onClick,
   isSceneTransitioning,
-  isSceneTransitioningFromThis
+  isSceneTransitioningFromThis,
+  direction
 }) => {
   const { registerAnimation, startAnimation } = useAnimation();
 
@@ -59,9 +61,7 @@ const SceneTransitionButton: React.FC<{
       isLoading={isSceneTransitioningFromThis}
       isDisabled={isSceneTransitioning && !isSceneTransitioningFromThis}
     >
-      {transitionConfig.buttonText === 'Back to Assembly' ||
-      transitionConfig.buttonText === 'Back to Launch' ||
-      transitionConfig.buttonText === 'Back to Cruise' ? (
+      {direction === 'back' ? (
         <>
           <MdOutlineArrowBack />
           {transitionConfig.buttonText}
@@ -122,6 +122,7 @@ const SceneControls: React.FC<SceneControlsProps> = ({
         alignItems={'center'}
         alignContent={'center'}
         alignSelf={'center'}
+        gap={1}
       >
         {previousSceneTransition && (
           <SceneTransitionButton
@@ -129,6 +130,7 @@ const SceneControls: React.FC<SceneControlsProps> = ({
             onClick={onChangeScene}
             isSceneTransitioning={isTransitioning}
             isSceneTransitioningFromThis={isTransitioningToPrevious}
+            direction="back"
           />
         )}
         <Spacer />
@@ -138,13 +140,23 @@ const SceneControls: React.FC<SceneControlsProps> = ({
             onClick={onChangeScene}
             isSceneTransitioning={isTransitioning}
             isSceneTransitioningFromThis={isTransitioningToNext}
+            direction="forward"
           />
         )}
       </Flex>
       <RenderIf
         shouldRender={!!previousSceneTransition || !!nextSceneTransition}
       >
-        <RestartButton onClick={onRestart} disabled={isTransitioning} />
+        <Button
+          onClick={onRestart}
+          colorScheme="gray"
+          isDisabled={isTransitioning}
+          position="absolute"
+          top={4}
+          right={4}
+        >
+          <VscDebugRestart />
+        </Button>
       </RenderIf>
     </>
   );

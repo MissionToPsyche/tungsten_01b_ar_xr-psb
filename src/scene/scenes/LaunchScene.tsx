@@ -7,7 +7,7 @@ import { LaunchDateModel } from '../../artifacts/LaunchDateModel.tsx';
 import { LaunchSceneName } from '../../artifacts/LaunchSceneName.tsx';
 import LiftoffAnimation from '../../animations/LiftoffAnimation.tsx';
 import { LaunchPadModel } from '../../artifacts/LaunchPadModel.jsx';
-import { Clouds, Cloud, Sky } from '@react-three/drei';
+import { Cloud, Clouds, Sky } from '@react-three/drei';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 
 const padScale = filledVector(0.38);
