@@ -61,7 +61,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
     if (orbitControls.current && isTransitioning) {
       orbitControls.current.reset();
     }
-  }, [config.disableAudio, isTransitioning]);
+  }, [isTransitioning]);
 
   return (
     <LoaderProvider>
