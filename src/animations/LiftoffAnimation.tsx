@@ -20,7 +20,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
   const { isAnimationActive, stopAnimation } = useAnimation();
   const [elapsed, setElapsed] = useState(0);
 
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
     if (groupRef.current == null) {
       return;
     }
@@ -32,7 +32,11 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
         groupRef.current.position.y += delta * elapsed;
       }
 
-      if (elapsed >= 7) {
+      if (elapsed >= 3 && elapsed <= 10) {
+        state.camera.rotation.x += delta * 0.15;
+      }
+
+      if (elapsed >= 14) {
         setElapsed(0);
         stopAnimation(AnimationName.LIFTOFF);
       }
