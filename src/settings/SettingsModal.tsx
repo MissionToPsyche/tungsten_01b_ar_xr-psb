@@ -13,7 +13,6 @@ import {
 } from '@chakra-ui/react';
 import RenderIf from '../common/components/RenderIf.tsx';
 import useSettings from './use-settings.ts';
-import useAudio from '../audio/use-audio.ts';
 
 interface SettingsWindowProps {
   isOpen: boolean;
@@ -21,17 +20,20 @@ interface SettingsWindowProps {
   hideArButton?: boolean;
 }
 
-const SettingsWindow = ({
+const SettingsModal = ({
   isOpen,
   onClose,
   hideArButton
 }: SettingsWindowProps) => {
-  const { enabled: isAudioEnabled, setEnabled: setAudioEnabled } = useAudio();
-  const { arEnabled, toggleAR } = useSettings();
+  const { arEnabled, audioEnabled, setArEnabled, setAudioEnabled } =
+    useSettings();
 
-  const onChangeArToggle = useCallback(() => {
-    toggleAR();
-  }, [toggleAR]);
+  const onChangeArToggle = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setArEnabled(e.target.checked);
+    },
+    [setArEnabled]
+  );
 
   const onChangeAudioToggle = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,8 +67,8 @@ const SettingsWindow = ({
                 Enable Audio?
               </FormLabel>
               <Switch
-                id="ar-audio"
-                isChecked={isAudioEnabled}
+                id="audio-toggle"
+                isChecked={audioEnabled}
                 onChange={onChangeAudioToggle}
               />
             </FormControl>
@@ -77,4 +79,4 @@ const SettingsWindow = ({
   );
 };
 
-export default SettingsWindow;
+export default SettingsModal;

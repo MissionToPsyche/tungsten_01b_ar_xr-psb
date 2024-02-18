@@ -1,4 +1,4 @@
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import ExplodeElement from '../ExplodeElement.tsx';
 import useExplode from '../use-explode.ts';
 import { vi } from 'vitest';
@@ -46,6 +46,5 @@ describe('<ExplodeElement/>', () => {
 
   afterEach(() => {
     vi.clearAllMocks();
-    cleanup();
   });
 });
