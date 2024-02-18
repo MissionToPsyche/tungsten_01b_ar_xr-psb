@@ -79,9 +79,7 @@ const mockConfig: SceneConfig = {
     }
   } as unknown as SceneConfig['scenes'],
   cameraParametersUrl: '/hello',
-  disableAr: false,
-  disableAudio: true,
-  defaultCameraPosition: new Vector3(0, 6, 18)
+  disableAr: false
 };
 
 (getSceneConfig as Mock).mockReturnValue(mockConfig);

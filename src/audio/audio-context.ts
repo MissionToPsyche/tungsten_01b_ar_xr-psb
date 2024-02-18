@@ -35,16 +35,6 @@ export interface AudioContextType {
    * Indicates whether audio is currently playing
    */
   isPlaying: () => boolean;
-
-  /**
-   * Enables or disables audio
-   */
-  setEnabled: (state: boolean) => void;
-
-  /**
-   * Indicates whether audio is enabled
-   */
-  enabled: boolean;
 }
 
 const AudioContext = createContext<AudioContextType | null>(null);

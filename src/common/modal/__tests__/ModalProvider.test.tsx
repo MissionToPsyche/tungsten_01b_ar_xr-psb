@@ -1,13 +1,7 @@
 import { useContext } from 'react';
 import ModalContext from '../modal-context';
 import ModalProvider from '../ModalProvider';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  cleanup
-} from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { expect } from 'vitest';
 import axe from 'axe-core';
 
@@ -75,9 +69,5 @@ describe('<ModalProvider/>', () => {
     const results = await axe.run(container);
 
     expect(results.violations.length).toEqual(0);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 });

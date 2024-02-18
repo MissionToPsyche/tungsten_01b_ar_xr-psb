@@ -1,18 +1,14 @@
-import React, {
-  PropsWithChildren,
-  useCallback,
-  useMemo,
-  useState
-} from 'react';
+import React, { PropsWithChildren, useCallback, useMemo } from 'react';
 import AudioContext from './audio-context';
 import { useAudioPlayer } from 'react-use-audio-player';
+import useSettings from '../settings/use-settings.ts';
 
 /**
  * Audio provider that wraps the useAudioPlayer hook (https://github.com/E-Kuerschner/useAudioPlayer)
  */
 export const AudioProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const { load, play, stop, pause, playing } = useAudioPlayer();
-  const [enabled, setEnabled] = useState(false);
+  const { audioEnabled } = useSettings();
 
   /**
    * Loads audio for playback
@@ -29,22 +25,22 @@ export const AudioProvider: React.FC<PropsWithChildren> = ({ children }) => {
       onStop?: () => void
     ) => {
       load(src, {
-        autoplay: enabled ? autoPlay : false,
+        autoplay: audioEnabled ? autoPlay : false,
         onplay: onPlay,
         onstop: onStop
       });
     },
-    [load, enabled]
+    [load, audioEnabled]
   );
 
   /**
    * Plays the loaded audio file if audio is enabled
    */
   const playAudio = useCallback(() => {
-    if (enabled) {
+    if (audioEnabled) {
       play();
     }
-  }, [enabled, play]);
+  }, [audioEnabled, play]);
 
   /**
    * Indicates if audio is currently playing
@@ -60,11 +56,9 @@ export const AudioProvider: React.FC<PropsWithChildren> = ({ children }) => {
       playAudio,
       pauseAudio: pause,
       stopAudio: stop,
-      isPlaying,
-      setEnabled,
-      enabled
+      isPlaying
     }),
-    [loadAudio, playAudio, pause, stop, isPlaying, setEnabled, enabled]
+    [loadAudio, playAudio, pause, stop, isPlaying]
   );
 
   return (

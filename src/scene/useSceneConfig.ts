@@ -1,23 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
-import { SceneConfig } from '../types/scene-config.ts';
-import getSceneConfig from '../get-scene-config.ts';
-import useSettings from '../../settings/use-settings.ts';
-
-const isArSupported = (): boolean => {
-  try {
-    const canvas = document.createElement('canvas');
-    const isWebGLSupported = !!(
-      canvas.getContext('webgl') ?? canvas.getContext('experimental-webgl')
-    );
-
-    canvas.remove();
-    const isWebRTCSupported = !!navigator.mediaDevices.getUserMedia;
-
-    return isWebGLSupported && isWebRTCSupported;
-  } catch (error) {
-    return false;
-  }
-};
+import { SceneConfig } from './types/scene-config.ts';
+import getSceneConfig from './get-scene-config.ts';
+import useSettings from '../settings/use-settings.ts';
+import isArSupported from './utils/is-ar-supported.ts';
 
 const useSceneConfig = (): SceneConfig => {
   const [arSupported, setArSupported] = useState(true);

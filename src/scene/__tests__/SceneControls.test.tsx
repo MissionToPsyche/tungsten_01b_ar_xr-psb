@@ -3,7 +3,7 @@ import SceneName from '../types/scene-name.ts';
 import { expect, vi } from 'vitest';
 import { AnimationProvider } from '../../animations/AnimationProvider.tsx';
 import SceneControls from '../SceneControls.tsx';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { AudioProvider } from '../../audio/AudioProvider.tsx';
 
 vi.mock('../../settings/use-settings.ts');
@@ -79,6 +79,5 @@ describe('<SceneControls/>', () => {
 
   afterEach(() => {
     vi.clearAllMocks();
-    cleanup();
   });
 });

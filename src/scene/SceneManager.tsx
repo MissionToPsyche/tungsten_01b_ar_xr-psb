@@ -10,11 +10,10 @@ import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchroni
 import useAnimation from '../animations/use-animation.ts';
 import RenderIf from '../common/components/RenderIf.tsx';
 import ModelOutliner from '../common/components/ModelOutliner.tsx';
-import useSceneConfig from './utils/useSceneConfig.ts';
+import useSceneConfig from './useSceneConfig.ts';
 import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
 import { OrbitControls, Stars } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
-import useAudio from '../audio/use-audio.ts';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
 /**
@@ -24,7 +23,6 @@ const SceneManager: ViewComponent = ({ changeView }) => {
   const config = useSceneConfig();
   const [currentScene, setCurrentScene] = useState(config.defaultScene);
   const { isAnimationActive, clearAnimations } = useAnimation();
-  const { setEnabled } = useAudio();
   const orbitControls = useRef<OrbitControlsImpl>(null);
 
   const onRestart = useCallback(() => {
@@ -60,12 +58,10 @@ const SceneManager: ViewComponent = ({ changeView }) => {
   }, [isTransitioningToNext, isTransitioningToPrevious]);
 
   useEffect(() => {
-    setEnabled(!config.disableAudio);
-
     if (orbitControls.current && isTransitioning) {
       orbitControls.current.reset();
     }
-  }, [config.disableAudio, isTransitioning, setEnabled]);
+  }, [config.disableAudio, isTransitioning]);
 
   return (
     <LoaderProvider>

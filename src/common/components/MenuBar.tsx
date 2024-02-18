@@ -1,7 +1,7 @@
 import React from 'react';
 import { HStack, IconButton, useDisclosure } from '@chakra-ui/react';
 import { IoMdSettings } from 'react-icons/io';
-import SettingsWindow from '../../settings/SettingsWindow.tsx';
+import SettingsModal from '../../settings/SettingsModal.tsx';
 import { VscDebugRestart } from 'react-icons/vsc';
 import RenderIf from './RenderIf.tsx';
 
@@ -41,7 +41,7 @@ const MenuBar: React.FC<SettingsProps> = ({
           onClick={onOpenSettings}
         />
       </HStack>
-      <SettingsWindow
+      <SettingsModal
         isOpen={settingsAreOpen}
         onClose={onCloseSettings}
         hideArButton={hideArButton}

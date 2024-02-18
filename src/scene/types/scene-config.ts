@@ -45,6 +45,4 @@ export interface SceneConfig {
   defaultCameraPosition: Vector3;
   // Disable AR if true
   disableAr: boolean;
-  // Disable audio if true
-  disableAudio: boolean;
 }

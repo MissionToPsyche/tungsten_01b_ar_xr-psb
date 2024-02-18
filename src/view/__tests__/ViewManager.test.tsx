@@ -1,5 +1,5 @@
 import { mockResizeObserver } from 'jsdom-testing-mocks';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { expect, it, Mock, vi } from 'vitest';
 import ViewManager from '../ViewManager.tsx';
 import { ViewConfig } from '../types/view-config.ts';
@@ -48,6 +48,4 @@ describe('<ViewManager/>', () => {
 
     expect(screen.getByText('AR Scenes')).toBeInTheDocument();
   });
-
-  afterEach(cleanup);
 });

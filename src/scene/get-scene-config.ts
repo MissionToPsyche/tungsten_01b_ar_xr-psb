@@ -99,9 +99,7 @@ const getSceneConfig = (): SceneConfig => ({
     }
   },
   cameraParametersUrl: 'assets/camera_para.dat',
-  defaultCameraPosition: defaultCameraPosition,
-  disableAr: getBoolFromEnv('VITE_DISABLE_AR'),
-  disableAudio: getBoolFromEnv('VITE_DISABLE_AUDIO')
+  disableAr: getBoolFromEnv('VITE_DISABLE_AR')
 });
 
 export default getSceneConfig;
