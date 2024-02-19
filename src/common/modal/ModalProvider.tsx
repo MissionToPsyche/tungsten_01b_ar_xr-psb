@@ -1,4 +1,5 @@
 import {
+  Image,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -6,10 +7,12 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Spacer,
   useDisclosure
 } from '@chakra-ui/react';
 import React, { PropsWithChildren, useCallback, useState } from 'react';
 import ModalContext from './modal-context';
+import RenderIf from '../components/RenderIf.tsx';
 
 /**
  * Modal provider that manages displaying a modal that can be
@@ -19,11 +22,13 @@ const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalBody, setModalBody] = useState('');
   const [modalTitle, setModalTitle] = useState('');
+  const [modalImage, setModalImage] = useState<string>();
 
   const open = useCallback(
-    (title: string, body: string) => {
+    (title: string, body: string, image?: string) => {
       setModalTitle(title);
       setModalBody(body);
+      setModalImage(image);
       onOpen();
     },
     [onOpen]
@@ -45,7 +50,13 @@ const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
             {modalTitle}
           </ModalHeader>
           <ModalCloseButton backgroundColor="white" />
-          <ModalBody>{modalBody}</ModalBody>
+          <ModalBody>
+            {modalBody}
+            <RenderIf shouldRender={!!modalImage}>
+              <Spacer h={10} />
+              <Image w="full" src={modalImage} alt={`${modalTitle} image`} />
+            </RenderIf>
+          </ModalBody>
           <ModalFooter />
         </ModalContent>
       </Modal>
