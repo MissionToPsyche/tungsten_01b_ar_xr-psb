@@ -62,7 +62,7 @@ const missionFacts: Record<string, MissionFact> = {
     fact: "Psyche launched on SpaceX's Falcon Heavy, Oct 13, 2023."
   },
   // Cruise Scene
-  MarsDate: {
+  marsDate: {
     title: 'Mars Gravity Assist',
     fact: "Harnessing Mars' gravity, Psyche will increase its velocity while minimizing propellant usage."
   },
