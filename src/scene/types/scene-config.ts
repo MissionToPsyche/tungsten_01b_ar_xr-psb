@@ -45,4 +45,6 @@ export interface SceneConfig {
   defaultCameraPosition: Vector3;
   // Disable AR if true
   disableAr: boolean;
+  // X rotation of the marker
+  markerXRotation: number;
 }

@@ -8,7 +8,7 @@ import { LaunchSceneName } from '../../artifacts/LaunchSceneName.tsx';
 import LiftoffAnimation from '../../animations/LiftoffAnimation.tsx';
 import { LaunchPadModel } from '../../artifacts/LaunchPadModel.jsx';
 import { Cloud, Clouds, Sky } from '@react-three/drei';
-import useSceneConfig from '../useSceneConfig.ts';
+import useSceneConfig from '../use-scene-config.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
 
 const padScale = filledVector(0.38);
