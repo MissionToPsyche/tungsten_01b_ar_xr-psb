@@ -5,14 +5,14 @@ import { CruiseName } from '../../artifacts/CruiseName.tsx';
 import { CruiseOrbiter } from '../../artifacts/CruiseOrbiter.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
-import { Mars } from '../../artifacts/Mars.tsx';
+import { Earth } from '../../artifacts/Earth.tsx';
 import { Debris } from '../../artifacts/Debris.tsx';
 
 const dateScale = filledVector(0.3);
 const nameScale = filledVector(1.2);
 const orbiterScale = filledVector(0.75);
-const debrisScale = filledVector(0.2);
-const marsScale = filledVector(45);
+const debrisScale = filledVector(0.15);
+const marsScale = filledVector(25);
 
 const CruiseScene: SceneComponent = () => (
   <>
@@ -36,18 +36,14 @@ const CruiseScene: SceneComponent = () => (
         rotation={[-Math.PI / 16, 0, 0]}
       />
     </FactsModalTrigger>
-    <ModelSpinner position={[0, 2, 0]} speed={0.15}>
+    <ModelSpinner position={[0, 2, 0]} speed={0.1}>
       <Debris
         position={[0, 0, 30]}
         scale={debrisScale}
         rotation={[-Math.PI / 8, 0, 0]}
       />
     </ModelSpinner>
-    <Mars
-      position={[-20, -5, -100]}
-      scale={marsScale}
-      rotation={[Math.PI / 8, 0, -Math.PI / 3]}
-    />
+    <Earth position={[25, -5, -60]} scale={marsScale} />
   </>
 );
 
