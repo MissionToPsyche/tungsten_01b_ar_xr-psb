@@ -13,15 +13,15 @@ const FactsModalTrigger: React.FC<{
   children: React.ReactNode;
 }> = ({ factName, disable, children }) => {
   const { open } = useModal();
-  const { title, fact } = lookupFactByName(factName);
+  const { title, fact, image } = lookupFactByName(factName);
 
   const onClick = useCallback(() => {
     if (disable) {
       return;
     }
 
-    open(title, fact);
-  }, [disable, open, title, fact]);
+    open(title, fact, image);
+  }, [disable, open, title, fact, image]);
 
   return (
     <group onClick={onClick}>
