@@ -10,6 +10,9 @@ import getSceneNameFromEnv from './get-scene-name-from-env.ts';
 import AcousticTestingScene from './scenes/AcousticTestingScene.tsx';
 import VibrationTestingScene from './scenes/VibrationTestingScene.tsx';
 
+import { Vector3 } from 'three';
+
+const defaultCameraPosition = new Vector3(0, 6, 25);
 /**
  * Function to get the scene configuration. Right now extracted into a method
  * rather than a constant for easier testing. But also could be adjusted to
@@ -96,6 +99,7 @@ const getSceneConfig = (): SceneConfig => ({
     }
   },
   cameraParametersUrl: 'assets/camera_para.dat',
+  defaultCameraPosition: defaultCameraPosition,
   disableAr: getBoolFromEnv('VITE_DISABLE_AR')
 });
 

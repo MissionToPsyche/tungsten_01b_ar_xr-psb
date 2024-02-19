@@ -49,7 +49,7 @@ const missionFacts: Record<string, MissionFact> = {
     fact: 'Science and engineering teams begin to build their instruments to complete the mission.'
   },
   fourthDateRange: {
-    title: 'Instrument & Scpacecraft Assembly and Test',
+    title: 'Instrument & Spacecraft Assembly and Test',
     fact: 'The spacecraft subsystems are assembled onto the spacecraft and subjected to thorough testing.'
   },
   // Launch Scene

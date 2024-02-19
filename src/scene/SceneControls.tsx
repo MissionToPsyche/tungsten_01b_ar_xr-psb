@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import SceneName from './types/scene-name.ts';
 import { SceneTransitionConfig } from './types/scene-config.ts';
 import { Button, Flex, Spacer } from '@chakra-ui/react';
@@ -76,6 +76,9 @@ const SceneTransitionButton: React.FC<{
 };
 
 export interface SceneControlsProps {
+  transitionToNext: boolean;
+  transitionToPrev: boolean;
+  transitioning: boolean;
   onChangeScene: (sceneName: SceneName) => void;
   onRestart: () => void;
   previousSceneTransition?: SceneTransitionConfig;
@@ -83,39 +86,20 @@ export interface SceneControlsProps {
 }
 
 const SceneControls: React.FC<SceneControlsProps> = ({
+  transitionToNext,
+  transitionToPrev,
+  transitioning,
   onChangeScene,
   onRestart,
   previousSceneTransition,
   nextSceneTransition
 }) => {
-  const { isAnimationActive } = useAnimation();
-
-  const isTransitioningToPrevious = useMemo(() => {
-    if (previousSceneTransition?.animation == null) {
-      return false;
-    }
-
-    return isAnimationActive(previousSceneTransition.animation);
-  }, [isAnimationActive, previousSceneTransition]);
-
-  const isTransitioningToNext = useMemo(() => {
-    if (nextSceneTransition?.animation == null) {
-      return false;
-    }
-
-    return isAnimationActive(nextSceneTransition.animation);
-  }, [isAnimationActive, nextSceneTransition]);
-
-  const isTransitioning = useMemo(() => {
-    return isTransitioningToPrevious || isTransitioningToNext;
-  }, [isTransitioningToNext, isTransitioningToPrevious]);
-
   return (
     <>
       <MenuBar
         hideArButton
         onClickRestartButton={onRestart}
-        disableRestartButton={isTransitioning}
+        disableRestartButton={transitioning}
         hideRestartButton={!previousSceneTransition && !nextSceneTransition}
       />
       <Flex
@@ -133,8 +117,8 @@ const SceneControls: React.FC<SceneControlsProps> = ({
           <SceneTransitionButton
             transitionConfig={previousSceneTransition}
             onClick={onChangeScene}
-            isSceneTransitioning={isTransitioning}
-            isSceneTransitioningFromThis={isTransitioningToPrevious}
+            isSceneTransitioning={transitioning}
+            isSceneTransitioningFromThis={transitionToPrev}
             direction="back"
           />
         )}
@@ -143,8 +127,8 @@ const SceneControls: React.FC<SceneControlsProps> = ({
           <SceneTransitionButton
             transitionConfig={nextSceneTransition}
             onClick={onChangeScene}
-            isSceneTransitioning={isTransitioning}
-            isSceneTransitioningFromThis={isTransitioningToNext}
+            isSceneTransitioning={transitioning}
+            isSceneTransitioningFromThis={transitionToNext}
             direction="forward"
           />
         )}

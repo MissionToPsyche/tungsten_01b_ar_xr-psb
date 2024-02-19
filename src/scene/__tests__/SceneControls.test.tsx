@@ -33,6 +33,9 @@ const setup = (
           previousSceneTransition={prevTransition}
           onChangeScene={onChangeScene}
           onRestart={onRestart}
+          transitionToNext={false}
+          transitionToPrev={false}
+          transitioning={false}
         />
       </AnimationProvider>
     </AudioProvider>

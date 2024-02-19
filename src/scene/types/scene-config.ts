@@ -1,3 +1,4 @@
+import { Vector3 } from 'three';
 import AnimationName from '../../animations/types/animation-name.ts';
 import { SceneComponent } from './scene-component.ts';
 import SceneName from './scene-name.ts';
@@ -40,6 +41,8 @@ export interface SceneConfig {
   scenes: Record<SceneName, IndividualSceneConfig>;
   // Public URL of the camera parameters data file
   cameraParametersUrl: string;
+  // Default camera position
+  defaultCameraPosition: Vector3;
   // Disable AR if true
   disableAr: boolean;
 }

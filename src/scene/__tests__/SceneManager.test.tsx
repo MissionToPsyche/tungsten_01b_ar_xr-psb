@@ -5,6 +5,7 @@ import SceneName from '../types/scene-name.ts';
 import SceneManager from '../SceneManager.tsx';
 import React from 'react';
 import ReactThreeTestRenderer from '@react-three/test-renderer';
+import { Vector3 } from 'three';
 import { SceneControlsProps } from '../SceneControls.tsx';
 import { act } from '@testing-library/react';
 
@@ -78,7 +79,8 @@ const mockConfig: SceneConfig = {
     }
   } as unknown as SceneConfig['scenes'],
   cameraParametersUrl: '/hello',
-  disableAr: false
+  disableAr: false,
+  defaultCameraPosition: new Vector3(0, 6, 18)
 };
 
 (getSceneConfig as Mock).mockReturnValue(mockConfig);

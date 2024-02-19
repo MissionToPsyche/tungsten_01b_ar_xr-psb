@@ -1,6 +1,6 @@
 import { ARCanvas } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
@@ -14,6 +14,7 @@ import useSceneConfig from './useSceneConfig.ts';
 import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
 import { OrbitControls, Stars } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
 /**
  * Manages AR scenes.
@@ -21,7 +22,8 @@ import SceneControls from './SceneControls.tsx';
 const SceneManager: ViewComponent = ({ changeView }) => {
   const config = useSceneConfig();
   const [currentScene, setCurrentScene] = useState(config.defaultScene);
-  const { clearAnimations } = useAnimation();
+  const { isAnimationActive, clearAnimations } = useAnimation();
+  const orbitControls = useRef<OrbitControlsImpl>(null);
 
   const onRestart = useCallback(() => {
     clearAnimations();
@@ -35,6 +37,32 @@ const SceneManager: ViewComponent = ({ changeView }) => {
     nextSceneTransition
   } = config.scenes[currentScene];
 
+  const isTransitioningToPrevious = useMemo(() => {
+    if (previousSceneTransition?.animation == null) {
+      return false;
+    }
+
+    return isAnimationActive(previousSceneTransition.animation);
+  }, [isAnimationActive, previousSceneTransition]);
+
+  const isTransitioningToNext = useMemo(() => {
+    if (nextSceneTransition?.animation == null) {
+      return false;
+    }
+
+    return isAnimationActive(nextSceneTransition.animation);
+  }, [isAnimationActive, nextSceneTransition]);
+
+  const isTransitioning = useMemo(() => {
+    return isTransitioningToPrevious || isTransitioningToNext;
+  }, [isTransitioningToNext, isTransitioningToPrevious]);
+
+  useEffect(() => {
+    if (orbitControls.current && isTransitioning) {
+      orbitControls.current.reset();
+    }
+  }, [isTransitioning]);
+
   return (
     <LoaderProvider>
       <LoaderTracker />
@@ -43,7 +71,11 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         onCreated={fitGlToWindow}
         cameraParametersUrl={config.cameraParametersUrl}
         gl={{ logarithmicDepthBuffer: true }}
-        camera={config.disableAr ? { position: [0, 6, 18] } : undefined}
+        camera={
+          config.disableAr
+            ? { position: config.defaultCameraPosition.toArray() }
+            : undefined
+        }
         linear
         flat
       >
@@ -51,6 +83,8 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         <RenderIf shouldRender={config.disableAr}>
           <color attach="background" args={['#2e4371']} />
           <OrbitControls
+            enabled={!isTransitioning}
+            ref={orbitControls}
             zoomSpeed={0.8}
             rotateSpeed={0.8}
             panSpeed={0.5}
@@ -86,6 +120,9 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         </PersistentARMarker>
       </ARCanvas>
       <SceneControls
+        transitionToNext={isTransitioningToNext}
+        transitionToPrev={isTransitioningToPrevious}
+        transitioning={isTransitioning}
         onChangeScene={setCurrentScene}
         onRestart={onRestart}
         previousSceneTransition={previousSceneTransition}
