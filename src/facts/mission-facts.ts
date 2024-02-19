@@ -61,9 +61,22 @@ const missionFacts: Record<string, MissionFact> = {
     title: 'The Launch 🚀',
     fact: "Psyche launched on SpaceX's Falcon Heavy, Oct 13, 2023."
   },
-  cruiseDate: {
+  // Cruise Scene
+  marsDate: {
     title: 'Mars Gravity Assist',
     fact: "Harnessing Mars' gravity, Psyche will increase its velocity while minimizing propellant usage."
+  },
+  propulsion: {
+    title: 'Solar Electric Propulsion',
+    fact: 'Psyche uses Hall Effect thrusters that produce about 0.06 pounds of thrust.'
+  },
+  cruiseDate: {
+    title: 'Are we there yet?',
+    fact: 'Psyche began the cruise phase about 100 days after launch and will continue to fire its thrusters for more than 5 years.'
+  },
+  solarPanels: {
+    title: 'Solar Panel Arrays',
+    fact: 'Psyche relies on two five-panel solar arrays for power. The 800 square foot arrays unfurled shortly after leaving Earth.'
   }
 };
 
