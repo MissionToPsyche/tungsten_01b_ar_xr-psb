@@ -7,6 +7,9 @@ import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import { Earth } from '../../artifacts/Earth.tsx';
 import { Debris } from '../../artifacts/Debris.tsx';
+import ExplodeTrigger from '../../common/explode/ExplodeTrigger.tsx';
+import { Box } from '@react-three/drei';
+import Explode from '../../common/explode/Explode.tsx';
 
 const dateScale = filledVector(0.3);
 const nameScale = filledVector(1.2);
@@ -15,7 +18,7 @@ const debrisScale = filledVector(0.15);
 const marsScale = filledVector(25);
 
 const CruiseScene: SceneComponent = () => (
-  <>
+  <Explode initialExploded={false}>
     <CruiseOrbiter
       position={[0, 2, 2]}
       scale={orbiterScale}
@@ -44,7 +47,16 @@ const CruiseScene: SceneComponent = () => (
       />
     </ModelSpinner>
     <Earth position={[25, -5, -60]} scale={marsScale} />
-  </>
+    <ExplodeTrigger>
+      <Box
+        position={[-0.5, 2.4, 3]}
+        scale={3}
+        rotation={[Math.PI / 5, Math.PI / 5, Math.PI / 6]}
+      >
+        <meshBasicMaterial transparent opacity={0} />
+      </Box>
+    </ExplodeTrigger>
+  </Explode>
 );
 
 export default CruiseScene;

@@ -10,6 +10,7 @@ import { useGLTF, useAnimations } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 import { Color } from 'three';
 import ThrusterParticleSystem from '../common/particle/systems/thruster/ThrusterParticleSystem.tsx';
+import ExplodeElement from '../common/explode/ExplodeElement.tsx';
 
 const thrusterStartingColor = new Color('#0065cb');
 const thrusterEndingColor = new Color('#06307a');
@@ -87,176 +88,248 @@ export function CruiseOrbiter(props: JSX.IntrinsicElements['group']) {
           particleStartColor={thrusterStartingColor}
           particleEndColor={thrusterEndingColor}
         />
-        <group
-          name="SolarPanelLeft_1"
-          position={[-1.7, 0.6, 0]}
-          rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-          scale={[0.025, 0.025, 0.015]}
+        <ExplodeElement
+          startPosition={[0, 0, 0]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[-5.45, -1, 0]}
+          explodedRotation={[0, 0, -Math.PI / 2]}
+          explodeDelay={0}
+          unExplodeDelay={0}
         >
-          <mesh
-            name="SolarPanelLeft1"
-            geometry={nodes.SolarPanelLeft1.geometry}
-            material={materials.aluminium}
-          />
-          <mesh
-            name="SolarPanelLeft1_1"
-            geometry={nodes.SolarPanelLeft1_1.geometry}
-            material={materials.Panel_Material}
-          />
-        </group>
-        <group
-          name="SolarPanelLeft_2"
-          position={[-1.8, 0.6, 0]}
-          rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-          scale={[0.025, 0.025, 0.015]}
+          <group
+            name="SolarPanelLeft_1"
+            position={[-1.7, 0.6, 0]}
+            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
+            scale={[0.025, 0.025, 0.015]}
+          >
+            <mesh
+              name="SolarPanelLeft1"
+              geometry={nodes.SolarPanelLeft1.geometry}
+              material={materials.aluminium}
+            />
+            <mesh
+              name="SolarPanelLeft1_1"
+              geometry={nodes.SolarPanelLeft1_1.geometry}
+              material={materials.Panel_Material}
+            />
+          </group>
+        </ExplodeElement>
+        <ExplodeElement
+          startPosition={[0, 0, 0]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[-7.5, 2.5, 0]}
+          explodedRotation={[0, 0, Math.PI / 2]}
         >
-          <mesh
-            name="SolarPanelLeft1"
-            geometry={nodes.SolarPanelLeft1.geometry}
-            material={materials.aluminium}
-          />
-          <mesh
-            name="SolarPanelLeft1_1"
-            geometry={nodes.SolarPanelLeft1_1.geometry}
-            material={materials.Panel_Material}
-          />
-        </group>
-        <group
-          name="SolarPanelLeft_3"
-          position={[-1.87, 0.6, 0]}
-          rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-          scale={[0.025, 0.025, 0.015]}
+          <group
+            name="SolarPanelLeft_2"
+            position={[-1.8, 0.6, 0]}
+            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+            scale={[0.025, 0.025, 0.015]}
+          >
+            <mesh
+              name="SolarPanelLeft1"
+              geometry={nodes.SolarPanelLeft1.geometry}
+              material={materials.aluminium}
+            />
+            <mesh
+              name="SolarPanelLeft1_1"
+              geometry={nodes.SolarPanelLeft1_1.geometry}
+              material={materials.Panel_Material}
+            />
+          </group>
+        </ExplodeElement>
+        <ExplodeElement
+          startPosition={[0, 0, 0]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[-11.9, -1.175, 0]}
+          explodedRotation={[0, 0, -Math.PI / 2]}
         >
-          <mesh
-            name="SolarPanelLeft1"
-            geometry={nodes.SolarPanelLeft1.geometry}
-            material={materials.aluminium}
-          />
-          <mesh
-            name="SolarPanelLeft1_1"
-            geometry={nodes.SolarPanelLeft1_1.geometry}
-            material={materials.Panel_Material}
-          />
-        </group>
-        <group
-          name="SolarPanelRight_1"
-          position={[1.564, 0.6, 0]}
-          rotation={[-Math.PI / 2, -Math.PI / 2, 0]}
-          scale={[-0.025, -0.025, -0.015]}
+          <group
+            name="SolarPanelLeft_3"
+            position={[-1.87, 0.6, 0]}
+            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
+            scale={[0.025, 0.025, 0.015]}
+          >
+            <mesh
+              name="SolarPanelLeft1"
+              geometry={nodes.SolarPanelLeft1.geometry}
+              material={materials.aluminium}
+            />
+            <mesh
+              name="SolarPanelLeft1_1"
+              geometry={nodes.SolarPanelLeft1_1.geometry}
+              material={materials.Panel_Material}
+            />
+          </group>
+        </ExplodeElement>
+        <ExplodeElement
+          startPosition={[0, 0, 0]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[5.25, -1, 0]}
+          explodedRotation={[0, 0, Math.PI / 2]}
         >
-          <mesh
-            name="SolarPanelLeft1"
-            geometry={nodes.SolarPanelLeft1.geometry}
-            material={materials.aluminium}
-          />
-          <mesh
-            name="SolarPanelLeft1_1"
-            geometry={nodes.SolarPanelLeft1_1.geometry}
-            material={materials.Panel_Material}
-          />
-        </group>
-        <group
-          name="SolarPanelRight_2"
-          position={[1.664, 0.6, 0]}
-          rotation={[Math.PI / 2, Math.PI / 2, 0]}
-          scale={[-0.025, -0.025, -0.015]}
+          <group
+            name="SolarPanelRight_1"
+            position={[1.564, 0.6, 0]}
+            rotation={[-Math.PI / 2, -Math.PI / 2, 0]}
+            scale={[-0.025, -0.025, -0.015]}
+          >
+            <mesh
+              name="SolarPanelLeft1"
+              geometry={nodes.SolarPanelLeft1.geometry}
+              material={materials.aluminium}
+            />
+            <mesh
+              name="SolarPanelLeft1_1"
+              geometry={nodes.SolarPanelLeft1_1.geometry}
+              material={materials.Panel_Material}
+            />
+          </group>
+        </ExplodeElement>
+        <ExplodeElement
+          startPosition={[0, 0, 0]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[-8.7, -1.1, 2.4]}
+          explodedRotation={[0, 0, -Math.PI / 2]}
         >
-          <mesh
-            name="SolarPanelLeft1"
-            geometry={nodes.SolarPanelLeft1.geometry}
-            material={materials.aluminium}
-          />
-          <mesh
-            name="SolarPanelLeft1_1"
-            geometry={nodes.SolarPanelLeft1_1.geometry}
-            material={materials.Panel_Material}
-          />
-        </group>
-        <group
-          name="SolarPanelRight_3"
-          position={[1.734, 0.6, 0]}
-          rotation={[-Math.PI / 2, -Math.PI / 2, 0]}
-          scale={[-0.025, -0.025, -0.015]}
+          <group
+            name="SolarPanelLeft_4"
+            position={[-1.81, 0.6, 1.27]}
+            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
+            scale={[0.025, 0.025, 0.015]}
+          >
+            <mesh
+              name="SolarPanelLeft1004"
+              geometry={nodes.SolarPanelLeft1004.geometry}
+              material={materials.aluminium}
+            />
+            <mesh
+              name="SolarPanelLeft1004_1"
+              geometry={nodes.SolarPanelLeft1004_1.geometry}
+              material={materials.Panel_Material}
+            />
+          </group>
+        </ExplodeElement>
+        <ExplodeElement
+          startPosition={[0, 0, 0]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[-8.7, -1.1, -2.45]}
+          explodedRotation={[0, 0, -Math.PI / 2]}
         >
-          <mesh
-            name="SolarPanelLeft1"
-            geometry={nodes.SolarPanelLeft1.geometry}
-            material={materials.aluminium}
-          />
-          <mesh
-            name="SolarPanelLeft1_1"
-            geometry={nodes.SolarPanelLeft1_1.geometry}
-            material={materials.Panel_Material}
-          />
-        </group>
-        <group
-          name="SolarPanelLeft_5"
-          position={[-1.8, 0.6, -1.27]}
-          rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-          scale={[0.025, 0.025, 0.015]}
+          <group
+            name="SolarPanelLeft_5"
+            position={[-1.8, 0.6, -1.27]}
+            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
+            scale={[0.025, 0.025, 0.015]}
+          >
+            <mesh
+              name="SolarPanelLeft1003"
+              geometry={nodes.SolarPanelLeft1003.geometry}
+              material={materials.aluminium}
+            />
+            <mesh
+              name="SolarPanelLeft1003_1"
+              geometry={nodes.SolarPanelLeft1003_1.geometry}
+              material={materials.Panel_Material}
+            />
+          </group>
+        </ExplodeElement>
+        <ExplodeElement
+          startPosition={[0, 0, 0]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[7.3, 2.225, 0]}
+          explodedRotation={[0, 0, -Math.PI / 2]}
         >
-          <mesh
-            name="SolarPanelLeft1003"
-            geometry={nodes.SolarPanelLeft1003.geometry}
-            material={materials.aluminium}
-          />
-          <mesh
-            name="SolarPanelLeft1003_1"
-            geometry={nodes.SolarPanelLeft1003_1.geometry}
-            material={materials.Panel_Material}
-          />
-        </group>
-        <group
-          name="SolarPanelRight_5"
-          position={[1.664, 0.6, -1.27]}
-          rotation={[-Math.PI / 2, -Math.PI / 2, 0]}
-          scale={[-0.025, -0.025, -0.015]}
+          <group
+            name="SolarPanelRight_2"
+            position={[1.664, 0.6, 0]}
+            rotation={[Math.PI / 2, Math.PI / 2, 0]}
+            scale={[-0.025, -0.025, -0.015]}
+          >
+            <mesh
+              name="SolarPanelLeft1"
+              geometry={nodes.SolarPanelLeft1.geometry}
+              material={materials.aluminium}
+            />
+            <mesh
+              name="SolarPanelLeft1_1"
+              geometry={nodes.SolarPanelLeft1_1.geometry}
+              material={materials.Panel_Material}
+            />
+          </group>
+        </ExplodeElement>
+        <ExplodeElement
+          startPosition={[0, 0, 0]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[11.75, -1.18, 0]}
+          explodedRotation={[0, 0, Math.PI / 2]}
         >
-          <mesh
-            name="SolarPanelLeft1003"
-            geometry={nodes.SolarPanelLeft1003.geometry}
-            material={materials.aluminium}
-          />
-          <mesh
-            name="SolarPanelLeft1003_1"
-            geometry={nodes.SolarPanelLeft1003_1.geometry}
-            material={materials.Panel_Material}
-          />
-        </group>
-        <group
-          name="SolarPanelLeft_4"
-          position={[-1.81, 0.6, 1.27]}
-          rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-          scale={[0.025, 0.025, 0.015]}
+          <group
+            name="SolarPanelRight_3"
+            position={[1.734, 0.6, 0]}
+            rotation={[-Math.PI / 2, -Math.PI / 2, 0]}
+            scale={[-0.025, -0.025, -0.015]}
+          >
+            <mesh
+              name="SolarPanelLeft1"
+              geometry={nodes.SolarPanelLeft1.geometry}
+              material={materials.aluminium}
+            />
+            <mesh
+              name="SolarPanelLeft1_1"
+              geometry={nodes.SolarPanelLeft1_1.geometry}
+              material={materials.Panel_Material}
+            />
+          </group>
+        </ExplodeElement>
+        <ExplodeElement
+          startPosition={[0, 0, 0]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[8.5, -1.1, -2.45]}
+          explodedRotation={[0, 0, Math.PI / 2]}
         >
-          <mesh
-            name="SolarPanelLeft1004"
-            geometry={nodes.SolarPanelLeft1004.geometry}
-            material={materials.aluminium}
-          />
-          <mesh
-            name="SolarPanelLeft1004_1"
-            geometry={nodes.SolarPanelLeft1004_1.geometry}
-            material={materials.Panel_Material}
-          />
-        </group>
-        <group
-          name="SolarPanelRight_4"
-          position={[1.684, 0.6, 1.27]}
-          rotation={[-Math.PI / 2, -Math.PI / 2, 0]}
-          scale={[-0.025, -0.025, -0.015]}
+          <group
+            name="SolarPanelRight_5"
+            position={[1.664, 0.6, -1.27]}
+            rotation={[-Math.PI / 2, -Math.PI / 2, 0]}
+            scale={[-0.025, -0.025, -0.015]}
+          >
+            <mesh
+              name="SolarPanelLeft1003"
+              geometry={nodes.SolarPanelLeft1003.geometry}
+              material={materials.aluminium}
+            />
+            <mesh
+              name="SolarPanelLeft1003_1"
+              geometry={nodes.SolarPanelLeft1003_1.geometry}
+              material={materials.Panel_Material}
+            />
+          </group>
+        </ExplodeElement>
+        <ExplodeElement
+          startPosition={[0, 0, 0]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[8.5, -1.1, 2.45]}
+          explodedRotation={[0, 0, Math.PI / 2]}
         >
-          <mesh
-            name="SolarPanelLeft1004"
-            geometry={nodes.SolarPanelLeft1004.geometry}
-            material={materials.aluminium}
-          />
-          <mesh
-            name="SolarPanelLeft1004_1"
-            geometry={nodes.SolarPanelLeft1004_1.geometry}
-            material={materials.Panel_Material}
-          />
-        </group>
+          <group
+            name="SolarPanelRight_4"
+            position={[1.684, 0.6, 1.27]}
+            rotation={[-Math.PI / 2, -Math.PI / 2, 0]}
+            scale={[-0.025, -0.025, -0.015]}
+          >
+            <mesh
+              name="SolarPanelLeft1004"
+              geometry={nodes.SolarPanelLeft1004.geometry}
+              material={materials.aluminium}
+            />
+            <mesh
+              name="SolarPanelLeft1004_1"
+              geometry={nodes.SolarPanelLeft1004_1.geometry}
+              material={materials.Panel_Material}
+            />
+          </group>
+        </ExplodeElement>
         <mesh
           name="Cube001"
           geometry={nodes.Cube001.geometry}
@@ -271,22 +344,36 @@ export function CruiseOrbiter(props: JSX.IntrinsicElements['group']) {
           position={[-0.331, 3.22, 0.423]}
           scale={[2.134, 1.48, 2.078]}
         />
-        <mesh
-          name="PanelFrameLeft"
-          geometry={nodes.PanelFrameLeft.geometry}
-          material={materials.aluminium}
-          position={[-1.67, 2.2, 0]}
-          rotation={[0, 0, -Math.PI / 2]}
-          scale={[0.03, 0.015, 1.26]}
-        />
-        <mesh
-          name="PanelFrameRight"
-          geometry={nodes.PanelFrameRight.geometry}
-          material={materials.aluminium}
-          position={[1.534, 2.2, 0]}
-          rotation={[Math.PI, 0, -Math.PI / 2]}
-          scale={[-0.03, -0.015, -1.26]}
-        />
+        <ExplodeElement
+          startPosition={[0, 0, 0]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[-1, 2.4, 0]}
+          explodedRotation={[0, 0, Math.PI / 2]}
+        >
+          <mesh
+            name="PanelFrameLeft"
+            geometry={nodes.PanelFrameLeft.geometry}
+            material={materials.aluminium}
+            position={[-1.67, 2.2, 0]}
+            rotation={[0, 0, -Math.PI / 2]}
+            scale={[0.03, 0.015, 1.26]}
+          />
+        </ExplodeElement>
+        <ExplodeElement
+          startPosition={[0, 0, 0]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[0.8, 2.12, 0]}
+          explodedRotation={[0, 0, -Math.PI / 2]}
+        >
+          <mesh
+            name="PanelFrameRight"
+            geometry={nodes.PanelFrameRight.geometry}
+            material={materials.aluminium}
+            position={[1.534, 2.2, 0]}
+            rotation={[Math.PI, 0, -Math.PI / 2]}
+            scale={[-0.03, -0.015, -1.26]}
+          />
+        </ExplodeElement>
         <mesh
           name="Cube"
           geometry={nodes.Cube.geometry}
