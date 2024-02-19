@@ -10,7 +10,7 @@ import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchroni
 import useAnimation from '../animations/use-animation.ts';
 import RenderIf from '../common/components/RenderIf.tsx';
 import ModelOutliner from '../common/components/ModelOutliner.tsx';
-import useSceneConfig from './useSceneConfig.ts';
+import useSceneConfig from './use-scene-config.ts';
 import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
 import { OrbitControls, Stars } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
@@ -114,9 +114,11 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         </RenderIf>
         <SceneLighting />
         <PersistentARMarker markerUrl={markerUrl}>
-          <ModelOutliner color={0xffffff}>
-            <CurrentSceneComponent />
-          </ModelOutliner>
+          <group rotation={[config.markerXRotation, 0, 0]}>
+            <ModelOutliner color={0xffffff}>
+              <CurrentSceneComponent />
+            </ModelOutliner>
+          </group>
         </PersistentARMarker>
       </ARCanvas>
       <SceneControls
