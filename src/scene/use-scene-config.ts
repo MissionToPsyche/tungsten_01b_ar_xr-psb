@@ -16,10 +16,12 @@ const useSceneConfig = (): SceneConfig => {
   return useMemo(() => {
     const originalConfig = getSceneConfig();
     const disableAr = !arSupported || originalConfig.disableAr || !arEnabled;
+    const markerXRotation = disableAr ? 0 : -90;
 
     return {
       ...originalConfig,
-      disableAr
+      disableAr,
+      markerXRotation
     };
   }, [arEnabled, arSupported]);
 };

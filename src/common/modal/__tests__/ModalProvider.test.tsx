@@ -7,8 +7,9 @@ import axe from 'axe-core';
 
 const modalTitle = 'title';
 const modalBody = 'body';
+const modalImage = 'image';
 
-let openModal: (title: string, body: string) => void;
+let openModal: (title: string, body: string, image?: string) => void;
 
 const ModalChild = () => {
   const context = useContext(ModalContext);
@@ -43,6 +44,18 @@ describe('<ModalProvider/>', () => {
 
     expect(screen.getByText(modalTitle)).toBeInTheDocument();
     expect(screen.getByText(modalBody)).toBeInTheDocument();
+  });
+
+  it('should render the modal title, body, and image that a consumer has set', () => {
+    setup();
+
+    act(() => {
+      openModal(modalTitle, modalBody, modalImage);
+    });
+
+    expect(screen.getByText(modalTitle)).toBeInTheDocument();
+    expect(screen.getByText(modalBody)).toBeInTheDocument();
+    expect(screen.getByAltText(`${modalTitle} image`)).toBeInTheDocument();
   });
 
   it('should close the modal when the close indicator is clicked', () => {
