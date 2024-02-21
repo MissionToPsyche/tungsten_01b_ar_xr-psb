@@ -17,7 +17,7 @@ const mockNextSceneTransition: SceneTransitionConfig = {
 };
 
 const mockPrevSceneTransition: SceneTransitionConfig = {
-  toScene: SceneName.CRUISE,
+  toScene: SceneName.CRUISE_PANELS,
   buttonText: 'PREV'
 };
 

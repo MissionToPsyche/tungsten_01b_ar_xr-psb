@@ -5,9 +5,10 @@ Files: ./public/assets/models/earth.gltf [1.43MB] > earth-transformed.glb [142.4
 */
 
 import * as THREE from 'three';
-import { useEffect, useRef } from 'react';
-import { useGLTF, useAnimations } from '@react-three/drei';
+import { useRef } from 'react';
+import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import { useFrame } from '@react-three/fiber';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -19,22 +20,33 @@ type GLTFResult = GLTF & {
 };
 
 // type ActionName = 'rotateAction' | 'spinAction'
+const rotationSpeed = 0.03;
 
 export function Earth(props: JSX.IntrinsicElements['group']) {
-  const group = useRef<THREE.Group>(null);
-  const { nodes, materials, animations } = useGLTF(
+  const group = useRef<THREE.Group | null>(null);
+  const { nodes, materials } = useGLTF(
     '/assets/models/earth-transformed.glb'
   ) as GLTFResult;
-  const { actions } = useAnimations(animations, group);
+  // const { actions } = useAnimations(animations, group);
+  const meshRef = useRef<THREE.Mesh>(null);
 
-  useEffect(() => {
-    actions.rotateAction?.play();
+  // useEffect(() => {
+  //   actions.rotateAction?.play();
+  // });
+
+  useFrame((_, delta) => {
+    if (meshRef.current == null) {
+      return;
+    }
+
+    meshRef.current.rotation.x += delta * rotationSpeed;
   });
 
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
         <mesh
+          ref={meshRef}
           name="Earth"
           geometry={nodes.Earth.geometry}
           material={materials['Material.001']}
@@ -45,4 +57,4 @@ export function Earth(props: JSX.IntrinsicElements['group']) {
   );
 }
 
-useGLTF.preload('/assets/models/tungsten_01b_ar_xr-psb/earth-transformed.glb');
+useGLTF.preload('/assets/models/earth-transformed.glb');

@@ -6,7 +6,10 @@ enum AnimationName {
   VIBRATION_TESTING,
   ACOUSTIC_TESTING,
   LIFTOFF,
-  ASSEMBLE
+  ASSEMBLE,
+  CRUISE_PANELS,
+  CRUISE_THRUSTERS,
+  CRUISE_GRAVITY_ASSIST
 }
 
 export default AnimationName;

@@ -69,11 +69,55 @@ const mockConfig: SceneConfig = {
       component: () => <group name="launch-scene" />,
       markerUrl: '/hello',
       nextSceneTransition: {
-        toScene: SceneName.CRUISE,
+        toScene: SceneName.CRUISE_PANELS,
         buttonText: 'Next Scene'
       },
       previousSceneTransition: {
         toScene: SceneName.ASSEMBLY,
+        buttonText: 'Previous Scene'
+      }
+    },
+    [SceneName.CRUISE_PANELS]: {
+      component: () => <group name="cruise-panels-scene" />,
+      markerUrl: '/hello',
+      nextSceneTransition: {
+        toScene: SceneName.CRUISE_THRUSTERS,
+        buttonText: 'Next Scene'
+      },
+      previousSceneTransition: {
+        toScene: SceneName.LAUNCH,
+        buttonText: 'Previous Scene'
+      }
+    },
+    [SceneName.CRUISE_THRUSTERS]: {
+      component: () => <group name="cruise-thrusters-scene" />,
+      markerUrl: '/hello',
+      nextSceneTransition: {
+        toScene: SceneName.CRUISE_GRAVITY_ASSIST,
+        buttonText: 'Next Scene'
+      },
+      previousSceneTransition: {
+        toScene: SceneName.CRUISE_PANELS,
+        buttonText: 'Previous Scene'
+      }
+    },
+    [SceneName.CRUISE_GRAVITY_ASSIST]: {
+      component: () => <group name="cruise-panels-scene" />,
+      markerUrl: '/hello',
+      nextSceneTransition: {
+        toScene: SceneName.ORBIT,
+        buttonText: 'Next Scene'
+      },
+      previousSceneTransition: {
+        toScene: SceneName.CRUISE_THRUSTERS,
+        buttonText: 'Previous Scene'
+      }
+    },
+    [SceneName.ORBIT]: {
+      component: () => <group name="cruise-panels-scene" />,
+      markerUrl: '/hello',
+      previousSceneTransition: {
+        toScene: SceneName.CRUISE_GRAVITY_ASSIST,
         buttonText: 'Previous Scene'
       }
     }

@@ -59,32 +59,67 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function CruiseOrbiter(props: JSX.IntrinsicElements['group']) {
+export function CruiseOrbiter(
+  props: {
+    thrustersOn: boolean;
+    panelsOpen: boolean;
+    animatePanels: boolean;
+  } & JSX.IntrinsicElements['group']
+) {
   const group = useRef<THREE.Group>(null);
   const { nodes, materials, animations } = useGLTF(
     '/assets/models/cruise-orbiter-transformed.glb'
   ) as GLTFResult;
   const { actions } = useAnimations(animations, group);
+  const { thrustersOn, panelsOpen, animatePanels } = props;
 
   useEffect(() => {
-    actions.leftPanelMove?.play();
-    actions.leftOneMove?.play();
-    actions.leftTwoMove?.play();
-    actions.leftThreeMove?.play();
-    actions.leftFourMove?.play();
-    actions.leftFiveMove?.play();
-    actions.rightPanelMove?.play();
-    actions.rightOneMove?.play();
-    actions.rightTwoMove?.play();
-    actions.rightThreeMove?.play();
-    actions.rightFourMove?.play();
-    actions.rightFiveMove?.play();
-  });
+    const playAnimation = (action: THREE.AnimationAction) => {
+      action.setLoop(THREE.LoopRepeat, 1);
+      if (panelsOpen) {
+        if (!animatePanels) {
+          action.time = action.getClip().duration;
+        }
+      }
+      action.clampWhenFinished = true;
+      action.play();
+    };
+    if (panelsOpen) {
+      playAnimation(actions.leftPanelMove as never);
+      playAnimation(actions.leftOneMove as never);
+      playAnimation(actions.leftTwoMove as never);
+      playAnimation(actions.leftThreeMove as never);
+      playAnimation(actions.leftFourMove as never);
+      playAnimation(actions.leftFiveMove as never);
+      playAnimation(actions.rightPanelMove as never);
+      playAnimation(actions.rightOneMove as never);
+      playAnimation(actions.rightTwoMove as never);
+      playAnimation(actions.rightThreeMove as never);
+      playAnimation(actions.rightFourMove as never);
+      playAnimation(actions.rightFiveMove as never);
+    }
+  }, [
+    actions.leftFiveMove,
+    actions.leftFourMove,
+    actions.leftOneMove,
+    actions.leftPanelMove,
+    actions.leftThreeMove,
+    actions.leftTwoMove,
+    actions.rightFiveMove,
+    actions.rightFourMove,
+    actions.rightOneMove,
+    actions.rightPanelMove,
+    actions.rightThreeMove,
+    actions.rightTwoMove,
+    panelsOpen,
+    animatePanels
+  ]);
 
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
         <ThrusterParticleSystem
+          visible={thrustersOn}
           particleStartColor={thrusterStartingColor}
           particleEndColor={thrusterEndingColor}
         />
@@ -461,5 +496,4 @@ export function CruiseOrbiter(props: JSX.IntrinsicElements['group']) {
     </group>
   );
 }
-
 useGLTF.preload('/assets/models/cruise-orbiter-transformed.glb');
