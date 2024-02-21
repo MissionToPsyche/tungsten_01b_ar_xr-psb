@@ -8,6 +8,7 @@ import { Earth } from '../artifacts/Earth';
 import filledVector from '../common/utils/filled-vector';
 
 import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
+import useSettings from '../settings/use-settings';
 
 const earthScale = filledVector(25);
 const translationSpeed = 10;
@@ -23,6 +24,7 @@ const CruiseThrusterAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
   const [elapsed, setElapsed] = useState(0);
   const earthRef = useRef<Group>(null);
   const orbiterRef = useRef<Group>(null);
+  const { arEnabled } = useSettings();
 
   const isActive = useMemo(() => {
     return isAnimationActive(AnimationName.CRUISE_THRUSTERS);
@@ -55,7 +57,7 @@ const CruiseThrusterAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       orbiterRef.current.position.z += delta * 4;
       orbiterRef.current.position.x -= delta * 4;
     }
-    if (elapsed >= 7 && elapsed <= 9) {
+    if (elapsed >= 7 && elapsed <= 9 && !arEnabled) {
       state.camera.position.z -= delta;
       state.camera.rotation.y += delta;
     }
