@@ -5,6 +5,7 @@ import useAnimation from './use-animation';
 import AnimationName from './types/animation-name';
 import SmokeParticleSystem from '../common/particle/systems/smoke/SmokeParticleSystem';
 import ThrusterParticleSystem from '../common/particle/systems/thruster/ThrusterParticleSystem';
+import useSettings from '../settings/use-settings';
 
 const thrusterStartingColor = new Color('#FFDD00');
 const thrusterEndingColor = new Color('#FFF2BD');
@@ -19,6 +20,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
   const groupRef = useRef<Group>(null);
   const { isAnimationActive, stopAnimation } = useAnimation();
   const [elapsed, setElapsed] = useState(0);
+  const { arEnabled } = useSettings();
 
   useFrame((state, delta) => {
     if (groupRef.current == null) {
@@ -32,7 +34,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
         groupRef.current.position.y += delta * elapsed;
       }
 
-      if (elapsed >= 3 && elapsed <= 10) {
+      if (elapsed >= 3 && elapsed <= 10 && !arEnabled) {
         state.camera.rotation.x += delta * 0.15;
       }
 
