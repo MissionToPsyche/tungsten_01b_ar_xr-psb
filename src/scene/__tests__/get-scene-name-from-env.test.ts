@@ -8,7 +8,9 @@ describe('getSceneNameFromEnv', () => {
   it.each([
     [SceneName.ASSEMBLY, 'ASSEMBLY'],
     [SceneName.LAUNCH, 'LAUNCH'],
-    [SceneName.CRUISE, 'CRUISE'],
+    [SceneName.CRUISE_PANELS, 'CRUISE_PANELS'],
+    [SceneName.CRUISE_THRUSTERS, 'CRUISE_THRUSTERS'],
+    [SceneName.CRUISE_GRAVITY_ASSIST, 'CRUISE_GRAVITY_ASSIST'],
     [SceneName.ORBIT, 'ORBIT']
   ])(
     'should return %s when the environment variable is %s',
