@@ -5,6 +5,7 @@ import filledVector from '../../common/utils/filled-vector.ts';
 import { SceneComponent } from '../types/scene-component.ts';
 import { Orbits } from '../../artifacts/Orbits.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
+import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 
 const dateScale = filledVector(0.25);
 const nameScale = filledVector(1.2);
@@ -25,11 +26,13 @@ const OrbitScene: SceneComponent = () => (
     />
     <OrbitName position={[0, 8.5, -8]} scale={nameScale} />
     <FactsModalTrigger factName="psyche">
-      <Psyche
-        position={[-4.5, -5, -5]}
-        scale={psycheScale}
-        rotation={[Math.PI / 3, 0, 0]}
-      />
+      <ModelSpinner position={[0, -5, -5]} speed={0.2}>
+        <Psyche
+          position={[-4.5, 0, 0]}
+          scale={psycheScale}
+          rotation={[Math.PI / 3, 0, 0]}
+        />
+      </ModelSpinner>
     </FactsModalTrigger>
     <ambientLight intensity={0} />
     <hemisphereLight position={[0, -150, -100]} intensity={0.5} />
