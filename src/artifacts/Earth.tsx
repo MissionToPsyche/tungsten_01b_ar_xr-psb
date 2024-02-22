@@ -19,7 +19,6 @@ type GLTFResult = GLTF & {
   };
 };
 
-// type ActionName = 'rotateAction' | 'spinAction'
 const rotationSpeed = 0.03;
 
 export function Earth(props: JSX.IntrinsicElements['group']) {
@@ -27,18 +26,12 @@ export function Earth(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/assets/models/earth-transformed.glb'
   ) as GLTFResult;
-  // const { actions } = useAnimations(animations, group);
   const meshRef = useRef<THREE.Mesh>(null);
-
-  // useEffect(() => {
-  //   actions.rotateAction?.play();
-  // });
 
   useFrame((_, delta) => {
     if (meshRef.current == null) {
       return;
     }
-
     meshRef.current.rotation.x += delta * rotationSpeed;
   });
 

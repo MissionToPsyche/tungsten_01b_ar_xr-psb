@@ -22,21 +22,14 @@ export function Mars(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/assets/models/mars-transformed.glb'
   ) as GLTFResult;
-  // const { actions } = useAnimations(animations, group);
 
   useFrame((_, delta) => {
     if (group.current == null) {
       return;
     }
-
     group.current.rotation.z += delta * 0.25;
   });
-  // useEffect(() => {
-  //   actions.marsSpin?.play();
-  //   {
-  //     // actions.marsMoveAway?.play();
-  //   }
-  // });
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
