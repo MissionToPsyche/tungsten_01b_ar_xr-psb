@@ -2,25 +2,15 @@ import { SceneComponent } from '../types/scene-component.ts';
 import { CruiseDate } from '../../artifacts/CruiseDate.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
 import { CruiseName } from '../../artifacts/CruiseName.tsx';
-import { CruiseOrbiter } from '../../artifacts/CruiseOrbiter.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
-import ModelSpinner from '../../common/components/ModelSpinner.tsx';
-import { Earth } from '../../artifacts/Earth.tsx';
-import { Debris } from '../../artifacts/Debris.tsx';
+import CruisePanelsAnimation from '../../animations/CruisePanelsAnimation.tsx';
 
 const dateScale = filledVector(0.3);
 const nameScale = filledVector(1.2);
-const orbiterScale = filledVector(0.75);
-const debrisScale = filledVector(0.15);
-const marsScale = filledVector(25);
 
-const CruiseScene: SceneComponent = () => (
+const CruisePanelsScene: SceneComponent = () => (
   <>
-    <CruiseOrbiter
-      position={[0, 2, 2]}
-      scale={orbiterScale}
-      rotation={[Math.PI / 5, Math.PI / 5, Math.PI / 6]}
-    />
+    <CruisePanelsAnimation />
     <ambientLight intensity={0.5} position={[2, 10, 0]} />
     <hemisphereLight position={[-20, 60, -150]} intensity={0.1} />
     <spotLight intensity={0.5} position={[-6, 6, 0]} color={'lightblue'} />
@@ -36,15 +26,7 @@ const CruiseScene: SceneComponent = () => (
         rotation={[-Math.PI / 16, 0, 0]}
       />
     </FactsModalTrigger>
-    <ModelSpinner position={[0, 2, 0]} speed={0.1}>
-      <Debris
-        position={[0, 0, 30]}
-        scale={debrisScale}
-        rotation={[-Math.PI / 8, 0, 0]}
-      />
-    </ModelSpinner>
-    <Earth position={[25, -5, -60]} scale={marsScale} />
   </>
 );
 
-export default CruiseScene;
+export default CruisePanelsScene;
