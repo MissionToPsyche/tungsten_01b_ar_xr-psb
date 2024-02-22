@@ -6,6 +6,7 @@ import getSceneConfig from '../get-scene-config.ts';
 import { Vector3 } from 'three';
 import useSettings, { SettingsState } from '../../settings/use-settings.ts';
 import isArSupported from '../utils/is-ar-supported.ts';
+import degreesToRadians from '../../common/utils/degrees-to-radians.ts';
 
 vi.mock('../get-scene-config.ts');
 vi.mock('../utils/is-ar-supported.ts');
@@ -44,7 +45,10 @@ describe('useSceneConfig', () => {
       result: { current }
     } = setup();
 
-    expect(current).toEqual({ ...mockSceneConfig, markerXRotation: -90 });
+    expect(current).toEqual({
+      ...mockSceneConfig,
+      markerXRotation: degreesToRadians(-90)
+    });
   });
 
   it('should return the scene config with AR disabled', () => {
