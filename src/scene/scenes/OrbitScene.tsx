@@ -17,9 +17,9 @@ const OrbitScene: SceneComponent = () => (
       rotation={[-Math.PI / 16, 0, 0]}
     />
     <OrbitName position={[0, 8.5, -8]} scale={nameScale} />
-    <ModelSpinner position={[0, 0, 0]} speed={0}>
+    <ModelSpinner position={[0, -5, 0]} speed={0.2}>
       <Psyche
-        position={[-4.5, -6, -3]}
+        position={[-5, 0, 0]}
         scale={psycheScale}
         rotation={[Math.PI / 4, 0, 0]}
       />
