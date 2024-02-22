@@ -1,29 +1,36 @@
 import { OrbitDate } from '../../artifacts/OrbitDate.tsx';
 import { OrbitName } from '../../artifacts/OrbitName.tsx';
 import { Psyche } from '../../artifacts/Psyche.tsx';
-import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
 import { SceneComponent } from '../types/scene-component.ts';
+import { Orbits } from '../../artifacts/Orbits.tsx';
+import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 
-const dateScale = filledVector(0.35);
+const dateScale = filledVector(0.25);
 const nameScale = filledVector(1.2);
-const psycheScale = filledVector(4);
+const psycheScale = filledVector(3);
+const orbitsScale = filledVector(1.2);
 
 const OrbitScene: SceneComponent = () => (
   <>
+    <Orbits
+      position={[0, 0, -4]}
+      scale={orbitsScale}
+      rotation={[Math.PI - 3, Math.PI / 4, 0]}
+    />
     <OrbitDate
-      position={[1, -4, 8]}
+      position={[4, -3, 14]}
       scale={dateScale}
       rotation={[-Math.PI / 16, 0, 0]}
     />
     <OrbitName position={[0, 8.5, -8]} scale={nameScale} />
-    <ModelSpinner position={[0, 0, 0]} speed={0}>
+    <FactsModalTrigger factName="psyche">
       <Psyche
-        position={[-4.5, -6, -3]}
+        position={[-4.5, -5, -5]}
         scale={psycheScale}
-        rotation={[Math.PI / 4, 0, 0]}
+        rotation={[Math.PI / 3, 0, 0]}
       />
-    </ModelSpinner>
+    </FactsModalTrigger>
     <ambientLight intensity={0} />
     <hemisphereLight position={[0, -150, -100]} intensity={0.5} />
     <spotLight intensity={2} position={[-4.5, 3, 0]} color={'#5F73E9'} />
