@@ -52,6 +52,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
         visible={isAnimationActive(AnimationName.LIFTOFF)}
         particleStartColor={thrusterStartingColor}
         particleEndColor={thrusterEndingColor}
+        count={200}
       />
       <SmokeParticleSystem
         visible={!isAnimationActive(AnimationName.LIFTOFF)}
