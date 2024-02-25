@@ -6,9 +6,9 @@ import { AssembleTestSceneName } from '../../artifacts/AssembleTestSceneName.tsx
 import AcousticTestingAnimation from '../../animations/AcousticTestingAnimation.tsx';
 import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
 
-const orbiterScale = filledVector(0.75);
-const sceneNameScale = filledVector(0.9);
-const sceneDateScale = filledVector(0.2);
+const orbiterScale = filledVector(0.9);
+const sceneNameScale = filledVector(1.5);
+// const sceneDateScale = filledVector(0.2);
 
 const AcousticTestingScene: SceneComponent = () => (
   <Explode initialExploded={false}>
@@ -32,11 +32,10 @@ const AcousticTestingScene: SceneComponent = () => (
       scale={orbiterScale}
       rotation={[Math.PI / 8, 0, 0]}
     />
-    <AssembleTestSceneName position={[0, 9.8, 0]} scale={sceneNameScale} />
+    <AssembleTestSceneName position={[-1.2, 13.6, -4]} scale={sceneNameScale} />
     <AssembleDate
-      scale={sceneDateScale}
-      position={[0, -5, 5]}
-      rotation={[-Math.PI / 8, 0, 0]}
+      // scale={sceneDateScale}
+      position={[-0.8, -4, 8]}
     />
     <AcousticTestingAnimation />
   </Explode>

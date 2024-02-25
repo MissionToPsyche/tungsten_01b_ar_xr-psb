@@ -11,10 +11,10 @@ import { Cloud, Clouds, Sky } from '@react-three/drei';
 import useSceneConfig from '../use-scene-config.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
 
-const padScale = filledVector(0.38);
-const falconScale = filledVector(0.38);
-const dateScale = filledVector(0.35);
-const sceneNameScale = filledVector(1.3);
+const padScale = filledVector(0.4);
+const falconScale = filledVector(0.4);
+const dateScale = filledVector(0.3);
+const sceneNameScale = filledVector(2);
 
 /**
  * The launch scene which depicts the Psyche mission launch.
@@ -47,22 +47,18 @@ const LaunchScene: SceneComponent = () => {
       <LiftoffAnimation>
         <FactsModalTrigger factName="falconHeavy">
           <FalconHeavyWithLogos
-            position={[1.2, -4, 1]}
+            position={[1.2, -3.9, 1]}
             scale={falconScale}
             rotation={[0, 0, 0]}
           />
         </FactsModalTrigger>
       </LiftoffAnimation>
       <FactsModalTrigger factName="launch">
-        <LaunchDateModel
-          position={[11, -5, 6.5]}
-          scale={dateScale}
-          rotation={[-Math.PI / 30, 0, 0]}
-        />
+        <LaunchDateModel position={[9, -5, 7.5]} scale={dateScale} />
       </FactsModalTrigger>
-      <LaunchSceneName position={[0, 14, -5]} scale={sceneNameScale} />
+      <LaunchSceneName position={[-2, 18.6, -5]} scale={sceneNameScale} />
       <RenderIf shouldRender={disableAr}>
-        <Sky sunPosition={[2, 40, 100]} />
+        <Sky sunPosition={[2, 50, 100]} />
         <Clouds>
           <Cloud position={[-8, 10, -8]} opacity={0.5} />
           <Cloud position={[8, 12, -8]} opacity={0.4} />

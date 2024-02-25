@@ -6,20 +6,16 @@ import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import CruisePanelsAnimation from '../../animations/CruisePanelsAnimation.tsx';
 import CruiseSceneLights from '../../common/components/CruiseSceneLights.tsx';
 
-const dateScale = filledVector(0.3);
-const nameScale = filledVector(1.2);
+const dateScale = filledVector(0.32);
+const nameScale = filledVector(1.9);
 
 const CruisePanelsScene: SceneComponent = () => (
   <>
     <CruisePanelsAnimation />
     <CruiseSceneLights />
-    <CruiseName position={[-1.5, 10, -1]} scale={nameScale} />
+    <CruiseName position={[-1.8, 14, -5]} scale={nameScale} />
     <FactsModalTrigger factName="cruiseDate">
-      <CruiseDate
-        position={[9, -3, 8]}
-        scale={dateScale}
-        rotation={[-Math.PI / 16, 0, 0]}
-      />
+      <CruiseDate position={[8.35, -6, 8]} scale={dateScale} />
     </FactsModalTrigger>
   </>
 );

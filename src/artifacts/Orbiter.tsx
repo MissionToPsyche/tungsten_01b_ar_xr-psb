@@ -63,8 +63,17 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/assets/models/orbiter-transformed.glb'
   ) as GLTFResult;
+
+  const minScaleFactor = Math.min(window.innerWidth / 100, 0.8);
+  const maxScaleFactor = Math.max(window.innerWidth / 1300, 1.2);
+  const isMobile = window.innerWidth < 768;
+
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+    >
       {/*Bottom Stuff*/}
       <ExplodeElement
         startPosition={[0, 0, 0]}

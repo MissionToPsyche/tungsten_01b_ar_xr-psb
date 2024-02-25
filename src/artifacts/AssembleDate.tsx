@@ -48,6 +48,10 @@ export function AssembleDate(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
   const { actions } = useAnimations(animations, group);
 
+  const minScaleFactor = Math.min(window.innerWidth / 1300, 0.2);
+  const maxScaleFactor = Math.max(window.innerWidth / 5200, 0.25);
+  const isMobile = window.innerWidth < 768;
+
   useEffect(() => {
     actions.firstMove?.play();
     actions.secondMove?.play();
@@ -61,7 +65,12 @@ export function AssembleDate(props: JSX.IntrinsicElements['group']) {
   ]);
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group
+      ref={group}
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+    >
       <FactsModalTrigger factName="firstDateRange">
         <group
           name="FirstDate"

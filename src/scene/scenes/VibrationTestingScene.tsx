@@ -6,9 +6,9 @@ import VibrationTestingAnimation from '../../animations/VibrationTestingAnimatio
 import Explode from '../../common/explode/Explode.tsx';
 import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
 
-const orbiterScale = filledVector(0.75);
-const sceneNameScale = filledVector(0.9);
-const sceneDateScale = filledVector(0.2);
+const orbiterScale = filledVector(0.9);
+const sceneNameScale = filledVector(1.5);
+// const sceneDateScale = filledVector(0.2);
 
 const VibrationTestingScene: SceneComponent = () => (
   <Explode initialExploded={false}>
@@ -34,12 +34,8 @@ const VibrationTestingScene: SceneComponent = () => (
         rotation={[Math.PI / 8, 0, 0]}
       />
     </VibrationTestingAnimation>
-    <AssembleTestSceneName position={[0, 9.8, 0]} scale={sceneNameScale} />
-    <AssembleDate
-      scale={sceneDateScale}
-      position={[0, -5, 5]}
-      rotation={[-Math.PI / 8, 0, 0]}
-    />
+    <AssembleTestSceneName position={[-1.2, 13.6, -4]} scale={sceneNameScale} />
+    <AssembleDate position={[-0.8, -4, 8]} />
   </Explode>
 );
 

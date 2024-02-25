@@ -12,8 +12,8 @@ import StaticExplodeElement from '../../common/explode/StaticExplodeElement.tsx'
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 
 const orbiterScale = filledVector(0.75);
-const sceneNameScale = filledVector(0.9);
-const sceneDateScale = filledVector(0.2);
+const sceneNameScale = filledVector(1.5);
+// const sceneDateScale = filledVector(0.2);
 
 const AssemblyScene: SceneComponent = () => (
   <Explode initialExploded={true}>
@@ -116,12 +116,11 @@ const AssemblyScene: SceneComponent = () => (
       scale={orbiterScale}
       rotation={[Math.PI / 8, 0, 0]}
     />
-    <AssembleTestSceneName position={[0, 9.8, 0]} scale={sceneNameScale} />
     <AssembleAnimation />
+    <AssembleTestSceneName position={[-1.2, 13.6, -4]} scale={sceneNameScale} />
     <AssembleDate
-      scale={sceneDateScale}
-      position={[0, -4, 5]}
-      rotation={[-Math.PI / 16, 0, 0]}
+      // scale={sceneDateScale}
+      position={[-0.8, -4, 8]}
     />
   </Explode>
 );
