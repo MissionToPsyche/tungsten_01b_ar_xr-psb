@@ -36,13 +36,23 @@ export function CruiseDate(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
   const { actions } = useAnimations(animations, group);
 
+  const minScaleFactor = 0.3;
+  const maxScaleFactor = 0.35;
+  const isMobile = window.innerWidth < 768;
+
   useEffect(() => {
     actions.firstMove?.play();
     actions.secondMove?.play();
   }, [actions.firstMove, actions.secondMove]);
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group
+      ref={group}
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+      position={isMobile ? [8, -5.5, 10] : [13, -5, 10]}
+    >
       <group
         name="FirstSceneDate"
         position={[-15, 8, 0]}

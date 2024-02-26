@@ -42,8 +42,18 @@ export function FalconHeavyWithLogos(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/assets/models/falcon-heavy-with-logos-transformed.glb'
   ) as GLTFResult;
+
+  const minScaleFactor = 0.4;
+  const maxScaleFactor = 0.45;
+  const isMobile = window.innerWidth < 768;
+
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+      position={isMobile ? [1.8, -4, 0.1] : [3, -4, 0.1]}
+    >
       <mesh
         ref={meshRef}
         geometry={nodes.Object_9.geometry}

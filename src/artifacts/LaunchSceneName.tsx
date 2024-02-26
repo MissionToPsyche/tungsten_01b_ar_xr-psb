@@ -27,8 +27,18 @@ export function LaunchSceneName(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/assets/models/launch-scene-name-transformed.glb'
   ) as GLTFResult;
+
+  const minScaleFactor = 2;
+  const maxScaleFactor = 2.2;
+  const isMobile = window.innerWidth < 768;
+
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+      position={isMobile ? [-2.1, 18.5, -6] : [-1, 21, -6]}
+    >
       <mesh
         geometry={nodes.Object_5.geometry}
         material={materials.M_03___Default}

@@ -1,14 +1,9 @@
 import { SceneComponent } from '../types/scene-component.ts';
 import { Orbiter } from '../../artifacts/Orbiter.tsx';
-import filledVector from '../../common/utils/filled-vector.ts';
 import { AssembleTestSceneName } from '../../artifacts/AssembleTestSceneName.tsx';
 import VibrationTestingAnimation from '../../animations/VibrationTestingAnimation.tsx';
 import Explode from '../../common/explode/Explode.tsx';
 import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
-
-const orbiterScale = filledVector(0.9);
-const sceneNameScale = filledVector(1.5);
-// const sceneDateScale = filledVector(0.2);
 
 const VibrationTestingScene: SceneComponent = () => (
   <Explode initialExploded={false}>
@@ -28,14 +23,10 @@ const VibrationTestingScene: SceneComponent = () => (
     />
     <spotLight intensity={0.5} position={[10.5, 26, -2]} color={'#441359'} />
     <VibrationTestingAnimation>
-      <Orbiter
-        position={[0, 3, 0]}
-        scale={orbiterScale}
-        rotation={[Math.PI / 8, 0, 0]}
-      />
+      <Orbiter position={[0, 3, 0]} rotation={[Math.PI / 8, 0, 0]} />
     </VibrationTestingAnimation>
-    <AssembleTestSceneName position={[-1.2, 13.6, -4]} scale={sceneNameScale} />
-    <AssembleDate position={[-0.8, -4, 8]} />
+    <AssembleTestSceneName />
+    <AssembleDate />
   </Explode>
 );
 

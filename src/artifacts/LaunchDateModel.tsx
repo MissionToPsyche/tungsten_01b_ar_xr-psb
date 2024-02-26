@@ -31,12 +31,22 @@ export function LaunchDateModel(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
   const { actions } = useAnimations(animations, group);
 
+  const minScaleFactor = 0.32;
+  const maxScaleFactor = 0.38;
+  const isMobile = window.innerWidth < 768;
+
   useEffect(() => {
     actions.firstMove?.play();
   });
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group
+      ref={group}
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+      position={isMobile ? [9, -5, 7] : [13, -4.5, 9]}
+    >
       <group name="Scene">
         <group
           name="TextPlus001"

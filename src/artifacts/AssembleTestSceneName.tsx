@@ -27,8 +27,18 @@ export function AssembleTestSceneName(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/assets/models/assemble-test-scene-name-transformed.glb'
   ) as GLTFResult;
+
+  const minScaleFactor = 1.6;
+  const maxScaleFactor = 1.8;
+  const isMobile = window.innerWidth < 768;
+
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+      position={isMobile ? [-1.5, 14.5, -6] : [-1, 15.5, -6]}
+    >
       <mesh
         geometry={nodes.Object_4.geometry}
         material={materials.Letters_Material}

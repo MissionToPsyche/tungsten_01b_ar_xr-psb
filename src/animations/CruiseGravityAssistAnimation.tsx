@@ -11,11 +11,10 @@ import degreesToRadians from '../common/utils/degrees-to-radians';
 
 const marsScale = filledVector(35);
 const translationSpeed = 35;
-const orbiterScale = filledVector(0.75);
 const defaultOrbiterRotation = new Euler(
-  degreesToRadians(100),
-  degreesToRadians(0),
-  degreesToRadians(-140)
+  degreesToRadians(210),
+  degreesToRadians(-145),
+  degreesToRadians(110)
 );
 
 /**
@@ -71,8 +70,6 @@ const CruiseGravityAssistAnimation: React.FC<
           animatePanels={false}
           panelsOpen
           thrustersOn
-          position={[0, 2, 2]}
-          scale={orbiterScale}
           rotation={defaultOrbiterRotation}
         />
       </group>

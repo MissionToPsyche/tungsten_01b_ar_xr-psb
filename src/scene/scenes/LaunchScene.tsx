@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unknown-property */
 import { SceneComponent } from '../types/scene-component.ts';
-import filledVector from '../../common/utils/filled-vector.ts';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import { FalconHeavyWithLogos } from '../../artifacts/FalconHeavyWithLogos.tsx';
 import { LaunchDateModel } from '../../artifacts/LaunchDateModel.tsx';
@@ -10,11 +9,6 @@ import { LaunchPadModel } from '../../artifacts/LaunchPadModel.jsx';
 import { Cloud, Clouds, Sky } from '@react-three/drei';
 import useSceneConfig from '../use-scene-config.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
-
-const padScale = filledVector(0.4);
-const falconScale = filledVector(0.4);
-const dateScale = filledVector(0.3);
-const sceneNameScale = filledVector(2);
 
 /**
  * The launch scene which depicts the Psyche mission launch.
@@ -43,20 +37,16 @@ const LaunchScene: SceneComponent = () => {
         color={'#441359'}
       />
       <spotLight intensity={1} position={[11, 40, -25]} color={'#441359'} />
-      <LaunchPadModel position={[-1, -6, 1]} scale={padScale} />
+      <LaunchPadModel />
       <LiftoffAnimation>
         <FactsModalTrigger factName="falconHeavy">
-          <FalconHeavyWithLogos
-            position={[1.2, -3.9, 1]}
-            scale={falconScale}
-            rotation={[0, 0, 0]}
-          />
+          <FalconHeavyWithLogos />
         </FactsModalTrigger>
       </LiftoffAnimation>
       <FactsModalTrigger factName="launch">
-        <LaunchDateModel position={[9, -5, 7.5]} scale={dateScale} />
+        <LaunchDateModel />
       </FactsModalTrigger>
-      <LaunchSceneName position={[-2, 18.6, -5]} scale={sceneNameScale} />
+      <LaunchSceneName />
       <RenderIf shouldRender={disableAr}>
         <Sky sunPosition={[2, 50, 100]} />
         <Clouds>

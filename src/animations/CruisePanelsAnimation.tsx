@@ -4,11 +4,7 @@ import { Group } from 'three';
 import useAnimation from './use-animation';
 import AnimationName from './types/animation-name';
 import { Earth } from '../artifacts/Earth';
-import filledVector from '../common/utils/filled-vector';
 import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
-
-const earthScale = filledVector(25);
-const orbiterScale = filledVector(0.75);
 
 /**
  * Cruise Solar Panel Animation
@@ -47,13 +43,11 @@ const CruisePanelsAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
           animatePanels
           panelsOpen={isActive}
           thrustersOn={false}
-          position={[0, 2, 2]}
-          scale={orbiterScale}
           rotation={[Math.PI / 5, Math.PI / 5, Math.PI / 6]}
         />
       </group>
       <group ref={earthRef} {...props}>
-        <Earth position={[-10, -5, -60]} scale={earthScale} />
+        <Earth />
       </group>
     </group>
   );

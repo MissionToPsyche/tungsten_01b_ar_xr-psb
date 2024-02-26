@@ -40,8 +40,20 @@ export function LaunchPadModel(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/assets/models/launch-pad-model-transformed.glb'
   ) as GLTFResult;
+
+  const minScaleFactor = 0.4;
+  const maxScaleFactor = 0.5;
+  const isMobile = innerWidth < 768;
+  const screenWidth = window.innerWidth;
+  console.log(screenWidth / 100);
+
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      position={isMobile ? [-0.5, -6, 0] : [0, -6, 0]}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+    >
       <group>
         <spotLight
           intensity={0.3}

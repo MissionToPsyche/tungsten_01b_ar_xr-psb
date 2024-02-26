@@ -23,8 +23,18 @@ export function CruiseName(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/assets/models/cruise-arrival-scene-name-transformed.glb'
   ) as GLTFResult;
+
+  const minScaleFactor = 2;
+  const maxScaleFactor = 2.3;
+  const isMobile = window.innerWidth < 768;
+
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+      position={isMobile ? [-2, 14, -6] : [-2, 15, -6]}
+    >
       <mesh
         geometry={nodes.Box003.geometry}
         material={materials.M_08___Default}

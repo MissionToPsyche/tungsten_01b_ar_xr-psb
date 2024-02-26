@@ -3,17 +3,12 @@ import Explode from '../../common/explode/Explode.tsx';
 import { SceneComponent } from '../types/scene-component.ts';
 import AssembleAnimation from '../../animations/AssembleAnimation.tsx';
 import { Orbiter } from '../../artifacts/Orbiter.tsx';
-import filledVector from '../../common/utils/filled-vector.ts';
 import { AssembleTestSceneName } from '../../artifacts/AssembleTestSceneName.tsx';
 import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
 import { Box } from '@react-three/drei';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import StaticExplodeElement from '../../common/explode/StaticExplodeElement.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
-
-const orbiterScale = filledVector(0.75);
-const sceneNameScale = filledVector(1.5);
-// const sceneDateScale = filledVector(0.2);
 
 const AssemblyScene: SceneComponent = () => (
   <Explode initialExploded={true}>
@@ -111,17 +106,10 @@ const AssemblyScene: SceneComponent = () => (
         <meshBasicMaterial transparent opacity={0} />
       </Box>
     </ExplodeTrigger>
-    <Orbiter
-      position={[0, 3, 0]}
-      scale={orbiterScale}
-      rotation={[Math.PI / 8, 0, 0]}
-    />
+    <Orbiter position={[0, 3, 0]} rotation={[Math.PI / 8, 0, 0]} />
     <AssembleAnimation />
-    <AssembleTestSceneName position={[-1.2, 13.6, -4]} scale={sceneNameScale} />
-    <AssembleDate
-      // scale={sceneDateScale}
-      position={[-0.8, -4, 8]}
-    />
+    <AssembleTestSceneName />
+    <AssembleDate />
   </Explode>
 );
 

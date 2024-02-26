@@ -115,8 +115,18 @@ export function CruiseOrbiter(
     animatePanels
   ]);
 
+  const minScaleFactor = 0.9;
+  const maxScaleFactor = 1.1;
+  const isMobile = window.innerWidth < 768;
+
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group
+      ref={group}
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+      position={isMobile ? [0, 0, 0] : [0, -2, 0]}
+    >
       <group name="Scene">
         <>
           <ThrusterParticleSystem

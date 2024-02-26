@@ -19,7 +19,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-const rotationSpeed = 0.3;
+const rotationSpeed = 0.05;
 
 export function Earth(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group | null>(null);
@@ -35,9 +35,19 @@ export function Earth(props: JSX.IntrinsicElements['group']) {
     meshRef.current.rotation.y += -(delta * rotationSpeed);
   });
 
+  const minScaleFactor = 20;
+  const maxScaleFactor = 24;
+  const isMobile = window.innerWidth < 768;
+
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group name="Scene" position={[0, 0, 0]}>
+    <group
+      ref={group}
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+      position={isMobile ? [-10, -5, -40] : [-10, -5, -40]}
+    >
+      <group name="Scene">
         <mesh
           ref={meshRef}
           name="Earth"
