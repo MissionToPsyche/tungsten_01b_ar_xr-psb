@@ -8,11 +8,17 @@ import { Group } from 'three';
 const ModelSpinner: React.FC<
   JSX.IntrinsicElements['group'] & {
     speed: number;
-    orientationX: boolean;
-    orientationY: boolean;
-    orientationZ: boolean;
+    orientationX?: boolean;
+    orientationY?: boolean;
+    orientationZ?: boolean;
   }
-> = ({ speed, orientationX, orientationY, orientationZ, ...props }) => {
+> = ({
+  speed,
+  orientationX = false,
+  orientationY = false,
+  orientationZ = false,
+  ...props
+}) => {
   const groupRef = useRef<Group>(null);
 
   useFrame((_, delta) => {
@@ -21,9 +27,11 @@ const ModelSpinner: React.FC<
     }
     if (orientationX) {
       groupRef.current.rotation.x += delta * speed;
-    } else if (orientationY) {
+    }
+    if (orientationY) {
       groupRef.current.rotation.y += delta * speed;
-    } else if (orientationZ) {
+    }
+    if (orientationZ) {
       groupRef.current.rotation.z += delta * speed;
     }
   });

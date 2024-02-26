@@ -20,13 +20,7 @@ const OrbitScene: SceneComponent = () => (
     <FactsModalTrigger factName="psyche">
       <Psyche rotation={[Math.PI / 3, 0, 0]} />
     </FactsModalTrigger>
-    <ModelSpinner
-      position={[0, 0, -5]}
-      speed={-0.5}
-      orientationX={false}
-      orientationY={true}
-      orientationZ={false}
-    >
+    <ModelSpinner position={[0, 0, -8]} speed={-0.5} orientationY={true}>
       <OrbitOrbiter
         rotation={[0, 0, 0]}
         position={[0, 0, 15]}
