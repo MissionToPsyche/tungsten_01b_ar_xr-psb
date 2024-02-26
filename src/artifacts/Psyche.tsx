@@ -38,7 +38,7 @@ export function Psyche(props: JSX.IntrinsicElements['group']) {
     if (groupRef.current == null) {
       return;
     }
-    groupRef.current.rotation.x += delta * 0.3;
+    groupRef.current.rotation.x += delta * 0.05;
   });
 
   return (

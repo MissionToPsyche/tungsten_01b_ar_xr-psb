@@ -18,7 +18,7 @@ type GLTFResult = GLTF & {
 };
 
 const minScaleFactor = 2.4;
-const maxScaleFactor = 3.1;
+const maxScaleFactor = 3;
 const isMobile = window.innerWidth < 768;
 
 export function DashedOrbit(props: JSX.IntrinsicElements['group']) {

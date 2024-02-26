@@ -70,7 +70,7 @@ export function AssembleDate(props: JSX.IntrinsicElements['group']) {
       {...props}
       dispose={null}
       scale={isMobile ? minScaleFactor : maxScaleFactor}
-      position={isMobile ? [-1, -6, 6] : [0, -5, 8]}
+      position={isMobile ? [-1, -6, 6] : [-1, -5, 8]}
     >
       <FactsModalTrigger factName="firstDateRange">
         <group
