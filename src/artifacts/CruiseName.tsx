@@ -24,7 +24,7 @@ export function CruiseName(props: JSX.IntrinsicElements['group']) {
     '/assets/models/cruise-arrival-scene-name-transformed.glb'
   ) as GLTFResult;
 
-  const minScaleFactor = 2;
+  const minScaleFactor = 2.1;
   const maxScaleFactor = 2.3;
   const isMobile = window.innerWidth < 768;
 
@@ -33,7 +33,7 @@ export function CruiseName(props: JSX.IntrinsicElements['group']) {
       {...props}
       dispose={null}
       scale={isMobile ? minScaleFactor : maxScaleFactor}
-      position={isMobile ? [-2, 14, -6] : [-2, 15, -6]}
+      position={isMobile ? [-2, 15, -6] : [-2, 16, -6]}
     >
       <mesh
         geometry={nodes.Box003.geometry}

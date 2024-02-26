@@ -52,7 +52,7 @@ export function FalconHeavyWithLogos(props: JSX.IntrinsicElements['group']) {
       {...props}
       dispose={null}
       scale={isMobile ? minScaleFactor : maxScaleFactor}
-      position={isMobile ? [1.8, -4, 0.1] : [3, -4, 0.1]}
+      position={isMobile ? [1.8, -4, 0.1] : [2.8, -3.6, 0.1]}
     >
       <mesh
         ref={meshRef}

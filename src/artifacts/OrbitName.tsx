@@ -24,8 +24,18 @@ export function OrbitName(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/assets/models/cruise-arrival-scene-name-transformed.glb'
   ) as GLTFResult;
+
+  const minScaleFactor = 2;
+  const maxScaleFactor = 2.3;
+  const isMobile = window.innerWidth < 768;
+
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+      position={isMobile ? [-2, 10, -8] : [-1, 10, -8]}
+    >
       <mesh
         geometry={nodes.MissionLaunchText002.geometry}
         material={materials.M_03___Default}

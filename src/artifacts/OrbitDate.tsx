@@ -34,8 +34,19 @@ export function OrbitDate(props: JSX.IntrinsicElements['group']) {
   useEffect(() => {
     actions.SecondDateAction?.play();
   });
+
+  const minScaleFactor = 0.32;
+  const maxScaleFactor = 0.4;
+  const isMobile = window.innerWidth < 768;
+
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group
+      ref={group}
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+      position={isMobile ? [-3.5, -6, 10] : [-12, -6, 8]}
+    >
       <group name="Scene">
         <group name="Node_3" position={[0.056, 1.217, 0]}>
           <group

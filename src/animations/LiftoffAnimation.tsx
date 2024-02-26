@@ -44,19 +44,22 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       }
     }
   });
-
+  const isMobile = window.innerWidth < 768;
+  const minCount = 150;
+  const maxCount = 400;
   return (
     <group ref={groupRef} {...props}>
       <ThrusterParticleSystem
-        position={[0.62, -4.4, 1]}
         visible={isAnimationActive(AnimationName.LIFTOFF)}
         particleStartColor={thrusterStartingColor}
         particleEndColor={thrusterEndingColor}
-        count={200}
+        count={isMobile ? minCount : maxCount}
+        position={isMobile ? [1.4, -4.5, 0] : [2.1, -4.2, 0]}
       />
       <SmokeParticleSystem
         visible={!isAnimationActive(AnimationName.LIFTOFF)}
-        position={[0.75, -4.4, 1]}
+        count={isMobile ? minCount : maxCount}
+        position={isMobile ? [1.4, -4.5, 0] : [2.2, -4.2, 0]}
       />
       {children}
     </group>

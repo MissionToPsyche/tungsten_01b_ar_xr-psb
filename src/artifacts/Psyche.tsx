@@ -30,6 +30,10 @@ export function Psyche(props: JSX.IntrinsicElements['group']) {
     '/assets/models/psyche-transformed.glb'
   ) as GLTFResult;
 
+  const minScaleFactor = 5;
+  const maxScaleFactor = 7;
+  const isMobile = window.innerWidth < 768;
+
   useFrame((_, delta) => {
     if (groupRef.current == null) {
       return;
@@ -38,7 +42,13 @@ export function Psyche(props: JSX.IntrinsicElements['group']) {
   });
 
   return (
-    <group ref={groupRef} {...props} dispose={null}>
+    <group
+      ref={groupRef}
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+      position={isMobile ? [0, 1, -3] : [0, 0, -3]}
+    >
       <group name="Scene">
         <group
           name="PSYCHE_20170116_DEC001"
