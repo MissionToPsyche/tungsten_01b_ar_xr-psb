@@ -346,5 +346,5 @@ export function Orbits(props: JSX.IntrinsicElements['group']) {
 }
 
 useGLTF.preload(
-  '/assets/models/tungsten_01b_ar_xr-psb/orbits_animated-transformed.glb'
+  '/assets/models/orbits_animated-transformed.glb'
 );

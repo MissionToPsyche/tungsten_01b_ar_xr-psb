@@ -15,6 +15,7 @@ import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
 import { OrbitControls, Stars } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+import ModelSpinner from '../common/components/ModelSpinner.tsx';
 
 /**
  * Manages AR scenes.
@@ -95,6 +96,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
             maxZoom={0.04}
             maxDistance={30}
           />
+          <ModelSpinner speed={0.015} orientationX={true} orientationY={true}>
           <Stars
             radius={50}
             depth={50}
@@ -102,15 +104,18 @@ const SceneManager: ViewComponent = ({ changeView }) => {
             factor={6}
             saturation={7}
             fade={true}
-          />
+            />
+          </ModelSpinner>
+          <ModelSpinner speed={0.015} orientationY={true} orientationZ={true}>
           <Stars
             radius={100}
             depth={80}
             count={2000}
-            factor={4}
+            factor={6}
             saturation={5}
-            fade={true}
-          />
+            fade={false}
+            />
+            </ModelSpinner>
         </RenderIf>
         <SceneLighting />
         <PersistentARMarker markerUrl={markerUrl}>
