@@ -11,7 +11,9 @@ const isMobile = window.innerWidth < 768;
 
 const OrbitScene: SceneComponent = () => (
   <>
-    <OrbitDate position={isMobile ? [4, -5.5, 9] : [9, -6, 10]} />
+    <FactsModalTrigger factName="orbitDate">
+      <OrbitDate position={isMobile ? [4, -5.5, 9] : [9, -6, 10]} />
+    </FactsModalTrigger>
     <FactsModalTrigger factName="psycheOrbitA">
       <DashedOrbit
         scale={isMobile ? [13, 1.25, 0.5] : [17, 1.5, 0.6]}

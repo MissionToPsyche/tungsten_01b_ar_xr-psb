@@ -20,22 +20,22 @@ const missionFacts: Record<string, MissionFact> = {
   multiSpectralImager: {
     title: 'Multispectral Imager',
     fact: 'Provides high-res images and metal-silicate discrimination.',
-    image: '/assets/images/psyche-multispectral-imager.jpg'
+    image: '/assets/images/imager.png'
   },
   spectrometer: {
     title: 'Gamma-Ray and Neutron Spectrometer',
     fact: "Detects, measures and maps Psyche's elemental composition.",
-    image: '/assets/images/psyche-gamma-ray-spectrometer.jpg'
+    image: '/assets/images/spectrometer.png'
   },
   magnetometer: {
     title: 'Magnetometer',
     fact: 'Detects and measures the remanent magnetic field of Psyche.',
-    image: '/assets/images/psyche-magnetometer.jpg'
+    image: '/assets/images/magnetometer.png'
   },
   xBandRadio: {
     title: 'X-band Radio Telecommunications System',
     fact: "Measures Psyche's gravity field to high precision.",
-    image: '/assets/images/psyche-radio-science.jpg'
+    image: '/assets/images/x-band.png'
   },
   opticalCommunication: {
     title: 'Deep Space Optical Communication',
@@ -61,11 +61,12 @@ const missionFacts: Record<string, MissionFact> = {
   // Launch Scene
   falconHeavy: {
     title: 'Falcon Heavy',
-    fact: "The Falcon Heavy is SpaceX's semi-reusable, powerful rocket."
+    fact: "The Falcon Heavy is the SpaceX's semi-reusable super heavy-lift launch vehicle, that transported the Psyche Aircraft into the space.",
+    image: '/assets/images/falcon.jpg'
   },
   launch: {
-    title: 'The Launch 🚀',
-    fact: "Psyche launched on SpaceX's Falcon Heavy, Oct 13, 2023."
+    title: 'The Spacecraft Launches 🚀',
+    fact: 'Psyche launched at 10:19 a.m. EDT Friday, October 13, 2023 aboard a SpaceX Falcon Heavy rocket from Launch Pad 39A at NASA’s Kennedy Space Center in Florida.'
   },
   // Cruise Scene
   marsDate: {
@@ -114,6 +115,10 @@ const missionFacts: Record<string, MissionFact> = {
     title: 'Orbit D',
     fact: 'The spacecraft will orbit Psyche for 100 days (666 orbits), performing elemental mapping.',
     image: '/assets/images/psyche-orbit.svg'
+  },
+  orbitDate: {
+    title: 'Arrival and Orbiting Psyche',
+    fact: 'After arrival, the mission plan calls for mapping the asteroid and studying its properties. In each orbit, the instruments on board send data back to Earth to be analyzed by the mission’s science team.'
   }
 };
 
