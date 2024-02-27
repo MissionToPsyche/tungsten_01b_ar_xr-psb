@@ -33,8 +33,16 @@ export function OrbitOrbiter(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/assets/models/orbit-orbiter-transformed.glb'
   ) as GLTFResult;
+
+  const isMobile = window.innerWidth < 768;
+  const minScaleFactor = 1;
+  const maxScaleFactor = 1.8;
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      scale={isMobile ? minScaleFactor : maxScaleFactor}
+    >
       <group>
         <group
           position={[-0.069, 0.288, 0.012]}

@@ -45,7 +45,6 @@ export function OrbitDate(props: JSX.IntrinsicElements['group']) {
       {...props}
       dispose={null}
       scale={isMobile ? minScaleFactor : maxScaleFactor}
-      position={isMobile ? [-3.5, -6, 10] : [-12, -6, 8]}
     >
       <group name="Scene">
         <group name="Node_3" position={[0.056, 1.217, 0]}>

@@ -345,6 +345,4 @@ export function Orbits(props: JSX.IntrinsicElements['group']) {
   );
 }
 
-useGLTF.preload(
-  '/assets/models/orbits_animated-transformed.glb'
-);
+useGLTF.preload('/assets/models/orbits_animated-transformed.glb');

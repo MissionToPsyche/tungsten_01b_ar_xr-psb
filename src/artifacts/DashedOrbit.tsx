@@ -17,27 +17,16 @@ type GLTFResult = GLTF & {
   };
 };
 
-const minScaleFactor = 2.4;
-const maxScaleFactor = 3;
-const isMobile = window.innerWidth < 768;
-
 export function DashedOrbit(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/assets/models/orbit-dashed-transformed.glb'
   ) as GLTFResult;
   return (
-    <group
-      {...props}
-      dispose={null}
-      scale={isMobile ? minScaleFactor : maxScaleFactor}
-      position={isMobile ? [12, 0, -3] : [15, 0, -3]}
-    >
+    <group {...props} dispose={null}>
       <group>
         <mesh
           geometry={nodes.Cube.geometry}
           material={materials.SignalTransmMaterial}
-          position={[0, 0, 0]}
-          scale={[5, 0.7, 0.2]}
         />
       </group>
     </group>

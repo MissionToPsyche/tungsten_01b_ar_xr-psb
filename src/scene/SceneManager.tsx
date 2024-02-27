@@ -96,26 +96,16 @@ const SceneManager: ViewComponent = ({ changeView }) => {
             maxZoom={0.04}
             maxDistance={30}
           />
-          <ModelSpinner speed={0.015} orientationX={true} orientationY={true}>
-          <Stars
-            radius={50}
-            depth={50}
-            count={2000}
-            factor={6}
-            saturation={7}
-            fade={true}
+          <ModelSpinner speed={0.015} orientationY={true} orientationZ={true}>
+            <Stars
+              radius={50}
+              depth={50}
+              count={2000}
+              factor={7}
+              saturation={7}
+              fade={true}
             />
           </ModelSpinner>
-          <ModelSpinner speed={0.015} orientationY={true} orientationZ={true}>
-          <Stars
-            radius={100}
-            depth={80}
-            count={2000}
-            factor={6}
-            saturation={5}
-            fade={false}
-            />
-            </ModelSpinner>
         </RenderIf>
         <SceneLighting />
         <PersistentARMarker markerUrl={markerUrl}>
