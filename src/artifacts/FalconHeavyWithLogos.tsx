@@ -13,6 +13,7 @@ import { Mesh } from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 import { useRef } from 'react';
+import filledVector from '../common/utils/filled-vector';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -43,8 +44,8 @@ export function FalconHeavyWithLogos(props: JSX.IntrinsicElements['group']) {
     '/assets/models/falcon-heavy-with-logos-transformed.glb'
   ) as GLTFResult;
 
-  const minScaleFactor = 0.4;
-  const maxScaleFactor = 0.45;
+  const minScaleFactor = filledVector(0.4);
+  const maxScaleFactor = filledVector(0.45);
   const isMobile = window.innerWidth < 768;
 
   return (

@@ -14,6 +14,7 @@ import { GLTF } from 'three-stdlib';
 import ExplodeElement from '../common/explode/ExplodeElement.tsx';
 import degreesToRadians from '../common/utils/degrees-to-radians.ts';
 import FactsModalTrigger from '../facts/FactsModalTrigger.tsx';
+import filledVector from '../common/utils/filled-vector.ts';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -64,8 +65,8 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
     '/assets/models/orbiter-transformed.glb'
   ) as GLTFResult;
 
-  const minScaleFactor = Math.min(window.innerWidth / 100, 0.8);
-  const maxScaleFactor = Math.max(window.innerWidth / 1300, 1.2);
+  const minScaleFactor = filledVector(0.8);
+  const maxScaleFactor = filledVector(1.2);
   const isMobile = window.innerWidth < 768;
 
   return (

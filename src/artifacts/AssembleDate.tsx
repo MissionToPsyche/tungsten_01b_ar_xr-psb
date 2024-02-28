@@ -9,6 +9,7 @@ import { useRef, useEffect } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 import FactsModalTrigger from '../facts/FactsModalTrigger';
+import filledVector from '../common/utils/filled-vector';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -48,8 +49,8 @@ export function AssembleDate(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
   const { actions } = useAnimations(animations, group);
 
-  const minScaleFactor = 0.22;
-  const maxScaleFactor = 0.26;
+  const minScaleFactor = filledVector(0.22);
+  const maxScaleFactor = filledVector(0.26);
   const isMobile = window.innerWidth < 768;
 
   useEffect(() => {

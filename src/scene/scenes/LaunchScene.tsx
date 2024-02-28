@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 import { SceneComponent } from '../types/scene-component.ts';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import { FalconHeavyWithLogos } from '../../artifacts/FalconHeavyWithLogos.tsx';
@@ -9,6 +8,7 @@ import { LaunchPadModel } from '../../artifacts/LaunchPadModel.jsx';
 import { Cloud, Clouds, Sky } from '@react-three/drei';
 import useSceneConfig from '../use-scene-config.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
+import { LaunchSceneLights } from '../../common/components/LaunchSceneLights.tsx';
 
 /**
  * The launch scene which depicts the Psyche mission launch.
@@ -18,25 +18,7 @@ const LaunchScene: SceneComponent = () => {
 
   return (
     <>
-      <ambientLight intensity={0.1} position={[0, 10, 7]} />
-      <spotLight
-        intensity={0.5}
-        position={[-10, 10, 30]}
-        color={'blue'}
-        angle={-Math.PI / 4}
-      />
-      <hemisphereLight
-        position={[-5, -20, 0]}
-        intensity={0.1}
-        color={'white'}
-      />
-      <spotLight intensity={3} position={[-1, 5, -10]} color={'#08029d'} />
-      <directionalLight
-        intensity={1}
-        position={[-11, 40, -25]}
-        color={'#441359'}
-      />
-      <spotLight intensity={1} position={[11, 40, -25]} color={'#441359'} />
+      <LaunchSceneLights />
       <LaunchPadModel />
       <LiftoffAnimation>
         <FactsModalTrigger factName="falconHeavy">

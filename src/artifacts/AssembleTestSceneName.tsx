@@ -11,6 +11,7 @@ Title: Assembly-test-scene-name
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import filledVector from '../common/utils/filled-vector';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -28,8 +29,8 @@ export function AssembleTestSceneName(props: JSX.IntrinsicElements['group']) {
     '/assets/models/assemble-test-scene-name-transformed.glb'
   ) as GLTFResult;
 
-  const minScaleFactor = 1.6;
-  const maxScaleFactor = 1.8;
+  const minScaleFactor = filledVector(1.6);
+  const maxScaleFactor = filledVector(1.8);
   const isMobile = window.innerWidth < 768;
 
   return (

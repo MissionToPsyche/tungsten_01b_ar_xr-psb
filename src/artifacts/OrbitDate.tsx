@@ -8,6 +8,7 @@ import * as THREE from 'three';
 import { useRef, useEffect } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import filledVector from '../common/utils/filled-vector';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -35,8 +36,8 @@ export function OrbitDate(props: JSX.IntrinsicElements['group']) {
     actions.SecondDateAction?.play();
   });
 
-  const minScaleFactor = 0.32;
-  const maxScaleFactor = 0.4;
+  const minScaleFactor = filledVector(0.32);
+  const maxScaleFactor = filledVector(0.4);
   const isMobile = window.innerWidth < 768;
 
   return (

@@ -11,6 +11,7 @@ import { GLTF } from 'three-stdlib';
 import { Color } from 'three';
 import ThrusterParticleSystem from '../common/particle/systems/thruster/ThrusterParticleSystem.tsx';
 import FactsModalTrigger from '../facts/FactsModalTrigger.tsx';
+import filledVector from '../common/utils/filled-vector.ts';
 
 const thrusterStartingColor = new Color('#0065cb');
 const thrusterEndingColor = new Color('#06307a');
@@ -115,8 +116,8 @@ export function CruiseOrbiter(
     animatePanels
   ]);
 
-  const minScaleFactor = 0.9;
-  const maxScaleFactor = 1.1;
+  const minScaleFactor = filledVector(0.9);
+  const maxScaleFactor = filledVector(1.1);
   const isMobile = window.innerWidth < 768;
 
   return (

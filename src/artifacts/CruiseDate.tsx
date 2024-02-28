@@ -8,6 +8,7 @@ import * as THREE from 'three';
 import { useEffect, useRef } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import filledVector from '../common/utils/filled-vector';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -36,8 +37,8 @@ export function CruiseDate(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
   const { actions } = useAnimations(animations, group);
 
-  const minScaleFactor = 0.3;
-  const maxScaleFactor = 0.35;
+  const minScaleFactor = filledVector(0.3);
+  const maxScaleFactor = filledVector(0.35);
   const isMobile = window.innerWidth < 768;
 
   useEffect(() => {

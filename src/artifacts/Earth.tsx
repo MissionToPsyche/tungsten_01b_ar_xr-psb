@@ -9,6 +9,7 @@ import { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 import { useFrame } from '@react-three/fiber';
+import filledVector from '../common/utils/filled-vector';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -35,8 +36,8 @@ export function Earth(props: JSX.IntrinsicElements['group']) {
     meshRef.current.rotation.y += -(delta * rotationSpeed);
   });
 
-  const minScaleFactor = 20;
-  const maxScaleFactor = 24;
+  const minScaleFactor = filledVector(20);
+  const maxScaleFactor = filledVector(24);
   const isMobile = window.innerWidth < 768;
 
   return (

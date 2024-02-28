@@ -7,6 +7,7 @@ Files: ./public/assets/models/cruise-arrival-scene-name.gltf [6.26KB] > cruise-a
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import filledVector from '../common/utils/filled-vector';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -25,8 +26,8 @@ export function OrbitName(props: JSX.IntrinsicElements['group']) {
     '/assets/models/cruise-arrival-scene-name-transformed.glb'
   ) as GLTFResult;
 
-  const minScaleFactor = 2;
-  const maxScaleFactor = 2.3;
+  const minScaleFactor = filledVector(2);
+  const maxScaleFactor = filledVector(2.3);
   const isMobile = window.innerWidth < 768;
 
   return (

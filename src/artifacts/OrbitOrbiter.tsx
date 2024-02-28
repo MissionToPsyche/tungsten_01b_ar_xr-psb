@@ -7,6 +7,7 @@ Files: ./public/assets/models/orbit-orbiter.gltf [35.12MB] > orbit-orbiter-trans
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import filledVector from '../common/utils/filled-vector';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -35,8 +36,8 @@ export function OrbitOrbiter(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
 
   const isMobile = window.innerWidth < 768;
-  const minScaleFactor = 1;
-  const maxScaleFactor = 1.8;
+  const minScaleFactor = filledVector(1);
+  const maxScaleFactor = filledVector(1.8);
   return (
     <group
       {...props}

@@ -6,6 +6,7 @@ import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
 import { OrbitOrbiter } from '../../artifacts/OrbitOrbiter.tsx';
 import { DashedOrbit } from '../../artifacts/DashedOrbit.tsx';
+import { OrbitSceneLights } from '../../common/components/OrbitSceneLights.tsx';
 
 const isMobile = window.innerWidth < 768;
 
@@ -31,12 +32,7 @@ const OrbitScene: SceneComponent = () => (
     >
       <OrbitOrbiter position={isMobile ? [0, 4, 15] : [0, 4, 17]} />
     </ModelSpinner>
-    <ambientLight intensity={0} />
-    <hemisphereLight position={[0, -150, -100]} intensity={0.5} />
-    <spotLight intensity={2} position={[-4.5, 3, 0]} color={'#5F73E9'} />
-    <spotLight intensity={6} position={[-4.5, 5, -50]} color={'#A15FE9'} />
-    <spotLight intensity={4} position={[-4.5, 7, 0]} color={'white'} />
-    <spotLight intensity={1} position={[-2.5, 7, 2]} color={'white'} />
+    <OrbitSceneLights />
   </>
 );
 

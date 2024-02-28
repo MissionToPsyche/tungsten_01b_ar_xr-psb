@@ -11,6 +11,7 @@ Title: Launch-scene-text
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import filledVector from '../common/utils/filled-vector';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -28,8 +29,8 @@ export function LaunchSceneName(props: JSX.IntrinsicElements['group']) {
     '/assets/models/launch-scene-name-transformed.glb'
   ) as GLTFResult;
 
-  const minScaleFactor = 2;
-  const maxScaleFactor = 2.2;
+  const minScaleFactor = filledVector(2);
+  const maxScaleFactor = filledVector(2.2);
   const isMobile = window.innerWidth < 768;
 
   return (

@@ -9,6 +9,7 @@ import { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 import { useFrame } from '@react-three/fiber';
+import filledVector from '../common/utils/filled-vector';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -30,8 +31,8 @@ export function Psyche(props: JSX.IntrinsicElements['group']) {
     '/assets/models/psyche-transformed.glb'
   ) as GLTFResult;
 
-  const minScaleFactor = 5;
-  const maxScaleFactor = 7;
+  const minScaleFactor = filledVector(5);
+  const maxScaleFactor = filledVector(7);
   const isMobile = window.innerWidth < 768;
 
   useFrame((_, delta) => {

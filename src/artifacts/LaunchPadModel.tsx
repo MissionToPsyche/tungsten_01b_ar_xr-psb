@@ -7,6 +7,7 @@ Files: ./public/assets/models/lp.gltf [16.82MB] > lp-transformed.glb [1.35MB] (9
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import filledVector from '../common/utils/filled-vector';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -41,8 +42,8 @@ export function LaunchPadModel(props: JSX.IntrinsicElements['group']) {
     '/assets/models/launch-pad-model-transformed.glb'
   ) as GLTFResult;
 
-  const minScaleFactor = 0.4;
-  const maxScaleFactor = 0.5;
+  const minScaleFactor = filledVector(0.4);
+  const maxScaleFactor = filledVector(0.5);
   const isMobile = innerWidth < 768;
   const screenWidth = window.innerWidth;
   console.log(screenWidth / 100);
