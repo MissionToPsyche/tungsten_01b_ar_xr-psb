@@ -98,22 +98,22 @@ const missionFacts: Record<string, MissionFact> = {
   psycheOrbitA: {
     title: 'Orbit A',
     fact: 'The spacecraft will orbit Psyche for 56 days (41 orbits), performing characterizations of the asteroid.',
-    image: '/assets/images/psyche-orbit.svg'
+    image: '/assets/images/psyche-orbit.png'
   },
   psycheOrbitB: {
     title: 'Orbit B',
     fact: 'The spacecraft will orbit Psyche for 92 days (190 orbits) at B1 and 100 days (206 orbits) at B2, mapping the topography of the asteroid.',
-    image: '/assets/images/psyche-orbit.svg'
+    image: '/assets/images/psyche-orbit.png'
   },
   psycheOrbitC: {
     title: 'Orbit C',
     fact: 'The spacecraft will orbit Psyche for 100 days (333 orbits), performing gravity science.',
-    image: '/assets/images/psyche-orbit.svg'
+    image: '/assets/images/psyche-orbit.png'
   },
   psycheOrbitD: {
     title: 'Orbit D',
     fact: 'The spacecraft will orbit Psyche for 100 days (666 orbits), performing elemental mapping.',
-    image: '/assets/images/psyche-orbit.svg'
+    image: '/assets/images/psyche-orbit.png'
   }
 };
 
