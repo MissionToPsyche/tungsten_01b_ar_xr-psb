@@ -29,7 +29,6 @@ const useSyncArToWindowSize = () => {
             return;
           }
 
-          syncArToWindowSize(gl, camera as PerspectiveCamera);
           videoObserver.observe(video, { attributes: true });
           videoPresenceObserver.disconnect();
         }
