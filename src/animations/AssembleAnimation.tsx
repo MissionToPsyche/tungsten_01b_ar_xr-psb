@@ -19,15 +19,17 @@ const AssembleAnimation: React.FC = () => {
       toggleExploded();
     }
 
-    if (!isExploded && isAtRest) {
-      const timeout = setTimeout(() => {
-        stopAnimation(AnimationName.ASSEMBLE);
+    let timeout: NodeJS.Timeout;
 
-        return () => {
-          clearTimeout(timeout);
-        };
+    if (!isExploded && isAtRest) {
+      timeout = setTimeout(() => {
+        stopAnimation(AnimationName.ASSEMBLE);
       }, 2000);
     }
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [isAnimationActive, isAtRest, isExploded, stopAnimation, toggleExploded]);
 
   return null;
