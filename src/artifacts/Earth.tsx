@@ -19,7 +19,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-const rotationSpeed = 0.3;
+const rotationSpeed = 0.03;
 
 export function Earth(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group | null>(null);
