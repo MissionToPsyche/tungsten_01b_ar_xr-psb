@@ -101,8 +101,8 @@ export function CruiseOrbiter(
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
         <>
-         <ThrusterParticleSystem
-           visible={thrustersOn}
+          <ThrusterParticleSystem
+            visible={thrustersOn}
             particleStartColor={thrusterStartingColor}
             particleEndColor={thrusterEndingColor}
             position={[0, -1.25, 2.8]}
@@ -342,8 +342,8 @@ export function CruiseOrbiter(
             position={[-0.084, 3.357, -1.092]}
             scale={[1.468, 1.656, 1.469]}
           />
-        </group>
-      </FactsModalTrigger>
+        </FactsModalTrigger>
+      </group>
     </group>
   );
 }
