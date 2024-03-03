@@ -6,6 +6,7 @@ import { SceneComponent } from '../types/scene-component.ts';
 import { Orbits } from '../../artifacts/Orbits.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
+import BackAnimation from '../../animations/BackAnimation.tsx';
 
 const dateScale = filledVector(0.25);
 const nameScale = filledVector(1.2);
@@ -14,6 +15,7 @@ const orbitsScale = filledVector(1.2);
 
 const OrbitScene: SceneComponent = () => (
   <>
+    <BackAnimation />
     <Orbits
       position={[0, 0, -4]}
       scale={orbitsScale}

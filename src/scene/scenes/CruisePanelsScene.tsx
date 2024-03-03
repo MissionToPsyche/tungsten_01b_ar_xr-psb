@@ -4,6 +4,7 @@ import filledVector from '../../common/utils/filled-vector.ts';
 import { CruiseName } from '../../artifacts/CruiseName.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import CruisePanelsAnimation from '../../animations/CruisePanelsAnimation.tsx';
+import BackAnimation from '../../animations/BackAnimation.tsx';
 
 const dateScale = filledVector(0.3);
 const nameScale = filledVector(1.2);
@@ -11,6 +12,7 @@ const nameScale = filledVector(1.2);
 const CruisePanelsScene: SceneComponent = () => (
   <>
     <CruisePanelsAnimation />
+    <BackAnimation />
     <ambientLight intensity={0.5} position={[2, 10, 0]} />
     <hemisphereLight position={[-20, 60, -150]} intensity={0.1} />
     <spotLight intensity={0.5} position={[-6, 6, 0]} color={'lightblue'} />

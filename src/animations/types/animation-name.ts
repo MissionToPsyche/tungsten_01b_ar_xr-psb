@@ -9,7 +9,8 @@ enum AnimationName {
   ASSEMBLE,
   CRUISE_PANELS,
   CRUISE_THRUSTERS,
-  CRUISE_GRAVITY_ASSIST
+  CRUISE_GRAVITY_ASSIST,
+  BACK
 }
 
 export default AnimationName;
