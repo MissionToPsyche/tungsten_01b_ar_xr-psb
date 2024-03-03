@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Knockout HTF30-JuniorWelterwt';
+  src: url('/fonts/Knockout_HTF30_JuniorWelterwt_Regular.otf')
+    format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body,
 html,
 #root {
