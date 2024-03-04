@@ -1,5 +1,5 @@
 import { SceneComponent } from '../types/scene-component.ts';
-import { CruiseDate } from '../../artifacts/CruiseDate.tsx';
+import { OpenPanelsDate } from '../../artifacts/OpenPanelsDate.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
 import { CruiseName } from '../../artifacts/CruiseName.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
@@ -20,11 +20,7 @@ const CruiseThrusterScene: SceneComponent = () => (
     <spotLight intensity={0.5} position={[10.5, 26, -2]} color={'#441359'} />
     <CruiseName position={[-1.5, 10, -1]} scale={nameScale} />
     <FactsModalTrigger factName="cruiseDate">
-      <CruiseDate
-        position={[9, -3, 8]}
-        scale={dateScale}
-        rotation={[-Math.PI / 16, 0, 0]}
-      />
+      <OpenPanelsDate position={[-7, -6, 8]} scale={dateScale} />
     </FactsModalTrigger>
   </>
 );
