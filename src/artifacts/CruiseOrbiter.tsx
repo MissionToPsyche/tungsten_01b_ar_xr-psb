@@ -99,13 +99,26 @@ export function CruiseOrbiter(
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <FactsModalTrigger factName="solarPanels">
-        <group name="Scene">
+      <group name="Scene">
+        <>
           <ThrusterParticleSystem
             visible={thrustersOn}
             particleStartColor={thrusterStartingColor}
             particleEndColor={thrusterEndingColor}
+            position={[0, -1.25, 2.8]}
+            rotation={[0, Math.PI / 2, 0]}
+            count={70}
           />
+          <ThrusterParticleSystem
+            visible={thrustersOn}
+            particleStartColor={thrusterStartingColor}
+            particleEndColor={thrusterEndingColor}
+            position={[0, -1.25, -2.8]}
+            rotation={[0, Math.PI / 2, 0]}
+            count={70}
+          />
+        </>
+        <FactsModalTrigger factName="solarPanels">
           <group
             name="SolarPanelLeft_1"
             position={[-1.7, 0.6, 0]}
@@ -329,8 +342,8 @@ export function CruiseOrbiter(
             position={[-0.084, 3.357, -1.092]}
             scale={[1.468, 1.656, 1.469]}
           />
-        </group>
-      </FactsModalTrigger>
+        </FactsModalTrigger>
+      </group>
     </group>
   );
 }
