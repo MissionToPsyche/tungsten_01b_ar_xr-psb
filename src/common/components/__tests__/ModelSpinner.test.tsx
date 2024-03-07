@@ -5,7 +5,7 @@ import { expect } from 'vitest';
 
 const setup = (speed: number) =>
   ReactThreeTestRenderer.create(
-    <ModelSpinner speed={speed}>
+    <ModelSpinner speed={speed} orientationX orientationY orientationZ>
       <Sphere name="child" />
     </ModelSpinner>
   );
@@ -25,11 +25,11 @@ describe('<ModelSpinner/>', () => {
 
     const renderer = await setup(speed);
 
-    expect(renderer.scene.children[0].instance.rotation.y).toEqual(0);
+    expect(renderer.scene.children[0].instance.rotation.x).toEqual(0);
 
     await renderer.advanceFrames(1, delta);
 
-    expect(renderer.scene.children[0].instance.rotation.y).toEqual(
+    expect(renderer.scene.children[0].instance.rotation.x).toEqual(
       speed * delta
     );
   });
