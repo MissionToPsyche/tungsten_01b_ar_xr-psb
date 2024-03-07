@@ -53,7 +53,7 @@ const CruisePanelsAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
         />
       </group>
       <group ref={earthRef} {...props}>
-        <Earth position={[40, -5, -60]} scale={earthScale} />
+        <Earth position={[-10, -5, -60]} scale={earthScale} />
       </group>
     </group>
   );
