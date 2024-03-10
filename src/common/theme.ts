@@ -87,13 +87,12 @@ const theme = extendTheme({
     }
   },
   fonts: {
-    heading: '"Knockout HTF30-JuniorWelterwt", Helvetica, sans-serif', // For Headlines
-    body: '"Knockout HTF30-JuniorWelterwt", Helvetica, sans-serif' // For body & captions
+    heading: 'Helvetica, sans-serif',
+    body: 'Helvetica, sans-serif'
   },
   textStyles: {
     title: {
-      // Knockout / JuniorWelterwt, 12pt/15, +50 Tracking
-      fontFamily: '"Knockout HTF30-JuniorWelterwt", sans-serif',
+      fontFamily: 'Helvetica, sans-serif',
       fontSize: '12pt',
       lineHeight: '15pt',
       letterSpacing: '50%',
