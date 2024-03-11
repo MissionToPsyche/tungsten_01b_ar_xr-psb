@@ -27,7 +27,7 @@ export function Mars(props: JSX.IntrinsicElements['group']) {
     if (group.current == null) {
       return;
     }
-    group.current.rotation.z += delta * 0.25;
+    group.current.rotation.y += delta * 0.25;
   });
 
   return (

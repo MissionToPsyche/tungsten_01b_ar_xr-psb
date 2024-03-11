@@ -8,8 +8,9 @@ const ThrusterParticleSystem: React.FC<
   JSX.IntrinsicElements['instancedMesh'] & {
     particleStartColor: Color;
     particleEndColor: Color;
+    count: number;
   }
-> = ({ particleStartColor, particleEndColor, ...props }) => {
+> = ({ particleStartColor, particleEndColor, count, ...props }) => {
   const onParticleFrame = useMemo(
     () => getOnParticleFrame(particleStartColor, particleEndColor),
     [particleEndColor, particleStartColor]
@@ -17,7 +18,7 @@ const ThrusterParticleSystem: React.FC<
 
   return (
     <ParticleSystem
-      count={200}
+      count={count}
       onParticleInit={onParticleInit}
       onParticleFrame={onParticleFrame}
       {...props}

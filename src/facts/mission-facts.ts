@@ -20,22 +20,22 @@ const missionFacts: Record<string, MissionFact> = {
   multiSpectralImager: {
     title: 'Multispectral Imager',
     fact: 'Provides high-res images and metal-silicate discrimination.',
-    image: '/assets/images/psyche-multispectral-imager.jpg'
+    image: '/assets/images/imager.png'
   },
   spectrometer: {
     title: 'Gamma-Ray and Neutron Spectrometer',
     fact: "Detects, measures and maps Psyche's elemental composition.",
-    image: '/assets/images/psyche-gamma-ray-spectrometer.jpg'
+    image: '/assets/images/neutron-spectrometer_gamma-ray-spectrometer.png'
   },
   magnetometer: {
     title: 'Magnetometer',
     fact: 'Detects and measures the remanent magnetic field of Psyche.',
-    image: '/assets/images/psyche-magnetometer.jpg'
+    image: '/assets/images/magnetometer.png'
   },
   xBandRadio: {
     title: 'X-band Radio Telecommunications System',
     fact: "Measures Psyche's gravity field to high precision.",
-    image: '/assets/images/psyche-radio-science.jpg'
+    image: '/assets/images/x-band.png'
   },
   opticalCommunication: {
     title: 'Deep Space Optical Communication',
