@@ -77,7 +77,7 @@ const CruiseGravityAssistAnimation: React.FC<
         />
       </group>
       <group ref={marsRef} {...props}>
-        <RenderIf shouldRender={true}>
+        <RenderIf shouldRender={isActive}>
           <Mars position={[200, -5, -150]} scale={marsScale} />
         </RenderIf>
       </group>
