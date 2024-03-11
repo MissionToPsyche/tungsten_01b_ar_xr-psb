@@ -31,20 +31,23 @@ const ARTooltip: React.FC<{
   }, [objectPosition, panelPosition]);
 
   return (
-    <group>
-      <Sphere position={objectPosition} scale={0.1}>
+    <group name="tooltip">
+      <Sphere name="indicator" position={objectPosition} scale={0.1}>
         <meshBasicMaterial transparent opacity={0.5} color="white" />
       </Sphere>
       <Line
+        name="tooltip-line"
         color="white"
         lineWidth={4}
         points={[lineStart as never, objectPosition as never]}
       />
-      <Billboard follow position={panelPosition}>
-        <Plane scale={[panelWidth, 1.5, 1]}>
+      <Billboard name="tooltip-panel" follow position={panelPosition}>
+        <Plane name="tooltip-background" scale={[panelWidth, 1.5, 1]}>
           <meshBasicMaterial transparent opacity={0.5} color="black" />
         </Plane>
-        <Text fontSize={0.8}>{text}</Text>
+        <Text name="tooltip-text" fontSize={0.8}>
+          {text}
+        </Text>
       </Billboard>
     </group>
   );
