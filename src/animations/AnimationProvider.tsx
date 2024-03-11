@@ -39,8 +39,26 @@ export const AnimationProvider: React.FC<PropsWithChildren> = ({
     callback?: () => void,
     audio?: string
   ) => {
+    // The scene manager detects transitions based on animation states,
+    // so a BACK animation is implemented in each scene. Given that each
+    // scene uses this same animation, we need to update the callback
+    // so it will transition to the proper scene
+    if (
+      isRegistered(animationName, false) &&
+      animationName == AnimationName.BACK &&
+      registry[animationName].onComplete !== callback
+    ) {
+      setRegistry((reg) => ({
+        ...reg,
+        [animationName]: {
+          ...reg[animationName],
+          onComplete: callback
+        }
+      }));
+      return;
+    }
     // Verify the animation isn't already registered
-    if (isRegistered(animationName, false)) {
+    else if (isRegistered(animationName, false)) {
       return;
     }
     setRegistry((reg) => ({
