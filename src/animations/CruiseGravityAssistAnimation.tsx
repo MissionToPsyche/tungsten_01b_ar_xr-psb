@@ -45,20 +45,20 @@ const CruiseGravityAssistAnimation: React.FC<
     setElapsed(elapsed + delta);
 
     // Move Mars into view
-    if (marsRef.current.position.x >= -220) {
-      marsRef.current.position.x -= delta * translationSpeed;
+    if (marsRef.current.position.x >= -200) {
+      marsRef.current.position.x -= delta * 50;
     } else {
       // Move orbiter
       orbiterRef.current.position.z -= delta * translationSpeed;
-      orbiterRef.current.position.x += delta * translationSpeed;
+      orbiterRef.current.position.x += (delta * translationSpeed) / 3;
     }
-    if (elapsed >= 9 && elapsed <= 12) {
+    if (elapsed >= 7 && elapsed <= 10) {
       orbiterRef.current.rotation.y += degreesToRadians(delta * 30);
     }
-    if (elapsed >= 10 && elapsed <= 15) {
-      orbiterRef.current.position.x -= delta * 60;
+    if (elapsed >= 10 && elapsed <= 13) {
+      orbiterRef.current.position.x -= delta * 100;
     }
-    if (elapsed >= 15) {
+    if (elapsed >= 13) {
       setElapsed(0);
       stopAnimation(AnimationName.CRUISE_GRAVITY_ASSIST);
     }
@@ -77,8 +77,8 @@ const CruiseGravityAssistAnimation: React.FC<
         />
       </group>
       <group ref={marsRef} {...props}>
-        <RenderIf shouldRender={isActive}>
-          <Mars position={[300, -5, -150]} scale={marsScale} />
+        <RenderIf shouldRender={true}>
+          <Mars position={[200, -5, -150]} scale={marsScale} />
         </RenderIf>
       </group>
     </group>
