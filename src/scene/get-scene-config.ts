@@ -42,7 +42,8 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.VIBRATION_TESTING,
-        buttonText: 'Vibration Test'
+        buttonText: 'Vibration Test',
+        animation: AnimationName.BACK
       },
       nextSceneTransition: {
         toScene: SceneName.ASSEMBLY,
@@ -55,7 +56,8 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.ACOUSTIC_TESTING,
-        buttonText: 'Acoustic Test'
+        buttonText: 'Acoustic Test',
+        animation: AnimationName.BACK
       },
       nextSceneTransition: {
         toScene: SceneName.LAUNCH,
@@ -69,7 +71,8 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.ASSEMBLY,
-        buttonText: 'Back to Assembly'
+        buttonText: 'Back to Assembly',
+        animation: AnimationName.BACK
       },
       nextSceneTransition: {
         toScene: SceneName.CRUISE_PANELS,
@@ -83,7 +86,8 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.LAUNCH,
-        buttonText: 'Back to Launch'
+        buttonText: 'Back to Launch',
+        animation: AnimationName.BACK
       },
       nextSceneTransition: {
         toScene: SceneName.CRUISE_THRUSTERS,
@@ -96,7 +100,8 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.CRUISE_PANELS,
-        buttonText: 'Back to Panels'
+        buttonText: 'Back to Panels',
+        animation: AnimationName.BACK
       },
       nextSceneTransition: {
         toScene: SceneName.CRUISE_GRAVITY_ASSIST,
@@ -109,7 +114,8 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.CRUISE_THRUSTERS,
-        buttonText: 'Back to Thrusters'
+        buttonText: 'Back to Thrusters',
+        animation: AnimationName.BACK
       },
       nextSceneTransition: {
         toScene: SceneName.ORBIT,
@@ -122,7 +128,8 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.CRUISE_GRAVITY_ASSIST,
-        buttonText: 'Back to Gravity Assist'
+        buttonText: 'Back to Gravity Assist',
+        animation: AnimationName.BACK
       }
     }
   },
