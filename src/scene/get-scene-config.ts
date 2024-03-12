@@ -12,6 +12,7 @@ import CruisePanelsScene from './scenes/CruisePanelsScene.tsx';
 import CruiseThrusterScene from './scenes/CruiseThrusterScene.tsx';
 import { Vector3 } from 'three';
 import CruiseGravityAssistScene from './scenes/CruiseGravityAssistScene.tsx';
+import PackOrbiterScene from './scenes/PackOrbiterScene.tsx';
 
 const defaultCameraPosition = new Vector3(0, 6, 25);
 /**
@@ -46,16 +47,30 @@ const getSceneConfig = (): SceneConfig => ({
         animation: AnimationName.BACK
       },
       nextSceneTransition: {
-        toScene: SceneName.ASSEMBLY,
+        toScene: SceneName.PACK_ORBITER,
         animation: AnimationName.ACOUSTIC_TESTING,
         buttonText: 'Acoustic Test'
+      }
+    },
+    [SceneName.PACK_ORBITER]: {
+      component: PackOrbiterScene,
+      markerUrl: 'assets/patt.hiro',
+      previousSceneTransition: {
+        toScene: SceneName.ACOUSTIC_TESTING,
+        buttonText: 'Acoustic Test',
+        animation: AnimationName.BACK
+      },
+      nextSceneTransition: {
+        toScene: SceneName.ASSEMBLY,
+        animation: AnimationName.PACK_ORBITER,
+        buttonText: 'Pack Orbiter'
       }
     },
     [SceneName.ASSEMBLY]: {
       component: AssemblyScene,
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
-        toScene: SceneName.ACOUSTIC_TESTING,
+        toScene: SceneName.PACK_ORBITER,
         buttonText: 'Acoustic Test',
         animation: AnimationName.BACK
       },
