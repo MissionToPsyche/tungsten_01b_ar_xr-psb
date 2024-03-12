@@ -5,6 +5,7 @@ import filledVector from '../../common/utils/filled-vector.ts';
 import { SceneComponent } from '../types/scene-component.ts';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import ModelSpinner from '../../common/components/ModelSpinner.tsx';
+import BackAnimation from '../../animations/BackAnimation.tsx';
 import { OrbitOrbiter } from '../../artifacts/OrbitOrbiter.tsx';
 import { DashedOrbit } from '../../artifacts/DashedOrbit.tsx';
 import OrbitSceneLightning from '../../common/components/OrbitSceneLightning.tsx';
@@ -17,6 +18,7 @@ const dashScale = filledVector(2.8);
 
 const FirstOrbitScene: SceneComponent = () => (
   <>
+    <BackAnimation />
     <OrbitDate
       position={[4, -3, 14]}
       scale={dateScale}

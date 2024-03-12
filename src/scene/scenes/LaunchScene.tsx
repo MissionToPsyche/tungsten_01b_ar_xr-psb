@@ -10,6 +10,7 @@ import { LaunchPadModel } from '../../artifacts/LaunchPadModel.jsx';
 import { Cloud, Clouds, Sky } from '@react-three/drei';
 import useSceneConfig from '../use-scene-config.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
+import BackAnimation from '../../animations/BackAnimation.tsx';
 
 const padScale = filledVector(0.38);
 const falconScale = filledVector(0.38);
@@ -24,6 +25,7 @@ const LaunchScene: SceneComponent = () => {
 
   return (
     <>
+      <BackAnimation />
       <ambientLight intensity={0.1} position={[0, 10, 7]} />
       <spotLight
         intensity={0.5}

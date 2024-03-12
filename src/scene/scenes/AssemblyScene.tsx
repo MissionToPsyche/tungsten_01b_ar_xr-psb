@@ -10,6 +10,7 @@ import { Box } from '@react-three/drei';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import StaticExplodeElement from '../../common/explode/StaticExplodeElement.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
+import BackAnimation from '../../animations/BackAnimation.tsx';
 
 const orbiterScale = filledVector(0.75);
 const sceneNameScale = filledVector(0.9);
@@ -118,6 +119,7 @@ const AssemblyScene: SceneComponent = () => (
     />
     <AssembleTestSceneName position={[0, 9.8, 0]} scale={sceneNameScale} />
     <AssembleAnimation />
+    <BackAnimation />
     <AssembleDate
       scale={sceneDateScale}
       position={[0, -4, 5]}

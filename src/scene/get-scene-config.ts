@@ -45,6 +45,7 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.VIBRATION_TESTING,
+        animation: AnimationName.BACK,
         buttonText: 'Back'
       },
       nextSceneTransition: {
@@ -58,6 +59,7 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.ACOUSTIC_TESTING,
+        animation: AnimationName.BACK,
         buttonText: 'Back'
       },
       nextSceneTransition: {
@@ -72,7 +74,8 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.ASSEMBLY,
-        buttonText: 'Back to Assembly'
+        buttonText: 'Back to Assembly',
+        animation: AnimationName.BACK
       },
       nextSceneTransition: {
         toScene: SceneName.CRUISE_PANELS,
@@ -86,7 +89,8 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.LAUNCH,
-        buttonText: 'Back to Launch'
+        buttonText: 'Back to Launch',
+        animation: AnimationName.BACK
       },
       nextSceneTransition: {
         toScene: SceneName.CRUISE_THRUSTERS,
@@ -99,6 +103,7 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.CRUISE_PANELS,
+        animation: AnimationName.BACK,
         buttonText: 'Back'
       },
       nextSceneTransition: {
@@ -112,6 +117,7 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.CRUISE_THRUSTERS,
+        animation: AnimationName.BACK,
         buttonText: 'Back'
       },
       nextSceneTransition: {
@@ -125,6 +131,7 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.CRUISE_GRAVITY_ASSIST,
+        animation: AnimationName.BACK,
         buttonText: 'Back to Cruise'
       },
       nextSceneTransition: {
