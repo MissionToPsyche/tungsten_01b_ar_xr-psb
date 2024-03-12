@@ -5,6 +5,7 @@ import filledVector from '../../common/utils/filled-vector.ts';
 import { AssembleTestSceneName } from '../../artifacts/AssembleTestSceneName.tsx';
 import AcousticTestingAnimation from '../../animations/AcousticTestingAnimation.tsx';
 import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
+import BackAnimation from '../../animations/BackAnimation.tsx';
 
 const orbiterScale = filledVector(0.75);
 const sceneNameScale = filledVector(0.9);
@@ -39,6 +40,7 @@ const AcousticTestingScene: SceneComponent = () => (
       rotation={[-Math.PI / 8, 0, 0]}
     />
     <AcousticTestingAnimation />
+    <BackAnimation />
   </Explode>
 );
 

@@ -17,6 +17,7 @@ const setup = () =>
     <ThrusterParticleSystem
       particleStartColor={startColor}
       particleEndColor={endColor}
+      count={200}
     />
   );
 

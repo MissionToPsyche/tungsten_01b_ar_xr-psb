@@ -32,18 +32,18 @@ export function Earth(props: JSX.IntrinsicElements['group']) {
     if (meshRef.current == null) {
       return;
     }
-    meshRef.current.rotation.x += delta * rotationSpeed;
+    meshRef.current.rotation.y += -(delta * rotationSpeed);
   });
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <group name="Scene">
+      <group name="Scene" position={[0, 0, 0]}>
         <mesh
           ref={meshRef}
           name="Earth"
           geometry={nodes.Earth.geometry}
           material={materials['Material.001']}
-          rotation={[-0.338, -0.089, 0.247]}
+          rotation={[0, 0.8, 0.2]}
         />
       </group>
     </group>

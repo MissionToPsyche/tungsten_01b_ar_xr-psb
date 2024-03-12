@@ -20,22 +20,22 @@ const missionFacts: Record<string, MissionFact> = {
   multiSpectralImager: {
     title: 'Multispectral Imager',
     fact: 'Provides high-res images and metal-silicate discrimination.',
-    image: '/assets/images/psyche-multispectral-imager.jpg'
+    image: '/assets/images/imager.png'
   },
   spectrometer: {
     title: 'Gamma-Ray and Neutron Spectrometer',
     fact: "Detects, measures and maps Psyche's elemental composition.",
-    image: '/assets/images/psyche-gamma-ray-spectrometer.jpg'
+    image: '/assets/images/neutron-spectrometer_gamma-ray-spectrometer.png'
   },
   magnetometer: {
     title: 'Magnetometer',
     fact: 'Detects and measures the remanent magnetic field of Psyche.',
-    image: '/assets/images/psyche-magnetometer.jpg'
+    image: '/assets/images/magnetometer.png'
   },
   xBandRadio: {
     title: 'X-band Radio Telecommunications System',
     fact: "Measures Psyche's gravity field to high precision.",
-    image: '/assets/images/psyche-radio-science.jpg'
+    image: '/assets/images/x-band.png'
   },
   opticalCommunication: {
     title: 'Deep Space Optical Communication',
@@ -98,22 +98,22 @@ const missionFacts: Record<string, MissionFact> = {
   psycheOrbitA: {
     title: 'Orbit A',
     fact: 'The spacecraft will orbit Psyche for 56 days (41 orbits), performing characterizations of the asteroid.',
-    image: '/assets/images/psyche-orbit.svg'
+    image: '/assets/images/psyche-orbit.png'
   },
   psycheOrbitB: {
     title: 'Orbit B',
     fact: 'The spacecraft will orbit Psyche for 92 days (190 orbits) at B1 and 100 days (206 orbits) at B2, mapping the topography of the asteroid.',
-    image: '/assets/images/psyche-orbit.svg'
+    image: '/assets/images/psyche-orbit.png'
   },
   psycheOrbitC: {
     title: 'Orbit C',
     fact: 'The spacecraft will orbit Psyche for 100 days (333 orbits), performing gravity science.',
-    image: '/assets/images/psyche-orbit.svg'
+    image: '/assets/images/psyche-orbit.png'
   },
   psycheOrbitD: {
     title: 'Orbit D',
     fact: 'The spacecraft will orbit Psyche for 100 days (666 orbits), performing elemental mapping.',
-    image: '/assets/images/psyche-orbit.svg'
+    image: '/assets/images/psyche-orbit.png'
   }
 };
 
