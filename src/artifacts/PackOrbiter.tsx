@@ -121,7 +121,7 @@ export function PackOrbiter(
           <mesh
             name="SolarPanelLeft1010"
             geometry={nodes.SolarPanelLeft1010.geometry}
-            material={materials.aluminium}
+            material={materials.AlumFoilBack}
           />
           <mesh
             name="SolarPanelLeft1010_1"
@@ -138,7 +138,7 @@ export function PackOrbiter(
           <mesh
             name="SolarPanelLeft1011"
             geometry={nodes.SolarPanelLeft1011.geometry}
-            material={materials.aluminium}
+            material={materials.AlumFoilBack}
           />
           <mesh
             name="SolarPanelLeft1011_1"
@@ -155,7 +155,7 @@ export function PackOrbiter(
           <mesh
             name="SolarPanelLeft1011"
             geometry={nodes.SolarPanelLeft1011.geometry}
-            material={materials.aluminium}
+            material={materials.AlumFoilBack}
           />
           <mesh
             name="SolarPanelLeft1011_1"
@@ -172,7 +172,7 @@ export function PackOrbiter(
           <mesh
             name="SolarPanelLeft1011"
             geometry={nodes.SolarPanelLeft1011.geometry}
-            material={materials.aluminium}
+            material={materials.AlumFoilBack}
           />
           <mesh
             name="SolarPanelLeft1011_1"
@@ -189,7 +189,7 @@ export function PackOrbiter(
           <mesh
             name="SolarPanelLeft1012"
             geometry={nodes.SolarPanelLeft1012.geometry}
-            material={materials.aluminium}
+            material={materials.AlumFoilBack}
           />
           <mesh
             name="SolarPanelLeft1012_1"
@@ -206,7 +206,7 @@ export function PackOrbiter(
           <mesh
             name="SolarPanelLeft1012"
             geometry={nodes.SolarPanelLeft1012.geometry}
-            material={materials.aluminium}
+            material={materials.AlumFoilBack}
           />
           <mesh
             name="SolarPanelLeft1012_1"
@@ -217,35 +217,35 @@ export function PackOrbiter(
         <mesh
           name="Icosphere"
           geometry={nodes.Icosphere.geometry}
-          material={materials.FoilMaterial}
+          material={materials.AlumFoilBack}
           position={[-0.331, 3.264, 0.558]}
           scale={[2.134, 1.48, 2.078]}
         />
         <mesh
           name="Cylinder"
           geometry={nodes.Cylinder.geometry}
-          material={materials.PaletteMaterial001}
+          material={materials.AlumFoilBack}
           position={[-1.409, 5.399, -1.365]}
           scale={[0.05, 0.75, 0.05]}
         />
         <mesh
           name="Cylinder001"
           geometry={nodes.Cylinder001.geometry}
-          material={materials.PaletteMaterial001}
+          material={materials.AlumFoilBack}
           position={[1.297, 4.861, -1.365]}
           scale={[0.05, 0.75, 0.05]}
         />
         <mesh
           name="Icosphere001"
           geometry={nodes.Icosphere001.geometry}
-          material={materials.aluminium}
+          material={materials.AlumFoilBack}
           position={[-0.331, 3.264, 0.558]}
           scale={[2.134, 1.48, 2.078]}
         />
         <mesh
           name="Cone001"
           geometry={nodes.Cone001.geometry}
-          material={materials.PaletteMaterial001}
+          material={materials.AlumFoilBack}
           position={[-0.055, -0.421, 0.093]}
           scale={[1, 0.81, 1]}
         />
@@ -301,7 +301,7 @@ export function PackOrbiter(
         <mesh
           name="PanelFrameLeft"
           geometry={nodes.PanelFrameLeft.geometry}
-          material={materials.aluminium}
+          material={materials.AlumFoilBack}
           position={[-1.692, 0.8, 0.004]}
           rotation={[0, 0, -Math.PI / 6]}
           scale={[0.03, 0.015, 1.26]}
@@ -309,7 +309,7 @@ export function PackOrbiter(
         <mesh
           name="PanelFrameRight"
           geometry={nodes.PanelFrameRight.geometry}
-          material={materials.aluminium}
+          material={materials.AlumFoilBack}
           position={[1.506, 0.8, 0.004]}
           rotation={[-Math.PI, 0, -Math.PI / 6]}
           scale={[-0.03, -0.015, -1.26]}
@@ -367,7 +367,7 @@ export function PackOrbiter(
           <mesh
             name="Obj_Cylinder001_1"
             geometry={nodes.Obj_Cylinder001_1.geometry}
-            material={materials.PaletteMaterial001}
+            material={materials.AlumFoilBack}
           />
         </group>
         <mesh
@@ -399,7 +399,7 @@ export function PackOrbiter(
           <mesh
             name="ThrusterBackPart3_1"
             geometry={nodes.ThrusterBackPart3_1.geometry}
-            material={materials.PaletteMaterial001}
+            material={materials.AlumFoilBack}
           />
         </group>
         <group
@@ -416,7 +416,7 @@ export function PackOrbiter(
           <mesh
             name="ThrusterBackPart3_1"
             geometry={nodes.ThrusterBackPart3_1.geometry}
-            material={materials.PaletteMaterial001}
+            material={materials.AlumFoilBack}
           />
         </group>
       </group>

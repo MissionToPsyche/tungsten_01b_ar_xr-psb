@@ -6,7 +6,7 @@ import AnimationName from './types/animation-name';
 import filledVector from '../common/utils/filled-vector';
 import { PackOrbiter } from '../artifacts/PackOrbiter';
 
-const orbiterScale = filledVector(0.6);
+const orbiterScale = filledVector(0.7);
 
 /**
  * Pack Orbiter Animation

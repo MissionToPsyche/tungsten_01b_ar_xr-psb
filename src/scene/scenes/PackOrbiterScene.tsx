@@ -13,7 +13,7 @@ const PackOrbiterScene: SceneComponent = () => (
   <>
     <PackOrbiterAnimation />
     <AssemblySceneLights />
-    <spotLight position={[2, 5, 5]} intensity={2} color={'#fcfadc'} />
+    <spotLight position={[2, 8, 6]} intensity={1.5} color={'#fcfadc'} />
     <AssembleTestSceneName position={[0, 9.8, 0]} scale={sceneNameScale} />
     <AssembleDate scale={dateScale} position={[0.5, -5, 6]} />
     <BackAnimation />
