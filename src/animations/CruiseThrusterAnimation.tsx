@@ -11,7 +11,7 @@ import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
 import useSettings from '../settings/use-settings';
 
 const earthScale = filledVector(25);
-const translationSpeed = 10;
+const translationSpeed = 5;
 const orbiterScale = filledVector(0.75);
 
 /**
@@ -49,20 +49,19 @@ const CruiseThrusterAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
     orbiterRef.current.position.z += delta;
     orbiterRef.current.position.x -= delta;
 
-    if (elapsed >= 5 && elapsed <= 7) {
+    if (elapsed >= 3 && elapsed <= 6) {
       orbiterRef.current.position.z += delta * 4;
       orbiterRef.current.position.x -= delta * 4;
     }
-    if (elapsed >= 7) {
-      orbiterRef.current.position.z += delta * 4;
-      orbiterRef.current.position.x -= delta * 4;
-    }
-    if (elapsed >= 7 && elapsed <= 9 && !arEnabled) {
+    if (elapsed >= 4 && elapsed <= 6 && !arEnabled) {
       state.camera.position.z -= delta;
       state.camera.rotation.y += delta;
     }
-
-    if (elapsed >= 15) {
+    if (elapsed >= 6) {
+      orbiterRef.current.position.z += delta * 15;
+      orbiterRef.current.position.x -= delta * 15;
+    }
+    if (elapsed >= 8) {
       setElapsed(0);
       stopAnimation(AnimationName.CRUISE_THRUSTERS);
     }
