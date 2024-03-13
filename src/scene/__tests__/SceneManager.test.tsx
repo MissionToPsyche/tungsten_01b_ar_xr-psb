@@ -105,7 +105,7 @@ const mockConfig: SceneConfig = {
       component: () => <group name="cruise-panels-scene" />,
       markerUrl: '/hello',
       nextSceneTransition: {
-        toScene: SceneName.ORBIT,
+        toScene: SceneName.FIRST_ORBIT,
         buttonText: 'Next Scene'
       },
       previousSceneTransition: {
@@ -113,7 +113,7 @@ const mockConfig: SceneConfig = {
         buttonText: 'Previous Scene'
       }
     },
-    [SceneName.ORBIT]: {
+    [SceneName.FIRST_ORBIT]: {
       component: () => <group name="cruise-panels-scene" />,
       markerUrl: '/hello',
       previousSceneTransition: {
