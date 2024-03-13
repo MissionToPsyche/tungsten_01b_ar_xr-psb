@@ -9,8 +9,10 @@ import LoaderProvider from '../../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
 import {
   Bounds,
+  ContactShadows,
   PerspectiveCamera,
-  PresentationControls
+  PresentationControls,
+  Stage
 } from '@react-three/drei';
 import { TimeLine } from '../../artifacts/TimeLine.tsx';
 import { useWindowSize } from '@uidotdev/usehooks';
@@ -39,25 +41,33 @@ const LandingView: ViewComponent = ({ changeView }) => {
       <Image
         src="/assets/images/psyche-badge-outline-color.svg"
         alt="Psyche Logo"
-        height="100px"
+        height="140px"
       />
       <AlertErrorBoundary>
         <LoaderProvider>
           <LoaderTracker />
-          <Canvas style={{ flex: 1 }}>
+          <Canvas style={{ flex: 1 }} shadows>
             <SceneLighting />
             <directionalLight intensity={0.5} position={[8, 10, 40]} />
             <PerspectiveCamera makeDefault position={[0, 50, 200]} />
-            <Bounds fit clip observe margin={1}>
+            <Bounds fit clip observe margin={0.5}>
               <PresentationControls
                 global
                 config={{ mass: 2, tension: 500 }}
                 snap={{ mass: 4, tension: 1500 }}
                 rotation={[0, 0, 0]}
-                polar={[-Math.PI / 3, Math.PI / 3]}
+                polar={[-Math.PI / 4, Math.PI / 3]}
                 azimuth={[-Math.PI / 3, Math.PI / 3]}
               >
-                <TimeLine />
+                <Stage
+                  shadows={'contact'}
+                  preset={'portrait'}
+                  environment={'sunset'}
+                  intensity={0.4}
+                >
+                  <TimeLine castShadow />
+                  <ContactShadows />
+                </Stage>
               </PresentationControls>
             </Bounds>
           </Canvas>
