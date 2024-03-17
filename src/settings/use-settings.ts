@@ -14,6 +14,10 @@ export interface Settings {
    * Whether audio is enabled.
    */
   audioEnabled: boolean;
+  /**
+   * Whether tooltips are enabled.
+   */
+  tooltipsEnabled: boolean;
 }
 
 export interface SettingsActions {
@@ -27,6 +31,11 @@ export interface SettingsActions {
    * @param enabled Whether audio is enabled.
    */
   setAudioEnabled: (enabled: boolean) => void;
+  /**
+   * Set whether tooltips are enabled.
+   * @param enabled Whether tooltips are enabled.
+   */
+  setTooltipsEnabled: (enabled: boolean) => void;
 }
 
 /**
@@ -60,7 +69,17 @@ const useSettings = (): SettingsState => {
     [setState]
   );
 
-  return { ...state, setArEnabled, setAudioEnabled };
+  const setTooltipsEnabled = useCallback(
+    (enabled: boolean) => {
+      setState((prevState) => ({
+        ...prevState,
+        tooltipsEnabled: enabled
+      }));
+    },
+    [setState]
+  );
+
+  return { ...state, setArEnabled, setAudioEnabled, setTooltipsEnabled };
 };
 
 export default useSettings;

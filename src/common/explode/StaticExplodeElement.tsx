@@ -16,7 +16,7 @@ import { Euler, Vector3 } from '@react-three/fiber';
  * @param props Any additional props provided to the wrapping group
  */
 const StaticExplodeElement: React.FC<
-  Omit<ExplodeElementProps, 'children'> & {
+  Omit<Partial<ExplodeElementProps>, 'children'> & {
     children: (
       isExploded: boolean,
       position: SpringValue<Vector3>,
@@ -36,8 +36,12 @@ const StaticExplodeElement: React.FC<
   const { isExploded, addExploding, removeExploding } = useExplode();
 
   const { rotation, position } = useSpring({
-    position: isExploded ? explodedPosition : startPosition,
-    rotation: isExploded ? explodedRotation : startRotation,
+    position: isExploded
+      ? explodedPosition ?? [0, 0, 0]
+      : startPosition ?? [0, 0, 0],
+    rotation: isExploded
+      ? explodedRotation ?? [0, 0, 0]
+      : startRotation ?? [0, 0, 0],
     config: config.stiff,
     onStart: addExploding,
     onRest: removeExploding,
