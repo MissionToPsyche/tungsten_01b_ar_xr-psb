@@ -8,10 +8,11 @@ import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
 import { Mars } from '../artifacts/Mars';
 import RenderIf from '../common/components/RenderIf';
 import degreesToRadians from '../common/utils/degrees-to-radians';
+import useMediaQuery from '../common/hooks/use-media-query';
 
 const marsScale = filledVector(35);
 const translationSpeed = 35;
-const orbiterScale = filledVector(0.75);
+
 const defaultOrbiterRotation = new Euler(
   degreesToRadians(100),
   degreesToRadians(0),
@@ -64,6 +65,8 @@ const CruiseGravityAssistAnimation: React.FC<
     }
   });
 
+  const isMobile = useMediaQuery(768);
+  const orbiterScaleFactor = isMobile ? filledVector(0.8) : filledVector(1.2);
   return (
     <group>
       <group ref={orbiterRef}>
@@ -71,8 +74,8 @@ const CruiseGravityAssistAnimation: React.FC<
           animatePanels={false}
           panelsOpen
           thrustersOn
-          position={[0, 2, 2]}
-          scale={orbiterScale}
+          position={[-2, 2, 2]}
+          scale={orbiterScaleFactor}
           rotation={defaultOrbiterRotation}
         />
       </group>

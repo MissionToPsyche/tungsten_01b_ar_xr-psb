@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unknown-property */
 import { SceneComponent } from '../types/scene-component.ts';
-import filledVector from '../../common/utils/filled-vector.ts';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import { FalconHeavyWithLogos } from '../../artifacts/FalconHeavyWithLogos.tsx';
 import { LaunchDateModel } from '../../artifacts/LaunchDateModel.tsx';
@@ -11,17 +10,19 @@ import { Cloud, Clouds, Sky } from '@react-three/drei';
 import useSceneConfig from '../use-scene-config.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
 import BackAnimation from '../../animations/BackAnimation.tsx';
-
-const padScale = filledVector(0.38);
-const falconScale = filledVector(0.38);
-const dateScale = filledVector(0.35);
-const sceneNameScale = filledVector(1.3);
+import useMediaQuery from '../../common/hooks/use-media-query.ts';
+import filledVector from '../../common/utils/filled-vector.ts';
 
 /**
  * The launch scene which depicts the Psyche mission launch.
  */
 const LaunchScene: SceneComponent = () => {
   const { disableAr } = useSceneConfig();
+  const isMobile = useMediaQuery(768);
+  const padScaleFactor = isMobile ? filledVector(0.4) : filledVector(0.44);
+  const rocketScaleFactor = isMobile ? filledVector(0.4) : filledVector(0.44);
+  const dateScaleFactor = isMobile ? filledVector(0.3) : filledVector(0.32);
+  const nameScaleFactor = isMobile ? filledVector(1.8) : filledVector(2.2);
 
   return (
     <>
@@ -45,28 +46,24 @@ const LaunchScene: SceneComponent = () => {
         color={'#441359'}
       />
       <spotLight intensity={1} position={[11, 40, -25]} color={'#441359'} />
-      <LaunchPadModel position={[-1, -6, 1]} scale={padScale} />
+      <LaunchPadModel position={[-1, -6, 1]} scale={padScaleFactor} />
       <LiftoffAnimation>
         <FactsModalTrigger factName="falconHeavy">
           <FalconHeavyWithLogos
-            position={[1.2, -4, 1]}
-            scale={falconScale}
+            position={[1.5, -4.1, 1]}
+            scale={rocketScaleFactor}
             rotation={[0, 0, 0]}
           />
         </FactsModalTrigger>
       </LiftoffAnimation>
       <FactsModalTrigger factName="launch">
-        <LaunchDateModel
-          position={[11, -5, 6.5]}
-          scale={dateScale}
-          rotation={[-Math.PI / 30, 0, 0]}
-        />
+        <LaunchDateModel position={[0, -5, 7.5]} scale={dateScaleFactor} />
       </FactsModalTrigger>
-      <LaunchSceneName position={[0, 14, -5]} scale={sceneNameScale} />
+      <LaunchSceneName position={[-1.75, 19, -4]} scale={nameScaleFactor} />
       <RenderIf shouldRender={disableAr}>
         <Sky sunPosition={[2, 40, 100]} />
         <Clouds>
-          <Cloud position={[-8, 10, -8]} opacity={0.5} />
+          <Cloud position={[-8, 14, -8]} opacity={0.5} />
           <Cloud position={[8, 12, -8]} opacity={0.4} />
         </Clouds>
       </RenderIf>

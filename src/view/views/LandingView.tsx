@@ -18,6 +18,7 @@ import { TimeLine } from '../../artifacts/TimeLine.tsx';
 import { useWindowSize } from '@uidotdev/usehooks';
 import AlertErrorBoundary from '../../error/AlertErrorBoundary.tsx';
 import MenuBar from '../../common/components/MenuBar.tsx';
+import useMediaQuery from '../../common/hooks/use-media-query.ts';
 
 /**
  * Landing page for the application, informs the user about the application
@@ -35,6 +36,9 @@ const LandingView: ViewComponent = ({ changeView }) => {
     [windowSize.height]
   );
 
+  const isMobile = useMediaQuery(768);
+  const modelScaleFactor = isMobile ? 0.9 : 0.6;
+
   return (
     <Flex height={`${windowHeight}px`} flexDir="column" p={6}>
       <MenuBar hideRestartButton />
@@ -50,7 +54,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
             <SceneLighting />
             <directionalLight intensity={0.5} position={[8, 10, 40]} />
             <PerspectiveCamera makeDefault position={[0, 50, 200]} />
-            <Bounds fit clip observe margin={0.5}>
+            <Bounds fit clip observe margin={0.35}>
               <PresentationControls
                 global
                 config={{ mass: 2, tension: 500 }}
@@ -64,8 +68,9 @@ const LandingView: ViewComponent = ({ changeView }) => {
                   preset={'portrait'}
                   environment={'sunset'}
                   intensity={0.4}
+                  adjustCamera={modelScaleFactor}
                 >
-                  <TimeLine castShadow />
+                  <TimeLine castShadow position={[10, 0, 0]} />
                   <ContactShadows />
                 </Stage>
               </PresentationControls>

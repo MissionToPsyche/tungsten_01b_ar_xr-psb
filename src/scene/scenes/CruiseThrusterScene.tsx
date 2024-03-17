@@ -6,20 +6,27 @@ import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import CruiseThrusterAnimation from '../../animations/CruiseThrusterAnimation.tsx';
 import BackAnimation from '../../animations/BackAnimation.tsx';
 import CruiseSceneLights from '../../common/components/CruiseSceneLights.tsx';
+import useMediaQuery from '../../common/hooks/use-media-query.ts';
 
-const dateScale = filledVector(0.3);
-const nameScale = filledVector(1.2);
-
-const CruiseThrusterScene: SceneComponent = () => (
-  <>
-    <CruiseThrusterAnimation />
-    <BackAnimation />
-    <CruiseSceneLights />
-    <CruiseName position={[-1.5, 10, -1]} scale={nameScale} />
-    <FactsModalTrigger factName="cruiseDate">
-      <OpenPanelsDate position={[-7, -6, 8]} scale={dateScale} />
-    </FactsModalTrigger>
-  </>
-);
+const CruiseThrusterScene: SceneComponent = () => {
+  const isMobile = useMediaQuery(768);
+  const nameScaleFactor = isMobile ? filledVector(1.9) : filledVector(2.2);
+  const dateScaleFactor = isMobile ? filledVector(0.35) : filledVector(0.4);
+  return (
+    <>
+      <CruiseThrusterAnimation />
+      <BackAnimation />
+      <CruiseSceneLights />
+      <CruiseName position={[-2, 14.5, -5]} scale={nameScaleFactor} />
+      <FactsModalTrigger factName="cruiseDate">
+        <OpenPanelsDate
+          position={[-10, -6, 2]}
+          scale={dateScaleFactor}
+          rotation={[0, -Math.PI / 8, 0]}
+        />
+      </FactsModalTrigger>
+    </>
+  );
+};
 
 export default CruiseThrusterScene;

@@ -3,16 +3,13 @@ import { useFrame } from '@react-three/fiber';
 import { Group } from 'three';
 import useAnimation from './use-animation';
 import AnimationName from './types/animation-name';
-
 import { Earth } from '../artifacts/Earth';
 import filledVector from '../common/utils/filled-vector';
-
 import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
 import useSettings from '../settings/use-settings';
+import useMediaQuery from '../common/hooks/use-media-query';
 
-const earthScale = filledVector(25);
 const translationSpeed = 5;
-const orbiterScale = filledVector(0.75);
 
 /**
  * Cruise Thruster Animation
@@ -67,20 +64,24 @@ const CruiseThrusterAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
     }
   });
 
+  const isMobile = useMediaQuery(768);
+  const orbiterScaleFactor = isMobile ? filledVector(0.9) : filledVector(1.2);
+  const earthScaleFactor = isMobile ? filledVector(15) : filledVector(18);
+
   return (
     <group>
       <group ref={orbiterRef}>
         <CruiseOrbiter
           thrustersOn={isActive}
           position={[0, 2, 2]}
-          scale={orbiterScale}
+          scale={orbiterScaleFactor}
           rotation={[Math.PI / 5, Math.PI / 5, Math.PI / 6]}
           panelsOpen={true}
           animatePanels={false}
         />
       </group>
       <group ref={earthRef} {...props}>
-        <Earth position={[-10, -5, -60]} scale={earthScale} />
+        <Earth position={[-10, -5, -60]} scale={earthScaleFactor} />
       </group>
     </group>
   );
