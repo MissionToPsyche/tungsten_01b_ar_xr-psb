@@ -17,7 +17,6 @@ import SecondOrbitScene from './scenes/SecondOrbit.tsx';
 import ThirdOrbitScene from './scenes/ThirdOrbit.tsx';
 import FourthOrbitScene from './scenes/FourthOrbit.tsx';
 
-
 const defaultCameraPosition = new Vector3(0, 6, 25);
 /**
  * Function to get the scene configuration. Right now extracted into a method
