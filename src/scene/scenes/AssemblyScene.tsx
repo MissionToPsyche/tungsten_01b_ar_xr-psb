@@ -9,6 +9,7 @@ import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
 import { Box } from '@react-three/drei';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
+import BackAnimation from '../../animations/BackAnimation.tsx';
 import ExplodeElement from '../../common/explode/ExplodeElement.tsx';
 import StaticExplodeElement from '../../common/explode/StaticExplodeElement.tsx';
 import useScene from '../use-scene.ts';
@@ -106,6 +107,7 @@ const AssemblyScene: SceneComponent = () => {
       />
       <AssembleTestSceneName position={[0, 9.8, 0]} scale={sceneNameScale} />
       <AssembleAnimation />
+      <BackAnimation />
       <AssembleDate
         scale={sceneDateScale}
         position={[0, -4, 5]}

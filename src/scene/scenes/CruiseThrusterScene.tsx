@@ -1,9 +1,10 @@
 import { SceneComponent } from '../types/scene-component.ts';
-import { CruiseDate } from '../../artifacts/CruiseDate.tsx';
+import { OpenPanelsDate } from '../../artifacts/OpenPanelsDate.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
 import { CruiseName } from '../../artifacts/CruiseName.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import CruiseThrusterAnimation from '../../animations/CruiseThrusterAnimation.tsx';
+import BackAnimation from '../../animations/BackAnimation.tsx';
 import CruiseSceneLights from '../../common/components/CruiseSceneLights.tsx';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import useScene from '../use-scene.ts';
@@ -18,6 +19,7 @@ const CruiseThrusterScene: SceneComponent = () => {
   return (
     <>
       <CruiseThrusterAnimation />
+      <BackAnimation />
       <CruiseSceneLights />
       <CruiseName position={[-1.5, 10, -1]} scale={nameScale} />
       <RenderIf shouldRender={!isTransitioning}>
@@ -26,11 +28,7 @@ const CruiseThrusterScene: SceneComponent = () => {
         </FactsModalTrigger>
       </RenderIf>
       <FactsModalTrigger factName="cruiseDate">
-        <CruiseDate
-          position={[9, -3, 8]}
-          scale={dateScale}
-          rotation={[-Math.PI / 16, 0, 0]}
-        />
+        <OpenPanelsDate position={[-7, -6, 8]} scale={dateScale} />
       </FactsModalTrigger>
     </>
   );

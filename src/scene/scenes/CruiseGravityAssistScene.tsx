@@ -4,6 +4,7 @@ import filledVector from '../../common/utils/filled-vector.ts';
 import { CruiseName } from '../../artifacts/CruiseName.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import CruiseGravityAssistAnimation from '../../animations/CruiseGravityAssistAnimation.tsx';
+import BackAnimation from '../../animations/BackAnimation.tsx';
 import CruiseSceneLights from '../../common/components/CruiseSceneLights.tsx';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import useScene from '../use-scene.ts';
@@ -18,6 +19,7 @@ const CruiseGravityAssistScene: SceneComponent = () => {
   return (
     <>
       <CruiseGravityAssistAnimation />
+      <BackAnimation />
       <CruiseSceneLights />
       <CruiseName position={[-1.5, 10, -1]} scale={nameScale} />
       <RenderIf shouldRender={!isTransitioning}>

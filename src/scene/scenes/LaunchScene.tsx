@@ -10,6 +10,7 @@ import { LaunchPadModel } from '../../artifacts/LaunchPadModel.jsx';
 import { Cloud, Clouds, Sky } from '@react-three/drei';
 import useSceneConfig from '../use-scene-config.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
+import BackAnimation from '../../animations/BackAnimation.tsx';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import useScene from '../use-scene.ts';
 
@@ -27,6 +28,7 @@ const LaunchScene: SceneComponent = () => {
 
   return (
     <>
+      <BackAnimation />
       <RenderIf shouldRender={!isTransitioning}>
         <FactsModalTrigger factName="falconHeavy">
           <ARTooltip position={[1.75, 5.5, 1]} />

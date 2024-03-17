@@ -35,7 +35,7 @@ const CruisePanelsAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
 
     setElapsed(elapsed + delta);
 
-    if (elapsed > 15) {
+    if (elapsed > 7) {
       stopAnimation(AnimationName.CRUISE_PANELS);
     }
   });

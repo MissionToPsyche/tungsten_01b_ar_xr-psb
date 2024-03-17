@@ -13,7 +13,7 @@ const ARTooltip: React.FC<JSX.IntrinsicElements['group']> = (props) => {
 
   return (
     <RenderIf shouldRender={tooltipsEnabled}>
-      <group {...props}>
+      <group {...props} name="tooltip-group">
         <Billboard follow scale={0.5}>
           <Circle scale={0.25}>
             <meshBasicMaterial transparent opacity={0.5} color="white" />
