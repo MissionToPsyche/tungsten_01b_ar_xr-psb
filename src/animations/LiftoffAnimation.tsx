@@ -34,11 +34,14 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
         groupRef.current.position.y += delta * elapsed;
       }
 
-      if (elapsed >= 3 && elapsed <= 10 && !arEnabled) {
-        state.camera.rotation.x += delta * 0.15;
+      if (elapsed >= 3 && elapsed <= 9 && !arEnabled) {
+        if (elapsed <= 8) {
+          state.camera.rotation.x += delta * 0.2;
+        }
+        groupRef.current.position.y += delta * elapsed;
       }
 
-      if (elapsed >= 14) {
+      if (elapsed >= 9) {
         setElapsed(0);
         stopAnimation(AnimationName.LIFTOFF);
       }

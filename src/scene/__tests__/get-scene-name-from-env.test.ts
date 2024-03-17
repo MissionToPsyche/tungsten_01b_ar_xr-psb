@@ -11,7 +11,10 @@ describe('getSceneNameFromEnv', () => {
     [SceneName.CRUISE_PANELS, 'CRUISE_PANELS'],
     [SceneName.CRUISE_THRUSTERS, 'CRUISE_THRUSTERS'],
     [SceneName.CRUISE_GRAVITY_ASSIST, 'CRUISE_GRAVITY_ASSIST'],
-    [SceneName.ORBIT, 'ORBIT']
+    [SceneName.FIRST_ORBIT, 'FIRST_ORBIT'],
+    [SceneName.SECOND_ORBIT, 'SECOND_ORBIT'],
+    [SceneName.THIRD_ORBIT, 'THIRD_ORBIT'],
+    [SceneName.FOURTH_ORBIT, 'FOURTH_ORBIT']
   ])(
     'should return %s when the environment variable is %s',
     (expected, envVarValue) => {

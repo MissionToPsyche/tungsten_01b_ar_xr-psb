@@ -1,7 +1,6 @@
 import { SceneConfig } from './types/scene-config.ts';
 import SceneName from './types/scene-name.ts';
 import LaunchScene from './scenes/LaunchScene.tsx';
-import CruiseScene2 from './scenes/OrbitScene.tsx';
 import AnimationName from '../animations/types/animation-name.ts';
 import AssemblyScene from './scenes/AssemblyScene.tsx';
 import getBoolFromEnv from '../common/utils/get-bool-from-env.ts';
@@ -13,6 +12,11 @@ import CruiseThrusterScene from './scenes/CruiseThrusterScene.tsx';
 import { Vector3 } from 'three';
 import CruiseGravityAssistScene from './scenes/CruiseGravityAssistScene.tsx';
 import PackOrbiterScene from './scenes/PackOrbiterScene.tsx';
+import FirstOrbitScene from './scenes/FirstOrbit.tsx';
+import SecondOrbitScene from './scenes/SecondOrbit.tsx';
+import ThirdOrbitScene from './scenes/ThirdOrbit.tsx';
+import FourthOrbitScene from './scenes/FourthOrbit.tsx';
+
 
 const defaultCameraPosition = new Vector3(0, 6, 25);
 /**
@@ -55,8 +59,8 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.VIBRATION_TESTING,
-        buttonText: 'Vibration Test',
-        animation: AnimationName.BACK
+        animation: AnimationName.BACK,
+        buttonText: 'Back'
       },
       nextSceneTransition: {
         toScene: SceneName.PACK_ORBITER,
@@ -69,8 +73,8 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.ACOUSTIC_TESTING,
-        buttonText: 'Acoustic Test',
-        animation: AnimationName.BACK
+        animation: AnimationName.BACK,
+        buttonText: 'Back'
       },
       nextSceneTransition: {
         toScene: SceneName.LAUNCH,
@@ -112,12 +116,12 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.CRUISE_PANELS,
-        buttonText: 'Back to Panels',
-        animation: AnimationName.BACK
+        animation: AnimationName.BACK,
+        buttonText: 'Back'
       },
       nextSceneTransition: {
         toScene: SceneName.CRUISE_GRAVITY_ASSIST,
-        buttonText: 'Start Thrusters',
+        buttonText: 'Ignite Thrusters',
         animation: AnimationName.CRUISE_THRUSTERS
       }
     },
@@ -126,22 +130,58 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.CRUISE_THRUSTERS,
-        buttonText: 'Back to Thrusters',
-        animation: AnimationName.BACK
+        animation: AnimationName.BACK,
+        buttonText: 'Back'
       },
       nextSceneTransition: {
-        toScene: SceneName.ORBIT,
-        buttonText: 'Mars Gravity Assist',
+        toScene: SceneName.FIRST_ORBIT,
+        buttonText: 'Mars Assist',
         animation: AnimationName.CRUISE_GRAVITY_ASSIST
       }
     },
-    [SceneName.ORBIT]: {
-      component: CruiseScene2,
+    [SceneName.FIRST_ORBIT]: {
+      component: FirstOrbitScene,
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.CRUISE_GRAVITY_ASSIST,
-        buttonText: 'Back to Gravity Assist',
-        animation: AnimationName.BACK
+        animation: AnimationName.BACK,
+        buttonText: 'Back to Cruise'
+      },
+      nextSceneTransition: {
+        toScene: SceneName.SECOND_ORBIT,
+        buttonText: 'Next Orbit'
+      }
+    },
+    [SceneName.SECOND_ORBIT]: {
+      component: SecondOrbitScene,
+      markerUrl: 'assets/patt.hiro',
+      previousSceneTransition: {
+        toScene: SceneName.FIRST_ORBIT,
+        buttonText: 'Back'
+      },
+      nextSceneTransition: {
+        toScene: SceneName.THIRD_ORBIT,
+        buttonText: 'Next Orbit'
+      }
+    },
+    [SceneName.THIRD_ORBIT]: {
+      component: ThirdOrbitScene,
+      markerUrl: 'assets/patt.hiro',
+      previousSceneTransition: {
+        toScene: SceneName.SECOND_ORBIT,
+        buttonText: 'Back'
+      },
+      nextSceneTransition: {
+        toScene: SceneName.FOURTH_ORBIT,
+        buttonText: 'Next Orbit'
+      }
+    },
+    [SceneName.FOURTH_ORBIT]: {
+      component: FourthOrbitScene,
+      markerUrl: 'assets/patt.hiro',
+      previousSceneTransition: {
+        toScene: SceneName.THIRD_ORBIT,
+        buttonText: 'Back'
       }
     }
   },

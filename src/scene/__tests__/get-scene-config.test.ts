@@ -157,10 +157,10 @@ describe('getSceneConfig', () => {
     const actual = getSceneConfig();
 
     expect(
-      actual.scenes[SceneName.ORBIT].previousSceneTransition
+      actual.scenes[SceneName.FIRST_ORBIT].previousSceneTransition
     ).toBeDefined();
     expect(
-      actual.scenes[SceneName.ORBIT].previousSceneTransition?.toScene
+      actual.scenes[SceneName.FIRST_ORBIT].previousSceneTransition?.toScene
     ).toEqual(SceneName.CRUISE_GRAVITY_ASSIST);
   });
 
