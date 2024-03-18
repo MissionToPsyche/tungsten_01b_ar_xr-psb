@@ -9,6 +9,9 @@ import BackAnimation from '../../animations/BackAnimation.tsx';
 import { OrbitOrbiter } from '../../artifacts/OrbitOrbiter.tsx';
 import { DashedOrbit } from '../../artifacts/DashedOrbit.tsx';
 import OrbitSceneLightning from '../../common/components/OrbitSceneLightning.tsx';
+import ARTooltip from '../../common/components/ARTooltip.tsx';
+import useScene from '../use-scene.ts';
+import RenderIf from '../../common/components/RenderIf.tsx';
 import useMediaQuery from '../../common/hooks/use-media-query.ts';
 
 const FirstOrbitScene: SceneComponent = () => {
@@ -21,10 +24,14 @@ const FirstOrbitScene: SceneComponent = () => {
   const dashTwoScaleFactor = isMobile ? filledVector(2.4) : filledVector(2.6);
   const dashThreeScaleFactor = isMobile ? filledVector(2) : filledVector(2.2);
   const dashFourScaleFactor = isMobile ? filledVector(1.7) : filledVector(1.9);
+  const { isTransitioning } = useScene();
   return (
     <>
       <BackAnimation />
       <OrbitDate position={[3, -2, 15]} scale={dateScaleFactor} />
+      <RenderIf shouldRender={!isTransitioning}>
+        <ARTooltip position={[10.5, 0, 5]} />
+      </RenderIf>
       <FactsModalTrigger factName="psycheOrbitA">
         <DashedOrbit
           position={[0, 0.5, -18]}
@@ -39,6 +46,9 @@ const FirstOrbitScene: SceneComponent = () => {
           scale={psycheScaleFactor}
           rotation={[Math.PI / 3, 0, 0]}
         />
+        <RenderIf shouldRender={!isTransitioning}>
+          <ARTooltip position={[0, 0, 2]} />
+        </RenderIf>
       </FactsModalTrigger>
       <DashedOrbit
         position={[11, 4, -4]}

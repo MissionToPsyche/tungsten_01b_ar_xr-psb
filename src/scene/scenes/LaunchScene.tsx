@@ -12,6 +12,8 @@ import RenderIf from '../../common/components/RenderIf.tsx';
 import BackAnimation from '../../animations/BackAnimation.tsx';
 import useMediaQuery from '../../common/hooks/use-media-query.ts';
 import filledVector from '../../common/utils/filled-vector.ts';
+import ARTooltip from '../../common/components/ARTooltip.tsx';
+import useScene from '../use-scene.ts';
 
 /**
  * The launch scene which depicts the Psyche mission launch.
@@ -23,10 +25,16 @@ const LaunchScene: SceneComponent = () => {
   const rocketScaleFactor = isMobile ? filledVector(0.4) : filledVector(0.44);
   const dateScaleFactor = isMobile ? filledVector(0.3) : filledVector(0.32);
   const nameScaleFactor = isMobile ? filledVector(1.8) : filledVector(2.2);
+  const { isTransitioning } = useScene();
 
   return (
     <>
       <BackAnimation />
+      <RenderIf shouldRender={!isTransitioning}>
+        <FactsModalTrigger factName="falconHeavy">
+          <ARTooltip position={[1.75, 5.5, 1]} />
+        </FactsModalTrigger>
+      </RenderIf>
       <ambientLight intensity={0.1} position={[0, 10, 7]} />
       <spotLight
         intensity={0.5}

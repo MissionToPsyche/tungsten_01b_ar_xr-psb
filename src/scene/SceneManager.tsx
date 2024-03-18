@@ -1,6 +1,6 @@
 import { ARCanvas } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
@@ -9,53 +9,37 @@ import ViewName from '../view/types/view-name.ts';
 import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchronizer.tsx';
 import useAnimation from '../animations/use-animation.ts';
 import RenderIf from '../common/components/RenderIf.tsx';
-import ModelOutliner from '../common/components/ModelOutliner.tsx';
 import useSceneConfig from './use-scene-config.ts';
 import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
 import { OrbitControls, Stars } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+import useScene from './use-scene.ts';
 
 /**
  * Manages AR scenes.
  */
 const SceneManager: ViewComponent = ({ changeView }) => {
   const config = useSceneConfig();
-  const [currentScene, setCurrentScene] = useState(config.defaultScene);
-  const { isAnimationActive, clearAnimations } = useAnimation();
+  const { clearAnimations } = useAnimation();
   const orbitControls = useRef<OrbitControlsImpl>(null);
+  const {
+    currentSceneConfig: {
+      component: CurrentSceneComponent,
+      markerUrl,
+      previousSceneTransition,
+      nextSceneTransition
+    },
+    isTransitioning,
+    isTransitioningToPrevious,
+    isTransitioningToNext,
+    setCurrentScene
+  } = useScene();
 
   const onRestart = useCallback(() => {
     clearAnimations();
     changeView(ViewName.LANDING_PAGE);
   }, [changeView, clearAnimations]);
-
-  const {
-    component: CurrentSceneComponent,
-    markerUrl,
-    previousSceneTransition,
-    nextSceneTransition
-  } = config.scenes[currentScene];
-
-  const isTransitioningToPrevious = useMemo(() => {
-    if (previousSceneTransition?.animation == null) {
-      return false;
-    }
-
-    return isAnimationActive(previousSceneTransition.animation);
-  }, [isAnimationActive, previousSceneTransition]);
-
-  const isTransitioningToNext = useMemo(() => {
-    if (nextSceneTransition?.animation == null) {
-      return false;
-    }
-
-    return isAnimationActive(nextSceneTransition.animation);
-  }, [isAnimationActive, nextSceneTransition]);
-
-  const isTransitioning = useMemo(() => {
-    return isTransitioningToPrevious || isTransitioningToNext;
-  }, [isTransitioningToNext, isTransitioningToPrevious]);
 
   useEffect(() => {
     if (orbitControls.current && isTransitioning) {
@@ -115,9 +99,7 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         <SceneLighting />
         <PersistentARMarker markerUrl={markerUrl}>
           <group rotation={[config.markerXRotation, 0, 0]}>
-            <ModelOutliner color={0xffffff}>
-              <CurrentSceneComponent />
-            </ModelOutliner>
+            <CurrentSceneComponent />
           </group>
         </PersistentARMarker>
       </ARCanvas>
