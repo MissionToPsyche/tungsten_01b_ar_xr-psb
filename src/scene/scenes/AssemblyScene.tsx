@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import ExplodeTrigger from '../../common/explode/ExplodeTrigger.tsx';
 import Explode from '../../common/explode/Explode.tsx';
 import { SceneComponent } from '../types/scene-component.ts';
@@ -70,7 +69,7 @@ const AssemblyScene: SceneComponent = () => {
       <AssemblySceneLights />
       <ExplodeTrigger>
         <StaticExplodeElement>
-          {(isExploded) => (
+          {() => (
             <Box
               position={[0, 4, 0]}
               scale={[22, 3, 8]}
