@@ -25,8 +25,14 @@ const SettingsModal = ({
   onClose,
   hideArButton
 }: SettingsWindowProps) => {
-  const { arEnabled, audioEnabled, setArEnabled, setAudioEnabled } =
-    useSettings();
+  const {
+    arEnabled,
+    audioEnabled,
+    tooltipsEnabled,
+    setArEnabled,
+    setAudioEnabled,
+    setTooltipsEnabled
+  } = useSettings();
 
   const onChangeArToggle = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +46,13 @@ const SettingsModal = ({
       setAudioEnabled(e.target.checked);
     },
     [setAudioEnabled]
+  );
+
+  const onChangeTooltipsToggle = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setTooltipsEnabled(e.target.checked);
+    },
+    [setTooltipsEnabled]
   );
 
   return (
@@ -70,6 +83,16 @@ const SettingsModal = ({
                 id="audio-toggle"
                 isChecked={audioEnabled}
                 onChange={onChangeAudioToggle}
+              />
+            </FormControl>
+            <FormControl display="flex" alignItems="center">
+              <FormLabel htmlFor="tooltips-toggle" mb="0">
+                Enable Tooltips?
+              </FormLabel>
+              <Switch
+                id="tooltips-toggle"
+                isChecked={tooltipsEnabled}
+                onChange={onChangeTooltipsToggle}
               />
             </FormControl>
           </VStack>

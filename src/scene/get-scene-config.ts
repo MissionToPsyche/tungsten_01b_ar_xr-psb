@@ -30,6 +30,7 @@ const getSceneConfig = (): SceneConfig => ({
     SceneName.VIBRATION_TESTING
   ),
   scenes: {
+    [SceneName.UNSET]: undefined as never,
     [SceneName.VIBRATION_TESTING]: {
       component: VibrationTestingScene,
       markerUrl: 'assets/patt.hiro',
