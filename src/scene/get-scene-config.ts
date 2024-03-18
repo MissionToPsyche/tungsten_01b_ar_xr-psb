@@ -44,7 +44,7 @@ const getSceneConfig = (): SceneConfig => ({
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.ASSEMBLY,
-        // animation: AnimationName.BACK,
+        animation: AnimationName.BACK,
         buttonText: 'Back to Assemble'
       },
       nextSceneTransition: {
