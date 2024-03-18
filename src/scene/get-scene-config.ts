@@ -28,6 +28,7 @@ const defaultCameraPosition = new Vector3(0, 6, 25);
 const getSceneConfig = (): SceneConfig => ({
   defaultScene: getSceneNameFromEnv('VITE_DEFAULT_SCENE', SceneName.ASSEMBLY),
   scenes: {
+    [SceneName.UNSET]: undefined as never,
     [SceneName.ASSEMBLY]: {
       component: AssemblyScene,
       markerUrl: 'assets/patt.hiro',

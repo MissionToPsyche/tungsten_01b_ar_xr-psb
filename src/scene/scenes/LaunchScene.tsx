@@ -11,6 +11,8 @@ import { Cloud, Clouds, Sky } from '@react-three/drei';
 import useSceneConfig from '../use-scene-config.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
 import BackAnimation from '../../animations/BackAnimation.tsx';
+import ARTooltip from '../../common/components/ARTooltip.tsx';
+import useScene from '../use-scene.ts';
 
 const padScale = filledVector(0.38);
 const falconScale = filledVector(0.38);
@@ -22,10 +24,16 @@ const sceneNameScale = filledVector(1.3);
  */
 const LaunchScene: SceneComponent = () => {
   const { disableAr } = useSceneConfig();
+  const { isTransitioning } = useScene();
 
   return (
     <>
       <BackAnimation />
+      <RenderIf shouldRender={!isTransitioning}>
+        <FactsModalTrigger factName="falconHeavy">
+          <ARTooltip position={[1.75, 5.5, 1]} />
+        </FactsModalTrigger>
+      </RenderIf>
       <ambientLight intensity={0.1} position={[0, 10, 7]} />
       <spotLight
         intensity={0.5}

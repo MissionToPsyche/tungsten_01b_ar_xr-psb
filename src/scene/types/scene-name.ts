@@ -2,6 +2,7 @@
  * Enum representing the name of an AR scene
  */
 enum SceneName {
+  UNSET,
   ASSEMBLY,
   VIBRATION_TESTING,
   ACOUSTIC_TESTING,

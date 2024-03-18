@@ -8,107 +8,88 @@ import { AssembleTestSceneName } from '../../artifacts/AssembleTestSceneName.tsx
 import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
 import { Box } from '@react-three/drei';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
-import StaticExplodeElement from '../../common/explode/StaticExplodeElement.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import BackAnimation from '../../animations/BackAnimation.tsx';
+import ExplodeElement from '../../common/explode/ExplodeElement.tsx';
+import StaticExplodeElement from '../../common/explode/StaticExplodeElement.tsx';
+import useScene from '../use-scene.ts';
+import RenderIf from '../../common/components/RenderIf.tsx';
 import AssemblySceneLights from '../../common/components/AssemblySceneLights.tsx';
 
 const orbiterScale = filledVector(0.75);
 const sceneNameScale = filledVector(0.9);
 const sceneDateScale = filledVector(0.2);
 
-const AssemblyScene: SceneComponent = () => (
-  <Explode initialExploded={true}>
-    <StaticExplodeElement
-      startPosition={[0, 2.25, 0]}
-      startRotation={[0, 0, 0]}
-      explodedPosition={[0, 0.5, -1]}
-      explodedRotation={[0, 0, 0]}
-    >
-      {(isExploded, position) => (
-        <ARTooltip
-          objectPosition={position.get() as never}
-          panelPosition={[0, -1, -1]}
-          text={`Touch the spacecraft to ${
-            isExploded ? 'put it together' : 'take it apart'
-          }`}
-        />
-      )}
-    </StaticExplodeElement>
-    <FactsModalTrigger factName="spectrometer">
-      <StaticExplodeElement
-        startPosition={[-1, 7, 0]}
-        startRotation={[0, 0, 0]}
-        explodedPosition={[-1, 8.5, -1]}
-        explodedRotation={[0, 0, 0]}
-      >
-        {(isExploded, position) =>
-          (isExploded || !position.idle) && (
-            <ARTooltip
-              objectPosition={position.get() as never}
-              panelPosition={[-10, 10, -1]}
-              text="Spectrometer"
-            />
-          )
-        }
-      </StaticExplodeElement>
-    </FactsModalTrigger>
-    <FactsModalTrigger factName="magnetometer">
-      <StaticExplodeElement
-        startPosition={[1, 7, 0]}
-        startRotation={[0, 0, 0]}
-        explodedPosition={[1, 8.5, -1]}
-        explodedRotation={[0, 0, 0]}
-      >
-        {(isExploded, position) =>
-          (isExploded || !position.idle) && (
-            <ARTooltip
-              objectPosition={position.get() as never}
-              panelPosition={[10, 10, -1]}
-              text="Magnetometer"
-            />
-          )
-        }
-      </StaticExplodeElement>
-    </FactsModalTrigger>
-    <FactsModalTrigger factName="multiSpectralImager">
-      <StaticExplodeElement
-        startPosition={[0, 5, -0.5]}
-        startRotation={[0, 0, 0]}
-        explodedPosition={[0, 5.5, -2.5]}
-        explodedRotation={[0, 0, 0]}
-      >
-        {(isExploded, position) =>
-          (isExploded || !position.idle) && (
-            <ARTooltip
-              objectPosition={position.get() as never}
-              panelPosition={[10, 7, -1]}
-              text="Multispectral Imager"
-            />
-          )
-        }
-      </StaticExplodeElement>
-    </FactsModalTrigger>
-    <AssemblySceneLights />
-    <ExplodeTrigger>
-      <Box
+const AssemblyScene: SceneComponent = () => {
+  const { isTransitioning } = useScene();
+
+  return (
+    <Explode initialExploded={true}>
+      <RenderIf shouldRender={!isTransitioning}>
+        <ExplodeElement
+          startPosition={[0, 3.25, 2]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[0, 2.5, 3.5]}
+          explodedRotation={[0, 0, 0]}
+        >
+          <ARTooltip />
+        </ExplodeElement>
+        <FactsModalTrigger factName="spectrometer">
+          <ExplodeElement
+            startPosition={[-1, 7, 0]}
+            startRotation={[0, 0, 0]}
+            explodedPosition={[-1, 9, -1]}
+            explodedRotation={[0, 0, 0]}
+          >
+            <ARTooltip />
+          </ExplodeElement>
+        </FactsModalTrigger>
+        <FactsModalTrigger factName="magnetometer">
+          <ExplodeElement
+            startPosition={[1, 7, 0]}
+            startRotation={[0, 0, 0]}
+            explodedPosition={[1, 9, -1]}
+            explodedRotation={[0, 0, 0]}
+          >
+            <ARTooltip />
+          </ExplodeElement>
+        </FactsModalTrigger>
+        <FactsModalTrigger factName="multiSpectralImager">
+          <ExplodeElement
+            startPosition={[0, 4.75, -1.5]}
+            startRotation={[0, 0, 0]}
+            explodedPosition={[0, 5.5, -3.25]}
+            explodedRotation={[0, 0, 0]}
+          >
+            <ARTooltip />
+          </ExplodeElement>
+        </FactsModalTrigger>
+      </RenderIf>
+      <AssemblySceneLights />
+      <ExplodeTrigger>
+        <StaticExplodeElement>
+          {(isExploded) => (
+            <Box
+              position={[0, 4, 0.5]}
+              scale={isExploded ? 4 : 2}
+              rotation={[Math.PI / 8, 0, 0]}
+            >
+              <meshBasicMaterial transparent opacity={0} />
+            </Box>
+          )}
+        </StaticExplodeElement>
+      </ExplodeTrigger>
+      <Orbiter
         position={[0, 3, 0]}
-        scale={[23, 1.8, 6]}
-        rotation={[Math.PI / 4, 0, 0]}
-      >
-        <meshBasicMaterial transparent opacity={0} />
-      </Box>
-    </ExplodeTrigger>
-    <Orbiter
-      position={[0, 3, 0]}
-      scale={orbiterScale}
-      rotation={[Math.PI / 8, 0, 0]}
-    />
-    <AssembleTestSceneName position={[0, 9.8, 0]} scale={sceneNameScale} />
-    <AssembleAnimation />
-    <BackAnimation />
-    <AssembleDate scale={sceneDateScale} position={[0, -4, 5]} />
-  </Explode>
-);
+        scale={orbiterScale}
+        rotation={[Math.PI / 8, 0, 0]}
+      />
+      <AssembleTestSceneName position={[0, 9.8, 0]} scale={sceneNameScale} />
+      <AssembleAnimation />
+      <BackAnimation />
+      <AssembleDate scale={sceneDateScale} position={[0, -4, 5]} />
+    </Explode>
+  );
+};
 
 export default AssemblyScene;
