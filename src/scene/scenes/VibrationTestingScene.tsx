@@ -7,6 +7,7 @@ import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
 import useMediaQuery from '../../common/hooks/use-media-query.ts';
 import filledVector from '../../common/utils/filled-vector.ts';
 import AssemblySceneLights from '../../common/components/AssemblySceneLights.tsx';
+import BackAnimation from '../../animations/BackAnimation.tsx';
 
 const VibrationTestingScene: SceneComponent = () => {
   const isMobile = useMediaQuery(768);
@@ -29,6 +30,7 @@ const VibrationTestingScene: SceneComponent = () => {
         scale={nameScaleFactor}
       />
       <AssembleDate scale={dateScaleFactor} position={[-0.5, -6, 7]} />
+      <BackAnimation />
     </Explode>
   );
 };
