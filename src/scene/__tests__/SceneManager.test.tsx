@@ -8,6 +8,7 @@ import ReactThreeTestRenderer from '@react-three/test-renderer';
 import { Vector3 } from 'three';
 import { SceneControlsProps } from '../SceneControls.tsx';
 import { act } from '@testing-library/react';
+import useScene from '../use-scene.ts';
 
 let onChangeSceneFn: SceneControlsProps['onChangeScene'];
 
@@ -15,6 +16,7 @@ let onChangeSceneFn: SceneControlsProps['onChangeScene'];
 vi.mock('../../animations/use-animation.ts');
 vi.mock('../../audio/use-audio.ts');
 vi.mock('../../settings/use-settings.ts');
+vi.mock('../use-scene.ts');
 vi.mock('../SceneControls.tsx', () => ({
   default: ({ onChangeScene }: SceneControlsProps) => {
     onChangeSceneFn = onChangeScene;
@@ -40,93 +42,11 @@ vi.mock('../../common/hooks/use-sync-ar-to-window-size.ts');
 
 const mockConfig: SceneConfig = {
   defaultScene: SceneName.ASSEMBLY,
-  scenes: {
-    [SceneName.VIBRATION_TESTING]: {
-      component: () => <group name="vibration-scene" />,
-      markerUrl: '/hello',
-      nextSceneTransition: {
-        toScene: SceneName.ACOUSTIC_TESTING,
-        buttonText: 'Next Scene'
-      }
-    },
-    [SceneName.ACOUSTIC_TESTING]: {
-      component: () => <group name="acoustic-scene" />,
-      markerUrl: '/hello',
-      nextSceneTransition: {
-        toScene: SceneName.ASSEMBLY,
-        buttonText: 'Next Scene'
-      }
-    },
-    [SceneName.ASSEMBLY]: {
-      component: () => <group name="assemble-scene" />,
-      markerUrl: '/hello',
-      nextSceneTransition: {
-        toScene: SceneName.LAUNCH,
-        buttonText: 'Next Scene'
-      }
-    },
-    [SceneName.LAUNCH]: {
-      component: () => <group name="launch-scene" />,
-      markerUrl: '/hello',
-      nextSceneTransition: {
-        toScene: SceneName.CRUISE_PANELS,
-        buttonText: 'Next Scene'
-      },
-      previousSceneTransition: {
-        toScene: SceneName.ASSEMBLY,
-        buttonText: 'Previous Scene'
-      }
-    },
-    [SceneName.CRUISE_PANELS]: {
-      component: () => <group name="cruise-panels-scene" />,
-      markerUrl: '/hello',
-      nextSceneTransition: {
-        toScene: SceneName.CRUISE_THRUSTERS,
-        buttonText: 'Next Scene'
-      },
-      previousSceneTransition: {
-        toScene: SceneName.LAUNCH,
-        buttonText: 'Previous Scene'
-      }
-    },
-    [SceneName.CRUISE_THRUSTERS]: {
-      component: () => <group name="cruise-thrusters-scene" />,
-      markerUrl: '/hello',
-      nextSceneTransition: {
-        toScene: SceneName.CRUISE_GRAVITY_ASSIST,
-        buttonText: 'Next Scene'
-      },
-      previousSceneTransition: {
-        toScene: SceneName.CRUISE_PANELS,
-        buttonText: 'Previous Scene'
-      }
-    },
-    [SceneName.CRUISE_GRAVITY_ASSIST]: {
-      component: () => <group name="cruise-panels-scene" />,
-      markerUrl: '/hello',
-      nextSceneTransition: {
-        toScene: SceneName.FIRST_ORBIT,
-        buttonText: 'Next Scene'
-      },
-      previousSceneTransition: {
-        toScene: SceneName.CRUISE_THRUSTERS,
-        buttonText: 'Previous Scene'
-      }
-    },
-    [SceneName.FIRST_ORBIT]: {
-      component: () => <group name="cruise-panels-scene" />,
-      markerUrl: '/hello',
-      previousSceneTransition: {
-        toScene: SceneName.CRUISE_GRAVITY_ASSIST,
-        buttonText: 'Previous Scene'
-      }
-    }
-  } as unknown as SceneConfig['scenes'],
   cameraParametersUrl: '/hello',
   disableAr: false,
   defaultCameraPosition: new Vector3(0, 6, 18),
   markerXRotation: 0
-};
+} as SceneConfig;
 
 (getSceneConfig as Mock).mockReturnValue(mockConfig);
 const changeView = vi.fn();
@@ -144,12 +64,12 @@ describe('<SceneManager/>', () => {
   });
 
   it('should transition scenes when triggered', async () => {
-    const renderer = await setup();
+    await setup();
 
     act(() => {
       onChangeSceneFn(SceneName.LAUNCH);
     });
 
-    expect(renderer.scene.findByProps({ name: 'launch-scene' })).toBeDefined();
+    expect(useScene().setCurrentScene).toHaveBeenCalledWith(SceneName.LAUNCH);
   });
 });

@@ -9,7 +9,8 @@ vi.mock('recoil', async () => ({
 
 const mockState: Settings = {
   arEnabled: true,
-  audioEnabled: true
+  audioEnabled: true,
+  tooltipsEnabled: true
 };
 
 const mockSetState = vi.fn();
