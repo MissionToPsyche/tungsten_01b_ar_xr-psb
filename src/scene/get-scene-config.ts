@@ -81,7 +81,7 @@ const getSceneConfig = (): SceneConfig => ({
         toScene: SceneName.CRUISE_PANELS,
         animation: AnimationName.LIFTOFF,
         buttonText: 'Launch Rocket',
-        audio: 'sounds/launch.wav'
+        audio: 'sounds/Liftoff.mp3'
       }
     },
     [SceneName.CRUISE_PANELS]: {

@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Color, Group } from 'three';
+import { Color, Group, Vector3 } from 'three';
 import useAnimation from './use-animation';
 import AnimationName from './types/animation-name';
 import SmokeParticleSystem from '../common/particle/systems/smoke/SmokeParticleSystem';
 import ThrusterParticleSystem from '../common/particle/systems/thruster/ThrusterParticleSystem';
 import useSettings from '../settings/use-settings';
+import CountDownParticleSystem from '../common/particle/systems/countdown/CountDownParticleSystem';
 
 const thrusterStartingColor = new Color('#FFDD00');
 const thrusterEndingColor = new Color('#FFF2BD');
@@ -21,6 +22,8 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
   const { isAnimationActive, stopAnimation } = useAnimation();
   const [elapsed, setElapsed] = useState(0);
   const { arEnabled } = useSettings();
+  const [particlesVisible, setParticlesVisible] = useState(false);
+  const [currentCountDown, setCurrentCountDown] = useState(3);
 
   useFrame((state, delta) => {
     if (groupRef.current == null) {
@@ -28,22 +31,42 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
     }
 
     if (isAnimationActive(AnimationName.LIFTOFF)) {
-      setElapsed(elapsed + delta);
+      setElapsed((prev) => prev + delta);
 
-      if (elapsed >= 0.4) {
-        groupRef.current.position.y += delta * elapsed;
-      }
-
-      if (elapsed >= 3 && elapsed <= 9 && !arEnabled) {
-        if (elapsed <= 8) {
-          state.camera.rotation.x += delta * 0.2;
+      if (elapsed >= 0.5) {
+        setParticlesVisible(true);
+        if (elapsed >= 0.5 && elapsed < 1.5) {
+          // Delaying rocket's movement and displaying the particle system
+          setCurrentCountDown(3);
         }
-        groupRef.current.position.y += delta * elapsed;
+
+        if (elapsed >= 1.5 && elapsed < 2.5) {
+          setCurrentCountDown(2);
+        }
+
+        if (elapsed >= 2.5 && elapsed < 4) {
+          setCurrentCountDown(1);
+        }
       }
 
-      if (elapsed >= 9) {
-        setElapsed(0);
-        stopAnimation(AnimationName.LIFTOFF);
+      if (elapsed >= 4) {
+        setParticlesVisible(false);
+
+        if (elapsed >= 4 && elapsed <= 5) {
+          groupRef.current.position.y += delta * elapsed;
+        }
+
+        if (elapsed >= 5 && elapsed <= 11 && !arEnabled) {
+          if (elapsed <= 9) {
+            state.camera.rotation.x += delta * 0.2;
+          }
+          groupRef.current.position.y += delta * elapsed;
+        }
+
+        if (elapsed >= 11) {
+          setElapsed(0);
+          stopAnimation(AnimationName.LIFTOFF);
+        }
       }
     }
   });
@@ -60,6 +83,12 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       <SmokeParticleSystem
         visible={!isAnimationActive(AnimationName.LIFTOFF)}
         position={[0.75, -4.4, 1]}
+      />
+      <CountDownParticleSystem
+        path={`/assets/images/countdown_${currentCountDown}.png`}
+        visible={particlesVisible}
+        position={new Vector3(1, 5.5, 20)}
+        scale={1}
       />
       {children}
     </group>
