@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useAnimation from './use-animation';
 import AnimationName from './types/animation-name';
 
@@ -11,9 +11,11 @@ const BackAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
 }) => {
   const { isAnimationActive, stopAnimation } = useAnimation();
 
-  if (isAnimationActive(AnimationName.BACK)) {
-    stopAnimation(AnimationName.BACK);
-  }
+  useEffect(() => {
+    if (isAnimationActive(AnimationName.BACK)) {
+      stopAnimation(AnimationName.BACK);
+    }
+  }, [isAnimationActive, stopAnimation]);
 
   return <group {...props}>{children}</group>;
 };

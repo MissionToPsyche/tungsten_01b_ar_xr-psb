@@ -6,6 +6,7 @@ import VibrationTestingAnimation from '../../animations/VibrationTestingAnimatio
 import Explode from '../../common/explode/Explode.tsx';
 import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
 import AssemblySceneLights from '../../common/components/AssemblySceneLights.tsx';
+import BackAnimation from '../../animations/BackAnimation.tsx';
 
 const orbiterScale = filledVector(0.75);
 const sceneNameScale = filledVector(0.9);
@@ -23,6 +24,7 @@ const VibrationTestingScene: SceneComponent = () => (
     </VibrationTestingAnimation>
     <AssembleTestSceneName position={[0, 9.8, 0]} scale={sceneNameScale} />
     <AssembleDate scale={sceneDateScale} position={[0, -5, 5]} />
+    <BackAnimation />
   </Explode>
 );
 
