@@ -9,6 +9,10 @@ import { Vector3 } from 'three';
 import { SceneControlsProps } from '../SceneControls.tsx';
 import { act } from '@testing-library/react';
 import useScene from '../use-scene.ts';
+import AssemblyScene from '../scenes/AssemblyScene.tsx';
+import AnimationName from '../../animations/types/animation-name.ts';
+import artifactPaths from '../../artifacts/artifact-paths.ts';
+import VibrationTestingScene from '../scenes/VibrationTestingScene.tsx';
 
 let onChangeSceneFn: SceneControlsProps['onChangeScene'];
 
@@ -45,7 +49,44 @@ const mockConfig: SceneConfig = {
   cameraParametersUrl: '/hello',
   disableAr: false,
   defaultCameraPosition: new Vector3(0, 6, 18),
-  markerXRotation: 0
+  markerXRotation: 0,
+  scenes: {
+    [SceneName.ASSEMBLY]: {
+      component: AssemblyScene,
+      markerUrl: 'assets/patt.hiro',
+      nextSceneTransition: {
+        toScene: SceneName.VIBRATION_TESTING,
+        animation: AnimationName.ASSEMBLE,
+        audio: 'sounds/assemble.wav',
+        buttonText: 'Assemble Orbiter'
+      },
+      artifactPaths: [
+        artifactPaths.AssembleTestSceneName,
+        artifactPaths.AssembleDate,
+        artifactPaths.Orbiter
+      ]
+    },
+    [SceneName.VIBRATION_TESTING]: {
+      component: VibrationTestingScene,
+      markerUrl: 'assets/patt.hiro',
+      previousSceneTransition: {
+        toScene: SceneName.ASSEMBLY,
+        animation: AnimationName.BACK,
+        buttonText: 'Back to Assemble'
+      },
+      nextSceneTransition: {
+        toScene: SceneName.ACOUSTIC_TESTING,
+        animation: AnimationName.VIBRATION_TESTING,
+        audio: 'sounds/knock.wav',
+        buttonText: 'Vibration Test'
+      },
+      artifactPaths: [
+        artifactPaths.AssembleTestSceneName,
+        artifactPaths.AssembleDate,
+        artifactPaths.Orbiter
+      ]
+    }
+  } as unknown as never
 } as SceneConfig;
 
 (getSceneConfig as Mock).mockReturnValue(mockConfig);

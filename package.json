@@ -15,7 +15,8 @@
     "test:ui": "vitest --ui",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "npx playwright test"
+    "test:e2e": "npx playwright test",
+    "build:artifact-paths": "npx --yes ts-node --esm ./src/build/build-artifact-paths.ts"
   },
   "dependencies": {
     "@ar-js-org/ar.js": "^3.4.5",
