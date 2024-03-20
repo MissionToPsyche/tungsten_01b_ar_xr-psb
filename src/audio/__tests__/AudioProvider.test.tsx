@@ -1,9 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
-import { RecoilRoot } from 'recoil';
-import useAudio from '../__mocks__/use-audio.ts';
-import { AudioProvider } from '../AudioProvider';
+import useAudio from '../use-audio';
 
-vi.mock('../__mocks__/useAudio.ts');
+vi.mock('../use-audio');
 
 const AudioController = () => {
   const audio = useAudio();
@@ -17,14 +15,7 @@ const AudioController = () => {
   );
 };
 
-const setup = () =>
-  render(
-    <RecoilRoot>
-      <AudioProvider>
-        <AudioController />
-      </AudioProvider>
-    </RecoilRoot>
-  );
+const setup = () => render(<AudioController />);
 
 describe('<AudioProvider/>', () => {
   it('should play audio when instructed', () => {
