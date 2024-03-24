@@ -57,6 +57,7 @@ const CruiseThrusterAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
     if (elapsed >= 6) {
       orbiterRef.current.position.z += delta * 15;
       orbiterRef.current.position.x -= delta * 15;
+      orbiterRef.current.position.z += delta * 10;
     }
     if (elapsed >= 8) {
       setElapsed(0);
