@@ -5,16 +5,14 @@ import { AssembleTestSceneName } from '../../artifacts/AssembleTestSceneName.tsx
 import AcousticTestingAnimation from '../../animations/AcousticTestingAnimation.tsx';
 import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
 import BackAnimation from '../../animations/BackAnimation.tsx';
-import useMediaQuery from '../../common/hooks/use-media-query.ts';
 import filledVector from '../../common/utils/filled-vector.ts';
 import AssemblySceneLights from '../../common/components/AssemblySceneLights.tsx';
 
-const AcousticTestingScene: SceneComponent = () => {
-  const isMobile = useMediaQuery(768);
-  const orbiterScaleFactor = isMobile ? filledVector(0.8) : filledVector(1.2);
-  const nameScaleFactor = isMobile ? filledVector(1.4) : filledVector(1.7);
-  const dateScaleFactor = isMobile ? filledVector(0.2) : filledVector(0.25);
+const orbiterScaleFactor = filledVector(0.8);
+const nameScaleFactor = filledVector(1);
+const dateScaleFactor = filledVector(0.16);
 
+const AcousticTestingScene: SceneComponent = () => {
   return (
     <Explode initialExploded={false}>
       <AssemblySceneLights />
@@ -24,10 +22,10 @@ const AcousticTestingScene: SceneComponent = () => {
         rotation={[Math.PI / 8, 0, 0]}
       />
       <AssembleTestSceneName
-        position={[-1.35, 13.5, -2]}
+        position={[-1.35, 11, -2]}
         scale={nameScaleFactor}
       />
-      <AssembleDate scale={dateScaleFactor} position={[-0.5, -6, 7]} />
+      <AssembleDate scale={dateScaleFactor} position={[-0.5, -4, 7]} />
       <AcousticTestingAnimation />
       <BackAnimation />
     </Explode>

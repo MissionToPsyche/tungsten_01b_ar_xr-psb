@@ -9,12 +9,11 @@ import CruiseSceneLights from '../../common/components/CruiseSceneLights.tsx';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import useScene from '../use-scene.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
-import useMediaQuery from '../../common/hooks/use-media-query.ts';
+
+const nameScaleFactor = filledVector(1.8);
+const dateScaleFactor = filledVector(0.32);
 
 const CruiseThrusterScene: SceneComponent = () => {
-  const isMobile = useMediaQuery(768);
-  const nameScaleFactor = isMobile ? filledVector(1.9) : filledVector(2.2);
-  const dateScaleFactor = isMobile ? filledVector(0.35) : filledVector(0.4);
   const { isTransitioning } = useScene();
 
   return (
@@ -22,7 +21,7 @@ const CruiseThrusterScene: SceneComponent = () => {
       <CruiseThrusterAnimation />
       <BackAnimation />
       <CruiseSceneLights />
-      <CruiseName position={[-2, 14.5, -5]} scale={nameScaleFactor} />
+      <CruiseName position={[-2, 12, -5]} scale={nameScaleFactor} />
       <RenderIf shouldRender={!isTransitioning}>
         <FactsModalTrigger factName="solarPanels">
           <ARTooltip position={[3.5, 6.5, 3]} />
@@ -30,7 +29,7 @@ const CruiseThrusterScene: SceneComponent = () => {
       </RenderIf>
       <FactsModalTrigger factName="cruiseDate">
         <OpenPanelsDate
-          position={[-10, -6, 2]}
+          position={[-8, -7, 2]}
           scale={dateScaleFactor}
           rotation={[0, -Math.PI / 8, 0]}
         />

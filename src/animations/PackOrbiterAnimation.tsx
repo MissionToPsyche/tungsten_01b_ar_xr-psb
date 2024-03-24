@@ -5,13 +5,13 @@ import useAnimation from './use-animation';
 import AnimationName from './types/animation-name';
 import filledVector from '../common/utils/filled-vector';
 import { PackOrbiter } from '../artifacts/PackOrbiter';
-import useMediaQuery from '../common/hooks/use-media-query';
+
 /**
  * Pack Orbiter Animation
  */
+const orbiterScaleFactor = filledVector(0.7);
+
 const PackOrbiterAnimation: React.FC<JSX.IntrinsicElements['group']> = () => {
-  const isMobile = useMediaQuery(768);
-  const orbiterScaleFactor = isMobile ? filledVector(0.7) : filledVector(0.8);
   const { isAnimationActive, stopAnimation } = useAnimation();
   const [elapsed, setElapsed] = useState(0);
   const orbiterRef = useRef<Group>(null);

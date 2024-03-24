@@ -15,11 +15,13 @@ import { OrbitControls, Stars } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import useScene from './use-scene.ts';
+import useMediaQuery from '../common/hooks/use-media-query.ts';
 
 /**
  * Manages AR scenes.
  */
 const SceneManager: ViewComponent = ({ changeView }) => {
+  const isMobile = useMediaQuery(768);
   const config = useSceneConfig();
   const { clearAnimations } = useAnimation();
   const orbitControls = useRef<OrbitControlsImpl>(null);
@@ -98,9 +100,19 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         </RenderIf>
         <SceneLighting />
         <PersistentARMarker markerUrl={markerUrl}>
-          <group rotation={[config.markerXRotation, 0, 0]}>
-            <CurrentSceneComponent />
-          </group>
+          {config.disableAr && (
+            <group
+              rotation={[config.markerXRotation, 0, 0]}
+              scale={isMobile ? 1 : 1.3}
+            >
+              <CurrentSceneComponent />
+            </group>
+          )}
+          {!config.disableAr && (
+            <group rotation={[config.markerXRotation, 0, 0]}>
+              <CurrentSceneComponent />
+            </group>
+          )}
         </PersistentARMarker>
       </ARCanvas>
       <SceneControls

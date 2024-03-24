@@ -7,9 +7,10 @@ import { Earth } from '../artifacts/Earth';
 import filledVector from '../common/utils/filled-vector';
 import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
 import useSettings from '../settings/use-settings';
-import useMediaQuery from '../common/hooks/use-media-query';
 
 const translationSpeed = 5;
+const orbiterScaleFactor = filledVector(0.9);
+const earthScaleFactor = filledVector(20);
 
 /**
  * Cruise Thruster Animation
@@ -64,10 +65,6 @@ const CruiseThrusterAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       stopAnimation(AnimationName.CRUISE_THRUSTERS);
     }
   });
-
-  const isMobile = useMediaQuery(768);
-  const orbiterScaleFactor = isMobile ? filledVector(0.9) : filledVector(1.2);
-  const earthScaleFactor = isMobile ? filledVector(15) : filledVector(18);
 
   return (
     <group>

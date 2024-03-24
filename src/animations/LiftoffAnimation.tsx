@@ -51,7 +51,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
   return (
     <group ref={groupRef} {...props}>
       <ThrusterParticleSystem
-        position={[0.8, -4.4, 1]}
+        position={[0.72, -4.4, 1]}
         visible={isAnimationActive(AnimationName.LIFTOFF)}
         particleStartColor={thrusterStartingColor}
         particleEndColor={thrusterEndingColor}
@@ -59,7 +59,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       />
       <SmokeParticleSystem
         visible={!isAnimationActive(AnimationName.LIFTOFF)}
-        position={[0.75, -4.4, 1]}
+        position={[0.72, -4.4, 1]}
       />
       {children}
     </group>

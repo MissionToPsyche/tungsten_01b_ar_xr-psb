@@ -7,23 +7,22 @@ import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import { DashedOrbit } from '../../artifacts/DashedOrbit.tsx';
 import OrbitSceneLightning from '../../common/components/OrbitSceneLightning.tsx';
 import { OrbitsTwo } from '../../artifacts/OrbitB.tsx';
-import useMediaQuery from '../../common/hooks/use-media-query.ts';
 import BackAnimation from '../../animations/BackAnimation.tsx';
 
+const nameScaleFactor = filledVector(1.8);
+const dateScaleFactor = filledVector(0.2);
+const orbiterScaleFactor = filledVector(1.5);
+const psycheScaleFactor = filledVector(5);
+const dashOneScaleFactor = filledVector(2.7);
+const dashTwoScaleFactor = filledVector(2.4);
+const dashThreeScaleFactor = filledVector(2);
+const dashFourScaleFactor = filledVector(1.7);
+
 const SecondOrbitScene: SceneComponent = () => {
-  const isMobile = useMediaQuery(768);
-  const nameScaleFactor = isMobile ? filledVector(1.9) : filledVector(2.2);
-  const dateScaleFactor = isMobile ? filledVector(0.27) : filledVector(0.3);
-  const orbiterScaleFactor = isMobile ? filledVector(1.5) : filledVector(1.8);
-  const psycheScaleFactor = isMobile ? filledVector(5) : filledVector(7);
-  const dashOneScaleFactor = isMobile ? filledVector(2.7) : filledVector(3);
-  const dashTwoScaleFactor = isMobile ? filledVector(2.4) : filledVector(2.6);
-  const dashThreeScaleFactor = isMobile ? filledVector(2) : filledVector(2.2);
-  const dashFourScaleFactor = isMobile ? filledVector(1.7) : filledVector(2);
   return (
     <>
       <BackAnimation />
-      <OrbitDate position={[3, -2, 15]} scale={dateScaleFactor} />
+      <OrbitDate position={[3, -1, 12]} scale={dateScaleFactor} />
       <FactsModalTrigger factName="psycheOrbitB">
         <DashedOrbit
           position={[12, 4, -4]}
@@ -31,7 +30,7 @@ const SecondOrbitScene: SceneComponent = () => {
           rotation={[0, 0, Math.PI / 12]}
         />
       </FactsModalTrigger>
-      <OrbitName position={[-2, 10, -8]} scale={nameScaleFactor} />
+      <OrbitName position={[-2, 8.6, -8]} scale={nameScaleFactor} />
       <FactsModalTrigger factName="psyche">
         <Psyche
           position={[0, 0, -5]}

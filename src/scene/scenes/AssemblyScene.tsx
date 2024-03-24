@@ -10,18 +10,17 @@ import { Box } from '@react-three/drei';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import BackAnimation from '../../animations/BackAnimation.tsx';
-import useMediaQuery from '../../common/hooks/use-media-query.ts';
 import ExplodeElement from '../../common/explode/ExplodeElement.tsx';
 import StaticExplodeElement from '../../common/explode/StaticExplodeElement.tsx';
 import useScene from '../use-scene.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
 import AssemblySceneLights from '../../common/components/AssemblySceneLights.tsx';
 
+const orbiterScaleFactor = filledVector(0.8);
+const nameScaleFactor = filledVector(1);
+const dateScaleFactor = filledVector(0.16);
+
 const AssemblyScene: SceneComponent = () => {
-  const isMobile = useMediaQuery(768);
-  const orbiterScaleFactor = isMobile ? filledVector(0.8) : filledVector(1.2);
-  const nameScaleFactor = isMobile ? filledVector(1.4) : filledVector(1.7);
-  const dateScaleFactor = isMobile ? filledVector(0.2) : filledVector(0.25);
   const { isTransitioning } = useScene();
 
   return (
@@ -71,8 +70,8 @@ const AssemblyScene: SceneComponent = () => {
         <StaticExplodeElement>
           {() => (
             <Box
-              position={[0, 4, 0]}
-              scale={[22, 3, 8]}
+              position={[0, 4, 0.2]}
+              scale={[22, 1.5, 5.6]}
               rotation={[Math.PI / 8, 0, 0]}
             >
               <meshBasicMaterial transparent opacity={0} />
@@ -86,12 +85,12 @@ const AssemblyScene: SceneComponent = () => {
         rotation={[Math.PI / 8, 0, 0]}
       />
       <AssembleTestSceneName
-        position={[-1.35, 13.5, -2]}
+        position={[-1.35, 11, -2]}
         scale={nameScaleFactor}
       />
       <AssembleAnimation />
       <BackAnimation />
-      <AssembleDate scale={dateScaleFactor} position={[-0.5, -6, 7]} />
+      <AssembleDate scale={dateScaleFactor} position={[-0.5, -4, 7]} />
     </Explode>
   );
 };

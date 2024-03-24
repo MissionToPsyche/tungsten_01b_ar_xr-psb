@@ -10,7 +10,6 @@ import { Cloud, Clouds, Sky } from '@react-three/drei';
 import useSceneConfig from '../use-scene-config.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
 import BackAnimation from '../../animations/BackAnimation.tsx';
-import useMediaQuery from '../../common/hooks/use-media-query.ts';
 import filledVector from '../../common/utils/filled-vector.ts';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import useScene from '../use-scene.ts';
@@ -18,13 +17,13 @@ import useScene from '../use-scene.ts';
 /**
  * The launch scene which depicts the Psyche mission launch.
  */
+const padScaleFactor = filledVector(0.4);
+const rocketScaleFactor = filledVector(0.4);
+const dateScaleFactor = filledVector(0.3);
+const nameScaleFactor = filledVector(1.5);
+
 const LaunchScene: SceneComponent = () => {
   const { disableAr } = useSceneConfig();
-  const isMobile = useMediaQuery(768);
-  const padScaleFactor = isMobile ? filledVector(0.4) : filledVector(0.44);
-  const rocketScaleFactor = isMobile ? filledVector(0.4) : filledVector(0.44);
-  const dateScaleFactor = isMobile ? filledVector(0.3) : filledVector(0.32);
-  const nameScaleFactor = isMobile ? filledVector(1.8) : filledVector(2.2);
   const { isTransitioning } = useScene();
 
   return (
@@ -58,7 +57,7 @@ const LaunchScene: SceneComponent = () => {
       <LiftoffAnimation>
         <FactsModalTrigger factName="falconHeavy">
           <FalconHeavyWithLogos
-            position={[1.5, -4.1, 1]}
+            position={[1.3, -4.1, 1]}
             scale={rocketScaleFactor}
             rotation={[0, 0, 0]}
           />
@@ -67,7 +66,7 @@ const LaunchScene: SceneComponent = () => {
       <FactsModalTrigger factName="launch">
         <LaunchDateModel position={[0, -5, 7.5]} scale={dateScaleFactor} />
       </FactsModalTrigger>
-      <LaunchSceneName position={[-1.75, 19, -4]} scale={nameScaleFactor} />
+      <LaunchSceneName position={[-1.75, 15, -4]} scale={nameScaleFactor} />
       <RenderIf shouldRender={disableAr}>
         <Sky sunPosition={[2, 40, 100]} />
         <Clouds>

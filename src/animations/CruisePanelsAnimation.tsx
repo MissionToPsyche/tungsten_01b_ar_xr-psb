@@ -6,11 +6,14 @@ import AnimationName from './types/animation-name';
 import { Earth } from '../artifacts/Earth';
 import filledVector from '../common/utils/filled-vector';
 import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
-import useMediaQuery from '../common/hooks/use-media-query';
 
 /**
  * Cruise Solar Panel Animation
  */
+
+const orbiterScaleFactor = filledVector(0.9);
+const earthScaleFactor = filledVector(20);
+
 const CruisePanelsAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
   ...props
 }) => {
@@ -37,10 +40,6 @@ const CruisePanelsAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       stopAnimation(AnimationName.CRUISE_PANELS);
     }
   });
-
-  const isMobile = useMediaQuery(768);
-  const orbiterScaleFactor = isMobile ? filledVector(0.9) : filledVector(1.2);
-  const earthScaleFactor = isMobile ? filledVector(15) : filledVector(18);
 
   return (
     <group>

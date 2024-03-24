@@ -12,23 +12,22 @@ import OrbitSceneLightning from '../../common/components/OrbitSceneLightning.tsx
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import useScene from '../use-scene.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
-import useMediaQuery from '../../common/hooks/use-media-query.ts';
+
+const nameScaleFactor = filledVector(1.8);
+const dateScaleFactor = filledVector(0.2);
+const orbiterScaleFactor = filledVector(1.5);
+const psycheScaleFactor = filledVector(5);
+const dashOneScaleFactor = filledVector(2.7);
+const dashTwoScaleFactor = filledVector(2.4);
+const dashThreeScaleFactor = filledVector(2);
+const dashFourScaleFactor = filledVector(1.7);
 
 const FirstOrbitScene: SceneComponent = () => {
-  const isMobile = useMediaQuery(768);
-  const nameScaleFactor = isMobile ? filledVector(1.9) : filledVector(2.2);
-  const dateScaleFactor = isMobile ? filledVector(0.27) : filledVector(0.3);
-  const orbiterScaleFactor = isMobile ? filledVector(1.5) : filledVector(1.8);
-  const psycheScaleFactor = isMobile ? filledVector(5) : filledVector(7);
-  const dashOneScaleFactor = isMobile ? filledVector(2.7) : filledVector(3);
-  const dashTwoScaleFactor = isMobile ? filledVector(2.4) : filledVector(2.6);
-  const dashThreeScaleFactor = isMobile ? filledVector(2) : filledVector(2.2);
-  const dashFourScaleFactor = isMobile ? filledVector(1.7) : filledVector(1.9);
   const { isTransitioning } = useScene();
   return (
     <>
       <BackAnimation />
-      <OrbitDate position={[3, -2, 15]} scale={dateScaleFactor} />
+      <OrbitDate position={[3, -1, 12]} scale={dateScaleFactor} />
       <RenderIf shouldRender={!isTransitioning}>
         <ARTooltip position={[10.5, 0, 5]} />
       </RenderIf>
@@ -39,7 +38,7 @@ const FirstOrbitScene: SceneComponent = () => {
           rotation={[0.1, Math.PI / 2, -0.1]}
         />
       </FactsModalTrigger>
-      <OrbitName position={[-2, 10, -8]} scale={nameScaleFactor} />
+      <OrbitName position={[-2, 8.6, -8]} scale={nameScaleFactor} />
       <FactsModalTrigger factName="psyche">
         <Psyche
           position={[0, 0, -5]}
@@ -73,7 +72,7 @@ const FirstOrbitScene: SceneComponent = () => {
       >
         <OrbitOrbiter
           rotation={[0, 0, 0]}
-          position={[0, 0, 16]}
+          position={[0, 0, 13]}
           scale={orbiterScaleFactor}
         />
       </ModelSpinner>
