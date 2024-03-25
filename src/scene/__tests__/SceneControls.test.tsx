@@ -7,6 +7,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { AudioProvider } from '../../audio/AudioProvider.tsx';
 
 vi.mock('../../settings/use-settings.ts');
+vi.mock('../use-scene.ts');
+vi.mock('../get-scene-config.ts');
 
 const onChangeScene = vi.fn();
 const onRestart = vi.fn();
