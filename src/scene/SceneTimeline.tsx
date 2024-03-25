@@ -60,7 +60,7 @@ const SceneTimeline = () => {
       <Stepper
         index={stepIndex}
         orientation="vertical"
-        colorScheme="red"
+        colorScheme="magenta"
         color="white"
         opacity={0.75}
       >
