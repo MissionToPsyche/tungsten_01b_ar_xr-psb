@@ -24,7 +24,7 @@ const AssembleAnimation: React.FC = () => {
     if (!isExploded && isAtRest) {
       timeout = setTimeout(() => {
         stopAnimation(AnimationName.ASSEMBLE);
-      }, 2000);
+      }, 500);
     }
 
     return () => {
