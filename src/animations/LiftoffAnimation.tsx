@@ -6,7 +6,7 @@ import AnimationName from './types/animation-name';
 import SmokeParticleSystem from '../common/particle/systems/smoke/SmokeParticleSystem';
 import ThrusterParticleSystem from '../common/particle/systems/thruster/ThrusterParticleSystem';
 import useSettings from '../settings/use-settings';
-import CountDownParticleSystem from '../common/particle/systems/countdown/CountDownParticleSystem';
+import CountdownImage from '../common/components/CountdownImage';
 
 const thrusterStartingColor = new Color('#FFDD00');
 const thrusterEndingColor = new Color('#FFF2BD');
@@ -22,7 +22,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
   const { isAnimationActive, stopAnimation } = useAnimation();
   const [elapsed, setElapsed] = useState(0);
   const { arEnabled } = useSettings();
-  const [particlesVisible, setParticlesVisible] = useState(false);
+  const [imageVisible, setImageVisible] = useState(false);
   const [currentCountDown, setCurrentCountDown] = useState(3);
 
   useFrame((state, delta) => {
@@ -34,7 +34,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       setElapsed((prev) => prev + delta);
 
       if (elapsed >= 0.5) {
-        setParticlesVisible(true);
+        setImageVisible(true);
         if (elapsed >= 0.5 && elapsed < 1.5) {
           // Delaying rocket's movement and displaying the particle system
           setCurrentCountDown(3);
@@ -50,7 +50,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       }
 
       if (elapsed >= 4) {
-        setParticlesVisible(false);
+        setImageVisible(false);
 
         if (elapsed >= 4 && elapsed <= 5) {
           groupRef.current.position.y += delta * elapsed;
@@ -84,12 +84,13 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
         visible={!isAnimationActive(AnimationName.LIFTOFF)}
         position={[0.75, -4.4, 1]}
       />
-      <CountDownParticleSystem
-        path={`/assets/images/countdown_${currentCountDown}.png`}
-        visible={particlesVisible}
-        position={new Vector3(1, 5.5, 20)}
-        scale={1}
-      />
+      {imageVisible && (
+        <CountdownImage
+          path={`/assets/images/countdown_${currentCountDown}.png`}
+          scale={4}
+          position={new Vector3(4, 4, 4)}
+        />
+      )}
       {children}
     </group>
   );
