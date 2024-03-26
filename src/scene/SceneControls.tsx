@@ -5,6 +5,7 @@ import { Button, Flex, Spacer } from '@chakra-ui/react';
 import useAnimation from '../animations/use-animation.ts';
 import { MdOutlineArrowBack, MdOutlineArrowForward } from 'react-icons/md';
 import MenuBar from '../common/components/MenuBar.tsx';
+import SceneTimeline from './SceneTimeline.tsx';
 
 const SceneTransitionButton: React.FC<{
   transitionConfig: SceneTransitionConfig;
@@ -136,6 +137,7 @@ const SceneControls: React.FC<SceneControlsProps> = ({
           />
         )}
       </Flex>
+      <SceneTimeline />
     </>
   );
 };

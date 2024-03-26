@@ -13,15 +13,17 @@ describe('getSceneConfig', () => {
   it('should configure the assembly scene as the default scene', () => {
     const actual = getSceneConfig();
 
-    expect(actual.defaultScene).toEqual(SceneName.VIBRATION_TESTING);
+    expect(actual.defaultScene).toEqual(SceneName.ASSEMBLY);
   });
 
-  it('should configure the launch scene as the next scene after assembly', () => {
+  it('should configure the launch scene as the next scene after pack orbiter', () => {
     const actual = getSceneConfig();
 
-    expect(actual.scenes[SceneName.ASSEMBLY].nextSceneTransition).toBeDefined();
     expect(
-      actual.scenes[SceneName.ASSEMBLY].nextSceneTransition?.toScene
+      actual.scenes[SceneName.PACK_ORBITER].nextSceneTransition
+    ).toBeDefined();
+    expect(
+      actual.scenes[SceneName.PACK_ORBITER].nextSceneTransition?.toScene
     ).toEqual(SceneName.LAUNCH);
   });
 
@@ -34,7 +36,7 @@ describe('getSceneConfig', () => {
     ).toEqual(AnimationName.ASSEMBLE);
   });
 
-  it('should configure the assembly scene as the previous scene before launch', () => {
+  it('should configure the pack orbiter scene as the previous scene before launch', () => {
     const actual = getSceneConfig();
 
     expect(
@@ -42,7 +44,7 @@ describe('getSceneConfig', () => {
     ).toBeDefined();
     expect(
       actual.scenes[SceneName.LAUNCH].previousSceneTransition?.toScene
-    ).toEqual(SceneName.ASSEMBLY);
+    ).toEqual(SceneName.PACK_ORBITER);
   });
 
   it('should configure the cruise scene as the next scene after launch', () => {

@@ -11,6 +11,7 @@ import CruisePanelsScene from './scenes/CruisePanelsScene.tsx';
 import CruiseThrusterScene from './scenes/CruiseThrusterScene.tsx';
 import { Vector3 } from 'three';
 import CruiseGravityAssistScene from './scenes/CruiseGravityAssistScene.tsx';
+import PackOrbiterScene from './scenes/PackOrbiterScene.tsx';
 import FirstOrbitScene from './scenes/FirstOrbit.tsx';
 import SecondOrbitScene from './scenes/SecondOrbit.tsx';
 import ThirdOrbitScene from './scenes/ThirdOrbit.tsx';
@@ -25,21 +26,37 @@ const defaultCameraPosition = new Vector3(0, 6, 25);
  * @returns The scene configuration.
  */
 const getSceneConfig = (): SceneConfig => ({
-  defaultScene: getSceneNameFromEnv(
-    'VITE_DEFAULT_SCENE',
-    SceneName.VIBRATION_TESTING
-  ),
+  defaultScene: getSceneNameFromEnv('VITE_DEFAULT_SCENE', SceneName.ASSEMBLY),
   scenes: {
     [SceneName.UNSET]: undefined as never,
+    [SceneName.ASSEMBLY]: {
+      component: AssemblyScene,
+      markerUrl: 'assets/patt.hiro',
+      nextSceneTransition: {
+        toScene: SceneName.VIBRATION_TESTING,
+        animation: AnimationName.ASSEMBLE,
+        audio: 'sounds/assemble.wav',
+        buttonText: 'Assemble Orbiter'
+      },
+      sceneTitle: 'Assembly & Testing',
+      sceneDate: '2021'
+    },
     [SceneName.VIBRATION_TESTING]: {
       component: VibrationTestingScene,
       markerUrl: 'assets/patt.hiro',
+      previousSceneTransition: {
+        toScene: SceneName.ASSEMBLY,
+        animation: AnimationName.BACK,
+        buttonText: 'Back to Assemble'
+      },
       nextSceneTransition: {
         toScene: SceneName.ACOUSTIC_TESTING,
         animation: AnimationName.VIBRATION_TESTING,
         audio: 'sounds/knock.wav',
         buttonText: 'Vibration Test'
-      }
+      },
+      sceneTitle: 'Assembly & Testing',
+      sceneDate: '2021'
     },
     [SceneName.ACOUSTIC_TESTING]: {
       component: AcousticTestingScene,
@@ -50,13 +67,15 @@ const getSceneConfig = (): SceneConfig => ({
         buttonText: 'Back'
       },
       nextSceneTransition: {
-        toScene: SceneName.ASSEMBLY,
+        toScene: SceneName.PACK_ORBITER,
         animation: AnimationName.ACOUSTIC_TESTING,
         buttonText: 'Acoustic Test'
-      }
+      },
+      sceneTitle: 'Assembly & Testing',
+      sceneDate: '2021'
     },
-    [SceneName.ASSEMBLY]: {
-      component: AssemblyScene,
+    [SceneName.PACK_ORBITER]: {
+      component: PackOrbiterScene,
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.ACOUSTIC_TESTING,
@@ -65,16 +84,17 @@ const getSceneConfig = (): SceneConfig => ({
       },
       nextSceneTransition: {
         toScene: SceneName.LAUNCH,
-        animation: AnimationName.ASSEMBLE,
-        audio: 'sounds/assemble.wav',
-        buttonText: 'Assemble Orbiter'
-      }
+        animation: AnimationName.PACK_ORBITER,
+        buttonText: 'Pack Orbiter'
+      },
+      sceneTitle: 'Assembly & Testing',
+      sceneDate: '2021'
     },
     [SceneName.LAUNCH]: {
       component: LaunchScene,
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
-        toScene: SceneName.ASSEMBLY,
+        toScene: SceneName.PACK_ORBITER,
         buttonText: 'Back to Assembly',
         animation: AnimationName.BACK
       },
@@ -83,7 +103,9 @@ const getSceneConfig = (): SceneConfig => ({
         animation: AnimationName.LIFTOFF,
         buttonText: 'Launch Rocket',
         audio: 'sounds/launch.wav'
-      }
+      },
+      sceneTitle: 'Launch',
+      sceneDate: '2023'
     },
     [SceneName.CRUISE_PANELS]: {
       component: CruisePanelsScene,
@@ -97,7 +119,9 @@ const getSceneConfig = (): SceneConfig => ({
         toScene: SceneName.CRUISE_THRUSTERS,
         buttonText: 'Open Solar Panels',
         animation: AnimationName.CRUISE_PANELS
-      }
+      },
+      sceneTitle: 'Initial Checkout',
+      sceneDate: '2024'
     },
     [SceneName.CRUISE_THRUSTERS]: {
       component: CruiseThrusterScene,
@@ -111,7 +135,9 @@ const getSceneConfig = (): SceneConfig => ({
         toScene: SceneName.CRUISE_GRAVITY_ASSIST,
         buttonText: 'Ignite Thrusters',
         animation: AnimationName.CRUISE_THRUSTERS
-      }
+      },
+      sceneTitle: 'Initial Checkout',
+      sceneDate: '2024'
     },
     [SceneName.CRUISE_GRAVITY_ASSIST]: {
       component: CruiseGravityAssistScene,
@@ -125,7 +151,9 @@ const getSceneConfig = (): SceneConfig => ({
         toScene: SceneName.FIRST_ORBIT,
         buttonText: 'Mars Assist',
         animation: AnimationName.CRUISE_GRAVITY_ASSIST
-      }
+      },
+      sceneTitle: 'Cruise',
+      sceneDate: '2026'
     },
     [SceneName.FIRST_ORBIT]: {
       component: FirstOrbitScene,
@@ -138,7 +166,9 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.SECOND_ORBIT,
         buttonText: 'Next Orbit'
-      }
+      },
+      sceneTitle: 'Orbit',
+      sceneDate: '2029'
     },
     [SceneName.SECOND_ORBIT]: {
       component: SecondOrbitScene,
@@ -150,7 +180,9 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.THIRD_ORBIT,
         buttonText: 'Next Orbit'
-      }
+      },
+      sceneTitle: 'Orbit',
+      sceneDate: '2029'
     },
     [SceneName.THIRD_ORBIT]: {
       component: ThirdOrbitScene,
@@ -162,7 +194,9 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.FOURTH_ORBIT,
         buttonText: 'Next Orbit'
-      }
+      },
+      sceneTitle: 'Orbit',
+      sceneDate: '2029'
     },
     [SceneName.FOURTH_ORBIT]: {
       component: FourthOrbitScene,
@@ -170,7 +204,9 @@ const getSceneConfig = (): SceneConfig => ({
       previousSceneTransition: {
         toScene: SceneName.THIRD_ORBIT,
         buttonText: 'Back'
-      }
+      },
+      sceneTitle: 'Orbit',
+      sceneDate: '2029'
     }
   },
   cameraParametersUrl: 'assets/camera_para.dat',

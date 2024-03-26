@@ -3,8 +3,6 @@ import { SceneComponent } from '../types/scene-component.ts';
 import filledVector from '../../common/utils/filled-vector.ts';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import { FalconHeavyWithLogos } from '../../artifacts/FalconHeavyWithLogos.tsx';
-import { LaunchDateModel } from '../../artifacts/LaunchDateModel.tsx';
-import { LaunchSceneName } from '../../artifacts/LaunchSceneName.tsx';
 import LiftoffAnimation from '../../animations/LiftoffAnimation.tsx';
 import { LaunchPadModel } from '../../artifacts/LaunchPadModel.jsx';
 import { Cloud, Clouds, Sky } from '@react-three/drei';
@@ -16,8 +14,6 @@ import useScene from '../use-scene.ts';
 
 const padScale = filledVector(0.38);
 const falconScale = filledVector(0.38);
-const dateScale = filledVector(0.35);
-const sceneNameScale = filledVector(1.3);
 
 /**
  * The launch scene which depicts the Psyche mission launch.
@@ -32,6 +28,9 @@ const LaunchScene: SceneComponent = () => {
       <RenderIf shouldRender={!isTransitioning}>
         <FactsModalTrigger factName="falconHeavy">
           <ARTooltip position={[1.75, 5.5, 1]} />
+        </FactsModalTrigger>
+        <FactsModalTrigger factName="launch">
+          <ARTooltip position={[-1.75, 0, 1]} />
         </FactsModalTrigger>
       </RenderIf>
       <ambientLight intensity={0.1} position={[0, 10, 7]} />
@@ -63,14 +62,6 @@ const LaunchScene: SceneComponent = () => {
           />
         </FactsModalTrigger>
       </LiftoffAnimation>
-      <FactsModalTrigger factName="launch">
-        <LaunchDateModel
-          position={[11, -5, 6.5]}
-          scale={dateScale}
-          rotation={[-Math.PI / 30, 0, 0]}
-        />
-      </FactsModalTrigger>
-      <LaunchSceneName position={[0, 14, -5]} scale={sceneNameScale} />
       <RenderIf shouldRender={disableAr}>
         <Sky sunPosition={[2, 40, 100]} />
         <Clouds>

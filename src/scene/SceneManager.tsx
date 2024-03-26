@@ -1,6 +1,6 @@
 import { ARCanvas } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
@@ -15,6 +15,7 @@ import { OrbitControls, Stars } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import useScene from './use-scene.ts';
+import { useBreakpointValue } from '@chakra-ui/react';
 
 /**
  * Manages AR scenes.
@@ -35,6 +36,19 @@ const SceneManager: ViewComponent = ({ changeView }) => {
     isTransitioningToNext,
     setCurrentScene
   } = useScene();
+  const nonArCurrentSceneScale = useBreakpointValue({
+    base: 0.6,
+    md: 0.8,
+    lg: 1
+  });
+
+  const currentSceneScale = useMemo(() => {
+    if (!config.disableAr) {
+      return 1;
+    }
+
+    return nonArCurrentSceneScale;
+  }, [config.disableAr, nonArCurrentSceneScale]);
 
   const onRestart = useCallback(() => {
     clearAnimations();
@@ -98,7 +112,10 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         </RenderIf>
         <SceneLighting />
         <PersistentARMarker markerUrl={markerUrl}>
-          <group rotation={[config.markerXRotation, 0, 0]}>
+          <group
+            rotation={[config.markerXRotation, 0, 0]}
+            scale={currentSceneScale}
+          >
             <CurrentSceneComponent />
           </group>
         </PersistentARMarker>
