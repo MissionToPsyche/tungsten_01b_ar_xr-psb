@@ -1,5 +1,3 @@
-import { OrbitDate } from '../../artifacts/OrbitDate.tsx';
-import { OrbitName } from '../../artifacts/OrbitName.tsx';
 import { Psyche } from '../../artifacts/Psyche.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
 import { SceneComponent } from '../types/scene-component.ts';
@@ -13,8 +11,6 @@ import ARTooltip from '../../common/components/ARTooltip.tsx';
 import useScene from '../use-scene.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
 
-const dateScale = filledVector(0.25);
-const nameScale = filledVector(1.2);
 const psycheScale = filledVector(5);
 const orbiterScale = filledVector(1.5);
 const dashScale = filledVector(2.8);
@@ -25,11 +21,6 @@ const FirstOrbitScene: SceneComponent = () => {
   return (
     <>
       <BackAnimation />
-      <OrbitDate
-        position={[4, -3, 14]}
-        scale={dateScale}
-        rotation={[-Math.PI / 16, 0, 0]}
-      />
       <FactsModalTrigger factName="psycheOrbitA">
         <DashedOrbit
           position={[0, 0, -18]}
@@ -40,7 +31,6 @@ const FirstOrbitScene: SceneComponent = () => {
           <ARTooltip position={[10.5, 0, 5]} />
         </RenderIf>
       </FactsModalTrigger>
-      <OrbitName position={[0, 8.5, -8]} scale={nameScale} />
       <FactsModalTrigger factName="psyche">
         <Psyche
           position={[0, 0, -5]}

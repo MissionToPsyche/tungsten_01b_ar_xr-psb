@@ -12,7 +12,9 @@ const useScene = vi.fn<[], SceneState>(() => ({
     nextSceneTransition: {
       toScene: SceneName.LAUNCH,
       buttonText: 'Next Scene'
-    }
+    },
+    sceneTitle: 'Assembly',
+    sceneDate: '2021'
   },
   isTransitioning: false,
   isTransitioningToNext: false,

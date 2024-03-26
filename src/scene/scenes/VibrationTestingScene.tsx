@@ -1,19 +1,17 @@
 import { SceneComponent } from '../types/scene-component.ts';
 import { Orbiter } from '../../artifacts/Orbiter.tsx';
 import filledVector from '../../common/utils/filled-vector.ts';
-import { AssembleTestSceneName } from '../../artifacts/AssembleTestSceneName.tsx';
 import VibrationTestingAnimation from '../../animations/VibrationTestingAnimation.tsx';
 import Explode from '../../common/explode/Explode.tsx';
-import { AssembleDate } from '../../artifacts/AssembleDate.tsx';
 import AssemblySceneLights from '../../common/components/AssemblySceneLights.tsx';
 import BackAnimation from '../../animations/BackAnimation.tsx';
+import AssembleSceneTooltips from '../../common/components/AssembleSceneTooltips.tsx';
 
 const orbiterScale = filledVector(0.75);
-const sceneNameScale = filledVector(0.9);
-const sceneDateScale = filledVector(0.2);
 
 const VibrationTestingScene: SceneComponent = () => (
   <Explode initialExploded={false}>
+    <AssembleSceneTooltips />
     <AssemblySceneLights />
     <VibrationTestingAnimation>
       <Orbiter
@@ -22,8 +20,6 @@ const VibrationTestingScene: SceneComponent = () => (
         rotation={[Math.PI / 8, 0, 0]}
       />
     </VibrationTestingAnimation>
-    <AssembleTestSceneName position={[0, 9.8, 0]} scale={sceneNameScale} />
-    <AssembleDate scale={sceneDateScale} position={[0, -5, 5]} />
     <BackAnimation />
   </Explode>
 );
