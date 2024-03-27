@@ -9,13 +9,13 @@ import { Mars } from '../artifacts/Mars';
 import RenderIf from '../common/components/RenderIf';
 import degreesToRadians from '../common/utils/degrees-to-radians';
 
-const marsScale = filledVector(35);
+const marsScale = filledVector(45);
 const translationSpeed = 35;
 const orbiterScale = filledVector(0.75);
 const defaultOrbiterRotation = new Euler(
-  degreesToRadians(100),
-  degreesToRadians(0),
-  degreesToRadians(-140)
+  degreesToRadians(30),
+  degreesToRadians(40),
+  degreesToRadians(30)
 );
 
 /**
@@ -45,20 +45,22 @@ const CruiseGravityAssistAnimation: React.FC<
     setElapsed(elapsed + delta);
 
     // Move Mars into view
-    if (marsRef.current.position.x >= -200) {
-      marsRef.current.position.x -= delta * 50;
+    if (marsRef.current.position.x <= 100) {
+      marsRef.current.position.x += delta * 50;
     } else {
       // Move orbiter
       orbiterRef.current.position.z -= delta * translationSpeed;
-      orbiterRef.current.position.x += (delta * translationSpeed) / 3;
+      orbiterRef.current.position.x -= (delta * translationSpeed) / 2.5;
     }
-    if (elapsed >= 7 && elapsed <= 10) {
+    if (elapsed >= 4 && elapsed <= 7) {
+      orbiterRef.current.rotation.x += degreesToRadians(delta * -20);
       orbiterRef.current.rotation.y += degreesToRadians(delta * 30);
     }
-    if (elapsed >= 10 && elapsed <= 13) {
-      orbiterRef.current.position.x -= delta * 100;
+    if (elapsed >= 8 && elapsed <= 10) {
+      orbiterRef.current.position.x += delta * 300;
+      orbiterRef.current.position.y += delta * 30;
     }
-    if (elapsed >= 13) {
+    if (elapsed >= 11) {
       setElapsed(0);
       stopAnimation(AnimationName.CRUISE_GRAVITY_ASSIST);
     }
@@ -78,7 +80,7 @@ const CruiseGravityAssistAnimation: React.FC<
       </group>
       <group ref={marsRef} {...props}>
         <RenderIf shouldRender={isActive}>
-          <Mars position={[200, -5, -150]} scale={marsScale} />
+          <Mars position={[-100, -5, -150]} scale={marsScale} />
         </RenderIf>
       </group>
     </group>
