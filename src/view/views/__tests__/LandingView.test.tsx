@@ -4,6 +4,9 @@ import LandingView from '../LandingView.tsx';
 import { expect, vi } from 'vitest';
 import ViewName from '../../types/view-name.ts';
 import axe from 'axe-core';
+import { RecoilRoot } from 'recoil';
+import { AudioProvider } from '../../../audio/AudioProvider.tsx';
+import { AnimationProvider } from '../../../animations/AnimationProvider.tsx';
 
 mockResizeObserver();
 vi.mock('../../../audio/use-audio.ts');
@@ -11,8 +14,16 @@ vi.mock('../../../settings/use-settings.ts');
 
 const changeView = vi.fn();
 
-const setup = () => render(<LandingView changeView={changeView} />);
-
+const setup = () =>
+  render(
+    <RecoilRoot>
+      <AudioProvider>
+        <AnimationProvider>
+          <LandingView changeView={changeView} />
+        </AnimationProvider>
+      </AudioProvider>
+    </RecoilRoot>
+  );
 describe('<LandingView/>', () => {
   it('should render the intro text', () => {
     setup();

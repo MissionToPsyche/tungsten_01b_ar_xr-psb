@@ -1,7 +1,9 @@
 import React, { useCallback } from 'react';
 import {
+  Button,
   FormControl,
   FormLabel,
+  Grid,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -9,10 +11,14 @@ import {
   ModalHeader,
   ModalOverlay,
   Switch,
+  Text,
   VStack
 } from '@chakra-ui/react';
 import RenderIf from '../common/components/RenderIf.tsx';
 import useSettings from './use-settings.ts';
+import getBoolFromEnv from '../common/utils/get-bool-from-env.ts';
+import SceneName from '../scene/types/scene-name.ts';
+import useScene from '../scene/use-scene.ts';
 
 interface SettingsWindowProps {
   isOpen: boolean;
@@ -33,6 +39,7 @@ const SettingsModal = ({
     setAudioEnabled,
     setTooltipsEnabled
   } = useSettings();
+  const { setCurrentScene } = useScene();
 
   const onChangeArToggle = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,6 +102,30 @@ const SettingsModal = ({
                 onChange={onChangeTooltipsToggle}
               />
             </FormControl>
+            <RenderIf shouldRender={getBoolFromEnv('VITE_DEBUG_MODE')}>
+              <Text as="b">Scene Navigation</Text>
+              <Grid display="flow">
+                {Object.keys(SceneName)
+                  .filter(
+                    (key) =>
+                      isNaN(Number(SceneName[key as keyof typeof SceneName])) &&
+                      SceneName[key as keyof typeof SceneName].toString() !=
+                        'UNSET'
+                  )
+                  .map((key) => (
+                    <Button
+                      key={key}
+                      width="50%"
+                      fontSize="small"
+                      onClick={() => {
+                        setCurrentScene(Number(key));
+                      }}
+                    >
+                      {SceneName[key as keyof typeof SceneName]}
+                    </Button>
+                  ))}
+              </Grid>
+            </RenderIf>
           </VStack>
         </ModalBody>
       </ModalContent>
