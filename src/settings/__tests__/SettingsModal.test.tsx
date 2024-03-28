@@ -1,6 +1,9 @@
 import { render } from '@testing-library/react';
 import SettingsModal from '../SettingsModal.tsx';
 import useSettings from '../use-settings.ts';
+import { RecoilRoot } from 'recoil';
+import { AnimationProvider } from '../../animations/AnimationProvider.tsx';
+import { AudioProvider } from '../../audio/AudioProvider.tsx';
 
 vi.mock('../use-settings.ts');
 
@@ -8,11 +11,17 @@ const onClose = vi.fn();
 
 const setup = (isOpen: boolean, hideArButton: boolean) =>
   render(
-    <SettingsModal
-      isOpen={isOpen}
-      onClose={onClose}
-      hideArButton={hideArButton}
-    />
+    <RecoilRoot>
+      <AudioProvider>
+        <AnimationProvider>
+          <SettingsModal
+            isOpen={isOpen}
+            onClose={onClose}
+            hideArButton={hideArButton}
+          />
+        </AnimationProvider>
+      </AudioProvider>
+    </RecoilRoot>
   );
 
 describe('<SettingsModal/>', () => {
