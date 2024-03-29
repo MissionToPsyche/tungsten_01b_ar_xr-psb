@@ -4,6 +4,8 @@ import { IoMdSettings } from 'react-icons/io';
 import SettingsModal from '../../settings/SettingsModal.tsx';
 import { VscDebugRestart } from 'react-icons/vsc';
 import RenderIf from './RenderIf.tsx';
+import { IoInformationCircle } from 'react-icons/io5';
+import InformationModal from '../../Information/InformationModal.tsx';
 
 interface SettingsProps {
   hideArButton?: boolean;
@@ -24,6 +26,12 @@ const MenuBar: React.FC<SettingsProps> = ({
     onClose: onCloseSettings
   } = useDisclosure();
 
+  const {
+    isOpen: InformationAreOpen,
+    onOpen: onOpenInformation,
+    onClose: onCloseInformation
+  } = useDisclosure();
+
   return (
     <>
       <HStack position="absolute" top={1} right={1}>
@@ -40,11 +48,19 @@ const MenuBar: React.FC<SettingsProps> = ({
           icon={<IoMdSettings size={24} />}
           onClick={onOpenSettings}
         />
+        <IconButton
+          aria-label={'Information & Credits'}
+          icon={<IoInformationCircle size={24} onClick={onOpenInformation} />}
+        />
       </HStack>
       <SettingsModal
         isOpen={settingsAreOpen}
         onClose={onCloseSettings}
         hideArButton={hideArButton}
+      />
+      <InformationModal
+        isOpen={InformationAreOpen}
+        onClose={onCloseInformation}
       />
     </>
   );
