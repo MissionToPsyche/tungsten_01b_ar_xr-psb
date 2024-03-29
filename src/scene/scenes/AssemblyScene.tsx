@@ -20,7 +20,7 @@ const AssemblyScene: SceneComponent = () => (
       <StaticExplodeElement>
         {(isExploded) => (
           <Box
-            position={[0, 4, 0.5]}
+            position={[0, 0.75, 2.5]}
             scale={isExploded ? 4 : 2}
             rotation={[Math.PI / 8, 0, 0]}
           >
@@ -30,7 +30,7 @@ const AssemblyScene: SceneComponent = () => (
       </StaticExplodeElement>
     </ExplodeTrigger>
     <Orbiter
-      position={[0, 3, 0]}
+      position={[0, 0, 2]}
       scale={orbiterScale}
       rotation={[Math.PI / 8, 0, 0]}
     />

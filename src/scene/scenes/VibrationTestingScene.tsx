@@ -15,7 +15,7 @@ const VibrationTestingScene: SceneComponent = () => (
     <AssemblySceneLights />
     <VibrationTestingAnimation>
       <Orbiter
-        position={[0, 3, 0]}
+        position={[0, 0, 2]}
         scale={orbiterScale}
         rotation={[Math.PI / 8, 0, 0]}
       />

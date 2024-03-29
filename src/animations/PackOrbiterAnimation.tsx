@@ -42,7 +42,7 @@ const PackOrbiterAnimation: React.FC<JSX.IntrinsicElements['group']> = () => {
           animatePacking
           orbiterPacked={isActive}
           scale={orbiterScale}
-          position={[1, 2, 1]}
+          position={[0, 0, 3]}
           rotation={[0.2, 0, 0]}
         />
       </group>
