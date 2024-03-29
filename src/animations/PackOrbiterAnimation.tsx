@@ -6,7 +6,7 @@ import AnimationName from './types/animation-name';
 import filledVector from '../common/utils/filled-vector';
 import { PackOrbiter } from '../artifacts/PackOrbiter';
 
-const orbiterScale = filledVector(0.7);
+const orbiterScale = filledVector(1.2);
 
 /**
  * Pack Orbiter Animation
@@ -42,7 +42,7 @@ const PackOrbiterAnimation: React.FC<JSX.IntrinsicElements['group']> = () => {
           animatePacking
           orbiterPacked={isActive}
           scale={orbiterScale}
-          position={[1, 2, 1]}
+          position={[0, 0, 1]}
           rotation={[0.2, 0, 0]}
         />
       </group>
