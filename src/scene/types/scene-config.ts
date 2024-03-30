@@ -29,6 +29,10 @@ export interface IndividualSceneConfig {
   nextSceneTransition?: SceneTransitionConfig;
   // Optional configuration for the previous scene that can be transitioned to
   previousSceneTransition?: SceneTransitionConfig;
+  // The title of the scene
+  sceneTitle: string;
+  // The date that the scene occurred
+  sceneDate: string;
   // A set of artifact model paths that are used in the scene. Used for preloading
   artifactPaths: string[];
 }

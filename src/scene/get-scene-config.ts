@@ -39,11 +39,9 @@ const getSceneConfig = (): SceneConfig => ({
         audio: 'sounds/assemble.wav',
         buttonText: 'Assemble Orbiter'
       },
-      artifactPaths: [
-        artifactPaths.AssembleTestSceneName,
-        artifactPaths.AssembleDate,
-        artifactPaths.Orbiter
-      ]
+      sceneTitle: 'Assembly & Testing',
+      sceneDate: '2021',
+      artifactPaths: [artifactPaths.Orbiter]
     },
     [SceneName.VIBRATION_TESTING]: {
       component: VibrationTestingScene,
@@ -59,11 +57,9 @@ const getSceneConfig = (): SceneConfig => ({
         audio: 'sounds/knock.wav',
         buttonText: 'Vibration Test'
       },
-      artifactPaths: [
-        artifactPaths.AssembleTestSceneName,
-        artifactPaths.AssembleDate,
-        artifactPaths.Orbiter
-      ]
+      sceneTitle: 'Assembly & Testing',
+      sceneDate: '2021',
+      artifactPaths: [artifactPaths.Orbiter]
     },
     [SceneName.ACOUSTIC_TESTING]: {
       component: AcousticTestingScene,
@@ -78,12 +74,9 @@ const getSceneConfig = (): SceneConfig => ({
         animation: AnimationName.ACOUSTIC_TESTING,
         buttonText: 'Acoustic Test'
       },
-      artifactPaths: [
-        artifactPaths.AssembleTestSceneName,
-        artifactPaths.AssembleDate,
-        artifactPaths.Orbiter,
-        artifactPaths.Amplifier
-      ]
+      sceneTitle: 'Assembly & Testing',
+      sceneDate: '2021',
+      artifactPaths: [artifactPaths.Orbiter, artifactPaths.Amplifier]
     },
     [SceneName.PACK_ORBITER]: {
       component: PackOrbiterScene,
@@ -98,11 +91,9 @@ const getSceneConfig = (): SceneConfig => ({
         animation: AnimationName.PACK_ORBITER,
         buttonText: 'Pack Orbiter'
       },
-      artifactPaths: [
-        artifactPaths.AssembleTestSceneName,
-        artifactPaths.AssembleDate,
-        artifactPaths.PackOrbiter
-      ]
+      sceneTitle: 'Assembly & Testing',
+      sceneDate: '2021',
+      artifactPaths: [artifactPaths.PackOrbiter]
     },
     [SceneName.LAUNCH]: {
       component: LaunchScene,
@@ -118,9 +109,9 @@ const getSceneConfig = (): SceneConfig => ({
         buttonText: 'Launch Rocket',
         audio: 'sounds/launch.wav'
       },
+      sceneTitle: 'Launch',
+      sceneDate: '2023',
       artifactPaths: [
-        artifactPaths.LaunchSceneName,
-        artifactPaths.LaunchDateModel,
         artifactPaths.LaunchPadModel,
         artifactPaths.FalconHeavyWithLogos
       ]
@@ -138,12 +129,9 @@ const getSceneConfig = (): SceneConfig => ({
         buttonText: 'Open Solar Panels',
         animation: AnimationName.CRUISE_PANELS
       },
-      artifactPaths: [
-        artifactPaths.CruiseName,
-        artifactPaths.CruiseDate,
-        artifactPaths.CruiseOrbiter,
-        artifactPaths.Earth
-      ]
+      sceneTitle: 'Initial Checkout',
+      sceneDate: '2024',
+      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Earth]
     },
     [SceneName.CRUISE_THRUSTERS]: {
       component: CruiseThrusterScene,
@@ -158,6 +146,8 @@ const getSceneConfig = (): SceneConfig => ({
         buttonText: 'Ignite Thrusters',
         animation: AnimationName.CRUISE_THRUSTERS
       },
+      sceneTitle: 'Initial Checkout',
+      sceneDate: '2024',
       artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Earth]
     },
     [SceneName.CRUISE_GRAVITY_ASSIST]: {
@@ -173,12 +163,9 @@ const getSceneConfig = (): SceneConfig => ({
         buttonText: 'Mars Assist',
         animation: AnimationName.CRUISE_GRAVITY_ASSIST
       },
-      artifactPaths: [
-        artifactPaths.CruiseOrbiter,
-        artifactPaths.Mars,
-        artifactPaths.CruiseDate,
-        artifactPaths.CruiseName
-      ]
+      sceneTitle: 'Cruise',
+      sceneDate: '2026',
+      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Mars]
     },
     [SceneName.FIRST_ORBIT]: {
       component: FirstOrbitScene,
@@ -192,9 +179,9 @@ const getSceneConfig = (): SceneConfig => ({
         toScene: SceneName.SECOND_ORBIT,
         buttonText: 'Next Orbit'
       },
+      sceneTitle: 'Orbit',
+      sceneDate: '2029',
       artifactPaths: [
-        artifactPaths.OrbitName,
-        artifactPaths.OrbitDate,
         artifactPaths.OrbitOrbiter,
         artifactPaths.DashedOrbit,
         artifactPaths.Psyche
@@ -211,9 +198,9 @@ const getSceneConfig = (): SceneConfig => ({
         toScene: SceneName.THIRD_ORBIT,
         buttonText: 'Next Orbit'
       },
+      sceneTitle: 'Orbit',
+      sceneDate: '2029',
       artifactPaths: [
-        artifactPaths.OrbitName,
-        artifactPaths.OrbitDate,
         artifactPaths.OrbitOrbiter,
         artifactPaths.DashedOrbit,
         artifactPaths.Psyche
@@ -230,9 +217,9 @@ const getSceneConfig = (): SceneConfig => ({
         toScene: SceneName.FOURTH_ORBIT,
         buttonText: 'Next Orbit'
       },
+      sceneTitle: 'Orbit',
+      sceneDate: '2029',
       artifactPaths: [
-        artifactPaths.OrbitName,
-        artifactPaths.OrbitDate,
         artifactPaths.OrbitOrbiter,
         artifactPaths.DashedOrbit,
         artifactPaths.Psyche
@@ -245,9 +232,9 @@ const getSceneConfig = (): SceneConfig => ({
         toScene: SceneName.THIRD_ORBIT,
         buttonText: 'Back'
       },
+      sceneTitle: 'Orbit',
+      sceneDate: '2029',
       artifactPaths: [
-        artifactPaths.OrbitName,
-        artifactPaths.OrbitDate,
         artifactPaths.OrbitOrbiter,
         artifactPaths.DashedOrbit,
         artifactPaths.Psyche

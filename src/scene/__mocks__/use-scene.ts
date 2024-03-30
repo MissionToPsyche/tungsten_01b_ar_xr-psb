@@ -10,9 +10,11 @@ const useScene = vi.fn<[], SceneState>(() => ({
     component: MockAssembleScene,
     markerUrl: '/hello',
     nextSceneTransition: {
-      toScene: SceneName.VIBRATION_TESTING,
+      toScene: SceneName.ACOUSTIC_TESTING,
       buttonText: 'Next Scene'
     },
+    sceneTitle: 'Assembly',
+    sceneDate: '2021',
     artifactPaths: []
   },
   isTransitioning: false,
