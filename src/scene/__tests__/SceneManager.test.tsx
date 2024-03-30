@@ -32,6 +32,10 @@ vi.mock('../../common/loader/LoaderTracker.tsx', () => ({
 vi.mock('../../common/components/ModelOutliner.tsx', () => ({
   default: ({ children }: React.PropsWithChildren) => <>{children}</>
 }));
+vi.mock('@chakra-ui/react', async () => ({
+  ...(await vi.importActual<object>('@chakra-ui/react')),
+  useBreakpointValue: vi.fn(() => 1)
+}));
 // End compatibility mocks
 
 vi.mock('../get-scene-config.ts');
