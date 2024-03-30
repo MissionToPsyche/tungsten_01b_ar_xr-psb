@@ -104,9 +104,10 @@ export function CruiseOrbiter(
           visible={thrustersOn}
           particleStartColor={thrusterStartingColor}
           particleEndColor={thrusterEndingColor}
-          position={[0, -1.25, 2.8]}
+          position={[0, -0.75, 3.2]}
           rotation={[0, Math.PI / 2, 0]}
           count={70}
+          scale={0.5}
         />
         <FactsModalTrigger factName="solarPanels">
           <group
