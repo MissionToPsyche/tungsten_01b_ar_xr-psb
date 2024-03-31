@@ -59,7 +59,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
 
         if (elapsed >= 5 && elapsed <= 11 && !arEnabled) {
           if (elapsed <= 9) {
-            state.camera.rotation.x += delta * 0.2;
+            state.camera.rotation.x += delta * 0.27;
           }
           groupRef.current.position.y += delta * elapsed;
         }

@@ -35,7 +35,7 @@ const ThirdOrbitScene: SceneComponent = () => {
           rotation={[Math.PI / 3, 0, 0]}
         />
         <RenderIf shouldRender={!isTransitioning}>
-          <ARTooltip position={[0, 0, 2]} />
+          <ARTooltip position={[-1, 7, 0]} />
         </RenderIf>
       </FactsModalTrigger>
       <DashedOrbit

@@ -10,7 +10,7 @@ import StaticExplodeElement from '../../common/explode/StaticExplodeElement.tsx'
 import AssemblySceneLights from '../../common/components/AssemblySceneLights.tsx';
 import AssembleSceneTooltips from '../../common/components/AssembleSceneTooltips.tsx';
 
-const orbiterScale = filledVector(0.75);
+const orbiterScale = filledVector(1);
 
 const AssemblyScene: SceneComponent = () => (
   <Explode initialExploded={true}>
@@ -20,7 +20,7 @@ const AssemblyScene: SceneComponent = () => (
       <StaticExplodeElement>
         {(isExploded) => (
           <Box
-            position={[0, 4, 0.5]}
+            position={[0, 0.75, 2.5]}
             scale={isExploded ? 4 : 2}
             rotation={[Math.PI / 8, 0, 0]}
           >
@@ -30,7 +30,7 @@ const AssemblyScene: SceneComponent = () => (
       </StaticExplodeElement>
     </ExplodeTrigger>
     <Orbiter
-      position={[0, 3, 0]}
+      position={[0, 0, 2]}
       scale={orbiterScale}
       rotation={[Math.PI / 8, 0, 0]}
     />

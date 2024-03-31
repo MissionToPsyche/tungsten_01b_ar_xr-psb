@@ -42,9 +42,9 @@ const SceneManager: ViewComponent = ({ changeView }) => {
       : []
   );
   const nonArCurrentSceneScale = useBreakpointValue({
-    base: 0.6,
-    md: 0.8,
-    lg: 1
+    base: 1,
+    md: 1.2,
+    lg: 1.4
   });
 
   const currentSceneScale = useMemo(() => {

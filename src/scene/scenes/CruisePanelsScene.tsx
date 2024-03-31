@@ -17,7 +17,7 @@ const CruisePanelsScene: SceneComponent = () => {
       <CruiseSceneLights />
       <RenderIf shouldRender={!isTransitioning}>
         <FactsModalTrigger factName="solarPanels">
-          <ARTooltip position={[1, 4, 2]} />
+          <ARTooltip position={[1, 2, 3]} />
         </FactsModalTrigger>
       </RenderIf>
     </>

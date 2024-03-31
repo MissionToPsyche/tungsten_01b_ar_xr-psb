@@ -7,14 +7,14 @@ import BackAnimation from '../../animations/BackAnimation.tsx';
 import AssemblySceneLights from '../../common/components/AssemblySceneLights.tsx';
 import AssembleSceneTooltips from '../../common/components/AssembleSceneTooltips.tsx';
 
-const orbiterScale = filledVector(0.75);
+const orbiterScale = filledVector(1);
 
 const AcousticTestingScene: SceneComponent = () => (
   <Explode initialExploded={false}>
     <AssembleSceneTooltips />
     <AssemblySceneLights />
     <Orbiter
-      position={[0, 3, 0]}
+      position={[0, 0, 2]}
       scale={orbiterScale}
       rotation={[Math.PI / 8, 0, 0]}
     />
