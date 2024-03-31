@@ -47,7 +47,7 @@ const CruisePanelsAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
           animatePanels
           panelsOpen={isActive}
           thrustersOn={false}
-          position={[0, 2, 2]}
+          position={[0, 0, 2]}
           scale={orbiterScale}
           rotation={[Math.PI / 5, Math.PI / 5, Math.PI / 6]}
         />

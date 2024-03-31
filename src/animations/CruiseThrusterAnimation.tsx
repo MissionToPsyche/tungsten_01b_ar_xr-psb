@@ -73,7 +73,7 @@ const CruiseThrusterAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       <group ref={orbiterRef}>
         <CruiseOrbiter
           thrustersOn={isActive}
-          position={[0, 2, 2]}
+          position={[0, 0, 2]}
           scale={orbiterScale}
           rotation={[Math.PI / 5, Math.PI / 5, Math.PI / 6]}
           panelsOpen={true}

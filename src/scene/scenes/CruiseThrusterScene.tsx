@@ -19,10 +19,10 @@ const CruiseThrusterScene: SceneComponent = () => {
       <Environment preset="forest" />
       <RenderIf shouldRender={!isTransitioning}>
         <FactsModalTrigger factName="solarPanels">
-          <ARTooltip position={[3.5, 6.5, 3]} />
+          <ARTooltip position={[3.5, 4.5, 3]} />
         </FactsModalTrigger>
         <FactsModalTrigger factName="propulsion">
-          <ARTooltip position={[2, 1, 4.5]} />
+          <ARTooltip position={[2, -1, 4.5]} />
         </FactsModalTrigger>
       </RenderIf>
     </>
