@@ -11,7 +11,7 @@ import useAnimation from '../animations/use-animation.ts';
 import RenderIf from '../common/components/RenderIf.tsx';
 import useSceneConfig from './use-scene-config.ts';
 import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
-import { OrbitControls, Stars } from '@react-three/drei';
+import { OrbitControls, Stars, useGLTF } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import useScene from './use-scene.ts';
@@ -36,6 +36,11 @@ const SceneManager: ViewComponent = ({ changeView }) => {
     isTransitioningToNext,
     setCurrentScene
   } = useScene();
+  useGLTF.preload(
+    nextSceneTransition
+      ? config.scenes[nextSceneTransition.toScene].artifactPaths
+      : []
+  );
   const nonArCurrentSceneScale = useBreakpointValue({
     base: 1,
     md: 1.2,
