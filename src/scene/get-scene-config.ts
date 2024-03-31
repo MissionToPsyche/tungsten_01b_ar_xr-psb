@@ -16,6 +16,7 @@ import FirstOrbitScene from './scenes/FirstOrbit.tsx';
 import SecondOrbitScene from './scenes/SecondOrbit.tsx';
 import ThirdOrbitScene from './scenes/ThirdOrbit.tsx';
 import FourthOrbitScene from './scenes/FourthOrbit.tsx';
+import artifactPaths from '../artifacts/artifact-paths.ts';
 
 const defaultCameraPosition = new Vector3(0, 6, 25);
 /**
@@ -39,7 +40,8 @@ const getSceneConfig = (): SceneConfig => ({
         buttonText: 'Assemble Orbiter'
       },
       sceneTitle: 'Assembly & Testing',
-      sceneDate: '2021'
+      sceneDate: '2021',
+      artifactPaths: [artifactPaths.Orbiter]
     },
     [SceneName.VIBRATION_TESTING]: {
       component: VibrationTestingScene,
@@ -56,7 +58,8 @@ const getSceneConfig = (): SceneConfig => ({
         buttonText: 'Vibration Test'
       },
       sceneTitle: 'Assembly & Testing',
-      sceneDate: '2021'
+      sceneDate: '2021',
+      artifactPaths: [artifactPaths.Orbiter]
     },
     [SceneName.ACOUSTIC_TESTING]: {
       component: AcousticTestingScene,
@@ -72,7 +75,8 @@ const getSceneConfig = (): SceneConfig => ({
         buttonText: 'Acoustic Test'
       },
       sceneTitle: 'Assembly & Testing',
-      sceneDate: '2021'
+      sceneDate: '2021',
+      artifactPaths: [artifactPaths.Orbiter, artifactPaths.Amplifier]
     },
     [SceneName.PACK_ORBITER]: {
       component: PackOrbiterScene,
@@ -88,7 +92,8 @@ const getSceneConfig = (): SceneConfig => ({
         buttonText: 'Pack Orbiter'
       },
       sceneTitle: 'Assembly & Testing',
-      sceneDate: '2021'
+      sceneDate: '2021',
+      artifactPaths: [artifactPaths.PackOrbiter]
     },
     [SceneName.LAUNCH]: {
       component: LaunchScene,
@@ -105,7 +110,11 @@ const getSceneConfig = (): SceneConfig => ({
         audio: 'sounds/liftoff.wav'
       },
       sceneTitle: 'Launch',
-      sceneDate: '2023'
+      sceneDate: '2023',
+      artifactPaths: [
+        artifactPaths.LaunchPadModel,
+        artifactPaths.FalconHeavyWithLogos
+      ]
     },
     [SceneName.CRUISE_PANELS]: {
       component: CruisePanelsScene,
@@ -121,7 +130,8 @@ const getSceneConfig = (): SceneConfig => ({
         animation: AnimationName.CRUISE_PANELS
       },
       sceneTitle: 'Initial Checkout',
-      sceneDate: '2024'
+      sceneDate: '2024',
+      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Earth]
     },
     [SceneName.CRUISE_THRUSTERS]: {
       component: CruiseThrusterScene,
@@ -137,7 +147,8 @@ const getSceneConfig = (): SceneConfig => ({
         animation: AnimationName.CRUISE_THRUSTERS
       },
       sceneTitle: 'Initial Checkout',
-      sceneDate: '2024'
+      sceneDate: '2024',
+      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Earth]
     },
     [SceneName.CRUISE_GRAVITY_ASSIST]: {
       component: CruiseGravityAssistScene,
@@ -153,7 +164,8 @@ const getSceneConfig = (): SceneConfig => ({
         animation: AnimationName.CRUISE_GRAVITY_ASSIST
       },
       sceneTitle: 'Cruise',
-      sceneDate: '2026'
+      sceneDate: '2026',
+      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Mars]
     },
     [SceneName.FIRST_ORBIT]: {
       component: FirstOrbitScene,
@@ -168,7 +180,12 @@ const getSceneConfig = (): SceneConfig => ({
         buttonText: 'Next Orbit'
       },
       sceneTitle: 'Orbit',
-      sceneDate: '2029'
+      sceneDate: '2029',
+      artifactPaths: [
+        artifactPaths.OrbitOrbiter,
+        artifactPaths.DashedOrbit,
+        artifactPaths.Psyche
+      ]
     },
     [SceneName.SECOND_ORBIT]: {
       component: SecondOrbitScene,
@@ -182,7 +199,12 @@ const getSceneConfig = (): SceneConfig => ({
         buttonText: 'Next Orbit'
       },
       sceneTitle: 'Orbit',
-      sceneDate: '2029'
+      sceneDate: '2029',
+      artifactPaths: [
+        artifactPaths.OrbitOrbiter,
+        artifactPaths.DashedOrbit,
+        artifactPaths.Psyche
+      ]
     },
     [SceneName.THIRD_ORBIT]: {
       component: ThirdOrbitScene,
@@ -196,7 +218,12 @@ const getSceneConfig = (): SceneConfig => ({
         buttonText: 'Next Orbit'
       },
       sceneTitle: 'Orbit',
-      sceneDate: '2029'
+      sceneDate: '2029',
+      artifactPaths: [
+        artifactPaths.OrbitOrbiter,
+        artifactPaths.DashedOrbit,
+        artifactPaths.Psyche
+      ]
     },
     [SceneName.FOURTH_ORBIT]: {
       component: FourthOrbitScene,
@@ -206,7 +233,12 @@ const getSceneConfig = (): SceneConfig => ({
         buttonText: 'Back'
       },
       sceneTitle: 'Orbit',
-      sceneDate: '2029'
+      sceneDate: '2029',
+      artifactPaths: [
+        artifactPaths.OrbitOrbiter,
+        artifactPaths.DashedOrbit,
+        artifactPaths.Psyche
+      ]
     }
   },
   cameraParametersUrl: 'assets/camera_para.dat',
