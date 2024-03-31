@@ -17,7 +17,8 @@ const mockConfig: SceneConfig = {
         buttonText: 'Next Scene'
       },
       sceneTitle: 'Assembly',
-      sceneDate: '2021'
+      sceneDate: '2021',
+      artifactPaths: []
     },
     [SceneName.ACOUSTIC_TESTING]: {
       component: () => 'Acoustic Testing Scene',
@@ -31,7 +32,8 @@ const mockConfig: SceneConfig = {
         buttonText: 'Prev Scene'
       },
       sceneTitle: 'Assembly',
-      sceneDate: '2021'
+      sceneDate: '2021',
+      artifactPaths: []
     },
     [SceneName.LAUNCH]: {
       component: () => 'Launch Scene',
@@ -45,7 +47,8 @@ const mockConfig: SceneConfig = {
         buttonText: 'Prev Scene'
       },
       sceneTitle: 'Launch',
-      sceneDate: '2022'
+      sceneDate: '2022',
+      artifactPaths: []
     }
   } as unknown as SceneConfig['scenes']
 } as SceneConfig;
