@@ -6,7 +6,8 @@ import AnimationName from './types/animation-name';
 import SmokeParticleSystem from '../common/particle/systems/smoke/SmokeParticleSystem';
 import ThrusterParticleSystem from '../common/particle/systems/thruster/ThrusterParticleSystem';
 import useSettings from '../settings/use-settings';
-import CountdownImage from '../common/components/CountdownImage';
+import RenderIf from '../common/components/RenderIf';
+import { Image } from '@react-three/drei';
 
 const thrusterStartingColor = new Color('#FFDD00');
 const thrusterEndingColor = new Color('#FFF2BD');
@@ -84,13 +85,13 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
         visible={!isAnimationActive(AnimationName.LIFTOFF)}
         position={[0.75, -4.4, 1]}
       />
-      {imageVisible && (
-        <CountdownImage
-          path={`/assets/images/countdown_${currentCountDown}.png`}
+      <RenderIf shouldRender={imageVisible}>
+        <Image
+          url={`/assets/images/countdown_${currentCountDown}.png`}
           scale={4}
           position={new Vector3(4, 4, 4)}
         />
-      )}
+      </RenderIf>
       {children}
     </group>
   );
