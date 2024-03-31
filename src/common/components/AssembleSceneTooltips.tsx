@@ -10,18 +10,18 @@ const AssembleSceneTooltips = () => {
   return (
     <RenderIf shouldRender={!isTransitioning}>
       <ExplodeElement
-        startPosition={[0, 0.25, 4]}
+        startPosition={[0, 0.5, 4.5]}
         startRotation={[0, 0, 0]}
-        explodedPosition={[0, 0, 6]}
+        explodedPosition={[0, -0.2, 7]}
         explodedRotation={[0, 0, 0]}
       >
         <ARTooltip />
       </ExplodeElement>
       <FactsModalTrigger factName="spectrometer">
         <ExplodeElement
-          startPosition={[-1, 4, 2]}
+          startPosition={[-1.2, 5, 2]}
           startRotation={[0, 0, 0]}
-          explodedPosition={[-1, 6, 0.75]}
+          explodedPosition={[-1.2, 8, 0.75]}
           explodedRotation={[0, 0, 0]}
         >
           <ARTooltip />
@@ -29,9 +29,9 @@ const AssembleSceneTooltips = () => {
       </FactsModalTrigger>
       <FactsModalTrigger factName="magnetometer">
         <ExplodeElement
-          startPosition={[1, 4, 2]}
+          startPosition={[1.2, 4.5, 1.8]}
           startRotation={[0, 0, 0]}
-          explodedPosition={[1, 6, 0.75]}
+          explodedPosition={[1.2, 7.5, 0.75]}
           explodedRotation={[0, 0, 0]}
         >
           <ARTooltip />
@@ -39,9 +39,9 @@ const AssembleSceneTooltips = () => {
       </FactsModalTrigger>
       <FactsModalTrigger factName="multiSpectralImager">
         <ExplodeElement
-          startPosition={[0, 2, 0.75]}
+          startPosition={[0, 2.5, 0.5]}
           startRotation={[0, 0, 0]}
-          explodedPosition={[0, 2.5, -1]}
+          explodedPosition={[0, 3.5, -2]}
           explodedRotation={[0, 0, 0]}
         >
           <ARTooltip />

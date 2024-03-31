@@ -7,7 +7,7 @@ import AssemblySceneLights from '../../common/components/AssemblySceneLights.tsx
 import BackAnimation from '../../animations/BackAnimation.tsx';
 import AssembleSceneTooltips from '../../common/components/AssembleSceneTooltips.tsx';
 
-const orbiterScale = filledVector(0.75);
+const orbiterScale = filledVector(1);
 
 const VibrationTestingScene: SceneComponent = () => (
   <Explode initialExploded={false}>

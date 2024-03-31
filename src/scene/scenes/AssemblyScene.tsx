@@ -10,7 +10,7 @@ import StaticExplodeElement from '../../common/explode/StaticExplodeElement.tsx'
 import AssemblySceneLights from '../../common/components/AssemblySceneLights.tsx';
 import AssembleSceneTooltips from '../../common/components/AssembleSceneTooltips.tsx';
 
-const orbiterScale = filledVector(0.75);
+const orbiterScale = filledVector(1);
 
 const AssemblyScene: SceneComponent = () => (
   <Explode initialExploded={true}>
