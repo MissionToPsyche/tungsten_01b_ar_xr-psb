@@ -33,6 +33,8 @@ export interface IndividualSceneConfig {
   sceneTitle: string;
   // The date that the scene occurred
   sceneDate: string;
+  // A set of artifact model paths that are used in the scene. Used for preloading
+  artifactPaths: string[];
 }
 
 /**
