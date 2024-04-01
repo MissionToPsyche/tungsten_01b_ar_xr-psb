@@ -8,6 +8,7 @@ import { OrbitsTwo } from '../../artifacts/OrbitB.tsx';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import RenderIf from '../../common/components/RenderIf.tsx';
 import useScene from '../use-scene.ts';
+import { Environment } from '@react-three/drei';
 
 const psycheScale = filledVector(5);
 const orbiterScale = filledVector(1.5);
@@ -18,6 +19,7 @@ const SecondOrbitScene: SceneComponent = () => {
 
   return (
     <>
+      <Environment preset="forest" />
       <FactsModalTrigger factName="psycheOrbitB">
         <DashedOrbit
           position={[11, 4, -4]}
@@ -49,9 +51,9 @@ const SecondOrbitScene: SceneComponent = () => {
         rotation={[0, 0, Math.PI / 6]}
       />
       <DashedOrbit
-        position={[0, 8.5, -5]}
-        scale={1.7}
-        rotation={[0, 0, Math.PI / 2]}
+        position={[0, 8, -5]}
+        scale={[1.7, 3, 1.7]}
+        rotation={[0, Math.PI / 2, Math.PI / 2]}
       />
       <OrbitsTwo
         scale={orbiterScale}

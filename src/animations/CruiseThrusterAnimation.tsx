@@ -10,7 +10,7 @@ import filledVector from '../common/utils/filled-vector';
 import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
 import useSettings from '../settings/use-settings';
 
-const earthScale = filledVector(25);
+const earthScale = filledVector(15);
 const translationSpeed = 5;
 const orbiterScale = filledVector(0.75);
 

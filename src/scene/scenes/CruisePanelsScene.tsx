@@ -6,6 +6,7 @@ import CruiseSceneLights from '../../common/components/CruiseSceneLights.tsx';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import useScene from '../use-scene.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
+import { Environment } from '@react-three/drei';
 
 const CruisePanelsScene: SceneComponent = () => {
   const { isTransitioning } = useScene();
@@ -15,6 +16,7 @@ const CruisePanelsScene: SceneComponent = () => {
       <CruisePanelsAnimation />
       <BackAnimation />
       <CruiseSceneLights />
+      <Environment preset="forest" />
       <RenderIf shouldRender={!isTransitioning}>
         <FactsModalTrigger factName="solarPanels">
           <ARTooltip position={[1, 2, 3]} />
