@@ -5,7 +5,7 @@ import SettingsModal from '../../settings/SettingsModal.tsx';
 import { VscDebugRestart } from 'react-icons/vsc';
 import RenderIf from './RenderIf.tsx';
 import { IoInformationCircle } from 'react-icons/io5';
-import InformationModal from '../../Information/InformationModal.tsx';
+import InformationModal from '../../information/InformationModal.tsx';
 
 interface SettingsProps {
   hideArButton?: boolean;
