@@ -9,6 +9,10 @@ import { AudioProvider } from '../../audio/AudioProvider.tsx';
 vi.mock('../../settings/use-settings.ts');
 vi.mock('../use-scene.ts');
 vi.mock('../get-scene-config.ts');
+vi.mock('@chakra-ui/react', async () => ({
+  ...(await vi.importActual<object>('@chakra-ui/react')),
+  useBreakpointValue: vi.fn(() => 'sm')
+}));
 
 const onChangeScene = vi.fn();
 const onRestart = vi.fn();
