@@ -80,10 +80,10 @@ const InformationModal: React.FC<InformationModalProps> = ({
             <InformationItem title="Disclaimer" index={4}>
               <Text>
                 This work was created in partial fulfillment of Pennsylvania
-                State University Capstone Course "SWENG 480: Software
-                Engineering Design & SWENG 481: Software Engineering Design II".
-                The work is a result of the Psyche Student Collaborations
-                component of NASA’s Psyche Mission{' '}
+                State University Capstone Course &quot;SWENG 480: Software
+                Engineering Design & SWENG 481: Software Engineering Design
+                II&quot;. The work is a result of the Psyche Student
+                Collaborations component of NASA’s Psyche Mission{' '}
                 <a href="https://psyche.asu.edu)">https://psyche.asu.edu</a>{' '}
                 “Psyche: A Journey to a Metal World” [Contract number
                 NNM16AA09C] is part of the NASA Discovery Program mission to
