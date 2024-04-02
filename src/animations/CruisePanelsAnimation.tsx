@@ -7,7 +7,7 @@ import { Earth } from '../artifacts/Earth';
 import filledVector from '../common/utils/filled-vector';
 import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
 
-const earthScale = filledVector(25);
+const earthScale = filledVector(15);
 const orbiterScale = filledVector(0.75);
 
 /**
