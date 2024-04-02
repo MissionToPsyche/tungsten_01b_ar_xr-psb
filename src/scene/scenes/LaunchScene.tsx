@@ -65,7 +65,7 @@ const LaunchScene: SceneComponent = () => {
       <RenderIf shouldRender={disableAr}>
         <Sky sunPosition={[2, 40, 100]} />
         <Clouds>
-          <Cloud position={[-8, 10, -8]} opacity={0.5} />
+          <Cloud position={[0, 16, -8]} opacity={0.5} />
           <Cloud position={[8, 12, -8]} opacity={0.4} />
         </Clouds>
       </RenderIf>
