@@ -1,5 +1,10 @@
 import React from 'react';
-import { HStack, IconButton, useDisclosure } from '@chakra-ui/react';
+import {
+  HStack,
+  IconButton,
+  useDisclosure,
+  useMediaQuery
+} from '@chakra-ui/react';
 import { IoMdSettings } from 'react-icons/io';
 import SettingsModal from '../../settings/SettingsModal.tsx';
 import { VscDebugRestart } from 'react-icons/vsc';
@@ -20,6 +25,8 @@ const MenuBar: React.FC<SettingsProps> = ({
   disableRestartButton,
   onClickRestartButton
 }) => {
+  const [isMobile] = useMediaQuery('(max-width: 768px)');
+
   const {
     isOpen: settingsAreOpen,
     onOpen: onOpenSettings,
@@ -34,9 +41,14 @@ const MenuBar: React.FC<SettingsProps> = ({
 
   return (
     <>
-      <HStack position="absolute" top={1} right={1}>
+      <HStack
+        position="absolute"
+        right={isMobile ? 2 : 5}
+        top={isMobile ? 2 : 5}
+      >
         <RenderIf shouldRender={!hideRestartButton}>
           <IconButton
+            isRound
             aria-label="Restart"
             icon={<VscDebugRestart />}
             onClick={onClickRestartButton}
@@ -44,11 +56,13 @@ const MenuBar: React.FC<SettingsProps> = ({
           />
         </RenderIf>
         <IconButton
+          isRound
           aria-label="Settings"
           icon={<IoMdSettings size={24} />}
           onClick={onOpenSettings}
         />
         <IconButton
+          isRound
           aria-label={'Information & Credits'}
           icon={<IoInformationCircle size={24} onClick={onOpenInformation} />}
         />

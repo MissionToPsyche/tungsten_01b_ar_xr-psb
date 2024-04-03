@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import SceneName from './types/scene-name.ts';
 import { SceneTransitionConfig } from './types/scene-config.ts';
-import { Button, Flex, Spacer } from '@chakra-ui/react';
+import { Button, Flex, Spacer, useMediaQuery } from '@chakra-ui/react';
 import useAnimation from '../animations/use-animation.ts';
 import { MdOutlineArrowBack, MdOutlineArrowForward } from 'react-icons/md';
 import MenuBar from '../common/components/MenuBar.tsx';
@@ -98,6 +98,8 @@ const SceneControls: React.FC<SceneControlsProps> = ({
   previousSceneTransition,
   nextSceneTransition
 }) => {
+  const [isMobile] = useMediaQuery('(max-width: 768px)');
+
   return (
     <>
       <MenuBar
@@ -109,9 +111,9 @@ const SceneControls: React.FC<SceneControlsProps> = ({
       <Flex
         flexDirection={'row'}
         position="absolute"
-        bottom={4}
-        left={2}
-        right={2}
+        bottom={isMobile ? 2 : 5}
+        left={isMobile ? 2 : 5}
+        right={isMobile ? 2 : 5}
         alignItems={'center'}
         alignContent={'center'}
         alignSelf={'center'}
