@@ -89,7 +89,8 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.LAUNCH,
         animation: AnimationName.PACK_ORBITER,
-        buttonText: 'Pack Orbiter'
+        buttonText: 'Pack Orbiter',
+        audio: 'sounds/ceiling-the-doors.mp3'
       },
       sceneTitle: 'Assembly & Testing',
       sceneDate: '2021',
@@ -127,7 +128,8 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.CRUISE_THRUSTERS,
         buttonText: 'Open Solar Panels',
-        animation: AnimationName.CRUISE_PANELS
+        animation: AnimationName.CRUISE_PANELS,
+        audio: 'sounds/artninja-servo-sound.mp3'
       },
       sceneTitle: 'Initial Checkout',
       sceneDate: '2024',
@@ -144,7 +146,8 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.CRUISE_GRAVITY_ASSIST,
         buttonText: 'Ignite Thrusters',
-        animation: AnimationName.CRUISE_THRUSTERS
+        animation: AnimationName.CRUISE_THRUSTERS,
+        audio: 'sounds/swishwhoosh.mp3'
       },
       sceneTitle: 'Initial Checkout',
       sceneDate: '2024',
@@ -161,7 +164,8 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.FIRST_ORBIT,
         buttonText: 'Mars Assist',
-        animation: AnimationName.CRUISE_GRAVITY_ASSIST
+        animation: AnimationName.CRUISE_GRAVITY_ASSIST,
+        audio: 'sounds/whoosh-fly.mp3'
       },
       sceneTitle: 'Cruise',
       sceneDate: '2026',
