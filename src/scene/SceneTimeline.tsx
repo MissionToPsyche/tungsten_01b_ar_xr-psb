@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import useSceneConfig from './use-scene-config.ts';
 import useScene from './use-scene.ts';
 import {
@@ -12,7 +12,8 @@ import {
   StepSeparator,
   StepStatus,
   StepTitle,
-  useBreakpointValue
+  useBreakpointValue,
+  useMediaQuery
 } from '@chakra-ui/react';
 
 interface StepConfig {
@@ -48,25 +49,25 @@ const SceneTimeline = () => {
     [currentSceneConfig.sceneTitle, steps]
   );
 
-  const isMobile = window.innerWidth < 768;
-  const timelineSize = useBreakpointValue(
-    { base: 'sm', lg: 'lg' },
-    { ssr: false }
+  const [isMobile] = useMediaQuery('(max-width: 768px)');
+
+  const timelineSize = useBreakpointValue({ base: 'sm', lg: 'lg' });
+
+  const getStepStyle = useCallback(
+    (currentIndex: number) => ({
+      color: 'white',
+      opacity: currentIndex === stepIndex ? 1 : 0.4
+    }),
+    [stepIndex]
   );
-  const customStyle = {
-    color: 'white',
-    opacity: (stepIndex: number, index: number) =>
-      stepIndex === index ? 1 : 0.4
-  };
 
   return (
     <Box
       pos="absolute"
-      left={isMobile ? 2 : 10}
-      top={isMobile ? 5 : 10}
+      left={isMobile ? 2 : 5}
+      top={isMobile ? 2 : 5}
       width="200px"
       pointerEvents="none"
-      className="ck-reset"
     >
       <Stepper
         index={stepIndex}
@@ -77,42 +78,17 @@ const SceneTimeline = () => {
         size={timelineSize}
       >
         {steps.map((step, index) => (
-          <Step
-            key={index}
-            style={{
-              ...customStyle,
-              opacity: customStyle.opacity(stepIndex, index)
-            }}
-          >
+          <Step key={index} style={getStepStyle(index)}>
             <StepIndicator>
               <StepStatus
                 complete={<StepIcon />}
-                incomplete={
-                  <StepNumber
-                    style={{
-                      ...customStyle,
-                      opacity: customStyle.opacity(stepIndex, index)
-                    }}
-                  />
-                }
+                incomplete={<StepNumber style={getStepStyle(index)} />}
                 active={<StepNumber />}
               />
             </StepIndicator>
             <Box flexShrink="0" width={isMobile ? '100px' : '200px'}>
-              <StepTitle
-                style={{
-                  ...customStyle,
-                  opacity: customStyle.opacity(stepIndex, index)
-                }}
-              >
-                {step.title}
-              </StepTitle>
-              <StepDescription
-                style={{
-                  ...customStyle,
-                  opacity: customStyle.opacity(stepIndex, index)
-                }}
-              >
+              <StepTitle style={getStepStyle(index)}>{step.title}</StepTitle>
+              <StepDescription style={getStepStyle(index)}>
                 {step.description}
               </StepDescription>
             </Box>

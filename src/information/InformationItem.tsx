@@ -17,7 +17,9 @@ const InformationItem: React.FC<AccordionItemProps> = ({ title, children }) => (
   <AccordionItem>
     <h2>
       <AccordionButton>
-        <span>{title}</span>
+        <Box as="span" flex="1" textAlign="left">
+          {title}
+        </Box>
         <AccordionIcon />
       </AccordionButton>
     </h2>
