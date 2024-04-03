@@ -4,21 +4,20 @@ import { SceneComponent } from '../types/scene-component.ts';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import BackAnimation from '../../animations/BackAnimation.tsx';
 import { OrbitOrbiter } from '../../artifacts/OrbitOrbiter.tsx';
-import { DashedOrbit } from '../../artifacts/DashedOrbit.tsx';
 import OrbitSceneLightning from '../../common/components/OrbitSceneLightning.tsx';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import useScene from '../use-scene.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
 import { Environment } from '@react-three/drei';
-import { Euler, Group, Vector3 } from 'three';
+import { Euler, Group, MeshBasicMaterial, Vector3 } from 'three';
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import SceneName from '../types/scene-name.ts';
 import degreesToRadians from '../../common/utils/degrees-to-radians.ts';
+import { Torus } from '@react-three/drei';
 
 const psycheScale = filledVector(5);
 const orbiterScale = filledVector(1.5);
-const dashScale = filledVector(2.8);
 
 const getOrbitPosition = (
   orbitCenter: Vector3,
@@ -107,46 +106,56 @@ const Orbit: SceneComponent = () => {
     orbiterGroupRef.current.lookAt(center);
   });
 
+  const torusMaterial = new MeshBasicMaterial({
+    color: '#297AA9',
+    opacity: 0.5,
+    transparent: true
+  });
+
   return (
     <>
       <BackAnimation />
       <Environment preset="forest" />
       <FactsModalTrigger factName="psycheOrbitA">
-        <DashedOrbit
-          position={[0, 0, -18]}
-          scale={dashScale}
-          rotation={[0.1, Math.PI / 2, -0.1]}
-        />
+        <Torus
+          args={[13, 0.05, 5, 50]}
+          position={[0, 0.4, -5]}
+          rotation={[Math.PI / 2, 0, 0]}
+          material={torusMaterial}
+        ></Torus>
         <RenderIf shouldRender={!isTransitioning}>
           <ARTooltip position={[10.5, 0, 5]} />
         </RenderIf>
       </FactsModalTrigger>
       <FactsModalTrigger factName="psycheOrbitB">
-        <DashedOrbit
-          position={[11, 4, -4]}
-          scale={2.4}
-          rotation={[0, 0, Math.PI / 12]}
-        />
+        <Torus
+          args={[11, 0.05, 5, 40]}
+          position={[0, 0.5, -5]}
+          rotation={[Math.PI / 2, Math.PI / 12, 0]}
+          material={torusMaterial}
+        ></Torus>
         <RenderIf shouldRender={!isTransitioning}>
           <ARTooltip position={[7, 3, 5]} />
         </RenderIf>
       </FactsModalTrigger>
       <FactsModalTrigger factName="psycheOrbitC">
-        <DashedOrbit
-          position={[9, 6.5, -4.5]}
-          scale={2.2}
-          rotation={[0, 0, Math.PI / 6]}
-        />
+        <Torus
+          args={[11, 0.05, 5, 40]}
+          position={[0, 0.5, -5]}
+          rotation={[Math.PI / 2, Math.PI / 6, 0]}
+          material={torusMaterial}
+        ></Torus>
         <RenderIf shouldRender={!isTransitioning}>
           <ARTooltip position={[5, 4, 5]} />
         </RenderIf>
       </FactsModalTrigger>
       <FactsModalTrigger factName="psycheOrbitD">
-        <DashedOrbit
-          position={[0, 8, -5]}
-          scale={[1.7, 3, 1.7]}
-          rotation={[0, Math.PI / 2, Math.PI / 2]}
-        />
+        <Torus
+          args={[8, 0.05, 5, 40]}
+          position={[0, -0.5, -5]}
+          rotation={[0, 0, 0]}
+          material={torusMaterial}
+        ></Torus>
         <RenderIf shouldRender={!isTransitioning}>
           <ARTooltip position={[0, 5, 2.5]} />
         </RenderIf>
@@ -161,26 +170,11 @@ const Orbit: SceneComponent = () => {
           <ARTooltip position={[-1, 7, 0]} />
         </RenderIf>
       </FactsModalTrigger>
-      <DashedOrbit
-        position={[11, 4, -4]}
-        scale={2.4}
-        rotation={[0, 0, Math.PI / 12]}
-      />
-      <DashedOrbit
-        position={[10, 7, -4.5]}
-        scale={2.4}
-        rotation={[0, 0, Math.PI / 6]}
-      />
-      <DashedOrbit
-        position={[0, 8, -5]}
-        scale={[1.7, 3, 1.7]}
-        rotation={[0, Math.PI / 2, Math.PI / 2]}
-      />
       <group ref={orbiterGroupRef}>
         <OrbitOrbiter
-          rotation={[0, 0, 0]}
           position={[0, 0, 0]}
           scale={orbiterScale}
+          rotation={[Math.PI / 2, 0, 0]}
         />
       </group>
       <OrbitSceneLightning />
