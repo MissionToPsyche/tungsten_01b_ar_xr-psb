@@ -9,6 +9,7 @@ import OrbitSceneLightning from '../../common/components/OrbitSceneLightning.tsx
 import useScene from '../use-scene.ts';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import RenderIf from '../../common/components/RenderIf.tsx';
+import { Environment } from '@react-three/drei';
 
 const psycheScale = filledVector(5);
 const orbiterScale = filledVector(1.5);
@@ -19,11 +20,12 @@ const FirstOrbitScene: SceneComponent = () => {
 
   return (
     <>
+      <Environment preset="forest" />
       <FactsModalTrigger factName="psycheOrbitA">
         <DashedOrbit
-          position={[0, 8.5, -5]}
-          scale={1.7}
-          rotation={[0, 0, Math.PI / 2]}
+          position={[0, 8, -5]}
+          scale={[1.7, 3, 1.7]}
+          rotation={[0, Math.PI / 2, Math.PI / 2]}
         />
         <RenderIf shouldRender={!isTransitioning}>
           <ARTooltip position={[0, 5, 2.5]} />
@@ -36,7 +38,7 @@ const FirstOrbitScene: SceneComponent = () => {
           rotation={[Math.PI / 3, 0, 0]}
         />
         <RenderIf shouldRender={!isTransitioning}>
-          <ARTooltip position={[0, 0, 2]} />
+          <ARTooltip position={[-1, 7, 0]} />
         </RenderIf>
       </FactsModalTrigger>
       <DashedOrbit
@@ -56,14 +58,14 @@ const FirstOrbitScene: SceneComponent = () => {
       />
 
       <ModelSpinner
-        position={[0, 0, -5]}
+        position={[0, -1, -4]}
         speed={1}
-        orientationX={true}
         orientationZ={true}
+        rotation={[0, 0, 0.5]}
       >
         <OrbitOrbiter
           rotation={[0, 0, 0]}
-          position={[0, 0, 9]}
+          position={[0, 9, 0]}
           scale={orbiterScale}
         />
       </ModelSpinner>

@@ -10,7 +10,7 @@ import filledVector from '../common/utils/filled-vector';
 import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
 import useSettings from '../settings/use-settings';
 
-const earthScale = filledVector(25);
+const earthScale = filledVector(15);
 const translationSpeed = 5;
 const orbiterScale = filledVector(0.75);
 
@@ -73,7 +73,7 @@ const CruiseThrusterAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       <group ref={orbiterRef}>
         <CruiseOrbiter
           thrustersOn={isActive}
-          position={[0, 2, 2]}
+          position={[0, 0, 2]}
           scale={orbiterScale}
           rotation={[Math.PI / 5, Math.PI / 5, Math.PI / 6]}
           panelsOpen={true}
@@ -81,7 +81,7 @@ const CruiseThrusterAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
         />
       </group>
       <group ref={earthRef} {...props}>
-        <Earth position={[-10, -5, -60]} scale={earthScale} />
+        <Earth position={[10, -5, -60]} scale={earthScale} />
       </group>
     </group>
   );

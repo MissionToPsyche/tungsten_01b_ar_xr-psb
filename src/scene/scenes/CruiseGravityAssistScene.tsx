@@ -6,6 +6,7 @@ import CruiseSceneLights from '../../common/components/CruiseSceneLights.tsx';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import useScene from '../use-scene.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
+import { Environment } from '@react-three/drei';
 
 const CruiseGravityAssistScene: SceneComponent = () => {
   const { isTransitioning } = useScene();
@@ -15,15 +16,16 @@ const CruiseGravityAssistScene: SceneComponent = () => {
       <CruiseGravityAssistAnimation />
       <BackAnimation />
       <CruiseSceneLights />
+      <Environment preset="forest" />
       <RenderIf shouldRender={!isTransitioning}>
         <FactsModalTrigger factName="solarPanels">
-          <ARTooltip position={[3.5, 7, 1.5]} />
+          <ARTooltip position={[3.5, 5, 1.5]} />
         </FactsModalTrigger>
         <FactsModalTrigger factName="marsDate">
-          <ARTooltip position={[5, 2, 4]} />
+          <ARTooltip position={[5, 0, 4]} />
         </FactsModalTrigger>
         <FactsModalTrigger factName="propulsion">
-          <ARTooltip position={[2, 1, 4.5]} />
+          <ARTooltip position={[2, -1, 4.5]} />
         </FactsModalTrigger>
       </RenderIf>
     </>

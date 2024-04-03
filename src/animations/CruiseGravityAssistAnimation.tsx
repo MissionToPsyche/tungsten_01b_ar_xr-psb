@@ -73,7 +73,7 @@ const CruiseGravityAssistAnimation: React.FC<
           animatePanels={false}
           panelsOpen
           thrustersOn
-          position={[0, 2, 2]}
+          position={[0, 0, 2]}
           scale={orbiterScale}
           rotation={defaultOrbiterRotation}
         />

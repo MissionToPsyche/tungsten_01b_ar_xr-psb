@@ -4,6 +4,10 @@ import SceneTimeline from '../SceneTimeline.tsx';
 vi.mock('../use-scene.ts');
 vi.mock('../get-scene-config.ts');
 vi.mock('../../settings/use-settings.ts');
+vi.mock('@chakra-ui/react', async () => ({
+  ...(await vi.importActual<object>('@chakra-ui/react')),
+  useBreakpointValue: vi.fn(() => 'sm')
+}));
 
 const setup = () => render(<SceneTimeline />);
 
