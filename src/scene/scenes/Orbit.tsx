@@ -41,13 +41,15 @@ const orbitSettings: Record<
     planeRotation: Euler;
     center: Vector3;
     speed: number;
+    orbiterRotation: Euler;
   }
 > = {
   [SceneName.FIRST_ORBIT]: {
     radius: 14,
     planeRotation: new Euler(degreesToRadians(90), 0, degreesToRadians(90)),
     center: new Vector3(0, 0, -5),
-    speed: 0.65
+    speed: 0.65,
+    orbiterRotation: new Euler(degreesToRadians(180), 0, 0)
   },
   [SceneName.SECOND_ORBIT]: {
     radius: 12,
@@ -57,7 +59,8 @@ const orbitSettings: Record<
       degreesToRadians(90)
     ),
     center: new Vector3(0, 0, -5),
-    speed: 0.65
+    speed: 0.65,
+    orbiterRotation: new Euler(degreesToRadians(180), 0, 0)
   },
   [SceneName.THIRD_ORBIT]: {
     radius: 12,
@@ -67,7 +70,8 @@ const orbitSettings: Record<
       degreesToRadians(90)
     ),
     center: new Vector3(0, 0, -5),
-    speed: 0.65
+    speed: 0.65,
+    orbiterRotation: new Euler(degreesToRadians(180), 0, 0)
   },
   [SceneName.FOURTH_ORBIT]: {
     radius: 9,
@@ -77,20 +81,22 @@ const orbitSettings: Record<
       degreesToRadians(0)
     ),
     center: new Vector3(0, 0, -5),
-    speed: 0.5
+    speed: 0.5,
+    orbiterRotation: new Euler(degreesToRadians(180), 0, 0)
   }
 };
 
 const Orbit: SceneComponent = () => {
   const { isTransitioning, currentScene } = useScene();
   const orbiterGroupRef = useRef<Group>(null);
+  const orbiterInnerGroupRef = useRef<Group>(null);
 
   useFrame(({ clock }) => {
-    if (!orbiterGroupRef.current) return;
+    if (!orbiterGroupRef.current || !orbiterInnerGroupRef.current) return;
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!orbitSettings[currentScene]) return;
 
-    const { radius, planeRotation, center, speed } =
+    const { radius, planeRotation, center, speed, orbiterRotation } =
       orbitSettings[currentScene];
 
     const time = clock.getElapsedTime();
@@ -105,6 +111,7 @@ const Orbit: SceneComponent = () => {
 
     orbiterGroupRef.current.position.lerp(desiredOrbiterPosition, 0.1);
     orbiterGroupRef.current.lookAt(center);
+    orbiterInnerGroupRef.current.rotation.copy(orbiterRotation);
   });
 
   return (
@@ -177,11 +184,9 @@ const Orbit: SceneComponent = () => {
         rotation={[0, Math.PI / 2, Math.PI / 2]}
       />
       <group ref={orbiterGroupRef}>
-        <OrbitOrbiter
-          rotation={[0, 0, 0]}
-          position={[0, 0, 0]}
-          scale={orbiterScale}
-        />
+        <group ref={orbiterInnerGroupRef}>
+          <OrbitOrbiter scale={orbiterScale} />
+        </group>
       </group>
       <OrbitSceneLightning />
     </>
