@@ -112,50 +112,77 @@ const Orbit: SceneComponent = () => {
     transparent: true
   });
 
+  const activeTorusMaterial = new MeshBasicMaterial({
+    color: 'white',
+    opacity: 0.4,
+    transparent: true
+  });
+
+  const torusObjects: {
+    scene: SceneName;
+    args: [number, number, number, number, number];
+    position: [number, number, number];
+    rotation: [number, number, number];
+  }[] = [
+    {
+      scene: SceneName.FIRST_ORBIT,
+      args: [13, 0.03, 50, 50, Math.PI * 2],
+      position: [0, 0, -5],
+      rotation: [Math.PI / 2, 0, 0]
+    },
+    {
+      scene: SceneName.SECOND_ORBIT,
+      args: [11, 0.03, 40, 40, Math.PI * 2],
+      position: [0, 0, -5],
+      rotation: [Math.PI / 2, Math.PI / 12, 0]
+    },
+    {
+      scene: SceneName.THIRD_ORBIT,
+      args: [9, 0.03, 50, 50, Math.PI * 2],
+      position: [0, 0, -5],
+      rotation: [Math.PI / 2, Math.PI / 6, 0]
+    },
+    {
+      scene: SceneName.FOURTH_ORBIT,
+      args: [8, 0.03, 40, 40, Math.PI * 2],
+      position: [0, -0.5, -5],
+      rotation: [0, 0, 0]
+    }
+  ];
+
   return (
     <>
       <BackAnimation />
       <Environment preset="forest" />
       <FactsModalTrigger factName="psycheOrbitA">
-        <Torus
-          args={[13, 0.05, 5, 50]}
-          position={[0, 0.4, -5]}
-          rotation={[Math.PI / 2, 0, 0]}
-          material={torusMaterial}
-        ></Torus>
         <RenderIf shouldRender={!isTransitioning}>
-          <ARTooltip position={[10.5, 0, 5]} />
+          <ARTooltip position={[6, 0, 7]} />
+          {torusObjects.map((torusProps, index) => (
+            <Torus
+              key={index}
+              args={torusProps.args as [number, number, number, number, number]}
+              position={torusProps.position}
+              rotation={torusProps.rotation}
+              material={
+                currentScene === torusProps.scene && !isTransitioning
+                  ? activeTorusMaterial
+                  : torusMaterial
+              }
+            />
+          ))}
         </RenderIf>
       </FactsModalTrigger>
       <FactsModalTrigger factName="psycheOrbitB">
-        <Torus
-          args={[11, 0.05, 5, 40]}
-          position={[0, 0.5, -5]}
-          rotation={[Math.PI / 2, Math.PI / 12, 0]}
-          material={torusMaterial}
-        ></Torus>
         <RenderIf shouldRender={!isTransitioning}>
-          <ARTooltip position={[7, 3, 5]} />
+          <ARTooltip position={[6, 2, 5]} />
         </RenderIf>
       </FactsModalTrigger>
       <FactsModalTrigger factName="psycheOrbitC">
-        <Torus
-          args={[11, 0.05, 5, 40]}
-          position={[0, 0.5, -5]}
-          rotation={[Math.PI / 2, Math.PI / 6, 0]}
-          material={torusMaterial}
-        ></Torus>
         <RenderIf shouldRender={!isTransitioning}>
-          <ARTooltip position={[5, 4, 5]} />
+          <ARTooltip position={[3, 2, 5]} />
         </RenderIf>
       </FactsModalTrigger>
       <FactsModalTrigger factName="psycheOrbitD">
-        <Torus
-          args={[8, 0.05, 5, 40]}
-          position={[0, -0.5, -5]}
-          rotation={[0, 0, 0]}
-          material={torusMaterial}
-        ></Torus>
         <RenderIf shouldRender={!isTransitioning}>
           <ARTooltip position={[0, 5, 2.5]} />
         </RenderIf>
@@ -174,7 +201,7 @@ const Orbit: SceneComponent = () => {
         <OrbitOrbiter
           position={[0, 0, 0]}
           scale={orbiterScale}
-          rotation={[Math.PI / 2, 0, 0]}
+          rotation={[Math.PI / 3, 0, 0]}
         />
       </group>
       <OrbitSceneLightning />
