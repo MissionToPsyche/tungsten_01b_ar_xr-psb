@@ -8,6 +8,7 @@ import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 import { Trail } from '@react-three/drei';
+import { Box } from '@react-three/drei';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -48,7 +49,7 @@ export function OrbitOrbiter(props: JSX.IntrinsicElements['group']) {
         />
         <group
           position={[-0.031, 0.031, -0.001]}
-          rotation={[-1.5, 0, 0]}
+          rotation={[1.5, 0, 0]}
           scale={[-0.005, -0.005, -0.003]}
         >
           <mesh
@@ -62,15 +63,19 @@ export function OrbitOrbiter(props: JSX.IntrinsicElements['group']) {
         </group>
         <Trail
           width={1} // Width of the line
-          color={'hotpink'} // Color of the line
-          length={10} // Length of the line
+          color={'#85C1E9'} // Color of the line
+          length={5} // Length of the line
           decay={1} // How fast the line fades away
           local={false} // Wether to use the target's world or local positions
           stride={0} // Min distance between previous and current point
           interval={1} // Number of frames to wait before next calculation
           target={undefined} // Optional target. This object will produce the trail.
           attenuation={(width) => width} // A function to define the width in each point along it.
-        ></Trail>
+        >
+          <Box position={[0, -0.4, 0.5]} scale={0.2}>
+            <meshBasicMaterial transparent opacity={0} />
+          </Box>
+        </Trail>
         <mesh
           geometry={nodes.orbiter001.geometry}
           material={materials.M_01___Default}

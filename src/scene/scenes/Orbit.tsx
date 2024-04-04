@@ -114,7 +114,7 @@ const Orbit: SceneComponent = () => {
 
   const activeTorusMaterial = new MeshBasicMaterial({
     color: 'white',
-    opacity: 0.4,
+    opacity: 0.8,
     transparent: true
   });
 
@@ -126,25 +126,25 @@ const Orbit: SceneComponent = () => {
   }[] = [
     {
       scene: SceneName.FIRST_ORBIT,
-      args: [13, 0.03, 50, 50, Math.PI * 2],
+      args: [13, 0.03, 5, 50, Math.PI * 2],
       position: [0, 0, -5],
       rotation: [Math.PI / 2, 0, 0]
     },
     {
       scene: SceneName.SECOND_ORBIT,
-      args: [11, 0.03, 40, 40, Math.PI * 2],
+      args: [11, 0.03, 5, 50, Math.PI * 2],
       position: [0, 0, -5],
       rotation: [Math.PI / 2, Math.PI / 12, 0]
     },
     {
       scene: SceneName.THIRD_ORBIT,
-      args: [9, 0.03, 50, 50, Math.PI * 2],
+      args: [9, 0.03, 5, 50, Math.PI * 2],
       position: [0, 0, -5],
       rotation: [Math.PI / 2, Math.PI / 6, 0]
     },
     {
       scene: SceneName.FOURTH_ORBIT,
-      args: [8, 0.03, 40, 40, Math.PI * 2],
+      args: [8, 0.03, 5, 50, Math.PI * 2],
       position: [0, -0.5, -5],
       rotation: [0, 0, 0]
     }
@@ -179,12 +179,12 @@ const Orbit: SceneComponent = () => {
       </FactsModalTrigger>
       <FactsModalTrigger factName="psycheOrbitC">
         <RenderIf shouldRender={!isTransitioning}>
-          <ARTooltip position={[3, 2, 5]} />
+          <ARTooltip position={[6.5, 3.5, 1]} />
         </RenderIf>
       </FactsModalTrigger>
       <FactsModalTrigger factName="psycheOrbitD">
         <RenderIf shouldRender={!isTransitioning}>
-          <ARTooltip position={[0, 5, 2.5]} />
+          <ARTooltip position={[3, 7, -4]} />
         </RenderIf>
       </FactsModalTrigger>
       <FactsModalTrigger factName="psyche">
@@ -194,7 +194,7 @@ const Orbit: SceneComponent = () => {
           rotation={[Math.PI / 3, 0, 0]}
         />
         <RenderIf shouldRender={!isTransitioning}>
-          <ARTooltip position={[-1, 7, 0]} />
+          <ARTooltip position={[-6, 2, 0]} />
         </RenderIf>
       </FactsModalTrigger>
       <group ref={orbiterGroupRef}>
