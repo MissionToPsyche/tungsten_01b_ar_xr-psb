@@ -90,7 +90,7 @@ const getSceneConfig = (): SceneConfig => ({
         toScene: SceneName.LAUNCH,
         animation: AnimationName.PACK_ORBITER,
         buttonText: 'Pack Orbiter',
-        audio: 'sounds/ceiling-the-doors.mp3'
+        audio: 'sounds/pack-orbiter.mp3'
       },
       sceneTitle: 'Assembly & Testing',
       sceneDate: '2021',
