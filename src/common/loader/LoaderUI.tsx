@@ -5,13 +5,15 @@ import { Progress, Text, VStack } from '@chakra-ui/react';
  * @param progress The loading progress, a value between 0 and 100
  */
 const LoaderUI = ({ progress }: { progress: number }) => (
-  <VStack>
+  <VStack height="80vh" justifyContent="center">
     <Progress
       width="full"
+      height="32px"
       hasStripe
       value={progress}
       size="lg"
-      colorScheme="purple"
+      colorScheme="magenta"
+      isAnimated
     />
     <Text color="darkPurple.900">Adding rocket fuel...</Text>
   </VStack>
