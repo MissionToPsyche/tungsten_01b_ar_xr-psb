@@ -12,10 +12,7 @@ import CruiseThrusterScene from './scenes/CruiseThrusterScene.tsx';
 import { Vector3 } from 'three';
 import CruiseGravityAssistScene from './scenes/CruiseGravityAssistScene.tsx';
 import PackOrbiterScene from './scenes/PackOrbiterScene.tsx';
-import FirstOrbitScene from './scenes/FirstOrbit.tsx';
-import SecondOrbitScene from './scenes/SecondOrbit.tsx';
-import ThirdOrbitScene from './scenes/ThirdOrbit.tsx';
-import FourthOrbitScene from './scenes/FourthOrbit.tsx';
+import Orbit from './scenes/Orbit.tsx';
 import artifactPaths from '../artifacts/artifact-paths.ts';
 
 const defaultCameraPosition = new Vector3(0, 6, 25);
@@ -168,7 +165,7 @@ const getSceneConfig = (): SceneConfig => ({
       artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Mars]
     },
     [SceneName.FIRST_ORBIT]: {
-      component: FirstOrbitScene,
+      component: Orbit,
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.CRUISE_GRAVITY_ASSIST,
@@ -188,7 +185,7 @@ const getSceneConfig = (): SceneConfig => ({
       ]
     },
     [SceneName.SECOND_ORBIT]: {
-      component: SecondOrbitScene,
+      component: Orbit,
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.FIRST_ORBIT,
@@ -207,7 +204,7 @@ const getSceneConfig = (): SceneConfig => ({
       ]
     },
     [SceneName.THIRD_ORBIT]: {
-      component: ThirdOrbitScene,
+      component: Orbit,
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.SECOND_ORBIT,
@@ -226,7 +223,7 @@ const getSceneConfig = (): SceneConfig => ({
       ]
     },
     [SceneName.FOURTH_ORBIT]: {
-      component: FourthOrbitScene,
+      component: Orbit,
       markerUrl: 'assets/patt.hiro',
       previousSceneTransition: {
         toScene: SceneName.THIRD_ORBIT,
