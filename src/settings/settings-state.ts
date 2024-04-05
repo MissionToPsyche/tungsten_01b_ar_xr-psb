@@ -5,7 +5,7 @@ const settingsState = atom<Settings>({
   key: 'settingsState',
   default: {
     arEnabled: true,
-    audioEnabled: false,
+    audioEnabled: true,
     tooltipsEnabled: true
   }
 });
