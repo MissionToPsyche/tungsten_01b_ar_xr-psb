@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -35,22 +35,22 @@ const SettingsModal = ({
   } = useSettings();
 
   const onChangeArToggle = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setArEnabled(e.target.checked);
+    (isChecked: boolean) => {
+      setArEnabled(isChecked);
     },
     [setArEnabled]
   );
 
   const onChangeAudioToggle = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setAudioEnabled(e.target.checked);
+    (isChecked: boolean) => {
+      setAudioEnabled(isChecked);
     },
     [setAudioEnabled]
   );
 
   const onChangeTooltipsToggle = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setTooltipsEnabled(e.target.checked);
+    (isChecked: boolean) => {
+      setTooltipsEnabled(isChecked);
     },
     [setTooltipsEnabled]
   );
@@ -62,37 +62,46 @@ const SettingsModal = ({
         <ModalHeader>Settings</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <VStack>
+          <VStack align="flex-start">
             <RenderIf shouldRender={!hideArButton}>
               <FormControl display="flex" alignItems="center">
                 <FormLabel htmlFor="ar-toggle" mb="0">
-                  Enable Augmented Reality?
+                  Enable Augmented Reality
                 </FormLabel>
                 <Switch
                   id="ar-toggle"
                   isChecked={arEnabled}
-                  onChange={onChangeArToggle}
+                  onChange={(e) => {
+                    onChangeArToggle(e.target.checked);
+                  }}
+                  style={{ marginLeft: 'auto' }}
                 />
               </FormControl>
             </RenderIf>
             <FormControl display="flex" alignItems="center">
               <FormLabel htmlFor="audio-toggle" mb="0">
-                Enable Audio?
+                Enable Audio
               </FormLabel>
               <Switch
                 id="audio-toggle"
                 isChecked={audioEnabled}
-                onChange={onChangeAudioToggle}
+                onChange={(e) => {
+                  onChangeAudioToggle(e.target.checked);
+                }}
+                style={{ marginLeft: 'auto' }}
               />
             </FormControl>
             <FormControl display="flex" alignItems="center">
               <FormLabel htmlFor="tooltips-toggle" mb="0">
-                Enable Tooltips?
+                Enable Tooltips
               </FormLabel>
               <Switch
                 id="tooltips-toggle"
                 isChecked={tooltipsEnabled}
-                onChange={onChangeTooltipsToggle}
+                onChange={(e) => {
+                  onChangeTooltipsToggle(e.target.checked);
+                }}
+                style={{ marginLeft: 'auto' }}
               />
             </FormControl>
           </VStack>
