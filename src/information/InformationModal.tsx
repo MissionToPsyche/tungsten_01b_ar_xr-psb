@@ -23,6 +23,17 @@ const InformationModal: React.FC<InformationModalProps> = ({
   isOpen,
   onClose
 }) => {
+  const freeSounds = {
+    servo:
+      'servo_sound_02.wav by Artninja -- https://freesound.org/s/705136/ -- License: Attribution 4.0',
+    swish:
+      'swish/whoosh 2 by JSilverSound -- https://freesound.org/s/568835/ -- License: Creative Commons 0',
+    lazer:
+      'Lazer Rifle Zoom In-Out Effect by Hybrid_V -- https://freesound.org/s/321216/ -- License: Attribution 4.0',
+    spaceship:
+      'Large Spaceship Pass 2.wav by Matt_G -- https://freesound.org/s/30347/ -- License: Sampling+'
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -43,7 +54,7 @@ const InformationModal: React.FC<InformationModalProps> = ({
               </Text>
             </InformationItem>
             <InformationItem title="Sponsors" index={2}>
-              Special thanks to our sponsors:{' '}
+              Special thanks to our sponsor:{' '}
               <Text as="span" fontWeight="bold">
                 Arizona State University
               </Text>
@@ -63,17 +74,29 @@ const InformationModal: React.FC<InformationModalProps> = ({
               utilized assets:
               <UnorderedList>
                 <ListItem>
-                  <a href="https://github.com/pmndrs/react-spring">
-                    react-spring/three
-                  </a>
-                </ListItem>
-                <ListItem>
                   <a href="https://threejs.org/">Three.js</a>
                 </ListItem>
                 <ListItem>
-                  <a href="https://www.nasa.gov/audio-and-ringtones/">
-                    NASA Sound
+                  <a href="https://docs.pmnd.rs/react-three-fiber/getting-started/introduction">
+                    React-three-fiber
                   </a>
+                </ListItem>
+                <ListItem>
+                  <a href="https://www.nasa.gov/audio-and-ringtones/">
+                    NASA Sounds
+                  </a>
+                </ListItem>
+                <ListItem>
+                  <a href="https://freesound.org/">Other Sound Assets</a>
+                  <UnorderedList>
+                    {Object.entries(freeSounds).map((info) => (
+                      <ListItem key={info as unknown as React.Key}>
+                        <>
+                          <p>{info}</p>
+                        </>
+                      </ListItem>
+                    ))}
+                  </UnorderedList>
                 </ListItem>
               </UnorderedList>
             </InformationItem>
