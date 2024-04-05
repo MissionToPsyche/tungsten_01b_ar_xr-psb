@@ -182,11 +182,7 @@ const getSceneConfig = (): SceneConfig => ({
       },
       sceneTitle: 'Orbit',
       sceneDate: '2029',
-      artifactPaths: [
-        artifactPaths.OrbitOrbiter,
-        artifactPaths.DashedOrbit,
-        artifactPaths.Psyche
-      ]
+      artifactPaths: [artifactPaths.OrbitOrbiter, artifactPaths.Psyche]
     },
     [SceneName.SECOND_ORBIT]: {
       component: OrbitScene,
@@ -201,11 +197,7 @@ const getSceneConfig = (): SceneConfig => ({
       },
       sceneTitle: 'Orbit',
       sceneDate: '2029',
-      artifactPaths: [
-        artifactPaths.OrbitOrbiter,
-        artifactPaths.DashedOrbit,
-        artifactPaths.Psyche
-      ]
+      artifactPaths: [artifactPaths.OrbitOrbiter, artifactPaths.Psyche]
     },
     [SceneName.THIRD_ORBIT]: {
       component: OrbitScene,
@@ -220,11 +212,7 @@ const getSceneConfig = (): SceneConfig => ({
       },
       sceneTitle: 'Orbit',
       sceneDate: '2029',
-      artifactPaths: [
-        artifactPaths.OrbitOrbiter,
-        artifactPaths.DashedOrbit,
-        artifactPaths.Psyche
-      ]
+      artifactPaths: [artifactPaths.OrbitOrbiter, artifactPaths.Psyche]
     },
     [SceneName.FOURTH_ORBIT]: {
       component: OrbitScene,
@@ -235,11 +223,7 @@ const getSceneConfig = (): SceneConfig => ({
       },
       sceneTitle: 'Orbit',
       sceneDate: '2029',
-      artifactPaths: [
-        artifactPaths.OrbitOrbiter,
-        artifactPaths.DashedOrbit,
-        artifactPaths.Psyche
-      ]
+      artifactPaths: [artifactPaths.OrbitOrbiter, artifactPaths.Psyche]
     }
   },
   cameraParametersUrl: 'assets/camera_para.dat',
