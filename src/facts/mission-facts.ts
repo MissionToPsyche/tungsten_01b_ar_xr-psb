@@ -98,6 +98,12 @@ const missionFacts: Record<string, MissionFact> = {
     title: 'Orbit D',
     fact: 'The spacecraft will orbit Psyche for 100 days (666 orbits), performing elemental mapping.',
     image: '/assets/images/psyche-orbit.png'
+  },
+  // Tutorial
+  tooltip: {
+    title: 'Tooltips',
+    fact: 'This is a tooltip. You can click on them throughout the experience to learn more about the items in a scene.',
+    image: '/assets/images/tooltip.png'
   }
 };
 
