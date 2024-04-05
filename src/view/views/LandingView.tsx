@@ -42,6 +42,9 @@ const LandingView: ViewComponent = ({ changeView }) => {
         src="/assets/images/psyche-badge-outline-color.svg"
         alt="Psyche Logo"
         height="140px"
+        width="140px"
+        alignSelf="center"
+        fallbackSrc="https://via.placeholder.com/140"
       />
       <AlertErrorBoundary>
         <LoaderProvider>
