@@ -48,7 +48,12 @@ const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
               {modalBody}
               <RenderIf shouldRender={!!modalImage}>
                 <Spacer h={10} />
-                <Image w="full" src={modalImage} alt={`${modalTitle} image`} />
+                <Image
+                  mx="auto"
+                  display="block"
+                  src={modalImage}
+                  alt={`${modalTitle} image`}
+                />
               </RenderIf>
             </ModalBody>
             <ModalFooter />

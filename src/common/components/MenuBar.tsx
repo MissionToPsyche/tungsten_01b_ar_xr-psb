@@ -1,16 +1,18 @@
 import React from 'react';
+
 import {
   HStack,
   IconButton,
   useDisclosure,
   useMediaQuery
 } from '@chakra-ui/react';
-import { IoMdSettings } from 'react-icons/io';
+import { IoMdHelpCircle, IoMdSettings } from 'react-icons/io';
 import SettingsModal from '../../settings/SettingsModal.tsx';
 import { VscDebugRestart } from 'react-icons/vsc';
 import RenderIf from './RenderIf.tsx';
 import { IoInformationCircle } from 'react-icons/io5';
 import InformationModal from '../../information/InformationModal.tsx';
+import TutorialModal from '../../tutorial/TutorialModal.tsx';
 
 interface SettingsProps {
   hideArButton?: boolean;
@@ -37,6 +39,12 @@ const MenuBar: React.FC<SettingsProps> = ({
     isOpen: InformationAreOpen,
     onOpen: onOpenInformation,
     onClose: onCloseInformation
+  } = useDisclosure();
+
+  const {
+    isOpen: tutorialIsOpen,
+    onOpen: onOpenTutorial,
+    onClose: onCloseTutorial
   } = useDisclosure();
 
   return (
@@ -66,6 +74,12 @@ const MenuBar: React.FC<SettingsProps> = ({
           aria-label={'Information & Credits'}
           icon={<IoInformationCircle size={24} onClick={onOpenInformation} />}
         />
+        <IconButton
+          isRound
+          aria-label="Tutorial"
+          icon={<IoMdHelpCircle size={24} />}
+          onClick={onOpenTutorial}
+        />
       </HStack>
       <SettingsModal
         isOpen={settingsAreOpen}
@@ -76,6 +90,7 @@ const MenuBar: React.FC<SettingsProps> = ({
         isOpen={InformationAreOpen}
         onClose={onCloseInformation}
       />
+      <TutorialModal isOpen={tutorialIsOpen} onClose={onCloseTutorial} />
     </>
   );
 };
