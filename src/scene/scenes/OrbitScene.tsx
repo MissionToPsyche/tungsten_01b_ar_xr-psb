@@ -4,13 +4,12 @@ import { SceneComponent } from '../types/scene-component.ts';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import BackAnimation from '../../animations/BackAnimation.tsx';
 import { OrbitOrbiter } from '../../artifacts/OrbitOrbiter.tsx';
-import { DashedOrbit } from '../../artifacts/DashedOrbit.tsx';
 import OrbitSceneLightning from '../../common/components/OrbitSceneLightning.tsx';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import useScene from '../use-scene.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
-import { Environment } from '@react-three/drei';
-import { Euler, Group, Vector3 } from 'three';
+import { Environment, Torus } from '@react-three/drei';
+import { Euler, Group, MeshBasicMaterial, Vector3 } from 'three';
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import SceneName from '../types/scene-name.ts';
@@ -18,7 +17,6 @@ import degreesToRadians from '../../common/utils/degrees-to-radians.ts';
 
 const psycheScale = filledVector(5);
 const orbiterScale = filledVector(1.5);
-const dashScale = filledVector(2.8);
 
 const getOrbitPosition = (
   orbitCenter: Vector3,
@@ -86,7 +84,7 @@ const orbitSettings: Record<
   }
 };
 
-const Orbit: SceneComponent = () => {
+const OrbitScene: SceneComponent = () => {
   const { isTransitioning, currentScene } = useScene();
   const orbiterGroupRef = useRef<Group>(null);
   const orbiterInnerGroupRef = useRef<Group>(null);
@@ -114,48 +112,85 @@ const Orbit: SceneComponent = () => {
     orbiterInnerGroupRef.current.rotation.copy(orbiterRotation);
   });
 
+  const torusMaterial = new MeshBasicMaterial({
+    color: '#297AA9',
+    opacity: 0.5,
+    transparent: true
+  });
+
+  const activeTorusMaterial = new MeshBasicMaterial({
+    color: 'white',
+    opacity: 0.8,
+    transparent: true
+  });
+
+  const torusObjects: {
+    scene: SceneName;
+    args: [number, number, number, number, number];
+    position: [number, number, number];
+    rotation: [number, number, number];
+  }[] = [
+    {
+      scene: SceneName.FIRST_ORBIT,
+      args: [13, 0.03, 5, 50, Math.PI * 2],
+      position: [0, 0, -5],
+      rotation: [Math.PI / 2, 0, 0]
+    },
+    {
+      scene: SceneName.SECOND_ORBIT,
+      args: [11, 0.03, 5, 50, Math.PI * 2],
+      position: [0, 0, -5],
+      rotation: [Math.PI / 2, Math.PI / 12, 0]
+    },
+    {
+      scene: SceneName.THIRD_ORBIT,
+      args: [9, 0.03, 5, 50, Math.PI * 2],
+      position: [0, 0, -5],
+      rotation: [Math.PI / 2, Math.PI / 6, 0]
+    },
+    {
+      scene: SceneName.FOURTH_ORBIT,
+      args: [8, 0.03, 5, 50, Math.PI * 2],
+      position: [0, -0.5, -5],
+      rotation: [0, 0, 0]
+    }
+  ];
+
   return (
     <>
       <BackAnimation />
       <Environment preset="forest" />
       <FactsModalTrigger factName="psycheOrbitA">
-        <DashedOrbit
-          position={[0, 0, -18]}
-          scale={dashScale}
-          rotation={[0.1, Math.PI / 2, -0.1]}
-        />
         <RenderIf shouldRender={!isTransitioning}>
-          <ARTooltip position={[10.5, 0, 5]} />
+          <ARTooltip position={[6, 0, 7]} />
+          {torusObjects.map((torusProps, index) => (
+            <Torus
+              key={index}
+              args={torusProps.args as [number, number, number, number, number]}
+              position={torusProps.position}
+              rotation={torusProps.rotation}
+              material={
+                currentScene === torusProps.scene && !isTransitioning
+                  ? activeTorusMaterial
+                  : torusMaterial
+              }
+            />
+          ))}
         </RenderIf>
       </FactsModalTrigger>
       <FactsModalTrigger factName="psycheOrbitB">
-        <DashedOrbit
-          position={[11, 4, -4]}
-          scale={2.4}
-          rotation={[0, 0, Math.PI / 12]}
-        />
         <RenderIf shouldRender={!isTransitioning}>
-          <ARTooltip position={[7, 3, 5]} />
+          <ARTooltip position={[6, 2, 5]} />
         </RenderIf>
       </FactsModalTrigger>
       <FactsModalTrigger factName="psycheOrbitC">
-        <DashedOrbit
-          position={[9, 6.5, -4.5]}
-          scale={2.2}
-          rotation={[0, 0, Math.PI / 6]}
-        />
         <RenderIf shouldRender={!isTransitioning}>
-          <ARTooltip position={[5, 4, 5]} />
+          <ARTooltip position={[6.5, 3.5, 1]} />
         </RenderIf>
       </FactsModalTrigger>
       <FactsModalTrigger factName="psycheOrbitD">
-        <DashedOrbit
-          position={[0, 8, -5]}
-          scale={[1.7, 3, 1.7]}
-          rotation={[0, Math.PI / 2, Math.PI / 2]}
-        />
         <RenderIf shouldRender={!isTransitioning}>
-          <ARTooltip position={[0, 5, 2.5]} />
+          <ARTooltip position={[3, 7, -4]} />
         </RenderIf>
       </FactsModalTrigger>
       <FactsModalTrigger factName="psyche">
@@ -165,27 +200,12 @@ const Orbit: SceneComponent = () => {
           rotation={[Math.PI / 3, 0, 0]}
         />
         <RenderIf shouldRender={!isTransitioning}>
-          <ARTooltip position={[-1, 7, 0]} />
+          <ARTooltip position={[-6, 2, 0]} />
         </RenderIf>
       </FactsModalTrigger>
-      <DashedOrbit
-        position={[11, 4, -4]}
-        scale={2.4}
-        rotation={[0, 0, Math.PI / 12]}
-      />
-      <DashedOrbit
-        position={[10, 7, -4.5]}
-        scale={2.4}
-        rotation={[0, 0, Math.PI / 6]}
-      />
-      <DashedOrbit
-        position={[0, 8, -5]}
-        scale={[1.7, 3, 1.7]}
-        rotation={[0, Math.PI / 2, Math.PI / 2]}
-      />
       <group ref={orbiterGroupRef}>
         <group ref={orbiterInnerGroupRef}>
-          <OrbitOrbiter scale={orbiterScale} />
+          <OrbitOrbiter scale={orbiterScale} rotation={[-Math.PI / 2, 1, 0]} />
         </group>
       </group>
       <OrbitSceneLightning />
@@ -193,4 +213,4 @@ const Orbit: SceneComponent = () => {
   );
 };
 
-export default Orbit;
+export default OrbitScene;
