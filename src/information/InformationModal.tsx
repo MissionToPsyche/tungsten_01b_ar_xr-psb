@@ -23,13 +23,16 @@ const InformationModal: React.FC<InformationModalProps> = ({
   isOpen,
   onClose
 }) => {
-
   const freeSounds = {
-    servo: 'servo_sound_02.wav by Artninja -- https://freesound.org/s/705136/ -- License: Attribution 4.0',
-    swish: 'swish/whoosh 2 by JSilverSound -- https://freesound.org/s/568835/ -- License: Creative Commons 0',
-    lazer: 'Lazer Rifle Zoom In-Out Effect by Hybrid_V -- https://freesound.org/s/321216/ -- License: Attribution 4.0',
-    spaceship: 'Large Spaceship Pass 2.wav by Matt_G -- https://freesound.org/s/30347/ -- License: Sampling+'
-  }
+    servo:
+      'servo_sound_02.wav by Artninja -- https://freesound.org/s/705136/ -- License: Attribution 4.0',
+    swish:
+      'swish/whoosh 2 by JSilverSound -- https://freesound.org/s/568835/ -- License: Creative Commons 0',
+    lazer:
+      'Lazer Rifle Zoom In-Out Effect by Hybrid_V -- https://freesound.org/s/321216/ -- License: Attribution 4.0',
+    spaceship:
+      'Large Spaceship Pass 2.wav by Matt_G -- https://freesound.org/s/30347/ -- License: Sampling+'
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -70,7 +73,7 @@ const InformationModal: React.FC<InformationModalProps> = ({
               curated from reputable sources. Below are the references for the
               utilized assets:
               <UnorderedList>
-              <ListItem>
+                <ListItem>
                   <a href="https://threejs.org/">Three.js</a>
                 </ListItem>
                 <ListItem>
@@ -84,18 +87,15 @@ const InformationModal: React.FC<InformationModalProps> = ({
                   </a>
                 </ListItem>
                 <ListItem>
-                  <a href="https://freesound.org/">
-                    Other Sound Assets
-                  </a>
+                  <a href="https://freesound.org/">Other Sound Assets</a>
                   <UnorderedList>
-                    {
-                      Object.entries(freeSounds).map((info) => (
-                        <ListItem key={info as unknown as React.Key}>
-                          <>
-                            <p>{info}</p>
-                          </>
-                        </ListItem>
-                      ))}
+                    {Object.entries(freeSounds).map((info) => (
+                      <ListItem key={info as unknown as React.Key}>
+                        <>
+                          <p>{info}</p>
+                        </>
+                      </ListItem>
+                    ))}
                   </UnorderedList>
                 </ListItem>
               </UnorderedList>
