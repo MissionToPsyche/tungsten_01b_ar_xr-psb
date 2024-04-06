@@ -68,7 +68,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
                   environment={'sunset'}
                   intensity={0.4}
                 >
-                  <TimeLine castShadow />
+                  {/*<TimeLine castShadow />*/}
                   <ContactShadows />
                 </Stage>
               </PresentationControls>
