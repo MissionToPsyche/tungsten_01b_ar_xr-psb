@@ -1,6 +1,6 @@
 import { ARCanvas } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
@@ -11,11 +11,13 @@ import useAnimation from '../animations/use-animation.ts';
 import RenderIf from '../common/components/RenderIf.tsx';
 import useSceneConfig from './use-scene-config.ts';
 import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
-import { OrbitControls, Stars, useGLTF } from '@react-three/drei';
+import { CameraControls, Stars, useGLTF } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
-import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+
 import useScene from './use-scene.ts';
 import { useBreakpointValue } from '@chakra-ui/react';
+import { Vector3 } from 'three';
+import vectorsWithinDelta from '../common/utils/vectors-within-delta.ts';
 
 /**
  * Manages AR scenes.
@@ -23,7 +25,9 @@ import { useBreakpointValue } from '@chakra-ui/react';
 const SceneManager: ViewComponent = ({ changeView }) => {
   const config = useSceneConfig();
   const { clearAnimations } = useAnimation();
-  const orbitControls = useRef<OrbitControlsImpl>(null);
+  const cameraControls = useRef<CameraControls>(null);
+  const cameraPositionRef = useRef<Vector3>(new Vector3());
+  const [cameraMoving, setCameraMoving] = useState(true);
   const {
     currentSceneConfig: {
       component: CurrentSceneComponent,
@@ -61,10 +65,24 @@ const SceneManager: ViewComponent = ({ changeView }) => {
   }, [changeView, clearAnimations]);
 
   useEffect(() => {
-    if (orbitControls.current && isTransitioning) {
-      orbitControls.current.reset();
+    if (cameraControls.current && isTransitioning) {
+      void cameraControls.current.reset(true);
     }
   }, [isTransitioning]);
+
+  const cameraControlsEnabled = useMemo(() => {
+    if (!isTransitioning) {
+      return true;
+    } else {
+      const x = vectorsWithinDelta(
+        cameraPositionRef.current,
+        config.defaultCameraPosition,
+        0.1
+      );
+      console.log(x);
+      return !cameraMoving && x;
+    }
+  }, [cameraMoving, config.defaultCameraPosition, isTransitioning]);
 
   return (
     <LoaderProvider>
@@ -85,18 +103,23 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         <ARRenderSizeSynchronizer />
         <RenderIf shouldRender={config.disableAr}>
           <color attach="background" args={['#2e4371']} />
-          <OrbitControls
-            enabled={!isTransitioning}
-            ref={orbitControls}
-            zoomSpeed={0.8}
-            rotateSpeed={0.8}
-            panSpeed={0.5}
+          <CameraControls
+            enabled={cameraControlsEnabled}
+            ref={cameraControls}
             minAzimuthAngle={-Math.PI / 1.2}
             maxAzimuthAngle={Math.PI / 1.2}
             minPolarAngle={Math.PI / 2.5}
             maxPolarAngle={Math.PI / 2}
-            maxZoom={0.04}
-            maxDistance={30}
+            onStart={() => {
+              setCameraMoving(true);
+            }}
+            onEnd={() => {
+              setCameraMoving(false);
+            }}
+            onChange={() => {
+              cameraControls.current?.getPosition(cameraPositionRef.current);
+            }}
+            maxDistance={40}
           />
           <Stars
             radius={50}
