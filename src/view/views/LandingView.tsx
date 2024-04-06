@@ -14,7 +14,6 @@ import {
   PresentationControls,
   Stage
 } from '@react-three/drei';
-import { TimeLine } from '../../artifacts/TimeLine.tsx';
 import { useWindowSize } from '@uidotdev/usehooks';
 import AlertErrorBoundary from '../../error/AlertErrorBoundary.tsx';
 import MenuBar from '../../common/components/MenuBar.tsx';
@@ -68,7 +67,6 @@ const LandingView: ViewComponent = ({ changeView }) => {
                   environment={'sunset'}
                   intensity={0.4}
                 >
-                  {/*<TimeLine castShadow />*/}
                   <ContactShadows />
                 </Stage>
               </PresentationControls>
