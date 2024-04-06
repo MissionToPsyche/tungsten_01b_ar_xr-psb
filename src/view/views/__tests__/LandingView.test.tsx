@@ -1,9 +1,10 @@
 import { mockResizeObserver } from 'jsdom-testing-mocks';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import LandingView from '../LandingView.tsx';
 import { expect, vi } from 'vitest';
 import ViewName from '../../types/view-name.ts';
 import axe from 'axe-core';
+import { Suspense } from 'react';
 
 mockResizeObserver();
 vi.mock('../../../audio/use-audio.ts');
@@ -15,23 +16,33 @@ vi.mock('@chakra-ui/react', async () => ({
 
 const changeView = vi.fn();
 
-const setup = () => render(<LandingView changeView={changeView} />);
+const setup = () =>
+  render(
+    <Suspense>
+      <LandingView changeView={changeView} />
+    </Suspense>
+  );
 
 describe('<LandingView/>', () => {
-  it('should render the intro text', () => {
+  it('should render the intro text', async () => {
     setup();
 
-    expect(
-      screen.getByText('Ready for an interstellar adventure?', { exact: false })
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText('Ready for an interstellar adventure?', {
+          exact: false
+        })
+      ).toBeInTheDocument();
+    });
   });
 
-  it('should call changeView when the launch button is clicked', () => {
+  it('should call changeView when the launch button is clicked', async () => {
     setup();
 
-    fireEvent.click(
-      screen.getByText('Start Mission Timeline', { selector: 'button' })
-    );
+    const startButton = await screen.findByText('Start Mission Timeline', {
+      selector: 'button'
+    });
+    fireEvent.click(startButton);
 
     expect(changeView).toHaveBeenCalledWith(ViewName.AR_SCENES);
   });
