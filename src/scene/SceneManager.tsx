@@ -16,8 +16,6 @@ import SceneControls from './SceneControls.tsx';
 
 import useScene from './use-scene.ts';
 import { useBreakpointValue } from '@chakra-ui/react';
-import { Vector3 } from 'three';
-import vectorsWithinDelta from '../common/utils/vectors-within-delta.ts';
 
 /**
  * Manages AR scenes.
@@ -26,8 +24,8 @@ const SceneManager: ViewComponent = ({ changeView }) => {
   const config = useSceneConfig();
   const { clearAnimations } = useAnimation();
   const cameraControls = useRef<CameraControls>(null);
-  const cameraPositionRef = useRef<Vector3>(new Vector3());
-  const [cameraMoving, setCameraMoving] = useState(true);
+  // const cameraPositionRef = useRef<Vector3>(new Vector3());
+  const [cameraEnabled, setCameraEnabled] = useState(true);
   const {
     currentSceneConfig: {
       component: CurrentSceneComponent,
@@ -70,19 +68,32 @@ const SceneManager: ViewComponent = ({ changeView }) => {
     }
   }, [isTransitioning]);
 
-  const cameraControlsEnabled = useMemo(() => {
-    if (!isTransitioning) {
-      return true;
+  // const cameraControlsEnabled = useMemo(() => {
+  //   if (!isTransitioning) {
+  //     return true;
+  //   } else {
+  //     const x = vectorsWithinDelta(
+  //       cameraPositionRef.current,
+  //       config.defaultCameraPosition,
+  //       0.1
+  //     );
+  //     // console.log(x);
+  //     return !x;
+  //   }
+  // }, [config.defaultCameraPosition, isTransitioning]);
+
+  useEffect(() => {
+    if (isTransitioningToNext) {
+      const cameraTimeout = setTimeout(() => {
+        setCameraEnabled(false);
+        return () => {
+          clearTimeout(cameraTimeout);
+        };
+      }, 1000);
     } else {
-      const x = vectorsWithinDelta(
-        cameraPositionRef.current,
-        config.defaultCameraPosition,
-        0.1
-      );
-      console.log(x);
-      return !cameraMoving && x;
+      setCameraEnabled(true);
     }
-  }, [cameraMoving, config.defaultCameraPosition, isTransitioning]);
+  }, [isTransitioningToNext]);
 
   return (
     <LoaderProvider>
@@ -104,21 +115,15 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         <RenderIf shouldRender={config.disableAr}>
           <color attach="background" args={['#2e4371']} />
           <CameraControls
-            enabled={cameraControlsEnabled}
+            enabled={cameraEnabled}
             ref={cameraControls}
             minAzimuthAngle={-Math.PI / 1.2}
             maxAzimuthAngle={Math.PI / 1.2}
             minPolarAngle={Math.PI / 2.5}
             maxPolarAngle={Math.PI / 2}
-            onStart={() => {
-              setCameraMoving(true);
-            }}
-            onEnd={() => {
-              setCameraMoving(false);
-            }}
-            onChange={() => {
-              cameraControls.current?.getPosition(cameraPositionRef.current);
-            }}
+            // onChange={() => {
+            //   cameraControls.current?.getPosition(cameraPositionRef.current);
+            // }}
             maxDistance={40}
           />
           <Stars
