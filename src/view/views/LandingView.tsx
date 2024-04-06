@@ -4,12 +4,10 @@ import { FaRocket } from 'react-icons/fa';
 import { ViewComponent } from '../types/view-component.ts';
 import ViewName from '../types/view-name.ts';
 import { Canvas } from '@react-three/fiber';
-import SceneLighting from '../../common/components/SceneLighting.tsx';
 import LoaderProvider from '../../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../../common/loader/LoaderTracker.tsx';
 import {
   Bounds,
-  ContactShadows,
   PerspectiveCamera,
   PresentationControls,
   Stage
@@ -50,8 +48,6 @@ const LandingView: ViewComponent = ({ changeView }) => {
         <LoaderProvider>
           <LoaderTracker />
           <Canvas style={{ flex: 1 }} shadows>
-            <SceneLighting />
-            <directionalLight intensity={0.5} position={[8, 10, 40]} />
             <PerspectiveCamera makeDefault position={[0, 50, 200]} />
             <Bounds fit clip observe margin={0.5}>
               <PresentationControls
@@ -62,14 +58,8 @@ const LandingView: ViewComponent = ({ changeView }) => {
                 polar={[-Math.PI / 4, Math.PI / 3]}
                 azimuth={[-Math.PI / 3, Math.PI / 3]}
               >
-                <Stage
-                  shadows={'contact'}
-                  preset={'portrait'}
-                  environment={'sunset'}
-                  intensity={0.4}
-                >
-                  <TimeLine castShadow />
-                  <ContactShadows />
+                <Stage preset={'portrait'} environment={'apartment'}>
+                  <TimeLine />
                 </Stage>
               </PresentationControls>
             </Bounds>
