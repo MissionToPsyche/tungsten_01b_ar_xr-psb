@@ -58,7 +58,7 @@ const LandingView: ViewComponent = ({ changeView }) => {
                 polar={[-Math.PI / 4, Math.PI / 3]}
                 azimuth={[-Math.PI / 3, Math.PI / 3]}
               >
-                <Stage preset={'portrait'} environment={'apartment'}>
+                <Stage preset={'portrait'} environment={'park'} intensity={0.1}>
                   <TimeLine />
                 </Stage>
               </PresentationControls>
