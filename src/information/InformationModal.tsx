@@ -45,7 +45,7 @@ const InformationModal: React.FC<InformationModalProps> = ({
             <InformationItem title="Application Development" index={1}>
               <Text>
                 This application is developed by:
-                <OrderedList>
+                <OrderedList pl="4">
                   <ListItem>Ana Diru</ListItem>
                   <ListItem>Anthony Zigerelli</ListItem>
                   <ListItem>Avinaash Ghansam</ListItem>

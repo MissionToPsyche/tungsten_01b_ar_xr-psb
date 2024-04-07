@@ -1,21 +1,32 @@
 import { SceneConfig } from './types/scene-config.ts';
 import SceneName from './types/scene-name.ts';
-import LaunchScene from './scenes/LaunchScene.tsx';
 import AnimationName from '../animations/types/animation-name.ts';
-import AssemblyScene from './scenes/AssemblyScene.tsx';
 import getBoolFromEnv from '../common/utils/get-bool-from-env.ts';
 import getSceneNameFromEnv from './get-scene-name-from-env.ts';
-import AcousticTestingScene from './scenes/AcousticTestingScene.tsx';
-import VibrationTestingScene from './scenes/VibrationTestingScene.tsx';
-import CruisePanelsScene from './scenes/CruisePanelsScene.tsx';
-import CruiseThrusterScene from './scenes/CruiseThrusterScene.tsx';
 import { Vector3 } from 'three';
-import CruiseGravityAssistScene from './scenes/CruiseGravityAssistScene.tsx';
-import PackOrbiterScene from './scenes/PackOrbiterScene.tsx';
-import OrbitScene from './scenes/OrbitScene.tsx';
 import artifactPaths from '../artifacts/artifact-paths.ts';
+import { lazy } from 'react';
+
+const LaunchScene = lazy(() => import('./scenes/LaunchScene.tsx'));
+const AssemblyScene = lazy(() => import('./scenes/AssemblyScene.tsx'));
+const AcousticTestingScene = lazy(
+  () => import('./scenes/AcousticTestingScene.tsx')
+);
+const VibrationTestingScene = lazy(
+  () => import('./scenes/VibrationTestingScene.tsx')
+);
+const CruisePanelsScene = lazy(() => import('./scenes/CruisePanelsScene.tsx'));
+const CruiseThrusterScene = lazy(
+  () => import('./scenes/CruiseThrusterScene.tsx')
+);
+const CruiseGravityAssistScene = lazy(
+  () => import('./scenes/CruiseGravityAssistScene.tsx')
+);
+const PackOrbiterScene = lazy(() => import('./scenes/PackOrbiterScene.tsx'));
+const OrbitScene = lazy(() => import('./scenes/OrbitScene.tsx'));
 
 const defaultCameraPosition = new Vector3(0, 6, 25);
+
 /**
  * Function to get the scene configuration. Right now extracted into a method
  * rather than a constant for easier testing. But also could be adjusted to
