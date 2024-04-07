@@ -53,13 +53,10 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
 
       if (elapsed >= 4) {
         setImageVisible(false);
+        groupRef.current.position.y += delta * elapsed;
 
-        if (elapsed >= 4 && elapsed <= 5) {
-          groupRef.current.position.y += delta * elapsed;
-        }
-
-        if (elapsed >= 5 && elapsed <= 11 && !arEnabled) {
-          if (elapsed <= 9) {
+        if (elapsed >= 5 && elapsed <= 11) {
+          if (elapsed <= 9 && !arEnabled) {
             state.camera.rotation.x += delta * 0.27;
           }
           groupRef.current.position.y += delta * elapsed;
