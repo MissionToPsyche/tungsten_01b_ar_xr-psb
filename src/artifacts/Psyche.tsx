@@ -28,7 +28,7 @@ export function Psyche(props: JSX.IntrinsicElements['group']) {
     if (groupRef.current == null) {
       return;
     }
-    groupRef.current.rotation.y -= delta * 0.005;
+    groupRef.current.rotation.y -= delta * 0.008;
   });
 
   return (
