@@ -17,47 +17,53 @@ import {
   VStack,
   useSteps
 } from '@chakra-ui/react';
-import TooltipTutorial from './views/TooltipTutorial';
-import ControlsTutorial from './views/ControlsTutorial';
-import SettingsTutorial from './views/SettingsTutorial';
-import Disclaimer from './views/Disclaimer';
+import React, { lazy, Suspense } from 'react';
+import LoaderUI from '../common/loader/LoaderUI.tsx';
+
+const TooltipTutorial = lazy(() => import('./views/TooltipTutorial'));
+const ControlsTutorial = lazy(() => import('./views/ControlsTutorial'));
+const SettingsTutorial = lazy(() => import('./views/SettingsTutorial'));
+const Disclaimer = lazy(() => import('./views/Disclaimer'));
 
 interface TutorialWindowProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const steps = [
-  { description: 'Tooltips' },
-  { description: 'Controls' },
-  { description: 'Settings' },
-  { description: 'Disclaimer' }
-];
-
 interface TutorialView {
-  component: React.ReactNode;
-  helpMessage: string;
+  key: string;
+  component: React.FC;
+  description: string;
+  label: string;
 }
 
-const Pages: TutorialView[] = [
+const steps: TutorialView[] = [
   {
-    component: <TooltipTutorial key="0" />,
-    helpMessage: 'Tap the target below'
+    key: '0',
+    component: TooltipTutorial,
+    description: 'Tap the target below',
+    label: 'Tooltips'
   },
   {
-    component: <ControlsTutorial key="1" />,
-    helpMessage:
-      'Drag and zoom to explore the scene objects. Note: Only works in Non-AR Mode.'
+    key: '1',
+    component: ControlsTutorial,
+    description:
+      'Drag and zoom to explore the scene objects. Note: Only works in Non-AR Mode.',
+    label: 'Controls'
   },
   {
-    component: <SettingsTutorial key="2" />,
-    helpMessage:
-      'Use the menu bar to restart the experience, access the settings, view the credits or tutorial.'
+    key: '2',
+    component: SettingsTutorial,
+    description:
+      'Use the menu bar to restart the experience, access the settings, view the credits or tutorial.',
+    label: 'Settings'
   },
   {
-    component: <Disclaimer key="3" />,
-    helpMessage:
-      'The displayed models are designed to enrich the experience and are not depicted to real-world scale.'
+    key: '3',
+    component: Disclaimer,
+    description:
+      'The displayed models are designed to enrich the experience and are not depicted to real-world scale.',
+    label: 'Disclaimer'
   }
 ];
 
@@ -66,6 +72,12 @@ const TutorialModal = ({ isOpen, onClose }: TutorialWindowProps) => {
     index: 0,
     count: steps.length - 1
   });
+
+  const {
+    key: activeKey,
+    component: CurrenPageComponent,
+    description
+  } = steps[activeStep];
 
   return (
     <Modal
@@ -82,14 +94,15 @@ const TutorialModal = ({ isOpen, onClose }: TutorialWindowProps) => {
         <ModalCloseButton />
         <ModalBody>
           <VStack>
-            <Text>{Pages[activeStep].helpMessage}</Text>
+            <Text>{description}</Text>
             <Spacer />
-            {Pages[activeStep].component}
-
+            <Suspense fallback={<LoaderUI progress={50} height="150px" />}>
+              <CurrenPageComponent />
+            </Suspense>
             <Stepper size="sm" index={activeStep} colorScheme="magenta">
-              {steps.map((step, index) => (
+              {steps.map(({ label }, index) => (
                 <Step
-                  key={index}
+                  key={activeKey}
                   onClick={() => {
                     setActiveStep(index);
                   }}
@@ -98,7 +111,7 @@ const TutorialModal = ({ isOpen, onClose }: TutorialWindowProps) => {
                     <StepStatus complete={<StepIcon />} />
                   </StepIndicator>
                   <Box flexShrink="0">
-                    <StepDescription>{step.description}</StepDescription>
+                    <StepDescription>{label}</StepDescription>
                   </Box>
                 </Step>
               ))}

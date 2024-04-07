@@ -11,6 +11,7 @@ import { Image } from '@react-three/drei';
 
 const thrusterStartingColor = new Color('#FFDD00');
 const thrusterEndingColor = new Color('#FFF2BD');
+const countdownImagePosition = new Vector3(4, 4, 4);
 
 /**
  * Liftoff animation for rocket
@@ -89,7 +90,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
         <Image
           url={`/assets/images/countdown_${currentCountDown}.png`}
           scale={4}
-          position={new Vector3(4, 4, 4)}
+          position={countdownImagePosition}
         />
       </RenderIf>
       {children}
