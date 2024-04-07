@@ -24,7 +24,6 @@ const SceneManager: ViewComponent = ({ changeView }) => {
   const config = useSceneConfig();
   const { clearAnimations } = useAnimation();
   const cameraControls = useRef<CameraControls>(null);
-  // const cameraPositionRef = useRef<Vector3>(new Vector3());
   const [cameraEnabled, setCameraEnabled] = useState(true);
   const {
     currentSceneConfig: {
@@ -68,20 +67,6 @@ const SceneManager: ViewComponent = ({ changeView }) => {
     }
   }, [isTransitioning]);
 
-  // const cameraControlsEnabled = useMemo(() => {
-  //   if (!isTransitioning) {
-  //     return true;
-  //   } else {
-  //     const x = vectorsWithinDelta(
-  //       cameraPositionRef.current,
-  //       config.defaultCameraPosition,
-  //       0.1
-  //     );
-  //     // console.log(x);
-  //     return !x;
-  //   }
-  // }, [config.defaultCameraPosition, isTransitioning]);
-
   useEffect(() => {
     if (isTransitioningToNext) {
       const cameraTimeout = setTimeout(() => {
@@ -121,9 +106,6 @@ const SceneManager: ViewComponent = ({ changeView }) => {
             maxAzimuthAngle={Math.PI / 1.2}
             minPolarAngle={Math.PI / 2.5}
             maxPolarAngle={Math.PI / 2}
-            // onChange={() => {
-            //   cameraControls.current?.getPosition(cameraPositionRef.current);
-            // }}
             maxDistance={40}
           />
           <Stars
