@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy } from 'react';
 
 import {
   HStack,
@@ -12,7 +12,8 @@ import { VscDebugRestart } from 'react-icons/vsc';
 import RenderIf from './RenderIf.tsx';
 import { IoInformationCircle } from 'react-icons/io5';
 import InformationModal from '../../information/InformationModal.tsx';
-import TutorialModal from '../../tutorial/TutorialModal.tsx';
+
+const TutorialModal = lazy(() => import('../../tutorial/TutorialModal.tsx'));
 
 interface SettingsProps {
   hideArButton?: boolean;
