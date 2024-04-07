@@ -164,5 +164,46 @@ describe('getSceneConfig', () => {
     ).toEqual(SceneName.CRUISE_GRAVITY_ASSIST);
   });
 
+  it('should configure the first orbit scene as the previous scene before second orbit', () => {
+    const actual = getSceneConfig();
+
+    expect(
+      actual.scenes[SceneName.CRUISE_GRAVITY_ASSIST].previousSceneTransition
+    ).toBeDefined();
+    expect(
+      actual.scenes[SceneName.SECOND_ORBIT].previousSceneTransition?.toScene
+    ).toEqual(SceneName.FIRST_ORBIT);
+  });
+
+  it('should configure the second orbit scene as the previous scene before third orbit', () => {
+    const actual = getSceneConfig();
+
+    expect(
+      actual.scenes[SceneName.SECOND_ORBIT].previousSceneTransition
+    ).toBeDefined();
+    expect(
+      actual.scenes[SceneName.THIRD_ORBIT].previousSceneTransition?.toScene
+    ).toEqual(SceneName.SECOND_ORBIT);
+  });
+
+  it('should configure the third orbit scene as the previous scene before the fourth orbit scene', () => {
+    const actual = getSceneConfig();
+
+    expect(
+      actual.scenes[SceneName.THIRD_ORBIT].previousSceneTransition
+    ).toBeDefined();
+    expect(
+      actual.scenes[SceneName.FOURTH_ORBIT].previousSceneTransition?.toScene
+    ).toEqual(SceneName.THIRD_ORBIT);
+  });
+
+  it('should configure the fourth orbit scene as the next scene before the third orbit scene', () => {
+    const actual = getSceneConfig();
+
+    expect(
+      actual.scenes[SceneName.FOURTH_ORBIT].previousSceneTransition
+    ).toBeDefined();
+  });
+
   // TODO: Verify the rest of the transitions once we have those scenes in place
 });
