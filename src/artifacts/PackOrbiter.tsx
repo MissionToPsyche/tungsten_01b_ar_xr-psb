@@ -13,24 +13,18 @@ type GLTFResult = GLTF & {
   nodes: {
     SolarPanelLeft1010: THREE.Mesh;
     SolarPanelLeft1010_1: THREE.Mesh;
-    SolarPanelLeft1011: THREE.Mesh;
-    SolarPanelLeft1011_1: THREE.Mesh;
     SolarPanelLeft1012: THREE.Mesh;
     SolarPanelLeft1012_1: THREE.Mesh;
     Icosphere: THREE.Mesh;
     Cylinder: THREE.Mesh;
-    Cylinder001: THREE.Mesh;
     Icosphere001: THREE.Mesh;
     Cone001: THREE.Mesh;
     Object_0002: THREE.Mesh;
-    Object_0002_1: THREE.Mesh;
     ['psyche-text_baseColor_1']: THREE.Mesh;
     ['psyche-text_baseColor_2']: THREE.Mesh;
     ['psyche-text_baseColor_3']: THREE.Mesh;
     ['psyche-text_baseColor_4']: THREE.Mesh;
-    ['psyche-text_baseColor_5']: THREE.Mesh;
     PanelFrameLeft: THREE.Mesh;
-    PanelFrameRight: THREE.Mesh;
     Cube: THREE.Mesh;
     DSOC_Box: THREE.Mesh;
     Magnetometer02001: THREE.Mesh;
@@ -44,7 +38,6 @@ type GLTFResult = GLTF & {
     ThrusterBackPart3_1: THREE.Mesh;
   };
   materials: {
-    aluminium: THREE.MeshStandardMaterial;
     Panel_Material: THREE.MeshStandardMaterial;
     FoilMaterial: THREE.MeshStandardMaterial;
     PaletteMaterial001: THREE.MeshStandardMaterial;
@@ -54,9 +47,6 @@ type GLTFResult = GLTF & {
     AlumFoilBack: THREE.MeshStandardMaterial;
   };
 };
-
-// type ActionName = 'SolarPanelRight_3_close' | 'SolarPanelRight_2_close' | 'SolarPanelRight_1_close' | 'rocket_right_close' | 'SolarPanelLeft_3_close' | 'SolarPanelLeft_2_close' | 'SolarPanelLeft_1_close' | 'rocket_left_close' | 'PanelFrameLeftClose' | 'PanelFrameRightAction'
-// type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
 export function PackOrbiter(
   props: {
@@ -137,12 +127,12 @@ export function PackOrbiter(
         >
           <mesh
             name="SolarPanelLeft1011"
-            geometry={nodes.SolarPanelLeft1011.geometry}
+            geometry={nodes.SolarPanelLeft1010.geometry}
             material={materials.AlumFoilBack}
           />
           <mesh
             name="SolarPanelLeft1011_1"
-            geometry={nodes.SolarPanelLeft1011_1.geometry}
+            geometry={nodes.SolarPanelLeft1010_1.geometry}
             material={materials.Panel_Material}
           />
         </group>
@@ -154,12 +144,12 @@ export function PackOrbiter(
         >
           <mesh
             name="SolarPanelLeft1011"
-            geometry={nodes.SolarPanelLeft1011.geometry}
+            geometry={nodes.SolarPanelLeft1010.geometry}
             material={materials.AlumFoilBack}
           />
           <mesh
             name="SolarPanelLeft1011_1"
-            geometry={nodes.SolarPanelLeft1011_1.geometry}
+            geometry={nodes.SolarPanelLeft1010_1.geometry}
             material={materials.Panel_Material}
           />
         </group>
@@ -171,12 +161,12 @@ export function PackOrbiter(
         >
           <mesh
             name="SolarPanelLeft1011"
-            geometry={nodes.SolarPanelLeft1011.geometry}
+            geometry={nodes.SolarPanelLeft1010.geometry}
             material={materials.AlumFoilBack}
           />
           <mesh
             name="SolarPanelLeft1011_1"
-            geometry={nodes.SolarPanelLeft1011_1.geometry}
+            geometry={nodes.SolarPanelLeft1010_1.geometry}
             material={materials.Panel_Material}
           />
         </group>
@@ -230,7 +220,7 @@ export function PackOrbiter(
         />
         <mesh
           name="Cylinder001"
-          geometry={nodes.Cylinder001.geometry}
+          geometry={nodes.Cylinder.geometry}
           material={materials.AlumFoilBack}
           position={[1.297, 4.861, -1.365]}
           scale={[0.05, 0.75, 0.05]}
@@ -260,11 +250,6 @@ export function PackOrbiter(
             geometry={nodes.Object_0002.geometry}
             material={materials.PaletteMaterial001}
           />
-          <mesh
-            name="Object_0002_1"
-            geometry={nodes.Object_0002_1.geometry}
-            material={materials.PaletteMaterial001}
-          />
         </group>
         <group
           name="psyche-text_baseColor"
@@ -292,11 +277,6 @@ export function PackOrbiter(
             geometry={nodes['psyche-text_baseColor_4'].geometry}
             material={materials['psyche-logo_baseColor']}
           />
-          <mesh
-            name="psyche-text_baseColor_5"
-            geometry={nodes['psyche-text_baseColor_5'].geometry}
-            material={materials['psyche-logo_baseColor']}
-          />
         </group>
         <mesh
           name="PanelFrameLeft"
@@ -308,7 +288,7 @@ export function PackOrbiter(
         />
         <mesh
           name="PanelFrameRight"
-          geometry={nodes.PanelFrameRight.geometry}
+          geometry={nodes.PanelFrameLeft.geometry}
           material={materials.AlumFoilBack}
           position={[1.506, 0.8, 0.004]}
           rotation={[-Math.PI, 0, -Math.PI / 6]}
@@ -403,7 +383,7 @@ export function PackOrbiter(
           />
         </group>
         <group
-          name="ThrusterBack001"
+          name="ThrusterFront001"
           position={[-0.115, 0.092, 2.165]}
           rotation={[-3.133, 0, -Math.PI]}
           scale={[-0.034, 0.034, 0.034]}

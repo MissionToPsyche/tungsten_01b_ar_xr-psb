@@ -19,7 +19,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-const rotationSpeed = 0.03;
+const rotationSpeed = 0.01;
 
 export function Earth(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group | null>(null);
@@ -37,15 +37,13 @@ export function Earth(props: JSX.IntrinsicElements['group']) {
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <group name="Scene" position={[0, 0, 0]}>
-        <mesh
-          ref={meshRef}
-          name="Earth"
-          geometry={nodes.Earth.geometry}
-          material={materials['Material.001']}
-          rotation={[0, 0.8, 0.2]}
-        />
-      </group>
+      <mesh
+        ref={meshRef}
+        name="Earth"
+        geometry={nodes.Earth.geometry}
+        material={materials['Material.001']}
+        rotation={[0, 0.8, 0.2]}
+      />
     </group>
   );
 }
