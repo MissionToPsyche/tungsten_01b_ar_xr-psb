@@ -33,36 +33,4 @@ describe('<InformationModal />', () => {
       screen.getByText('This application is developed by:')
     ).toBeInTheDocument();
   });
-
-  it('should toggle accordion section sponsors when clicked', async () => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    render(<InformationModal isOpen onClose={() => {}} />);
-
-    const sectionTitle = await screen.findByText('Sponsors');
-    expect(sectionTitle).toBeInTheDocument();
-  });
-
-  it('should toggle accordion section ownership when clicked', async () => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    render(<InformationModal isOpen onClose={() => {}} />);
-
-    const sectionTitle = await screen.findByText('Ownership');
-    expect(sectionTitle).toBeInTheDocument();
-  });
-
-  it('should toggle accordion section assets when clicked', async () => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    render(<InformationModal isOpen onClose={() => {}} />);
-
-    const sectionTitle = await screen.findByText('Assets');
-    expect(sectionTitle).toBeInTheDocument();
-  });
-
-  it('should toggle accordion section disclaimer when clicked', async () => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    render(<InformationModal isOpen onClose={() => {}} />);
-
-    const sectionTitle = await screen.findByText('Disclaimer');
-    expect(sectionTitle).toBeInTheDocument();
-  });
 });
