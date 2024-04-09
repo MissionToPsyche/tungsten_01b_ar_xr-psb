@@ -139,7 +139,7 @@ const SettingsModal = ({
             <Text as="b" pt={2}>
               Scene Navigation
             </Text>
-            <SimpleGrid columns={2} spacing={2} w="full">
+            <SimpleGrid columns={1} spacing={2} w="full">
               {sceneNavigationButtons}
             </SimpleGrid>
           </VStack>
