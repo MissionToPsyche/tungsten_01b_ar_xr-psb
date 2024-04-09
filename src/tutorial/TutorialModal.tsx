@@ -11,11 +11,12 @@ import {
   StepDescription,
   StepIcon,
   StepIndicator,
-  StepStatus,
+  StepNumber,
   Stepper,
+  StepStatus,
   Text,
-  VStack,
-  useSteps
+  useSteps,
+  VStack
 } from '@chakra-ui/react';
 import React, { lazy, Suspense } from 'react';
 import LoaderUI from '../common/loader/LoaderUI.tsx';
@@ -41,7 +42,7 @@ const steps: TutorialView[] = [
   {
     key: '0',
     component: TooltipTutorial,
-    description: 'Tap the target below',
+    description: 'Tap the target below to view the tooltip.',
     label: 'Tooltips'
   },
   {
@@ -108,7 +109,11 @@ const TutorialModal = ({ isOpen, onClose }: TutorialWindowProps) => {
                   }}
                 >
                   <StepIndicator>
-                    <StepStatus complete={<StepIcon />} />
+                    <StepStatus
+                      complete={<StepIcon />}
+                      incomplete={<StepNumber />}
+                      active={<StepNumber />}
+                    />
                   </StepIndicator>
                   <Box flexShrink="0">
                     <StepDescription>{label}</StepDescription>

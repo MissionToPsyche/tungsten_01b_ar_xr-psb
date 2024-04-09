@@ -13,7 +13,7 @@ const SoundParticleSystem = (props: JSX.IntrinsicElements['instancedMesh']) => {
 
   return (
     <ParticleSystem
-      count={15}
+      count={4}
       onParticleInit={onParticleInit}
       onParticleFrame={onParticleFrame}
       {...props}

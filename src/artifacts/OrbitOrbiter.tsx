@@ -37,77 +37,72 @@ export function OrbitOrbiter(props: JSX.IntrinsicElements['group']) {
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      {/* <Box position={[0, -0.3, 0]} scale={0.2} >
-        <meshBasicMaterial opacity={0} color={'green'}/>
-      </Box> */}
-      <group>
+      <mesh
+        geometry={nodes.orbiter4.geometry}
+        material={materials.FoilMaterial}
+        position={[0, -0.28, 0]}
+        scale={[0.15, 0.005, 0.15]}
+      />
+      <group
+        position={[-0.031, 0.031, -0.001]}
+        rotation={[1.5, 0, 0]}
+        scale={[-0.005, -0.005, -0.003]}
+      >
         <mesh
-          geometry={nodes.orbiter4.geometry}
-          material={materials.FoilMaterial}
-          position={[0, -0.28, 0]}
-          scale={[0.15, 0.005, 0.15]}
-        />
-        <group
-          position={[-0.031, 0.031, -0.001]}
-          rotation={[1.5, 0, 0]}
-          scale={[-0.005, -0.005, -0.003]}
-        >
-          <mesh
-            geometry={nodes.SolarPanelLeft1003.geometry}
-            material={materials.aluminium}
-          />
-          <mesh
-            geometry={nodes.SolarPanelLeft1003_1.geometry}
-            material={materials.Panel_Material}
-          />
-        </group>
-        <Trail
-          width={1} // Width of the line
-          color={'#85C1E9'} // Color of the line
-          length={5} // Length of the line
-          decay={1} // How fast the line fades away
-          local={false} // Wether to use the target's world or local positions
-          stride={0} // Min distance between previous and current point
-          interval={1} // Number of frames to wait before next calculation
-          target={undefined} // Optional target. This object will produce the trail.
-          attenuation={(width) => width} // A function to define the width in each point along it.
-        >
-          <Box position={[0, -0.4, 0.5]} scale={0.2}>
-            <meshBasicMaterial transparent opacity={0} />
-          </Box>
-        </Trail>
-        <mesh
-          geometry={nodes.orbiter001.geometry}
-          material={materials.M_01___Default}
-          position={[0, -0.28, 0]}
-          scale={[0.15, 0.005, 0.15]}
+          geometry={nodes.SolarPanelLeft1003.geometry}
+          material={materials.aluminium}
         />
         <mesh
-          geometry={nodes.orbiter002.geometry}
-          material={materials.Thruster_Material}
-          position={[0, -0.28, 0]}
-          scale={[0.15, 0.005, 0.15]}
-        />
-        <mesh
-          geometry={nodes.orbiter003.geometry}
-          material={materials.SignalTransmMaterial}
-          position={[0, -0.28, 0]}
-          scale={[0.15, 0.005, 0.15]}
-        />
-        <mesh
-          geometry={nodes.orbiter005.geometry}
-          material={materials.FoilMaterial}
-          position={[0, -0.28, 0]}
-          scale={[0.15, 0.005, 0.15]}
-        />
-        <mesh
-          geometry={nodes.orbiter006.geometry}
-          material={materials.FoilMaterial}
-          position={[0.102, -0.28, 0.107]}
-          rotation={[Math.PI, -1.396, Math.PI]}
-          scale={[0.15, 0.005, 0.15]}
+          geometry={nodes.SolarPanelLeft1003_1.geometry}
+          material={materials.Panel_Material}
         />
       </group>
+      <Trail
+        width={1} // Width of the line
+        color={'#85C1E9'} // Color of the line
+        length={5} // Length of the line
+        decay={1} // How fast the line fades away
+        local={false} // Wether to use the target's world or local positions
+        stride={0} // Min distance between previous and current point
+        interval={1} // Number of frames to wait before next calculation
+        target={undefined} // Optional target. This object will produce the trail.
+        attenuation={(width) => width} // A function to define the width in each point along it.
+      >
+        <Box position={[0, -0.4, 0.5]} scale={0.2}>
+          <meshBasicMaterial transparent opacity={0} />
+        </Box>
+      </Trail>
+      <mesh
+        geometry={nodes.orbiter001.geometry}
+        material={materials.M_01___Default}
+        position={[0, -0.28, 0]}
+        scale={[0.15, 0.005, 0.15]}
+      />
+      <mesh
+        geometry={nodes.orbiter002.geometry}
+        material={materials.Thruster_Material}
+        position={[0, -0.28, 0]}
+        scale={[0.15, 0.005, 0.15]}
+      />
+      <mesh
+        geometry={nodes.orbiter003.geometry}
+        material={materials.SignalTransmMaterial}
+        position={[0, -0.28, 0]}
+        scale={[0.15, 0.005, 0.15]}
+      />
+      <mesh
+        geometry={nodes.orbiter005.geometry}
+        material={materials.FoilMaterial}
+        position={[0, -0.28, 0]}
+        scale={[0.15, 0.005, 0.15]}
+      />
+      <mesh
+        geometry={nodes.orbiter006.geometry}
+        material={materials.FoilMaterial}
+        position={[0.102, -0.28, 0.107]}
+        rotation={[Math.PI, -1.396, Math.PI]}
+        scale={[0.15, 0.005, 0.15]}
+      />
     </group>
   );
 }

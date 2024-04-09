@@ -9,7 +9,7 @@ const PackOrbiterScene: SceneComponent = () => (
     <PackOrbiterAnimation />
     <AssemblySceneLights />
     <Environment preset="forest" />
-    <spotLight position={[2, 8, 6]} intensity={1} color={'#fcfadc'} />
+    <spotLight position={[0, 10, 30]} intensity={0.1} color={'#fcfadc'} />
     <BackAnimation />
   </>
 );

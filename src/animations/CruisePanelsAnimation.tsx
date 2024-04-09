@@ -7,7 +7,7 @@ import { Earth } from '../artifacts/Earth';
 import filledVector from '../common/utils/filled-vector';
 import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
 
-const earthScale = filledVector(15);
+const earthScale = filledVector(5);
 const orbiterScale = filledVector(0.75);
 
 /**
@@ -53,7 +53,11 @@ const CruisePanelsAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
         />
       </group>
       <group ref={earthRef} {...props}>
-        <Earth position={[10, -5, -60]} scale={earthScale} />
+        <Earth
+          position={[6, -4, -15]}
+          scale={earthScale}
+          rotation={[0, Math.PI / 2, 0]}
+        />
       </group>
     </group>
   );

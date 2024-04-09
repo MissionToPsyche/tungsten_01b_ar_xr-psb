@@ -10,59 +10,24 @@ import { GLTF } from 'three-stdlib';
 
 type GLTFResult = GLTF & {
   nodes: {
-    Cube: THREE.Mesh;
-    Cube001: THREE.Mesh;
-    Cube002: THREE.Mesh;
-    Cube003: THREE.Mesh;
-    Object_5001: THREE.Mesh;
-    Cube004: THREE.Mesh;
-    Cube005: THREE.Mesh;
     PSYCHE_20170116_DEC001: THREE.Mesh;
     mars: THREE.Mesh;
     Cube019: THREE.Mesh;
-    Cube020: THREE.Mesh;
-    Cube021: THREE.Mesh;
-    Cube022: THREE.Mesh;
-    Cube006: THREE.Mesh;
     Cube007: THREE.Mesh;
-    Cube008: THREE.Mesh;
-    Cube009: THREE.Mesh;
     Cube011: THREE.Mesh;
-    TimelineBuble005: THREE.Mesh;
     TimelineBuble005_1: THREE.Mesh;
     Object_2: THREE.Mesh;
     Object_2_1: THREE.Mesh;
-    Object_2_2: THREE.Mesh;
-    Object_2_3: THREE.Mesh;
     Object_2_4: THREE.Mesh;
-    Object_2_5: THREE.Mesh;
     Object_2_6: THREE.Mesh;
     Object_2_7: THREE.Mesh;
-    Object_2_8: THREE.Mesh;
-    Object_2_9: THREE.Mesh;
-    Object_21: THREE.Mesh;
-    Object_23001: THREE.Mesh;
-    Object_25: THREE.Mesh;
-    Object_27: THREE.Mesh;
-    Object_29001: THREE.Mesh;
-    Object_9: THREE.Mesh;
     Object_11001: THREE.Mesh;
-    Object_13: THREE.Mesh;
-    Object_15: THREE.Mesh;
-    Object_17001: THREE.Mesh;
-    Object_19: THREE.Mesh;
-    Object_31: THREE.Mesh;
-    Cylinder001: THREE.Mesh;
-    Cylinder001_1: THREE.Mesh;
-    Cylinder001_2: THREE.Mesh;
     Cylinder001_3: THREE.Mesh;
     Cylinder001_4: THREE.Mesh;
-    Cylinder001_5: THREE.Mesh;
     SolarPanelLeft1014: THREE.Mesh;
     SolarPanelLeft1014_1: THREE.Mesh;
     TextPlus002: THREE.Mesh;
     TextPlus002001: THREE.Mesh;
-    TextPlus002002: THREE.Mesh;
     TextPlus009: THREE.Mesh;
     TextPlus010: THREE.Mesh;
     TextPlus011: THREE.Mesh;
@@ -83,7 +48,6 @@ type GLTFResult = GLTF & {
     ground: THREE.MeshStandardMaterial;
     ['Material.007']: THREE.MeshStandardMaterial;
     ['Material.008']: THREE.MeshStandardMaterial;
-    ['fallback_Material.007']: THREE.MeshStandardMaterial;
     Panel_Material: THREE.MeshStandardMaterial;
     FoilMaterial: THREE.MeshStandardMaterial;
     aluminium: THREE.MeshStandardMaterial;
@@ -100,58 +64,23 @@ export function TimeLine(props: JSX.IntrinsicElements['group']) {
     <group {...props} dispose={null} scale={1.5}>
       <group>
         <mesh
-          geometry={nodes.Cube.geometry}
-          material={materials.PaletteMaterial001}
-          position={[26.302, 1.534, -23.171]}
-          rotation={[0.215, 0.561, 0]}
-          scale={[29.47, 4.5, 1.255]}
-        />
-        <mesh
-          geometry={nodes.Cube001.geometry}
-          material={materials.PaletteMaterial001}
-          position={[22.872, 6.933, -20.405]}
-          rotation={[0.213, 0.576, 0.175]}
-          scale={[25.79, 4.5, 1]}
-        />
-        <mesh
-          geometry={nodes.Cube002.geometry}
-          material={materials.PaletteMaterial001}
-          position={[18.418, 12.672, -16.957]}
-          rotation={[0.205, 0.598, 0.44]}
-          scale={[22.51, 4.5, 0.894]}
-        />
-        <mesh
-          geometry={nodes.Cube003.geometry}
-          material={materials.PaletteMaterial001}
-          position={[2.506, 18.445, -6.002]}
-          rotation={[0.115, 0.646, 1.537]}
-          scale={[17.329, 3.817, 0.758]}
-        />
-        <mesh
-          geometry={nodes.Object_5001.geometry}
-          material={materials.PaletteMaterial002}
-          position={[-160.88, -24.018, -6.653]}
-          rotation={[-Math.PI / 2, 0, 0]}
-          scale={0.034}
-        />
-        <mesh
-          geometry={nodes.Cube004.geometry}
+          geometry={nodes.Cube019.geometry}
           material={materials['metal.001']}
           position={[-155.416, -18.321, -6.682]}
           scale={[4.059, 1.401, 2.856]}
         />
         <mesh
-          geometry={nodes.Cube005.geometry}
+          geometry={nodes.Cube019.geometry}
           material={materials.ground}
-          position={[-160.88, -22.325, -6.653]}
-          scale={[18, 2.644, 14]}
+          position={[-160.88, -20, -6.653]}
+          scale={[18, 1, 14]}
         />
         <mesh
           geometry={nodes.PSYCHE_20170116_DEC001.geometry}
           material={materials['Material.007']}
           position={[0.019, 0.96, -8.65]}
           rotation={[Math.PI / 2, 0, 0]}
-          scale={9}
+          scale={14}
         />
         <mesh
           geometry={nodes.mars.geometry}
@@ -167,19 +96,19 @@ export function TimeLine(props: JSX.IntrinsicElements['group']) {
           scale={3}
         />
         <mesh
-          geometry={nodes.Cube020.geometry}
+          geometry={nodes.Cube019.geometry}
           material={materials.PaletteMaterial001}
           position={[-79.928, -61.604, 11.793]}
           scale={3}
         />
         <mesh
-          geometry={nodes.Cube021.geometry}
+          geometry={nodes.Cube019.geometry}
           material={materials.PaletteMaterial001}
           position={[-159.904, -61.604, -9.477]}
           scale={3}
         />
         <mesh
-          geometry={nodes.Cube022.geometry}
+          geometry={nodes.Cube019.geometry}
           material={materials.PaletteMaterial001}
           position={[-239.837, -61.604, 11.339]}
           scale={3}
@@ -192,14 +121,14 @@ export function TimeLine(props: JSX.IntrinsicElements['group']) {
           scale={[35, 1, 0.5]}
         />
         <mesh
-          geometry={nodes.Cube008.geometry}
+          geometry={nodes.Cube007.geometry}
           material={materials.PaletteMaterial001}
           position={[-40.186, -61.604, 0.622]}
           rotation={[0, 0.262, 0]}
           scale={[35, 1, 0.5]}
         />
         <mesh
-          geometry={nodes.Cube009.geometry}
+          geometry={nodes.Cube007.geometry}
           material={materials.PaletteMaterial001}
           position={[-119.934, -61.604, 0.622]}
           rotation={[0, -0.262, 0]}
@@ -214,19 +143,11 @@ export function TimeLine(props: JSX.IntrinsicElements['group']) {
         />
         <group position={[0, 0, -9.477]} scale={[0.025, 0.031, 0.009]}>
           <mesh
-            geometry={nodes.TimelineBuble005.geometry}
-            material={materials.PaletteMaterial001}
-          />
-          <mesh
             geometry={nodes.TimelineBuble005_1.geometry}
             material={materials.PaletteMaterial001}
           />
         </group>
         <group position={[-80, 0, 10.5]} scale={[0.025, 0.031, 0.009]}>
-          <mesh
-            geometry={nodes.TimelineBuble005.geometry}
-            material={materials.PaletteMaterial001}
-          />
           <mesh
             geometry={nodes.TimelineBuble005_1.geometry}
             material={materials.PaletteMaterial001}
@@ -234,19 +155,12 @@ export function TimeLine(props: JSX.IntrinsicElements['group']) {
         </group>
         <group position={[-160, 0, -9.477]} scale={[0.025, 0.031, 0.009]}>
           <mesh
-            geometry={nodes.TimelineBuble005.geometry}
-            material={materials.PaletteMaterial001}
-          />
-          <mesh
             geometry={nodes.TimelineBuble005_1.geometry}
             material={materials.PaletteMaterial001}
           />
         </group>
         <group position={[-240, 0, 10.5]} scale={[0.025, 0.031, 0.009]}>
-          <mesh
-            geometry={nodes.TimelineBuble005.geometry}
-            material={materials.PaletteMaterial001}
-          />
+          s
           <mesh
             geometry={nodes.TimelineBuble005_1.geometry}
             material={materials.PaletteMaterial001}
@@ -262,80 +176,20 @@ export function TimeLine(props: JSX.IntrinsicElements['group']) {
             material={materials.PaletteMaterial001}
           />
           <mesh
-            geometry={nodes.Object_2_1.geometry}
-            material={materials.PaletteMaterial001}
-          />
-          <mesh
-            geometry={nodes.Object_2_2.geometry}
-            material={materials.PaletteMaterial001}
-          />
-          <mesh
-            geometry={nodes.Object_2_3.geometry}
-            material={materials.PaletteMaterial001}
-          />
-          <mesh
             geometry={nodes.Object_2_4.geometry}
             material={materials.PaletteMaterial001}
           />
           <mesh
-            geometry={nodes.Object_2_5.geometry}
-            material={materials['fallback_Material.007']}
-          />
-          <mesh
             geometry={nodes.Object_2_6.geometry}
-            material={materials.Panel_Material}
+            material={materials['Panel_Material.001']}
           />
           <mesh
             geometry={nodes.Object_2_7.geometry}
             material={materials.PaletteMaterial001}
           />
-          <mesh
-            geometry={nodes.Object_2_8.geometry}
-            material={materials.PaletteMaterial001}
-          />
-          <mesh
-            geometry={nodes.Object_2_9.geometry}
-            material={materials.PaletteMaterial001}
-          />
         </group>
-
-        <mesh
-          geometry={nodes.Object_9.geometry}
-          material={materials.PaletteMaterial001}
-          position={[-155.268, 13.884, -6.308]}
-          rotation={[-Math.PI / 2, 0, -0.786]}
-          scale={0.034}
-        />
         <mesh
           geometry={nodes.Object_11001.geometry}
-          material={materials.PaletteMaterial001}
-          position={[-155.268, 13.884, -6.308]}
-          rotation={[-Math.PI / 2, 0, -0.786]}
-          scale={0.034}
-        />
-        <mesh
-          geometry={nodes.Object_13.geometry}
-          material={materials.PaletteMaterial001}
-          position={[-155.268, 13.884, -6.308]}
-          rotation={[-Math.PI / 2, 0, -0.786]}
-          scale={0.034}
-        />
-        <mesh
-          geometry={nodes.Object_15.geometry}
-          material={materials.PaletteMaterial001}
-          position={[-155.268, 13.884, -6.308]}
-          rotation={[-Math.PI / 2, 0, -0.786]}
-          scale={0.034}
-        />
-        <mesh
-          geometry={nodes.Object_17001.geometry}
-          material={materials.PaletteMaterial001}
-          position={[-155.268, 13.884, -6.308]}
-          rotation={[-Math.PI / 2, 0, -0.786]}
-          scale={0.034}
-        />
-        <mesh
-          geometry={nodes.Object_19.geometry}
           material={materials.PaletteMaterial001}
           position={[-155.268, 13.884, -6.308]}
           rotation={[-Math.PI / 2, 0, -0.786]}
@@ -347,10 +201,6 @@ export function TimeLine(props: JSX.IntrinsicElements['group']) {
           scale={[-0.019, 0.019, 0.011]}
         >
           <mesh
-            geometry={nodes.SolarPanelLeft1014.geometry}
-            material={materials.aluminium}
-          />
-          <mesh
             geometry={nodes.SolarPanelLeft1014_1.geometry}
             material={materials['Panel_Material.001']}
           />
@@ -361,20 +211,8 @@ export function TimeLine(props: JSX.IntrinsicElements['group']) {
           scale={[0.58, 0.019, 0.58]}
         >
           <mesh
-            geometry={nodes.Cylinder001.geometry}
-            material={materials.PaletteMaterial001}
-          />
-          <mesh
             geometry={nodes.Cylinder001_3.geometry}
             material={materials.FoilMaterial}
-          />
-          <mesh
-            geometry={nodes.Cylinder001_4.geometry}
-            material={materials.aluminium}
-          />
-          <mesh
-            geometry={nodes.Cylinder001_5.geometry}
-            material={materials.AlumFoilBack}
           />
         </group>
         <mesh
@@ -390,7 +228,7 @@ export function TimeLine(props: JSX.IntrinsicElements['group']) {
           scale={0.2}
         />
         <mesh
-          geometry={nodes.TextPlus002002.geometry}
+          geometry={nodes.TextPlus002001.geometry}
           material={materials.PaletteMaterial001}
           position={[0.075, 54.429, -9.477]}
           scale={0.2}
