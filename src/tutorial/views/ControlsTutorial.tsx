@@ -23,13 +23,7 @@ const ControlsTutorial: React.FC = () => {
         maxZoom={0.04}
         maxDistance={30}
       />
-      <CruiseOrbiter
-        scale={0.3}
-        rotation={rotation}
-        thrustersOn={true}
-        panelsOpen={true}
-        animatePanels={false}
-      />
+      <CruiseOrbiter scale={0.3} rotation={rotation} thrustersOn={true} />
       <ambientLight intensity={0.2} />
     </Canvas>
   );
