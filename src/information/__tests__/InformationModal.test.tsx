@@ -11,10 +11,10 @@ describe('<InformationModal />', () => {
 
     const sections = [
       'Application Development',
-      'Sponsors',
+      'Sponsor',
       'Ownership',
-      'Assets',
-      'Disclaimer'
+      'Attribution',
+      'Disclaimers'
     ];
     sections.forEach((section) => {
       const sectionTitle = screen.getByText(section);
