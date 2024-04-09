@@ -2,7 +2,6 @@ import { SceneComponent } from '../types/scene-component.ts';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import CruisePanelsAnimation from '../../animations/CruisePanelsAnimation.tsx';
 import BackAnimation from '../../animations/BackAnimation.tsx';
-import CruiseSceneLights from '../../common/components/CruiseSceneLights.tsx';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import useScene from '../use-scene.ts';
 import RenderIf from '../../common/components/RenderIf.tsx';
@@ -15,7 +14,6 @@ const CruisePanelsScene: SceneComponent = () => {
     <>
       <CruisePanelsAnimation />
       <BackAnimation />
-      <CruiseSceneLights />
       <Environment preset="forest" />
       <RenderIf shouldRender={!isTransitioning}>
         <FactsModalTrigger factName="solarPanels">
