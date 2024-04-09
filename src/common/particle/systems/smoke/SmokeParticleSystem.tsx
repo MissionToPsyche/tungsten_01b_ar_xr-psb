@@ -13,7 +13,7 @@ const SmokeParticleSystem = (props: JSX.IntrinsicElements['instancedMesh']) => {
 
   return (
     <ParticleSystem
-      count={200}
+      count={50}
       onParticleInit={onParticleInit}
       onParticleFrame={onParticleFrame}
       {...props}
