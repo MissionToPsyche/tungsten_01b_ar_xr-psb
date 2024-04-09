@@ -113,18 +113,10 @@ const SceneManager: ViewComponent = ({ changeView }) => {
           <Stars
             radius={50}
             depth={50}
-            count={2000}
-            factor={6}
-            saturation={7}
-            fade={true}
-          />
-          <Stars
-            radius={100}
-            depth={80}
-            count={2000}
-            factor={4}
+            count={500}
+            factor={2}
             saturation={5}
-            fade={true}
+            fade={false}
           />
         </RenderIf>
         <SceneLighting />

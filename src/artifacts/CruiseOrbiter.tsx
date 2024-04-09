@@ -34,7 +34,6 @@ type GLTFResult = GLTF & {
   materials: {
     aluminium: THREE.MeshStandardMaterial;
     Panel_Material: THREE.MeshStandardMaterial;
-    PaletteMaterial002: THREE.MeshStandardMaterial;
     FoilMaterial: THREE.MeshStandardMaterial;
     PaletteMaterial001: THREE.MeshStandardMaterial;
     AlumFoilBack: THREE.MeshStandardMaterial;
@@ -106,7 +105,7 @@ export function CruiseOrbiter(
           particleEndColor={thrusterEndingColor}
           position={[0, -0.75, 3.2]}
           rotation={[0, Math.PI / 2, 0]}
-          count={70}
+          count={30}
           scale={0.5}
         />
         <FactsModalTrigger factName="solarPanels">
@@ -280,13 +279,6 @@ export function CruiseOrbiter(
               material={materials.Panel_Material}
             />
           </group>
-          <mesh
-            name="Cube002"
-            geometry={nodes.Cube002.geometry}
-            material={materials.PaletteMaterial002}
-            position={[-0.031, 3.095, 0.548]}
-            scale={[1.537, 0.946, 1.537]}
-          />
           <group
             name="Icosphere"
             position={[-0.331, 3.22, 0.558]}
@@ -320,7 +312,7 @@ export function CruiseOrbiter(
           />
           <mesh
             name="PanelFrameRight"
-            geometry={nodes.PanelFrameRight.geometry}
+            geometry={nodes.PanelFrameLeft.geometry}
             material={materials.aluminium}
             position={[1.534, 2.2, 0]}
             rotation={[Math.PI, 0, -Math.PI / 2]}

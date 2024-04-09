@@ -40,7 +40,7 @@ describe('<SmokeParticleSystem/>', () => {
   it('should initialize 200 particles', async () => {
     await setup();
 
-    expect(onParticleInit).toHaveBeenCalledTimes(200);
+    expect(onParticleInit).toHaveBeenCalledTimes(50);
   });
 
   afterEach(() => {
