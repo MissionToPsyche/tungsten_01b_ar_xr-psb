@@ -44,7 +44,6 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.VIBRATION_TESTING,
         animation: AnimationName.ASSEMBLE,
-        audio: 'sounds/assemble.wav',
         buttonText: 'Assemble Orbiter'
       },
       sceneTitle: 'Assembly & Testing',
@@ -62,7 +61,6 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.ACOUSTIC_TESTING,
         animation: AnimationName.VIBRATION_TESTING,
-        audio: 'sounds/knock.wav',
         buttonText: 'Vibration Test'
       },
       sceneTitle: 'Assembly & Testing',
@@ -97,8 +95,7 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.LAUNCH,
         animation: AnimationName.PACK_ORBITER,
-        buttonText: 'Pack Orbiter',
-        audio: 'sounds/pack-orbiter.mp3'
+        buttonText: 'Pack Orbiter'
       },
       sceneTitle: 'Assembly & Testing',
       sceneDate: '2021',
@@ -115,8 +112,7 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.CRUISE_PANELS,
         animation: AnimationName.LIFTOFF,
-        buttonText: 'Launch Rocket',
-        audio: 'sounds/liftoff.wav'
+        buttonText: 'Launch Rocket'
       },
       sceneTitle: 'Launch',
       sceneDate: '2023',
@@ -136,8 +132,7 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.CRUISE_THRUSTERS,
         buttonText: 'Open Solar Panels',
-        animation: AnimationName.CRUISE_PANELS,
-        audio: 'sounds/artninja-servo-sound.mp3'
+        animation: AnimationName.CRUISE_PANELS
       },
       sceneTitle: 'Initial Checkout',
       sceneDate: '2024',
@@ -154,8 +149,7 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.CRUISE_GRAVITY_ASSIST,
         buttonText: 'Ignite Thrusters',
-        animation: AnimationName.CRUISE_THRUSTERS,
-        audio: 'sounds/swishwhoosh.mp3'
+        animation: AnimationName.CRUISE_THRUSTERS
       },
       sceneTitle: 'Initial Checkout',
       sceneDate: '2024',
