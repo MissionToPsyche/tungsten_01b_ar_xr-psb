@@ -17,34 +17,24 @@ import FactsModalTrigger from '../facts/FactsModalTrigger.tsx';
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_14: THREE.Mesh;
     Object_17: THREE.Mesh;
     Object_20: THREE.Mesh;
     Object_23: THREE.Mesh;
-    Object_41: THREE.Mesh;
     Object_26: THREE.Mesh;
     Object_29: THREE.Mesh;
     Object_32: THREE.Mesh;
-    Object_35: THREE.Mesh;
     Object_44: THREE.Mesh;
     Object_45: THREE.Mesh;
     Object_48: THREE.Mesh;
     Object_51: THREE.Mesh;
     Object_54: THREE.Mesh;
-    Object_57: THREE.Mesh;
-    Object_60: THREE.Mesh;
-    Object_61: THREE.Mesh;
     Object_63: THREE.Mesh;
     Object_64: THREE.Mesh;
     Object_70: THREE.Mesh;
-    Object_73: THREE.Mesh;
     Object_76: THREE.Mesh;
     Object_79: THREE.Mesh;
     Object_80: THREE.Mesh;
     Object_81: THREE.Mesh;
-    Object_84: THREE.Mesh;
-    Object_85: THREE.Mesh;
-    Object_0: THREE.Mesh;
   };
   materials: {
     Box_Material: THREE.MeshStandardMaterial;
@@ -91,7 +81,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         />
         {/* interior cylinder 3*/}
         <mesh
-          geometry={nodes.Object_41.geometry}
+          geometry={nodes.Object_23.geometry}
           material={materials.SolarPanelFrrame_Material}
           position={[0, 2, 0]}
           rotation={[-Math.PI / 2, 0, 0]}
@@ -156,7 +146,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
       >
         {/* left side side pannels*/}
         <mesh
-          geometry={nodes.Object_35.geometry}
+          geometry={nodes.Object_32.geometry}
           material={materials.SolarPanel_Material}
           position={[-1.26, 1.254, 0.495]}
           rotation={[0, -Math.PI / 2, 0]}
@@ -176,9 +166,9 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
         <mesh
           geometry={nodes.Object_20.geometry}
           material={materials.M_03___Default}
-          position={[0, 1.733, 1.2]}
+          position={[-0.3, 1.733, 1.2]}
           rotation={[0.387, 0, 0]}
-          scale={0.025}
+          scale={0.05}
         />
         {/*Front Thruster*/}
         <group>
@@ -244,7 +234,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
                 <mesh
                   castShadow
                   receiveShadow
-                  geometry={nodes.Object_57.geometry}
+                  geometry={nodes.Object_54.geometry}
                   material={materials['Thruster_Material.001']}
                   position={[1.16, 3.8, -1.082]}
                   rotation={[-Math.PI, 0, -Math.PI]}
@@ -255,8 +245,6 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
             {/*Neutron Spectrometer*/}
             <group>
               <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.Object_70.geometry}
                 material={materials['Thruster_Material.001']}
                 position={[-1.15, 4.7, -1.086]}
@@ -264,13 +252,11 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
                 scale={0.06}
               />
               <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Object_73.geometry}
+                geometry={nodes.Object_23.geometry}
                 material={materials['Thruster_Material.001']}
-                position={[-1.14, 4.407, -1.148]}
+                position={[-1.14, 4.6, -1.3]}
                 rotation={[-Math.PI / 2, 0, 0]}
-                scale={0.07}
+                scale={0.02}
               />
             </group>
           </>
@@ -292,7 +278,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
               <mesh
                 castShadow
                 receiveShadow
-                geometry={nodes.Object_60.geometry}
+                geometry={nodes.Object_63.geometry}
                 material={materials['Thruster_Material.001']}
                 position={[0.037, 0.157, -1.95]}
                 rotation={[-1.353, 0, 0]}
@@ -301,7 +287,7 @@ export function Orbiter(props: JSX.IntrinsicElements['group']) {
               <mesh
                 castShadow
                 receiveShadow
-                geometry={nodes.Object_61.geometry}
+                geometry={nodes.Object_64.geometry}
                 material={materials.Thruster_Material}
                 position={[0.037, 0.157, -1.95]}
                 rotation={[-1.353, 0, 0]}

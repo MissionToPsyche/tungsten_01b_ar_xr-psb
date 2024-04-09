@@ -58,14 +58,14 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
           groupRef.current.position.y += delta * elapsed;
         }
 
-        if (elapsed >= 5 && elapsed <= 11 && !arEnabled) {
+        if (elapsed >= 5 && elapsed <= 10 && !arEnabled) {
           if (elapsed <= 9) {
             state.camera.rotation.x += delta * 0.27;
           }
           groupRef.current.position.y += delta * elapsed;
         }
 
-        if (elapsed >= 11) {
+        if (elapsed >= 10) {
           setElapsed(0);
           stopAnimation(AnimationName.LIFTOFF);
         }
@@ -80,7 +80,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
         visible={isAnimationActive(AnimationName.LIFTOFF)}
         particleStartColor={thrusterStartingColor}
         particleEndColor={thrusterEndingColor}
-        count={200}
+        count={50}
       />
       <SmokeParticleSystem
         visible={!isAnimationActive(AnimationName.LIFTOFF)}

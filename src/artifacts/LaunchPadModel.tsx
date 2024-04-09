@@ -12,20 +12,10 @@ type GLTFResult = GLTF & {
   nodes: {
     Object_5: THREE.Mesh;
     Object_6: THREE.Mesh;
-    Cube001: THREE.Mesh;
     Cube003: THREE.Mesh;
-    Cube007: THREE.Mesh;
     Cube004: THREE.Mesh;
-    Cube009: THREE.Mesh;
-    Cube013: THREE.Mesh;
-    Cube010: THREE.Mesh;
     Cube005: THREE.Mesh;
-    Cube011: THREE.Mesh;
-    Cube014: THREE.Mesh;
     Cube006: THREE.Mesh;
-    Cube008: THREE.Mesh;
-    Cube012: THREE.Mesh;
-    Cube015: THREE.Mesh;
     Cube016: THREE.Mesh;
   };
   materials: {
@@ -44,22 +34,22 @@ export function LaunchPadModel(props: JSX.IntrinsicElements['group']) {
     <group {...props} dispose={null}>
       <group>
         <spotLight
-          intensity={0.3}
+          intensity={0.1}
           position={[-17, 20, 9]}
           color={'lightyellow'}
         />
         <spotLight
-          intensity={0.3}
+          intensity={0.1}
           position={[16, 20, 9]}
           color={'lightyellow'}
         />
         <spotLight
-          intensity={0.3}
+          intensity={0.1}
           position={[-16, 20, -9]}
           color={'lightyellow'}
         />
         <spotLight
-          intensity={0.3}
+          intensity={0.1}
           position={[14, 20, -9]}
           color={'lightyellow'}
         />
@@ -78,7 +68,7 @@ export function LaunchPadModel(props: JSX.IntrinsicElements['group']) {
           scale={[0.026, 0.026, 0.025]}
         />
         <mesh
-          geometry={nodes.Cube001.geometry}
+          geometry={nodes.Cube003.geometry}
           material={materials.metal}
           position={[4.134, 2.666, -0.022]}
           scale={[3.071, 1.06, 2.161]}
@@ -90,7 +80,7 @@ export function LaunchPadModel(props: JSX.IntrinsicElements['group']) {
           scale={[15, 2, 12]}
         />
         <mesh
-          geometry={nodes.Cube007.geometry}
+          geometry={nodes.Cube004.geometry}
           material={materials['Material.002']}
           position={[-11.895, 8.328, -8.695]}
           rotation={[-0.363, 0.755, 1.826]}
@@ -104,21 +94,21 @@ export function LaunchPadModel(props: JSX.IntrinsicElements['group']) {
           scale={[0.669, 0.69, 0.155]}
         />
         <mesh
-          geometry={nodes.Cube009.geometry}
+          geometry={nodes.Cube004.geometry}
           material={materials['Material.002']}
           position={[11.686, 8.328, -8.695]}
           rotation={[2.778, 0.755, 1.826]}
           scale={[0.669, 0.69, 0.155]}
         />
         <mesh
-          geometry={nodes.Cube013.geometry}
+          geometry={nodes.Cube004.geometry}
           material={materials['Material.002']}
           position={[11.686, 8.328, 8.62]}
           rotation={[-2.778, -0.755, -1.316]}
           scale={[-0.669, -0.69, -0.155]}
         />
         <mesh
-          geometry={nodes.Cube010.geometry}
+          geometry={nodes.Cube005.geometry}
           material={materials.ground}
           position={[-11.707, 2.125, -8.997]}
           scale={[0.516, 2.12, 0.67]}
@@ -131,14 +121,14 @@ export function LaunchPadModel(props: JSX.IntrinsicElements['group']) {
           scale={[-0.516, -2.12, -0.67]}
         />
         <mesh
-          geometry={nodes.Cube011.geometry}
+          geometry={nodes.Cube005.geometry}
           material={materials.ground}
           position={[11.499, 2.125, -8.997]}
           rotation={[-Math.PI, 0, 0]}
           scale={[-0.516, -2.12, -0.67]}
         />
         <mesh
-          geometry={nodes.Cube014.geometry}
+          geometry={nodes.Cube005.geometry}
           material={materials.ground}
           position={[11.499, 2.125, 8.922]}
           rotation={[-Math.PI, 0, -Math.PI]}
@@ -152,21 +142,21 @@ export function LaunchPadModel(props: JSX.IntrinsicElements['group']) {
           scale={[0.13, 0.729, 0.243]}
         />
         <mesh
-          geometry={nodes.Cube008.geometry}
+          geometry={nodes.Cube006.geometry}
           material={materials.metal}
           position={[-11.763, 5.829, 8.922]}
           rotation={[0, -Math.PI / 4, -Math.PI]}
           scale={[-0.13, -0.729, -0.243]}
         />
         <mesh
-          geometry={nodes.Cube012.geometry}
+          geometry={nodes.Cube006.geometry}
           material={materials.metal}
           position={[11.554, 5.829, -8.996]}
           rotation={[-Math.PI, Math.PI / 4, 0]}
           scale={[-0.13, -0.729, -0.243]}
         />
         <mesh
-          geometry={nodes.Cube015.geometry}
+          geometry={nodes.Cube006.geometry}
           material={materials.metal}
           position={[11.554, 5.829, 8.922]}
           rotation={[Math.PI, -Math.PI / 4, Math.PI]}

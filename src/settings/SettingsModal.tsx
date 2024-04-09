@@ -1,5 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import {
+  Button,
   Flex,
   FormControl,
   FormLabel,
@@ -9,16 +10,23 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  SimpleGrid,
   Switch,
+  Text,
   VStack
 } from '@chakra-ui/react';
 import RenderIf from '../common/components/RenderIf.tsx';
 import useSettings from './use-settings.ts';
+import SceneName from '../scene/types/scene-name.ts';
+import useScene from '../scene/use-scene.ts';
+import getEnumStringKeys from '../common/utils/get-enum-string-keys.ts';
+
 interface SettingsWindowProps {
   isOpen: boolean;
   onClose: () => void;
   hideArButton?: boolean;
 }
+
 const SettingsModal = ({
   isOpen,
   onClose,
@@ -32,6 +40,7 @@ const SettingsModal = ({
     setAudioEnabled,
     setTooltipsEnabled
   } = useSettings();
+  const { currentScene, setCurrentScene } = useScene();
 
   const onChangeArToggle = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +62,27 @@ const SettingsModal = ({
     },
     [setTooltipsEnabled]
   );
+
+  const sceneNavigationButtons = useMemo(
+    () =>
+      getEnumStringKeys(SceneName)
+        .filter((key) => key !== 'UNSET')
+        .map((key) => (
+          <Button
+            key={key}
+            size="sm"
+            textTransform="capitalize"
+            colorScheme={currentScene === SceneName[key] ? 'magenta' : 'gray'}
+            onClick={() => {
+              setCurrentScene(SceneName[key]);
+            }}
+          >
+            {key.replace(/_/g, ' ').toLowerCase()}
+          </Button>
+        )),
+    [currentScene, setCurrentScene]
+  );
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />
@@ -73,6 +103,7 @@ const SettingsModal = ({
                   </FormLabel>
                   <Switch
                     id="ar-toggle"
+                    colorScheme="magenta"
                     isChecked={arEnabled}
                     onChange={onChangeArToggle}
                   />
@@ -86,6 +117,7 @@ const SettingsModal = ({
                 </FormLabel>
                 <Switch
                   id="audio-toggle"
+                  colorScheme="magenta"
                   isChecked={audioEnabled}
                   onChange={onChangeAudioToggle}
                 />
@@ -98,11 +130,18 @@ const SettingsModal = ({
                 </FormLabel>
                 <Switch
                   id="tooltips-toggle"
+                  colorScheme="magenta"
                   isChecked={tooltipsEnabled}
                   onChange={onChangeTooltipsToggle}
                 />
               </Flex>
             </FormControl>
+            <Text as="b" pt={2}>
+              Scene Navigation
+            </Text>
+            <SimpleGrid columns={1} spacing={2} w="full">
+              {sceneNavigationButtons}
+            </SimpleGrid>
           </VStack>
         </ModalBody>
       </ModalContent>
