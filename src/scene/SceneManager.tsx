@@ -16,6 +16,7 @@ import SceneControls from './SceneControls.tsx';
 
 import useScene from './use-scene.ts';
 import { useBreakpointValue } from '@chakra-ui/react';
+import SceneName from './types/scene-name.ts';
 
 /**
  * Manages AR scenes.
@@ -58,8 +59,9 @@ const SceneManager: ViewComponent = ({ changeView }) => {
 
   const onRestart = useCallback(() => {
     clearAnimations();
+    setCurrentScene(SceneName.ASSEMBLY);
     changeView(ViewName.LANDING_PAGE);
-  }, [changeView, clearAnimations]);
+  }, [changeView, clearAnimations, setCurrentScene]);
 
   useEffect(() => {
     if (cameraControls.current && isTransitioning) {
