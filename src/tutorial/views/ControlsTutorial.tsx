@@ -1,4 +1,4 @@
-import { OrbitControls, Stars } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 
 import { CruiseOrbiter } from '../../artifacts/CruiseOrbiter';
@@ -23,14 +23,6 @@ const ControlsTutorial: React.FC = () => {
         maxZoom={0.04}
         maxDistance={30}
       />
-      <Stars
-        radius={50}
-        depth={50}
-        count={200}
-        factor={6}
-        saturation={7}
-        fade={true}
-      />
       <CruiseOrbiter
         scale={0.3}
         rotation={rotation}
@@ -38,6 +30,7 @@ const ControlsTutorial: React.FC = () => {
         panelsOpen={true}
         animatePanels={false}
       />
+      <ambientLight intensity={0.2} />
     </Canvas>
   );
 };
