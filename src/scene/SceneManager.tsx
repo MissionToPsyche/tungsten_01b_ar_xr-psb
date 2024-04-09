@@ -1,6 +1,6 @@
 import { ARCanvas } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
@@ -11,11 +11,12 @@ import useAnimation from '../animations/use-animation.ts';
 import RenderIf from '../common/components/RenderIf.tsx';
 import useSceneConfig from './use-scene-config.ts';
 import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
-import { OrbitControls, Stars } from '@react-three/drei';
+import { CameraControls, Stars, useGLTF } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
-import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+
 import useScene from './use-scene.ts';
 import { useBreakpointValue } from '@chakra-ui/react';
+import SceneName from './types/scene-name.ts';
 
 /**
  * Manages AR scenes.
@@ -23,7 +24,8 @@ import { useBreakpointValue } from '@chakra-ui/react';
 const SceneManager: ViewComponent = ({ changeView }) => {
   const config = useSceneConfig();
   const { clearAnimations } = useAnimation();
-  const orbitControls = useRef<OrbitControlsImpl>(null);
+  const cameraControls = useRef<CameraControls>(null);
+  const [cameraEnabled, setCameraEnabled] = useState(true);
   const {
     currentSceneConfig: {
       component: CurrentSceneComponent,
@@ -36,10 +38,15 @@ const SceneManager: ViewComponent = ({ changeView }) => {
     isTransitioningToNext,
     setCurrentScene
   } = useScene();
+  useGLTF.preload(
+    nextSceneTransition
+      ? config.scenes[nextSceneTransition.toScene].artifactPaths
+      : []
+  );
   const nonArCurrentSceneScale = useBreakpointValue({
-    base: 0.6,
-    md: 0.8,
-    lg: 1
+    base: 1,
+    md: 1.2,
+    lg: 1.4
   });
 
   const currentSceneScale = useMemo(() => {
@@ -52,14 +59,28 @@ const SceneManager: ViewComponent = ({ changeView }) => {
 
   const onRestart = useCallback(() => {
     clearAnimations();
+    setCurrentScene(SceneName.ASSEMBLY);
     changeView(ViewName.LANDING_PAGE);
-  }, [changeView, clearAnimations]);
+  }, [changeView, clearAnimations, setCurrentScene]);
 
   useEffect(() => {
-    if (orbitControls.current && isTransitioning) {
-      orbitControls.current.reset();
+    if (cameraControls.current && isTransitioning) {
+      void cameraControls.current.reset(true);
     }
   }, [isTransitioning]);
+
+  useEffect(() => {
+    if (isTransitioningToNext) {
+      const cameraTimeout = setTimeout(() => {
+        setCameraEnabled(false);
+        return () => {
+          clearTimeout(cameraTimeout);
+        };
+      }, 1000);
+    } else {
+      setCameraEnabled(true);
+    }
+  }, [isTransitioningToNext]);
 
   return (
     <LoaderProvider>
@@ -80,34 +101,22 @@ const SceneManager: ViewComponent = ({ changeView }) => {
         <ARRenderSizeSynchronizer />
         <RenderIf shouldRender={config.disableAr}>
           <color attach="background" args={['#2e4371']} />
-          <OrbitControls
-            enabled={!isTransitioning}
-            ref={orbitControls}
-            zoomSpeed={0.8}
-            rotateSpeed={0.8}
-            panSpeed={0.5}
+          <CameraControls
+            enabled={cameraEnabled}
+            ref={cameraControls}
             minAzimuthAngle={-Math.PI / 1.2}
             maxAzimuthAngle={Math.PI / 1.2}
             minPolarAngle={Math.PI / 2.5}
             maxPolarAngle={Math.PI / 2}
-            maxZoom={0.04}
-            maxDistance={30}
+            maxDistance={40}
           />
           <Stars
             radius={50}
             depth={50}
-            count={2000}
-            factor={6}
-            saturation={7}
-            fade={true}
-          />
-          <Stars
-            radius={100}
-            depth={80}
-            count={2000}
-            factor={4}
+            count={500}
+            factor={2}
             saturation={5}
-            fade={true}
+            fade={false}
           />
         </RenderIf>
         <SceneLighting />

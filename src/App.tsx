@@ -10,7 +10,7 @@ import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
-    <ChakraProvider theme={theme} resetScope=".ck-reset">
+    <ChakraProvider theme={theme}>
       <AppErrorBoundary>
         <RecoilRoot>
           <ModalProvider>

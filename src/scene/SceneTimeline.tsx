@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import useSceneConfig from './use-scene-config.ts';
 import useScene from './use-scene.ts';
 import {
@@ -11,7 +11,9 @@ import {
   Stepper,
   StepSeparator,
   StepStatus,
-  StepTitle
+  StepTitle,
+  useBreakpointValue,
+  useMediaQuery
 } from '@chakra-ui/react';
 
 interface StepConfig {
@@ -47,35 +49,46 @@ const SceneTimeline = () => {
     [currentSceneConfig.sceneTitle, steps]
   );
 
+  const [isMobile] = useMediaQuery('(max-width: 768px)');
+
+  const timelineSize = useBreakpointValue({ base: 'sm', lg: 'lg' });
+
+  const getStepStyle = useCallback(
+    (currentIndex: number) => ({
+      color: 'white',
+      opacity: currentIndex === stepIndex ? 1 : 0.4
+    }),
+    [stepIndex]
+  );
+
   return (
     <Box
       pos="absolute"
-      left={2}
-      top={2}
-      bottom={20}
+      left={isMobile ? 2 : 5}
+      top={isMobile ? 2 : 5}
       width="200px"
       pointerEvents="none"
-      className="ck-reset"
     >
       <Stepper
         index={stepIndex}
         orientation="vertical"
         colorScheme="magenta"
         color="white"
-        opacity={0.75}
+        opacity={1}
+        size={timelineSize}
       >
         {steps.map((step, index) => (
-          <Step key={index}>
+          <Step key={index} style={getStepStyle(index)}>
             <StepIndicator>
               <StepStatus
                 complete={<StepIcon />}
-                incomplete={<StepNumber />}
+                incomplete={<StepNumber style={getStepStyle(index)} />}
                 active={<StepNumber />}
               />
             </StepIndicator>
-            <Box flexShrink="0">
-              <StepTitle>{step.title}</StepTitle>
-              <StepDescription style={{ color: '#c9c9c9' }}>
+            <Box flexShrink="0" width={isMobile ? '100px' : '200px'}>
+              <StepTitle style={getStepStyle(index)}>{step.title}</StepTitle>
+              <StepDescription style={getStepStyle(index)}>
                 {step.description}
               </StepDescription>
             </Box>

@@ -73,14 +73,18 @@ const CruiseGravityAssistAnimation: React.FC<
           animatePanels={false}
           panelsOpen
           thrustersOn
-          position={[0, 2, 2]}
+          position={[0, 0, 2]}
           scale={orbiterScale}
           rotation={defaultOrbiterRotation}
         />
       </group>
       <group ref={marsRef} {...props}>
         <RenderIf shouldRender={isActive}>
-          <Mars position={[-100, -5, -150]} scale={marsScale} />
+          <Mars
+            position={[-100, -5, -150]}
+            scale={marsScale}
+            rotation={[0, Math.PI / 2, 0]}
+          />
         </RenderIf>
       </group>
     </group>

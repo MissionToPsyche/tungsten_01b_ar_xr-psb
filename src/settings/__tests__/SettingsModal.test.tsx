@@ -34,19 +34,19 @@ describe('<SettingsModal/>', () => {
   it('should render the AR toggle', () => {
     const { getByText } = setup(true, false);
 
-    expect(getByText('Enable Augmented Reality?')).toBeInTheDocument();
+    expect(getByText('Enable Augmented Reality')).toBeInTheDocument();
   });
 
   it('should render the audio toggle', () => {
     const { getByText } = setup(true, false);
 
-    expect(getByText('Enable Audio?')).toBeInTheDocument();
+    expect(getByText('Enable Audio')).toBeInTheDocument();
   });
 
   it('should not render the AR toggle when hideArButton is true', () => {
     const { queryByText } = setup(true, true);
 
-    expect(queryByText('Enable Augmented Reality?')).not.toBeInTheDocument();
+    expect(queryByText('Enable Augmented Reality')).not.toBeInTheDocument();
   });
 
   it('should call onClose when the modal is closed', () => {
@@ -60,7 +60,7 @@ describe('<SettingsModal/>', () => {
   it('should call setArEnabled when the AR toggle is changed', () => {
     const { getByLabelText } = setup(true, false);
 
-    getByLabelText('Enable Augmented Reality?').click();
+    getByLabelText('Enable Augmented Reality').click();
 
     expect(useSettings().setArEnabled).toHaveBeenCalledWith(true);
   });
@@ -68,7 +68,7 @@ describe('<SettingsModal/>', () => {
   it('should call setAudioEnabled when the audio toggle is changed', () => {
     const { getByLabelText } = setup(true, false);
 
-    getByLabelText('Enable Audio?').click();
+    getByLabelText('Enable Audio').click();
 
     expect(useSettings().setAudioEnabled).toHaveBeenCalledWith(true);
   });

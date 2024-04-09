@@ -15,6 +15,7 @@ const syncArToWindowSize = (
 
   renderer.setSize(width, height);
   canvas.style.marginLeft = '0px';
+  canvas.style.marginTop = '0px';
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
 };

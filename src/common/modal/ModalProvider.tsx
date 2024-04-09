@@ -1,4 +1,5 @@
 import {
+  DarkMode,
   Image,
   Modal,
   ModalBody,
@@ -37,29 +38,28 @@ const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <ModalContext.Provider value={{ open }}>{children}</ModalContext.Provider>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent
-          fontFamily="Helvetica"
-          color="white"
-          bg="magenta.700"
-          alignItems={'center'}
-          padding={8}
-        >
-          <ModalHeader alignItems={'center'} padding={8}>
-            {modalTitle}
-          </ModalHeader>
-          <ModalCloseButton backgroundColor="white" />
-          <ModalBody>
-            {modalBody}
-            <RenderIf shouldRender={!!modalImage}>
-              <Spacer h={10} />
-              <Image w="full" src={modalImage} alt={`${modalTitle} image`} />
-            </RenderIf>
-          </ModalBody>
-          <ModalFooter />
-        </ModalContent>
-      </Modal>
+      <DarkMode>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader color="white">{modalTitle}</ModalHeader>
+            <ModalCloseButton color="white" />
+            <ModalBody color="white">
+              {modalBody}
+              <RenderIf shouldRender={!!modalImage}>
+                <Spacer h={10} />
+                <Image
+                  mx="auto"
+                  display="block"
+                  src={modalImage}
+                  alt={`${modalTitle} image`}
+                />
+              </RenderIf>
+            </ModalBody>
+            <ModalFooter />
+          </ModalContent>
+        </Modal>
+      </DarkMode>
     </>
   );
 };

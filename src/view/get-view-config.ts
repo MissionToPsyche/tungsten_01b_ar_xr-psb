@@ -1,7 +1,9 @@
 import { ViewConfig } from './types/view-config.ts';
 import ViewName from './types/view-name.ts';
-import LandingView from './views/LandingView.tsx';
-import SceneManager from '../scene/SceneManager.tsx';
+import { lazy } from 'react';
+
+const LandingView = lazy(() => import('./views/LandingView.tsx'));
+const SceneManager = lazy(() => import('../scene/SceneManager.tsx'));
 
 /**
  * Function to get the view configuration. Right now extracted into a method
