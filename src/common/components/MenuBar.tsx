@@ -15,14 +15,12 @@ import InformationModal from '../../information/InformationModal.tsx';
 
 const TutorialModal = lazy(() => import('../../tutorial/TutorialModal.tsx'));
 
-interface SettingsProps {
+const MenuBar: React.FC<{
   hideArButton?: boolean;
   hideRestartButton?: boolean;
   disableRestartButton?: boolean;
   onClickRestartButton?: () => void;
-}
-
-const MenuBar: React.FC<SettingsProps> = ({
+}> = ({
   hideArButton,
   hideRestartButton,
   disableRestartButton,
@@ -72,7 +70,7 @@ const MenuBar: React.FC<SettingsProps> = ({
         />
         <IconButton
           isRound
-          aria-label={'Information & Credits'}
+          aria-label="Information & Credits"
           icon={<IoInformationCircle size={24} onClick={onOpenInformation} />}
         />
         <IconButton
