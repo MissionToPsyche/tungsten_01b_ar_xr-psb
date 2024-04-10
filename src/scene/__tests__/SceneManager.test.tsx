@@ -6,8 +6,11 @@ import ReactThreeTestRenderer from '@react-three/test-renderer';
 import { SceneControlsProps } from '../SceneControls.tsx';
 import { act } from '@testing-library/react';
 import useScene from '../use-scene.ts';
+import ViewName from '../../view/types/view-name.ts';
+import useAnimation from '../../animations/use-animation.ts';
 
 let onChangeSceneFn: SceneControlsProps['onChangeScene'];
+let onRestartFn: SceneControlsProps['onRestart'];
 
 // The following mocks are required because they render things that are not compatible with ReactThreeTestRenderer
 vi.mock('../../animations/use-animation.ts');
@@ -15,8 +18,9 @@ vi.mock('../../audio/use-audio.ts');
 vi.mock('../../settings/use-settings.ts');
 vi.mock('../use-scene.ts');
 vi.mock('../SceneControls.tsx', () => ({
-  default: ({ onChangeScene }: SceneControlsProps) => {
+  default: ({ onChangeScene, onRestart }: SceneControlsProps) => {
     onChangeSceneFn = onChangeScene;
+    onRestartFn = onRestart;
     return <></>;
   }
 }));
@@ -63,5 +67,21 @@ describe('<SceneManager/>', () => {
     });
 
     expect(useScene().setCurrentScene).toHaveBeenCalledWith(SceneName.LAUNCH);
+  });
+
+  it('should restart the experience when triggered', async () => {
+    await setup();
+
+    act(() => {
+      onRestartFn();
+    });
+
+    expect(useScene().setCurrentScene).toHaveBeenCalledWith(SceneName.ASSEMBLY);
+    expect(changeView).toHaveBeenCalledWith(ViewName.LANDING_PAGE);
+    expect(useAnimation().clearAnimations).toHaveBeenCalled();
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
   });
 });
