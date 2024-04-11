@@ -56,7 +56,7 @@ const steps: TutorialView[] = [
     key: '2',
     component: SettingsTutorial,
     description:
-      'Use the menu bar to restart the experience, access the settings where you can modify the experience and use scene navigation, view the credits or tutorial.',
+      'Use the menu bar to restart the experience, access settings, view credits, tutorial or navigate scenes.',
     label: 'Settings'
   },
   {
