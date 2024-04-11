@@ -18,7 +18,7 @@ interface SceneNavigationProps {
   onClose: () => void;
 }
 
-const TutorialModal = ({ isOpen, onClose }: SceneNavigationProps) => {
+const SceneNavigationModal = ({ isOpen, onClose }: SceneNavigationProps) => {
   const { currentScene, setCurrentScene } = useScene();
 
   const sceneNavigationButtons = useMemo(
@@ -57,4 +57,4 @@ const TutorialModal = ({ isOpen, onClose }: SceneNavigationProps) => {
   );
 };
 
-export default TutorialModal;
+export default SceneNavigationModal;
