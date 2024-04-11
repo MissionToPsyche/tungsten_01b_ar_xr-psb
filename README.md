@@ -2,7 +2,7 @@
 
 The Tungsten 01B AR/XR PSB project.
 
-[Live Deployment](https://tungsten-01b-ar-xr-psb.web.app/)
+[Live Deployment](https://tungsten-01b-arxr-psb.web.app/)
 
 ## Setup
 
