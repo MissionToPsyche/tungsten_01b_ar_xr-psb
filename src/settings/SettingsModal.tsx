@@ -1,6 +1,5 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import {
-  Button,
   Flex,
   FormControl,
   FormLabel,
@@ -10,16 +9,11 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  SimpleGrid,
   Switch,
-  Text,
   VStack
 } from '@chakra-ui/react';
 import RenderIf from '../common/components/RenderIf.tsx';
 import useSettings from './use-settings.ts';
-import SceneName from '../scene/types/scene-name.ts';
-import useScene from '../scene/use-scene.ts';
-import getEnumStringKeys from '../common/utils/get-enum-string-keys.ts';
 
 interface SettingsWindowProps {
   isOpen: boolean;
@@ -40,7 +34,6 @@ const SettingsModal = ({
     setAudioEnabled,
     setTooltipsEnabled
   } = useSettings();
-  const { currentScene, setCurrentScene } = useScene();
 
   const onChangeArToggle = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,26 +54,6 @@ const SettingsModal = ({
       setTooltipsEnabled(e.target.checked);
     },
     [setTooltipsEnabled]
-  );
-
-  const sceneNavigationButtons = useMemo(
-    () =>
-      getEnumStringKeys(SceneName)
-        .filter((key) => key !== 'UNSET')
-        .map((key) => (
-          <Button
-            key={key}
-            size="sm"
-            textTransform="capitalize"
-            colorScheme={currentScene === SceneName[key] ? 'magenta' : 'gray'}
-            onClick={() => {
-              setCurrentScene(SceneName[key]);
-            }}
-          >
-            {key.replace(/_/g, ' ').toLowerCase()}
-          </Button>
-        )),
-    [currentScene, setCurrentScene]
   );
 
   return (
@@ -136,12 +109,6 @@ const SettingsModal = ({
                 />
               </Flex>
             </FormControl>
-            <Text as="b" pt={2}>
-              Scene Navigation
-            </Text>
-            <SimpleGrid columns={1} spacing={2} w="full">
-              {sceneNavigationButtons}
-            </SimpleGrid>
           </VStack>
         </ModalBody>
       </ModalContent>
