@@ -8,17 +8,15 @@ import {
   ModalOverlay,
   SimpleGrid
 } from '@chakra-ui/react';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import getEnumStringKeys from '../common/utils/get-enum-string-keys.ts';
 import useScene from '../scene/use-scene.ts';
 import SceneName from '../scene/types/scene-name.ts';
 
-interface SceneNavigationProps {
+const SceneNavigationModal: React.FC<{
   isOpen: boolean;
   onClose: () => void;
-}
-
-const SceneNavigationModal = ({ isOpen, onClose }: SceneNavigationProps) => {
+}> = ({ isOpen, onClose }) => {
   const { currentScene, setCurrentScene } = useScene();
 
   const sceneNavigationButtons = useMemo(
