@@ -10,6 +10,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Switch,
+  useColorMode,
   VStack
 } from '@chakra-ui/react';
 import RenderIf from '../common/components/RenderIf.tsx';
@@ -34,6 +35,7 @@ const SettingsModal = ({
     setAudioEnabled,
     setTooltipsEnabled
   } = useSettings();
+  const { colorMode, setColorMode } = useColorMode();
 
   const onChangeArToggle = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,6 +56,17 @@ const SettingsModal = ({
       setTooltipsEnabled(e.target.checked);
     },
     [setTooltipsEnabled]
+  );
+
+  const onChangeDarkModeToggle = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.checked) {
+        setColorMode('dark');
+      } else {
+        setColorMode('light');
+      }
+    },
+    [setColorMode]
   );
 
   return (
@@ -106,6 +119,19 @@ const SettingsModal = ({
                   colorScheme="magenta"
                   isChecked={tooltipsEnabled}
                   onChange={onChangeTooltipsToggle}
+                />
+              </Flex>
+            </FormControl>
+            <FormControl display="flex" alignItems="center">
+              <Flex justifyContent="space-between" alignItems="center" w="100%">
+                <FormLabel htmlFor="dark-mode-toggle" mb="0">
+                  Enable Dark Mode
+                </FormLabel>
+                <Switch
+                  id="dark-mode-toggle"
+                  colorScheme="magenta"
+                  isChecked={colorMode === 'dark'}
+                  onChange={onChangeDarkModeToggle}
                 />
               </Flex>
             </FormControl>

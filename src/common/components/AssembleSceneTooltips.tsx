@@ -3,20 +3,28 @@ import ARTooltip from './ARTooltip.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import RenderIf from './RenderIf.tsx';
 import useScene from '../../scene/use-scene.ts';
+import { useMemo } from 'react';
+import SceneName from '../../scene/types/scene-name.ts';
 
 const AssembleSceneTooltips = () => {
-  const { isTransitioning } = useScene();
+  const { currentScene, isTransitioning } = useScene();
+
+  const renderExplodeTooltip = useMemo(() => {
+    return currentScene == SceneName.ASSEMBLY;
+  }, [currentScene]);
 
   return (
     <RenderIf shouldRender={!isTransitioning}>
-      <ExplodeElement
-        startPosition={[0, 0.5, 4.5]}
-        startRotation={[0, 0, 0]}
-        explodedPosition={[0, -0.2, 7]}
-        explodedRotation={[0, 0, 0]}
-      >
-        <ARTooltip />
-      </ExplodeElement>
+      <RenderIf shouldRender={renderExplodeTooltip}>
+        <ExplodeElement
+          startPosition={[0, 0.5, 4.5]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[0, -0.2, 7]}
+          explodedRotation={[0, 0, 0]}
+        >
+          <ARTooltip />
+        </ExplodeElement>
+      </RenderIf>
       <FactsModalTrigger factName="spectrometer">
         <ExplodeElement
           startPosition={[-1.2, 5, 2]}
