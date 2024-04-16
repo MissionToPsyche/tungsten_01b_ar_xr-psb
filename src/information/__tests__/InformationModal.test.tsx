@@ -23,14 +23,14 @@ describe('<InformationModal/>', () => {
     setup();
 
     expect(screen.getByText('Sponsor')).toBeInTheDocument();
-    expect(screen.getAllByText('Arizona State University')).toHaveLength(2);
+    expect(screen.getAllByText('NASA Psyche Mission')).toHaveLength(2);
   });
 
   it('should render the ownership section', () => {
     setup();
 
     expect(screen.getByText('Ownership')).toBeInTheDocument();
-    expect(screen.getAllByText('Arizona State University')).toHaveLength(2);
+    expect(screen.getAllByText('NASA Psyche Mission')).toHaveLength(2);
   });
 
   it.each(
