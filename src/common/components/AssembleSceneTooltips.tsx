@@ -15,7 +15,10 @@ const AssembleSceneTooltips = () => {
 
   return (
     <RenderIf shouldRender={!isTransitioning}>
-      <RenderIf shouldRender={renderExplodeTooltip}>
+      <FactsModalTrigger
+        factName="opticalCommunication"
+        disable={renderExplodeTooltip}
+      >
         <ExplodeElement
           startPosition={[0, 0.5, 4.5]}
           startRotation={[0, 0, 0]}
@@ -24,19 +27,7 @@ const AssembleSceneTooltips = () => {
         >
           <ARTooltip />
         </ExplodeElement>
-      </RenderIf>
-      <RenderIf shouldRender={!renderExplodeTooltip}>
-        <FactsModalTrigger factName="opticalCommunication">
-          <ExplodeElement
-            startPosition={[0, 0.5, 4.5]}
-            startRotation={[0, 0, 0]}
-            explodedPosition={[0, -0.2, 7]}
-            explodedRotation={[0, 0, 0]}
-          >
-            <ARTooltip />
-          </ExplodeElement>
-        </FactsModalTrigger>
-      </RenderIf>
+      </FactsModalTrigger>
       <FactsModalTrigger factName="spectrometer">
         <ExplodeElement
           startPosition={[-1.2, 5, 2]}
