@@ -4,6 +4,7 @@ import { afterEach } from 'vitest';
 import { cleanup } from '@testing-library/react';
 
 vi.stubGlobal('jest', vi);
+vi.spyOn(window, 'scrollTo');
 
 afterEach(() => {
   cleanup();

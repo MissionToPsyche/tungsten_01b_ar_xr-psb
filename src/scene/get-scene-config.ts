@@ -140,7 +140,10 @@ const getSceneConfig = (): SceneConfig => ({
       },
       sceneTitle: 'Initial Checkout',
       sceneDate: '2024',
-      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Earth]
+      artifactPaths: [
+        artifactPaths.InnitialCheckoutOrbiter,
+        artifactPaths.Earth
+      ]
     },
     [SceneName.CRUISE_THRUSTERS]: {
       component: CruiseThrusterScene,
@@ -192,7 +195,7 @@ const getSceneConfig = (): SceneConfig => ({
       },
       sceneTitle: 'Orbit',
       sceneDate: '2029',
-      artifactPaths: [artifactPaths.OrbitOrbiter, artifactPaths.Psyche]
+      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Psyche]
     },
     [SceneName.SECOND_ORBIT]: {
       component: OrbitScene,
@@ -207,7 +210,7 @@ const getSceneConfig = (): SceneConfig => ({
       },
       sceneTitle: 'Orbit',
       sceneDate: '2029',
-      artifactPaths: [artifactPaths.OrbitOrbiter, artifactPaths.Psyche]
+      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Psyche]
     },
     [SceneName.THIRD_ORBIT]: {
       component: OrbitScene,
@@ -222,7 +225,7 @@ const getSceneConfig = (): SceneConfig => ({
       },
       sceneTitle: 'Orbit',
       sceneDate: '2029',
-      artifactPaths: [artifactPaths.OrbitOrbiter, artifactPaths.Psyche]
+      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Psyche]
     },
     [SceneName.FOURTH_ORBIT]: {
       component: OrbitScene,
@@ -233,7 +236,7 @@ const getSceneConfig = (): SceneConfig => ({
       },
       sceneTitle: 'Orbit',
       sceneDate: '2029',
-      artifactPaths: [artifactPaths.OrbitOrbiter, artifactPaths.Psyche]
+      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Psyche]
     }
   },
   cameraParametersUrl: 'assets/camera_para.dat',
