@@ -6,23 +6,22 @@ import {
   useDisclosure,
   useMediaQuery
 } from '@chakra-ui/react';
-import { IoMdHelpCircle, IoMdSettings } from 'react-icons/io';
+import { IoMdHelpCircle, IoMdNavigate, IoMdSettings } from 'react-icons/io';
 import SettingsModal from '../../settings/SettingsModal.tsx';
 import { VscDebugRestart } from 'react-icons/vsc';
 import RenderIf from './RenderIf.tsx';
 import { IoInformationCircle } from 'react-icons/io5';
 import InformationModal from '../../information/InformationModal.tsx';
+import SceneNavigationModal from '../../navigation/SceneNavigationModal.tsx';
 
 const TutorialModal = lazy(() => import('../../tutorial/TutorialModal.tsx'));
 
-interface SettingsProps {
+const MenuBar: React.FC<{
   hideArButton?: boolean;
   hideRestartButton?: boolean;
   disableRestartButton?: boolean;
   onClickRestartButton?: () => void;
-}
-
-const MenuBar: React.FC<SettingsProps> = ({
+}> = ({
   hideArButton,
   hideRestartButton,
   disableRestartButton,
@@ -46,6 +45,12 @@ const MenuBar: React.FC<SettingsProps> = ({
     isOpen: tutorialIsOpen,
     onOpen: onOpenTutorial,
     onClose: onCloseTutorial
+  } = useDisclosure();
+
+  const {
+    isOpen: sceneNavIsOpen,
+    onOpen: onOpenSceneNav,
+    onClose: onCloseSceneNav
   } = useDisclosure();
 
   return (
@@ -72,7 +77,7 @@ const MenuBar: React.FC<SettingsProps> = ({
         />
         <IconButton
           isRound
-          aria-label={'Information & Credits'}
+          aria-label="Information & Credits"
           icon={<IoInformationCircle size={24} onClick={onOpenInformation} />}
         />
         <IconButton
@@ -81,6 +86,14 @@ const MenuBar: React.FC<SettingsProps> = ({
           icon={<IoMdHelpCircle size={24} />}
           onClick={onOpenTutorial}
         />
+        <RenderIf shouldRender={!hideRestartButton}>
+          <IconButton
+            isRound
+            aria-label="Navigation"
+            icon={<IoMdNavigate size={24} />}
+            onClick={onOpenSceneNav}
+          />
+        </RenderIf>
       </HStack>
       <SettingsModal
         isOpen={settingsAreOpen}
@@ -92,6 +105,7 @@ const MenuBar: React.FC<SettingsProps> = ({
         onClose={onCloseInformation}
       />
       <TutorialModal isOpen={tutorialIsOpen} onClose={onCloseTutorial} />
+      <SceneNavigationModal isOpen={sceneNavIsOpen} onClose={onCloseSceneNav} />
     </>
   );
 };

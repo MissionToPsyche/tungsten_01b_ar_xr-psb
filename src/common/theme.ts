@@ -1,6 +1,16 @@
-import { extendTheme } from '@chakra-ui/react';
+import { extendTheme, ThemeConfig } from '@chakra-ui/react';
+
+export interface ThemeType {
+  config: { initialColorMode: 'light' | 'dark' | 'system' | undefined };
+}
+
+const config: ThemeConfig = {
+  initialColorMode: 'light',
+  useSystemColorMode: false
+};
 
 const theme = extendTheme({
+  config,
   colors: {
     purple: {
       '50': '#F7EDF6',

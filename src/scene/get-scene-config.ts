@@ -136,8 +136,7 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.CRUISE_THRUSTERS,
         buttonText: 'Open Solar Panels',
-        animation: AnimationName.CRUISE_PANELS,
-        audio: 'sounds/artninja-servo-sound.mp3'
+        animation: AnimationName.CRUISE_PANELS
       },
       sceneTitle: 'Initial Checkout',
       sceneDate: '2024',

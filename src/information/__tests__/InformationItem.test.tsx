@@ -1,24 +1,29 @@
-import InformationItem from '../InformationItem';
 import { render, screen } from '@testing-library/react';
+import InformationItem from '../InformationItem.tsx';
+import React from 'react';
 import { Accordion } from '@chakra-ui/react';
 
-const setup = () =>
+const setup = (title: string, children: React.ReactNode) =>
   render(
     <Accordion>
-      <InformationItem title="Test Title" index={0}>
-        <p>Test Content</p>
+      <InformationItem title={title} index={0}>
+        {children}
       </InformationItem>
     </Accordion>
   );
 
-describe('<InformationItem />', () => {
-  it('should render with correct title and content', () => {
-    setup();
+describe('<InformationItem/>', () => {
+  it('should render the title', () => {
+    const title = 'Information Item Title';
+    setup(title, <div>Information Item Child</div>);
 
-    const itemTitle = screen.getByText('Test Title');
-    expect(itemTitle).toBeInTheDocument();
+    expect(screen.getByText(title)).toBeInTheDocument();
+  });
 
-    const itemContent = screen.getByText('Test Content');
-    expect(itemContent).toBeInTheDocument();
+  it('should render the children', () => {
+    const children = <div>Information Item Child</div>;
+    setup('Information Item Title', children);
+
+    expect(screen.getByText('Information Item Child')).toBeInTheDocument();
   });
 });

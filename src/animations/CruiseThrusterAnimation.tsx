@@ -3,10 +3,8 @@ import { useFrame } from '@react-three/fiber';
 import { Group } from 'three';
 import useAnimation from './use-animation';
 import AnimationName from './types/animation-name';
-
 import { Earth } from '../artifacts/Earth';
 import filledVector from '../common/utils/filled-vector';
-
 import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
 import useSettings from '../settings/use-settings';
 
@@ -76,8 +74,6 @@ const CruiseThrusterAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
           position={[0, 0, 2]}
           scale={orbiterScale}
           rotation={[Math.PI / 5, Math.PI / 5, Math.PI / 6]}
-          panelsOpen={true}
-          animatePanels={false}
         />
       </group>
       <group ref={earthRef} {...props}>

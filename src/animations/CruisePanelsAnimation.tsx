@@ -1,66 +1,38 @@
-import React, { useMemo, useRef, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Group } from 'three';
-import useAnimation from './use-animation';
-import AnimationName from './types/animation-name';
-import { Earth } from '../artifacts/Earth';
-import filledVector from '../common/utils/filled-vector';
-import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
-
-const earthScale = filledVector(5);
-const orbiterScale = filledVector(0.75);
+import React, { useEffect } from 'react';
+import useExplode from '../common/explode/use-explode.ts';
+import useAnimation from './use-animation.ts';
+import AnimationName from './types/animation-name.ts';
 
 /**
  * Cruise Solar Panel Animation
  */
-const CruisePanelsAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
-  ...props
-}) => {
+const CruisePanelsAnimation: React.FC = () => {
   const { isAnimationActive, stopAnimation } = useAnimation();
-  const [elapsed, setElapsed] = useState(0);
-  const earthRef = useRef<Group>(null);
-  const orbiterRef = useRef<Group>(null);
-  const isActive = useMemo(() => {
-    return isAnimationActive(AnimationName.CRUISE_PANELS);
-  }, [isAnimationActive]);
+  const { isExploded, toggleExploded, isAtRest } = useExplode();
 
-  useFrame((_, delta) => {
-    if (earthRef.current == null || orbiterRef.current == null) {
-      return;
-    }
-
+  useEffect(() => {
     if (!isAnimationActive(AnimationName.CRUISE_PANELS)) {
       return;
     }
 
-    setElapsed(elapsed + delta);
-
-    if (elapsed > 7) {
-      stopAnimation(AnimationName.CRUISE_PANELS);
+    if (isExploded) {
+      toggleExploded();
     }
-  });
 
-  return (
-    <group>
-      <group ref={orbiterRef}>
-        <CruiseOrbiter
-          animatePanels
-          panelsOpen={isActive}
-          thrustersOn={false}
-          position={[0, 0, 2]}
-          scale={orbiterScale}
-          rotation={[Math.PI / 5, Math.PI / 5, Math.PI / 6]}
-        />
-      </group>
-      <group ref={earthRef} {...props}>
-        <Earth
-          position={[6, -4, -15]}
-          scale={earthScale}
-          rotation={[0, Math.PI / 2, 0]}
-        />
-      </group>
-    </group>
-  );
+    let timeout: NodeJS.Timeout;
+
+    if (!isExploded && isAtRest) {
+      timeout = setTimeout(() => {
+        stopAnimation(AnimationName.CRUISE_PANELS);
+      }, 500);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [isAnimationActive, isAtRest, isExploded, stopAnimation, toggleExploded]);
+
+  return null;
 };
 
 export default CruisePanelsAnimation;
