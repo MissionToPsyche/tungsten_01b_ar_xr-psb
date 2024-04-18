@@ -3,7 +3,6 @@ import { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 import { useFrame } from '@react-three/fiber';
-// import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 type GLTFResult = GLTF & {
   nodes: {
