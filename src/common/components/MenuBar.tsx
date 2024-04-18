@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React, { lazy, useEffect, useMemo, useState } from 'react';
 
 import {
   HStack,
@@ -29,6 +29,9 @@ const MenuBar: React.FC<{
 }) => {
   const [isMobile] = useMediaQuery('(max-width: 768px)');
 
+  const [animateTutorial, setAnimateTutorial] = useState(false);
+  const [blinkCount, setBlinkCount] = useState(0);
+
   const {
     isOpen: settingsAreOpen,
     onOpen: onOpenSettings,
@@ -52,6 +55,41 @@ const MenuBar: React.FC<{
     onOpen: onOpenSceneNav,
     onClose: onCloseSceneNav
   } = useDisclosure();
+
+  const tutorialClicked = useMemo(() => {
+    return localStorage.getItem('tutorialClicked') === 'true';
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [animateTutorial]);
+
+  useEffect(() => {
+    if (tutorialClicked) {
+      setAnimateTutorial(false);
+    } else {
+      if (blinkCount < 4) {
+        const interval = setInterval(() => {
+          setAnimateTutorial((prev) => !prev);
+          setBlinkCount((prev) => prev + 1);
+        }, 100);
+
+        return () => {
+          clearInterval(interval);
+        };
+      } else {
+        const timeout = setTimeout(() => {
+          setBlinkCount(0);
+
+          return () => {
+            clearTimeout(timeout);
+          };
+        }, 2000);
+      }
+    }
+  }, [blinkCount, tutorialClicked]);
+
+  const tutorialButtonStyle = {
+    transform: animateTutorial ? 'scale(1.2)' : 'scale(1)',
+    transition: 'transform 0.1s ease-in-out'
+  };
 
   return (
     <>
@@ -80,12 +118,20 @@ const MenuBar: React.FC<{
           aria-label="Information & Credits"
           icon={<IoInformationCircle size={24} onClick={onOpenInformation} />}
         />
+
         <IconButton
           isRound
           aria-label="Tutorial"
+          transform="auto"
+          scale={1.0}
           icon={<IoMdHelpCircle size={24} />}
-          onClick={onOpenTutorial}
+          onClick={() => {
+            localStorage.setItem('tutorialClicked', 'true');
+            onOpenTutorial();
+          }}
+          style={tutorialButtonStyle}
         />
+
         <RenderIf shouldRender={!hideRestartButton}>
           <IconButton
             isRound
