@@ -50,14 +50,14 @@ const InformationModal: React.FC<{
             <InformationItem title="Sponsor" index={2}>
               Special thanks to our sponsor{' '}
               <Text as="span" fontWeight="bold">
-                Arizona State University
+                NASA Psyche Mission
               </Text>
               .
             </InformationItem>
             <InformationItem title="Ownership" index={3}>
               Owned and maintained by{' '}
               <Text as="span" fontWeight="bold">
-                Arizona State University
+                NASA Psyche Mission
               </Text>
               .
             </InformationItem>
