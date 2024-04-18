@@ -3,7 +3,6 @@ import filledVector from '../../common/utils/filled-vector.ts';
 import { SceneComponent } from '../types/scene-component.ts';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import BackAnimation from '../../animations/BackAnimation.tsx';
-import { OrbitOrbiter } from '../../artifacts/OrbitOrbiter.tsx';
 import OrbitSceneLightning from '../../common/components/OrbitSceneLightning.tsx';
 import ARTooltip from '../../common/components/ARTooltip.tsx';
 import useScene from '../use-scene.ts';
@@ -14,9 +13,10 @@ import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import SceneName from '../types/scene-name.ts';
 import degreesToRadians from '../../common/utils/degrees-to-radians.ts';
+import { CruiseOrbiter } from '../../artifacts/CruiseOrbiter.tsx';
 
 const psycheScale = filledVector(5);
-const orbiterScale = filledVector(1.5);
+const orbiterScale = filledVector(0.3);
 
 const getOrbitPosition = (
   orbitCenter: Vector3,
@@ -132,25 +132,25 @@ const OrbitScene: SceneComponent = () => {
   }[] = [
     {
       scene: SceneName.FIRST_ORBIT,
-      args: [13, 0.03, 5, 50, Math.PI * 2],
+      args: [13, 0.03, 5, 40, Math.PI * 2],
       position: [0, 0, -5],
       rotation: [Math.PI / 2, 0, 0]
     },
     {
       scene: SceneName.SECOND_ORBIT,
-      args: [11, 0.03, 5, 50, Math.PI * 2],
+      args: [11, 0.03, 5, 40, Math.PI * 2],
       position: [0, 0, -5],
       rotation: [Math.PI / 2, Math.PI / 12, 0]
     },
     {
       scene: SceneName.THIRD_ORBIT,
-      args: [9, 0.03, 5, 50, Math.PI * 2],
+      args: [9, 0.03, 5, 40, Math.PI * 2],
       position: [0, 0, -5],
       rotation: [Math.PI / 2, Math.PI / 6, 0]
     },
     {
       scene: SceneName.FOURTH_ORBIT,
-      args: [8, 0.03, 5, 50, Math.PI * 2],
+      args: [8, 0.03, 5, 40, Math.PI * 2],
       position: [0, -0.5, -5],
       rotation: [0, 0, 0]
     }
@@ -205,7 +205,11 @@ const OrbitScene: SceneComponent = () => {
       </FactsModalTrigger>
       <group ref={orbiterGroupRef}>
         <group ref={orbiterInnerGroupRef}>
-          <OrbitOrbiter scale={orbiterScale} rotation={[-Math.PI / 2, 1, 0]} />
+          <CruiseOrbiter
+            scale={orbiterScale}
+            rotation={[-Math.PI / 2, 1, 0]}
+            thrustersOn={false}
+          />
         </group>
       </group>
       <OrbitSceneLightning />
