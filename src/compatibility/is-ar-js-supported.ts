@@ -1,4 +1,4 @@
-const isArSupported = (): boolean => {
+const isArJsSupported = (): boolean => {
   try {
     const canvas = document.createElement('canvas');
     const isWebGLSupported = !!(
@@ -14,4 +14,4 @@ const isArSupported = (): boolean => {
   }
 };
 
-export default isArSupported;
+export default isArJsSupported;

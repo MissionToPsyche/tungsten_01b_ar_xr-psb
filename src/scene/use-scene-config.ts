@@ -1,22 +1,17 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { SceneConfig } from './types/scene-config.ts';
 import getSceneConfig from './get-scene-config.ts';
 import useSettings from '../settings/use-settings.ts';
-import isArSupported from './utils/is-ar-supported.ts';
 import degreesToRadians from '../common/utils/degrees-to-radians.ts';
+import useCompatibility from '../compatibility/use-compatibility.ts';
 
 const useSceneConfig = (): SceneConfig => {
-  const [arSupported, setArSupported] = useState(true);
   const { arEnabled } = useSettings();
-
-  useEffect(() => {
-    const isSupported = isArSupported();
-    setArSupported(isSupported);
-  }, []);
+  const { isArSupported } = useCompatibility();
 
   return useMemo(() => {
     const originalConfig = getSceneConfig();
-    const disableAr = !arSupported || originalConfig.disableAr || !arEnabled;
+    const disableAr = !isArSupported || originalConfig.disableAr || !arEnabled;
     const markerXRotation = disableAr ? 0 : degreesToRadians(-90);
 
     return {
@@ -24,7 +19,7 @@ const useSceneConfig = (): SceneConfig => {
       disableAr,
       markerXRotation
     };
-  }, [arEnabled, arSupported]);
+  }, [arEnabled, isArSupported]);
 };
 
 export default useSceneConfig;

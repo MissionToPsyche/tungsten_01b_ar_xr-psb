@@ -4,14 +4,18 @@ import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import { configDefaults } from 'vitest/config';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+import basicSsl from '@vitejs/plugin-basic-ssl';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [ViteImageOptimizer(), react()],
+  plugins: [ViteImageOptimizer(), react(), basicSsl()],
   resolve: {
     alias: {
       three: path.resolve('./node_modules/three/build/three.module.js')
     }
+  },
+  server: {
+    host: true
   },
   test: {
     globals: true,

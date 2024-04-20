@@ -1,22 +1,17 @@
-import { ARCanvas } from '@artcom/react-three-arjs';
 import { ViewComponent } from '../view/types/view-component.ts';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import fitGlToWindow from './utils/fit-gl-to-window.ts';
 import LoaderProvider from '../common/loader/LoaderProvider.tsx';
 import LoaderTracker from '../common/loader/LoaderTracker.tsx';
-import SceneLighting from '../common/components/SceneLighting.tsx';
 import ViewName from '../view/types/view-name.ts';
-import ARRenderSizeSynchronizer from '../common/components/ARRenderSizeSynchronizer.tsx';
 import useAnimation from '../animations/use-animation.ts';
-import RenderIf from '../common/components/RenderIf.tsx';
 import useSceneConfig from './use-scene-config.ts';
-import PersistentARMarker from '../common/components/PersistentARMarker.tsx';
-import { CameraControls, Stars, useGLTF } from '@react-three/drei';
+import { CameraControls, useGLTF } from '@react-three/drei';
 import SceneControls from './SceneControls.tsx';
 
 import useScene from './use-scene.ts';
 import { useBreakpointValue } from '@chakra-ui/react';
 import SceneName from './types/scene-name.ts';
+import SceneCanvas from './SceneCanvas.tsx';
 
 /**
  * Manages AR scenes.
@@ -85,50 +80,18 @@ const SceneManager: ViewComponent = ({ changeView }) => {
   return (
     <LoaderProvider>
       <LoaderTracker />
-      <ARCanvas
-        arEnabled={!config.disableAr}
-        onCreated={fitGlToWindow}
-        cameraParametersUrl={config.cameraParametersUrl}
-        gl={{ logarithmicDepthBuffer: true }}
-        camera={
-          config.disableAr
-            ? { position: config.defaultCameraPosition.toArray() }
-            : undefined
-        }
-        linear
-        flat
+      <SceneCanvas
+        markerUrl={markerUrl}
+        cameraEnabled={cameraEnabled}
+        cameraControls={cameraControls}
       >
-        <ARRenderSizeSynchronizer />
-        <RenderIf shouldRender={config.disableAr}>
-          <color attach="background" args={['#2e4371']} />
-          <CameraControls
-            enabled={cameraEnabled}
-            ref={cameraControls}
-            minAzimuthAngle={-Math.PI / 1.2}
-            maxAzimuthAngle={Math.PI / 1.2}
-            minPolarAngle={Math.PI / 2.5}
-            maxPolarAngle={Math.PI / 2}
-            maxDistance={40}
-          />
-          <Stars
-            radius={50}
-            depth={50}
-            count={500}
-            factor={2}
-            saturation={5}
-            fade={false}
-          />
-        </RenderIf>
-        <SceneLighting />
-        <PersistentARMarker markerUrl={markerUrl}>
-          <group
-            rotation={[config.markerXRotation, 0, 0]}
-            scale={currentSceneScale}
-          >
-            <CurrentSceneComponent />
-          </group>
-        </PersistentARMarker>
-      </ARCanvas>
+        <group
+          rotation={[config.markerXRotation, 0, 0]}
+          scale={currentSceneScale}
+        >
+          <CurrentSceneComponent />
+        </group>
+      </SceneCanvas>
       <SceneControls
         transitionToNext={isTransitioningToNext}
         transitionToPrev={isTransitioningToPrevious}
