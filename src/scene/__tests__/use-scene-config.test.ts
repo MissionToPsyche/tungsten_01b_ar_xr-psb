@@ -5,11 +5,11 @@ import SceneName from '../types/scene-name.ts';
 import getSceneConfig from '../get-scene-config.ts';
 import { Vector3 } from 'three';
 import useSettings, { SettingsState } from '../../settings/use-settings.ts';
-import isArSupported from '../utils/is-ar-supported.ts';
 import degreesToRadians from '../../common/utils/degrees-to-radians.ts';
+import isArJsSupported from '../../compatibility/is-ar-js-supported.ts';
 
 vi.mock('../get-scene-config.ts');
-vi.mock('../utils/is-ar-supported.ts');
+vi.mock('../../compatibility/is-ar-js-supported.ts');
 vi.mock('../../settings/use-settings.ts');
 
 const mockSceneConfig: SceneConfig = {
@@ -38,7 +38,7 @@ describe('useSceneConfig', () => {
     vi.mocked(useSettings).mockReturnValueOnce({
       arEnabled: true
     } as unknown as SettingsState);
-    vi.mocked(isArSupported).mockReturnValue(true);
+    vi.mocked(isArJsSupported).mockReturnValue(true);
     vi.mocked(getSceneConfig).mockReturnValue(mockSceneConfig);
 
     const {
@@ -55,7 +55,7 @@ describe('useSceneConfig', () => {
     vi.mocked(useSettings).mockReturnValueOnce({
       arEnabled: true
     } as unknown as SettingsState);
-    vi.mocked(isArSupported).mockReturnValue(true);
+    vi.mocked(isArJsSupported).mockReturnValue(true);
     vi.mocked(getSceneConfig).mockReturnValue({
       ...mockSceneConfig,
       disableAr: true
@@ -76,7 +76,7 @@ describe('useSceneConfig', () => {
     vi.mocked(useSettings).mockReturnValueOnce({
       arEnabled: true
     } as unknown as SettingsState);
-    vi.mocked(isArSupported).mockReturnValue(false);
+    vi.mocked(isArJsSupported).mockReturnValue(false);
     vi.mocked(getSceneConfig).mockReturnValue(mockSceneConfig);
 
     const {
@@ -94,7 +94,7 @@ describe('useSceneConfig', () => {
     vi.mocked(useSettings).mockReturnValueOnce({
       arEnabled: false
     } as unknown as SettingsState);
-    vi.mocked(isArSupported).mockReturnValue(true);
+    vi.mocked(isArJsSupported).mockReturnValue(true);
     vi.mocked(getSceneConfig).mockReturnValue(mockSceneConfig);
 
     const {
