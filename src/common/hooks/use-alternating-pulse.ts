@@ -25,6 +25,13 @@ const useAlternatingPulse = ({
   const [pulseCounter, setPulseCounter] = useState(0);
 
   useEffect(() => {
+    if (!shouldPulse) {
+      setPulseValue(initialValue);
+      setPulseCounter(0);
+    }
+  }, [initialValue, shouldPulse]);
+
+  useEffect(() => {
     if (!shouldPulse) return;
 
     if (pulseCounter < pulseCount) {
