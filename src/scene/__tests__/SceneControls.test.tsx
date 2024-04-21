@@ -9,6 +9,7 @@ vi.mock('../../settings/use-settings.ts');
 vi.mock('../use-scene.ts');
 vi.mock('../get-scene-config.ts');
 vi.mock('../../animations/use-animation.ts');
+vi.mock('../../preferences/use-preferences.ts');
 vi.mock('@chakra-ui/react', async () => ({
   ...(await vi.importActual<object>('@chakra-ui/react')),
   useBreakpointValue: vi.fn(() => 'sm'),
