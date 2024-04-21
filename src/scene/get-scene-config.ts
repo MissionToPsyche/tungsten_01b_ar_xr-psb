@@ -242,7 +242,7 @@ const getSceneConfig = (): SceneConfig => ({
   cameraParametersUrl: 'assets/camera_para.dat',
   defaultCameraPosition: defaultCameraPosition,
   disableAr: getBoolFromEnv('VITE_DISABLE_AR'),
-  markerXRotation: 0
+  markerXRotation: -90
 });
 
 export default getSceneConfig;
