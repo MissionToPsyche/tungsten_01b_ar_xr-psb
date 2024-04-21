@@ -73,7 +73,8 @@ const TutorialModal: React.FC<{
                       active={<StepNumber />}
                     />
                   </StepIndicator>
-                  <Box flexShrink="0">
+
+                  <Box flexShrink="1">
                     <StepDescription>{label}</StepDescription>
                   </Box>
                 </Step>
