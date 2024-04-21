@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 
 vi.mock('../../../settings/use-settings.ts');
 vi.mock('../../../scene/use-scene.ts');
+vi.mock('../../../preferences/use-preferences.ts');
 vi.mock('@chakra-ui/react', async () => ({
   ...(await vi.importActual<object>('@chakra-ui/react')),
   useMediaQuery: vi.fn(() => [true, 0])

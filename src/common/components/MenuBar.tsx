@@ -1,4 +1,4 @@
-import React, { lazy, useEffect, useMemo, useState } from 'react';
+import React, { lazy, useCallback } from 'react';
 
 import {
   HStack,
@@ -13,6 +13,8 @@ import RenderIf from './RenderIf.tsx';
 import { IoInformationCircle } from 'react-icons/io5';
 import InformationModal from '../../information/InformationModal.tsx';
 import SceneNavigationModal from '../../navigation/SceneNavigationModal.tsx';
+import usePreferences from '../../preferences/use-preferences.ts';
+import useAlternatingPulse from '../hooks/use-alternating-pulse.ts';
 
 const TutorialModal = lazy(() => import('../../tutorial/TutorialModal.tsx'));
 
@@ -28,9 +30,14 @@ const MenuBar: React.FC<{
   onClickRestartButton
 }) => {
   const [isMobile] = useMediaQuery('(max-width: 768px)');
-
-  const [animateTutorial, setAnimateTutorial] = useState(false);
-  const [blinkCount, setBlinkCount] = useState(0);
+  const { tutorialClicked, setTutorialClicked } = usePreferences();
+  const animateTutorial = useAlternatingPulse({
+    shouldPulse: !tutorialClicked,
+    initialValue: false,
+    pulseCount: 4,
+    pulseInterval: 100,
+    restartInterval: 2000
+  });
 
   const {
     isOpen: settingsAreOpen,
@@ -56,35 +63,10 @@ const MenuBar: React.FC<{
     onClose: onCloseSceneNav
   } = useDisclosure();
 
-  const tutorialClicked = useMemo(() => {
-    return localStorage.getItem('tutorialClicked') === 'true';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [animateTutorial]);
-
-  useEffect(() => {
-    if (tutorialClicked) {
-      setAnimateTutorial(false);
-    } else {
-      if (blinkCount < 4) {
-        const interval = setInterval(() => {
-          setAnimateTutorial((prev) => !prev);
-          setBlinkCount((prev) => prev + 1);
-        }, 100);
-
-        return () => {
-          clearInterval(interval);
-        };
-      } else {
-        const timeout = setTimeout(() => {
-          setBlinkCount(0);
-
-          return () => {
-            clearTimeout(timeout);
-          };
-        }, 2000);
-      }
-    }
-  }, [blinkCount, tutorialClicked]);
+  const onTutorialButtonClick = useCallback(() => {
+    onOpenTutorial();
+    setTutorialClicked(true);
+  }, [onOpenTutorial, setTutorialClicked]);
 
   const tutorialButtonStyle = {
     transform: animateTutorial ? 'scale(1.2)' : 'scale(1)',
@@ -125,10 +107,7 @@ const MenuBar: React.FC<{
           transform="auto"
           scale={1.0}
           icon={<IoMdHelpCircle size={24} />}
-          onClick={() => {
-            localStorage.setItem('tutorialClicked', 'true');
-            onOpenTutorial();
-          }}
+          onClick={onTutorialButtonClick}
           style={tutorialButtonStyle}
         />
 
