@@ -37,7 +37,7 @@ const steps: TutorialView[] = [
     key: '3',
     component: Disclaimer,
     description:
-      'The displayed models are designed to enrich the experience and are not depicted to real-world scale.',
+      'The displayed models are designed to enrich the experience and are not depicted to real-world scale. Additionally, sound effects are for illustrative purposes and may not be accurate or may be present in cases where sound is not possible.',
     label: 'Disclaimer'
   }
 ];

@@ -4,6 +4,8 @@ The Tungsten 01B AR/XR PSB project.
 
 [Live Deployment](https://tungsten-01b-arxr-psb.web.app/)
 
+<img src="./public/assets/qr_code.png" width="512" height="512"  alt='Marker Pattern'/>
+
 ## Setup
 
 ### Node.js
@@ -71,7 +73,7 @@ of choice.
 3. Access the url provided by ngrok
 4. Present the following marker to your camera. If the marker doesn't track very well, drop you screen brightness.
 
-<img src="./public/assets/patt.png" width="200" height="200" />
+<img src="./public/assets/patt.png" width="512" height="512"  alt='Marker Pattern'/>
 
 ## Testing
 
@@ -94,16 +96,38 @@ E2E tests are ran with [playwright](https://playwright.dev/).
 
 ## Building
 
+### Via NPM
+
 ```shell
 npm run build
 ```
 
-## Using Build Script Instead
+### Via Build Script
 
-1. chmod +x build.bash # run this one first
-2. ./build.bash # run this one second
+Give execute permissions on the build script.
 
-## Generating React Components From Models
+```shell
+chmod +x build.bash
+```
+
+Run the build script.
+
+```shell
+./build.bash
+```
+
+## Other Build Tooling
+
+### Generating Artifact Pre-loading Paths
+
+If a new artifact is added to the project, you will need to generate the pre-loading paths for the artifact. This will
+ensure that the artifact is pre-loaded when the application is loaded.
+
+```shell
+npm run build:artifact-paths
+```
+
+### Generating React Components From Models
 
 1. Add your `.glb/gltf` file to `./public/assets/models`
 2. Use `gltfjsx` to generate a transformed version of your model and an associated React component

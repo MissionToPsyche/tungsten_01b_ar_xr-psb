@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React, { lazy, useCallback } from 'react';
 
 import {
   HStack,
@@ -13,6 +13,8 @@ import RenderIf from './RenderIf.tsx';
 import { IoInformationCircle } from 'react-icons/io5';
 import InformationModal from '../../information/InformationModal.tsx';
 import SceneNavigationModal from '../../navigation/SceneNavigationModal.tsx';
+import usePreferences from '../../preferences/use-preferences.ts';
+import useAlternatingPulse from '../hooks/use-alternating-pulse.ts';
 
 const TutorialModal = lazy(() => import('../../tutorial/TutorialModal.tsx'));
 
@@ -28,6 +30,14 @@ const MenuBar: React.FC<{
   onClickRestartButton
 }) => {
   const [isMobile] = useMediaQuery('(max-width: 768px)');
+  const { tutorialClicked, setTutorialClicked } = usePreferences();
+  const animateTutorial = useAlternatingPulse({
+    shouldPulse: !tutorialClicked,
+    initialValue: false,
+    pulseCount: 4,
+    pulseInterval: 100,
+    restartInterval: 2000
+  });
 
   const {
     isOpen: settingsAreOpen,
@@ -52,6 +62,16 @@ const MenuBar: React.FC<{
     onOpen: onOpenSceneNav,
     onClose: onCloseSceneNav
   } = useDisclosure();
+
+  const onTutorialButtonClick = useCallback(() => {
+    onOpenTutorial();
+    setTutorialClicked(true);
+  }, [onOpenTutorial, setTutorialClicked]);
+
+  const tutorialButtonStyle = {
+    transform: animateTutorial ? 'scale(1.2)' : 'scale(1)',
+    transition: 'transform 0.1s ease-in-out'
+  };
 
   return (
     <>
@@ -80,12 +100,17 @@ const MenuBar: React.FC<{
           aria-label="Information & Credits"
           icon={<IoInformationCircle size={24} onClick={onOpenInformation} />}
         />
+
         <IconButton
           isRound
           aria-label="Tutorial"
+          transform="auto"
+          scale={1.0}
           icon={<IoMdHelpCircle size={24} />}
-          onClick={onOpenTutorial}
+          onClick={onTutorialButtonClick}
+          style={tutorialButtonStyle}
         />
+
         <RenderIf shouldRender={!hideRestartButton}>
           <IconButton
             isRound

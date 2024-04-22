@@ -31,12 +31,13 @@ const SceneNavigationModal: React.FC<{
             colorScheme={currentScene === SceneName[key] ? 'magenta' : 'gray'}
             onClick={() => {
               setCurrentScene(SceneName[key]);
+              onClose();
             }}
           >
             {key.replace(/_/g, ' ').toLowerCase()}
           </Button>
         )),
-    [currentScene, setCurrentScene]
+    [currentScene, onClose, setCurrentScene]
   );
 
   return (
