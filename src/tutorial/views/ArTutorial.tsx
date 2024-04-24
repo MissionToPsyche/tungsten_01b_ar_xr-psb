@@ -1,12 +1,12 @@
 const ArTutorial: React.FC = () => {
   return (
     <video
-      width="50%"
+      width="100%"
       title="ar-tutorial"
-      src="/assets/marker-tutorial.mp4"
+      src="/assets/tutorial-ar.mp4"
       autoPlay
-      muted
       loop
+      playsInline
     />
   );
 };

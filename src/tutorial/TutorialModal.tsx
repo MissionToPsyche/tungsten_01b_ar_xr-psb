@@ -66,16 +66,18 @@ const TutorialModal: React.FC<{
                     setActiveStep(index);
                   }}
                 >
-                  <StepIndicator>
-                    <StepStatus
-                      complete={<StepIcon />}
-                      incomplete={<StepNumber />}
-                      active={<StepNumber />}
-                    />
-                  </StepIndicator>
+                  <Box display="flex" alignItems="center">
+                    <StepIndicator marginRight="1">
+                      <StepStatus
+                        complete={<StepIcon />}
+                        incomplete={<StepNumber />}
+                        active={<StepNumber />}
+                      />
+                    </StepIndicator>
 
-                  <Box flexShrink="1">
-                    <StepDescription>{label}</StepDescription>
+                    <Box flexShrink="1">
+                      <StepDescription>{label}</StepDescription>
+                    </Box>
                   </Box>
                 </Step>
               ))}

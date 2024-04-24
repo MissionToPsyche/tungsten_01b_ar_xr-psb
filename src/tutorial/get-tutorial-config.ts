@@ -31,7 +31,7 @@ const steps: TutorialView[] = [
     key: '2',
     component: ControlsTutorial,
     description:
-      'Drag and zoom to explore the scene objects when exploring Non-AR mode.',
+      'Drag, pan and zoom to explore the scene objects when exploring Non-AR mode. Try it out below.',
     label: 'Non-AR'
   },
   {
