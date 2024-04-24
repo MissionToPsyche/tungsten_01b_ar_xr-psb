@@ -4,6 +4,8 @@ The Tungsten 01B AR/XR PSB project.
 
 [Live Deployment](https://tungsten-01b-arxr-psb.web.app/)
 
+<img src="./public/assets/qr_code.png" width="512" height="512"  alt='Marker Pattern'/>
+
 ## Setup
 
 ### Node.js
@@ -71,7 +73,7 @@ of choice.
 3. Access the url provided by ngrok
 4. Present the following marker to your camera. If the marker doesn't track very well, drop you screen brightness.
 
-<img src="./public/assets/patt.png" width="200" height="200" />
+<img src="./public/assets/patt.png" width="512" height="512"  alt='Marker Pattern'/>
 
 ## Testing
 

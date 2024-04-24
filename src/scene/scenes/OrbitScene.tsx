@@ -15,7 +15,7 @@ import SceneName from '../types/scene-name.ts';
 import degreesToRadians from '../../common/utils/degrees-to-radians.ts';
 import { CruiseOrbiter } from '../../artifacts/CruiseOrbiter.tsx';
 
-const psycheScale = filledVector(5);
+const psycheScale = filledVector(4.7);
 const orbiterScale = filledVector(0.3);
 
 const getOrbitPosition = (
@@ -159,7 +159,7 @@ const OrbitScene: SceneComponent = () => {
   return (
     <>
       <BackAnimation />
-      <Environment preset="forest" />
+      <Environment preset="lobby" />
       <FactsModalTrigger factName="psycheOrbitA">
         <RenderIf shouldRender={!isTransitioning}>
           <ARTooltip position={[6, 0, 7]} />
@@ -195,9 +195,9 @@ const OrbitScene: SceneComponent = () => {
       </FactsModalTrigger>
       <FactsModalTrigger factName="psyche">
         <Psyche
-          position={[0, 0, -5]}
+          position={[0.25, -0.25, -5]}
           scale={psycheScale}
-          rotation={[Math.PI / 3, 0, 0]}
+          rotation={[Math.PI / 2, 0, 0]}
         />
         <RenderIf shouldRender={!isTransitioning}>
           <ARTooltip position={[-6, 2, 0]} />
