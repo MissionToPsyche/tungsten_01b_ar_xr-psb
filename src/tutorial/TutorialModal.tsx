@@ -58,30 +58,38 @@ const TutorialModal: React.FC<{
             <Suspense fallback={<LoaderUI progress={50} height="150px" />}>
               <CurrenPageComponent />
             </Suspense>
-            <Stepper size="sm" index={activeStep} colorScheme="magenta">
-              {steps.map(({ label }, index) => (
-                <Step
-                  key={activeKey}
-                  onClick={() => {
-                    setActiveStep(index);
-                  }}
-                >
-                  <Box display="flex" alignItems="center">
-                    <StepIndicator marginRight="1">
-                      <StepStatus
-                        complete={<StepIcon />}
-                        incomplete={<StepNumber />}
-                        active={<StepNumber />}
-                      />
-                    </StepIndicator>
+            <div
+              style={{
+                overflowX: 'auto',
+                maxWidth: '100%',
+                whiteSpace: 'nowrap'
+              }}
+            >
+              <Stepper size="sm" index={activeStep} colorScheme="magenta">
+                {steps.map(({ label }, index) => (
+                  <Step
+                    key={activeKey}
+                    onClick={() => {
+                      setActiveStep(index);
+                    }}
+                  >
+                    <Box display="flex" alignItems="center" paddingBottom="2">
+                      <StepIndicator marginRight="1">
+                        <StepStatus
+                          complete={<StepIcon />}
+                          incomplete={<StepNumber />}
+                          active={<StepNumber />}
+                        />
+                      </StepIndicator>
 
-                    <Box flexShrink="1">
-                      <StepDescription>{label}</StepDescription>
+                      <Box flexShrink="1">
+                        <StepDescription>{label}</StepDescription>
+                      </Box>
                     </Box>
-                  </Box>
-                </Step>
-              ))}
-            </Stepper>
+                  </Step>
+                ))}
+              </Stepper>
+            </div>
             <Spacer />
           </VStack>
         </ModalBody>
