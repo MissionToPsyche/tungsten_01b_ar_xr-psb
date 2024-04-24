@@ -24,6 +24,9 @@ const CruiseThrusterScene: SceneComponent = () => {
         <FactsModalTrigger factName="propulsion">
           <ARTooltip position={[2, -1, 4.5]} />
         </FactsModalTrigger>
+        <FactsModalTrigger factName="cruiseDate">
+          <ARTooltip position={[-4, 3, 4.5]} />
+        </FactsModalTrigger>
       </RenderIf>
     </>
   );
