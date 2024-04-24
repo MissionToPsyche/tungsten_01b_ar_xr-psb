@@ -193,16 +193,16 @@ const OrbitScene: SceneComponent = () => {
           <ARTooltip position={[3, 7, -4]} />
         </RenderIf>
       </FactsModalTrigger>
-      <FactsModalTrigger factName="psyche">
-        <Psyche
-          position={[0.25, -0.25, -5]}
-          scale={psycheScale}
-          rotation={[Math.PI / 2, 0, 0]}
-        />
-        <RenderIf shouldRender={!isTransitioning}>
+      <Psyche
+        position={[0.25, -0.25, -5]}
+        scale={psycheScale}
+        rotation={[Math.PI / 2, 0, 0]}
+      />
+      <RenderIf shouldRender={!isTransitioning}>
+        <FactsModalTrigger factName="psyche">
           <ARTooltip position={[-6, 2, 0]} />
-        </RenderIf>
-      </FactsModalTrigger>
+        </FactsModalTrigger>
+      </RenderIf>
       <group ref={orbiterGroupRef}>
         <group ref={orbiterInnerGroupRef}>
           <CruiseOrbiter
