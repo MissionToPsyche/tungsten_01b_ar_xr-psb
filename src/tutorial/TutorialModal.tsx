@@ -5,6 +5,8 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalHeader,
+  ModalFooter,
+  Button,
   ModalOverlay,
   Spacer,
   Step,
@@ -93,6 +95,11 @@ const TutorialModal: React.FC<{
               </Stepper>
             </div>
             <Spacer />
+            <ModalFooter>
+              <Button colorScheme="magenta" onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
           </VStack>
         </ModalBody>
       </ModalContent>

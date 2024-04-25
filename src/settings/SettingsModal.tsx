@@ -5,6 +5,8 @@ import {
   FormLabel,
   Modal,
   ModalBody,
+  ModalFooter,
+  Button,
   ModalCloseButton,
   ModalContent,
   ModalHeader,
@@ -135,6 +137,11 @@ const SettingsModal = ({
                 />
               </Flex>
             </FormControl>
+            <ModalFooter>
+              <Button colorScheme="magenta" onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
           </VStack>
         </ModalBody>
       </ModalContent>

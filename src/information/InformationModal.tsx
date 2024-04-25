@@ -8,6 +8,9 @@ import {
   Modal,
   ModalBody,
   ModalCloseButton,
+  ModalFooter,
+  Button,
+  VStack,
   ModalContent,
   ModalHeader,
   ModalOverlay,
@@ -86,6 +89,13 @@ const InformationModal: React.FC<{
             </InformationItem>
           </Accordion>
         </ModalBody>
+        <VStack>
+          <ModalFooter>
+            <Button colorScheme="magenta" onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </VStack>
       </ModalContent>
     </Modal>
   );
