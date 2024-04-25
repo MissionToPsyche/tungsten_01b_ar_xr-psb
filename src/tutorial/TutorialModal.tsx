@@ -53,7 +53,9 @@ const TutorialModal: React.FC<{
         <ModalCloseButton />
         <ModalBody>
           <VStack>
-            <Text>{description}</Text>
+            <Text mr={5} ml={5}>
+              {description}
+            </Text>
             <Spacer />
             <Suspense fallback={<LoaderUI progress={50} height="150px" />}>
               <CurrenPageComponent />
@@ -74,7 +76,7 @@ const TutorialModal: React.FC<{
                     }}
                   >
                     <Box display="flex" alignItems="center" paddingBottom="2">
-                      <StepIndicator marginRight="3">
+                      <StepIndicator marginRight="1">
                         <StepStatus
                           complete={<StepIcon />}
                           incomplete={<StepNumber />}
