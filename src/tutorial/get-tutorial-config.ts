@@ -1,5 +1,6 @@
 import React, { lazy } from 'react';
 import ArTutorial from './views/ArTutorial';
+import AudioTutorial from './views/AudioTutorial';
 
 const TooltipTutorial = lazy(() => import('./views/TooltipTutorial'));
 const ControlsTutorial = lazy(() => import('./views/ControlsTutorial'));
@@ -43,6 +44,13 @@ const steps: TutorialView[] = [
   },
   {
     key: '4',
+    component: AudioTutorial,
+    description:
+      'To add audio to your experience, make sure it is enabled in the settings, and turn off silent mode if using a mobile device.',
+    label: 'Audio'
+  },
+  {
+    key: '5',
     component: Disclaimer,
     description:
       'The displayed models are designed to enrich the experience and are not depicted to real-world scale. Additionally, sound effects are for illustrative purposes and may not be accurate or may be present in cases where sound is not possible.',
