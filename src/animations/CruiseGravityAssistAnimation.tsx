@@ -4,10 +4,10 @@ import { Euler, Group } from 'three';
 import useAnimation from './use-animation';
 import AnimationName from './types/animation-name';
 import filledVector from '../common/utils/filled-vector';
-import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
 import { Mars } from '../artifacts/Mars';
 import RenderIf from '../common/components/RenderIf';
 import degreesToRadians from '../common/utils/degrees-to-radians';
+import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
 
 const marsScale = filledVector(45);
 const translationSpeed = 35;
@@ -70,8 +70,6 @@ const CruiseGravityAssistAnimation: React.FC<
     <group>
       <group ref={orbiterRef}>
         <CruiseOrbiter
-          animatePanels={false}
-          panelsOpen
           thrustersOn
           position={[0, 0, 2]}
           scale={orbiterScale}
@@ -80,7 +78,11 @@ const CruiseGravityAssistAnimation: React.FC<
       </group>
       <group ref={marsRef} {...props}>
         <RenderIf shouldRender={isActive}>
-          <Mars position={[-100, -5, -150]} scale={marsScale} />
+          <Mars
+            position={[-100, -5, -150]}
+            scale={marsScale}
+            rotation={[0, Math.PI / 2, 0]}
+          />
         </RenderIf>
       </group>
     </group>

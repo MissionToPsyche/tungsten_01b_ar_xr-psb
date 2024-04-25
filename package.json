@@ -36,6 +36,7 @@
     "react-icons": "^4.12.0",
     "react-use-audio-player": "^2.2.0",
     "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
     "three": "^0.154.0"
   },
   "devDependencies": {
@@ -67,8 +68,11 @@
     "jsdom": "^22.1.0",
     "jsdom-testing-mocks": "^1.11.0",
     "prettier": "^3.1.0",
+    "sharp": "^0.33.3",
+    "svgo": "^3.2.0",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
+    "vite-plugin-image-optimizer": "^1.1.7",
     "vitest": "^0.34.6",
     "vitest-canvas-mock": "^0.3.3"
   }

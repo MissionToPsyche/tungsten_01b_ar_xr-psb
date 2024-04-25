@@ -1,21 +1,32 @@
 import { SceneConfig } from './types/scene-config.ts';
 import SceneName from './types/scene-name.ts';
-import LaunchScene from './scenes/LaunchScene.tsx';
 import AnimationName from '../animations/types/animation-name.ts';
-import AssemblyScene from './scenes/AssemblyScene.tsx';
 import getBoolFromEnv from '../common/utils/get-bool-from-env.ts';
 import getSceneNameFromEnv from './get-scene-name-from-env.ts';
-import AcousticTestingScene from './scenes/AcousticTestingScene.tsx';
-import VibrationTestingScene from './scenes/VibrationTestingScene.tsx';
-import CruisePanelsScene from './scenes/CruisePanelsScene.tsx';
-import CruiseThrusterScene from './scenes/CruiseThrusterScene.tsx';
 import { Vector3 } from 'three';
-import CruiseGravityAssistScene from './scenes/CruiseGravityAssistScene.tsx';
-import PackOrbiterScene from './scenes/PackOrbiterScene.tsx';
-import OrbitScene from './scenes/OrbitScene.tsx';
 import artifactPaths from '../artifacts/artifact-paths.ts';
+import { lazy } from 'react';
+
+const LaunchScene = lazy(() => import('./scenes/LaunchScene.tsx'));
+const AssemblyScene = lazy(() => import('./scenes/AssemblyScene.tsx'));
+const AcousticTestingScene = lazy(
+  () => import('./scenes/AcousticTestingScene.tsx')
+);
+const VibrationTestingScene = lazy(
+  () => import('./scenes/VibrationTestingScene.tsx')
+);
+const CruisePanelsScene = lazy(() => import('./scenes/CruisePanelsScene.tsx'));
+const CruiseThrusterScene = lazy(
+  () => import('./scenes/CruiseThrusterScene.tsx')
+);
+const CruiseGravityAssistScene = lazy(
+  () => import('./scenes/CruiseGravityAssistScene.tsx')
+);
+const PackOrbiterScene = lazy(() => import('./scenes/PackOrbiterScene.tsx'));
+const OrbitScene = lazy(() => import('./scenes/OrbitScene.tsx'));
 
 const defaultCameraPosition = new Vector3(0, 6, 25);
+
 /**
  * Function to get the scene configuration. Right now extracted into a method
  * rather than a constant for easier testing. But also could be adjusted to
@@ -125,12 +136,14 @@ const getSceneConfig = (): SceneConfig => ({
       nextSceneTransition: {
         toScene: SceneName.CRUISE_THRUSTERS,
         buttonText: 'Open Solar Panels',
-        animation: AnimationName.CRUISE_PANELS,
-        audio: 'sounds/artninja-servo-sound.mp3'
+        animation: AnimationName.CRUISE_PANELS
       },
       sceneTitle: 'Initial Checkout',
       sceneDate: '2024',
-      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Earth]
+      artifactPaths: [
+        artifactPaths.InnitialCheckoutOrbiter,
+        artifactPaths.Earth
+      ]
     },
     [SceneName.CRUISE_THRUSTERS]: {
       component: CruiseThrusterScene,
@@ -182,7 +195,7 @@ const getSceneConfig = (): SceneConfig => ({
       },
       sceneTitle: 'Orbit',
       sceneDate: '2029',
-      artifactPaths: [artifactPaths.OrbitOrbiter, artifactPaths.Psyche]
+      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Psyche]
     },
     [SceneName.SECOND_ORBIT]: {
       component: OrbitScene,
@@ -197,7 +210,7 @@ const getSceneConfig = (): SceneConfig => ({
       },
       sceneTitle: 'Orbit',
       sceneDate: '2029',
-      artifactPaths: [artifactPaths.OrbitOrbiter, artifactPaths.Psyche]
+      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Psyche]
     },
     [SceneName.THIRD_ORBIT]: {
       component: OrbitScene,
@@ -212,7 +225,7 @@ const getSceneConfig = (): SceneConfig => ({
       },
       sceneTitle: 'Orbit',
       sceneDate: '2029',
-      artifactPaths: [artifactPaths.OrbitOrbiter, artifactPaths.Psyche]
+      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Psyche]
     },
     [SceneName.FOURTH_ORBIT]: {
       component: OrbitScene,
@@ -223,7 +236,7 @@ const getSceneConfig = (): SceneConfig => ({
       },
       sceneTitle: 'Orbit',
       sceneDate: '2029',
-      artifactPaths: [artifactPaths.OrbitOrbiter, artifactPaths.Psyche]
+      artifactPaths: [artifactPaths.CruiseOrbiter, artifactPaths.Psyche]
     }
   },
   cameraParametersUrl: 'assets/camera_para.dat',

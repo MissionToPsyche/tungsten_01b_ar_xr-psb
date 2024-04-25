@@ -3,14 +3,12 @@ import { useFrame } from '@react-three/fiber';
 import { Group } from 'three';
 import useAnimation from './use-animation';
 import AnimationName from './types/animation-name';
-
 import { Earth } from '../artifacts/Earth';
 import filledVector from '../common/utils/filled-vector';
-
 import { CruiseOrbiter } from '../artifacts/CruiseOrbiter';
 import useSettings from '../settings/use-settings';
 
-const earthScale = filledVector(15);
+const earthScale = filledVector(5);
 const translationSpeed = 5;
 const orbiterScale = filledVector(0.75);
 
@@ -35,8 +33,8 @@ const CruiseThrusterAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       return;
     }
 
-    earthRef.current.position.z -= delta * 0.5;
-    earthRef.current.position.x += delta * 0.5;
+    earthRef.current.position.z -= delta * 0.2;
+    earthRef.current.position.x += delta * 0.2;
 
     if (!isAnimationActive(AnimationName.CRUISE_THRUSTERS)) {
       return;
@@ -62,7 +60,7 @@ const CruiseThrusterAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
       orbiterRef.current.position.x -= delta * 15;
       orbiterRef.current.position.z += delta * 10;
     }
-    if (elapsed >= 8) {
+    if (elapsed >= 7) {
       setElapsed(0);
       stopAnimation(AnimationName.CRUISE_THRUSTERS);
     }
@@ -76,12 +74,14 @@ const CruiseThrusterAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
           position={[0, 0, 2]}
           scale={orbiterScale}
           rotation={[Math.PI / 5, Math.PI / 5, Math.PI / 6]}
-          panelsOpen={true}
-          animatePanels={false}
         />
       </group>
       <group ref={earthRef} {...props}>
-        <Earth position={[10, -5, -60]} scale={earthScale} />
+        <Earth
+          position={[6, -4, -15]}
+          scale={earthScale}
+          rotation={[0, Math.PI / 2, 0]}
+        />
       </group>
     </group>
   );

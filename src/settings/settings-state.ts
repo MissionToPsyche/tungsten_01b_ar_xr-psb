@@ -1,5 +1,8 @@
 import { atom } from 'recoil';
 import { Settings } from './use-settings.ts';
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
 
 const settingsState = atom<Settings>({
   key: 'settingsState',
@@ -7,7 +10,8 @@ const settingsState = atom<Settings>({
     arEnabled: true,
     audioEnabled: true,
     tooltipsEnabled: true
-  }
+  },
+  effects_UNSTABLE: [persistAtom]
 });
 
 export default settingsState;

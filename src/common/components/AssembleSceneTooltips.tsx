@@ -3,20 +3,31 @@ import ARTooltip from './ARTooltip.tsx';
 import FactsModalTrigger from '../../facts/FactsModalTrigger.tsx';
 import RenderIf from './RenderIf.tsx';
 import useScene from '../../scene/use-scene.ts';
+import { useMemo } from 'react';
+import SceneName from '../../scene/types/scene-name.ts';
 
 const AssembleSceneTooltips = () => {
-  const { isTransitioning } = useScene();
+  const { currentScene, isTransitioning } = useScene();
+
+  const renderExplodeTooltip = useMemo(() => {
+    return currentScene == SceneName.ASSEMBLY;
+  }, [currentScene]);
 
   return (
     <RenderIf shouldRender={!isTransitioning}>
-      <ExplodeElement
-        startPosition={[0, 0.5, 4.5]}
-        startRotation={[0, 0, 0]}
-        explodedPosition={[0, -0.2, 7]}
-        explodedRotation={[0, 0, 0]}
+      <FactsModalTrigger
+        factName="opticalCommunication"
+        disable={renderExplodeTooltip}
       >
-        <ARTooltip />
-      </ExplodeElement>
+        <ExplodeElement
+          startPosition={[0, 0.5, 4.5]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[0, -0.2, 7]}
+          explodedRotation={[0, 0, 0]}
+        >
+          <ARTooltip />
+        </ExplodeElement>
+      </FactsModalTrigger>
       <FactsModalTrigger factName="spectrometer">
         <ExplodeElement
           startPosition={[-1.2, 5, 2]}
@@ -42,6 +53,16 @@ const AssembleSceneTooltips = () => {
           startPosition={[0, 2.5, 0.5]}
           startRotation={[0, 0, 0]}
           explodedPosition={[0, 3.5, -2]}
+          explodedRotation={[0, 0, 0]}
+        >
+          <ARTooltip />
+        </ExplodeElement>
+      </FactsModalTrigger>
+      <FactsModalTrigger factName="xBandRadio">
+        <ExplodeElement
+          startPosition={[0, 3.5, 3.5]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[0, 6, 3.5]}
           explodedRotation={[0, 0, 0]}
         >
           <ARTooltip />

@@ -11,6 +11,7 @@ import { Image } from '@react-three/drei';
 
 const thrusterStartingColor = new Color('#FFDD00');
 const thrusterEndingColor = new Color('#FFF2BD');
+const countdownImagePosition = new Vector3(4, 4, 4);
 
 /**
  * Liftoff animation for rocket
@@ -52,19 +53,16 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
 
       if (elapsed >= 4) {
         setImageVisible(false);
+        groupRef.current.position.y += delta * elapsed;
 
-        if (elapsed >= 4 && elapsed <= 5) {
-          groupRef.current.position.y += delta * elapsed;
-        }
-
-        if (elapsed >= 5 && elapsed <= 11 && !arEnabled) {
-          if (elapsed <= 9) {
+        if (elapsed >= 5 && elapsed <= 10) {
+          if (elapsed <= 9 && !arEnabled) {
             state.camera.rotation.x += delta * 0.27;
           }
           groupRef.current.position.y += delta * elapsed;
         }
 
-        if (elapsed >= 11) {
+        if (elapsed >= 10) {
           setElapsed(0);
           stopAnimation(AnimationName.LIFTOFF);
         }
@@ -79,7 +77,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
         visible={isAnimationActive(AnimationName.LIFTOFF)}
         particleStartColor={thrusterStartingColor}
         particleEndColor={thrusterEndingColor}
-        count={200}
+        count={50}
       />
       <SmokeParticleSystem
         visible={!isAnimationActive(AnimationName.LIFTOFF)}
@@ -89,7 +87,7 @@ const LiftoffAnimation: React.FC<JSX.IntrinsicElements['group']> = ({
         <Image
           url={`/assets/images/countdown_${currentCountDown}.png`}
           scale={4}
-          position={new Vector3(4, 4, 4)}
+          position={countdownImagePosition}
         />
       </RenderIf>
       {children}

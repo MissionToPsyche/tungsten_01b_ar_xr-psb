@@ -5,67 +5,40 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalHeader,
+  ModalFooter,
+  Button,
   ModalOverlay,
   Spacer,
   Step,
   StepDescription,
   StepIcon,
   StepIndicator,
-  StepStatus,
+  StepNumber,
   Stepper,
+  StepStatus,
   Text,
-  VStack,
-  useSteps
+  useSteps,
+  VStack
 } from '@chakra-ui/react';
-import TooltipTutorial from './views/TooltipTutorial';
-import ControlsTutorial from './views/ControlsTutorial';
-import SettingsTutorial from './views/SettingsTutorial';
-import Disclaimer from './views/Disclaimer';
+import React, { Suspense } from 'react';
+import LoaderUI from '../common/loader/LoaderUI.tsx';
+import getTutorialConfig from './get-tutorial-config.ts';
 
-interface TutorialWindowProps {
+const TutorialModal: React.FC<{
   isOpen: boolean;
   onClose: () => void;
-}
-
-const steps = [
-  { description: 'Tooltips' },
-  { description: 'Controls' },
-  { description: 'Settings' },
-  { description: 'Disclaimer' }
-];
-
-interface TutorialView {
-  component: React.ReactNode;
-  helpMessage: string;
-}
-
-const Pages: TutorialView[] = [
-  {
-    component: <TooltipTutorial key="0" />,
-    helpMessage: 'Tap the target below'
-  },
-  {
-    component: <ControlsTutorial key="1" />,
-    helpMessage:
-      'Drag and zoom to explore the scene objects. Note: Only works in Non-AR Mode.'
-  },
-  {
-    component: <SettingsTutorial key="2" />,
-    helpMessage:
-      'Use the menu bar to restart the experience, access the settings, view the credits or tutorial.'
-  },
-  {
-    component: <Disclaimer key="3" />,
-    helpMessage:
-      'The displayed models are designed to enrich the experience and are not depicted to real-world scale.'
-  }
-];
-
-const TutorialModal = ({ isOpen, onClose }: TutorialWindowProps) => {
+}> = ({ isOpen, onClose }) => {
+  const { steps } = getTutorialConfig();
   const { activeStep, setActiveStep } = useSteps({
     index: 0,
     count: steps.length - 1
   });
+
+  const {
+    key: activeKey,
+    component: CurrenPageComponent,
+    description
+  } = steps[activeStep];
 
   return (
     <Modal
@@ -82,28 +55,41 @@ const TutorialModal = ({ isOpen, onClose }: TutorialWindowProps) => {
         <ModalCloseButton />
         <ModalBody>
           <VStack>
-            <Text>{Pages[activeStep].helpMessage}</Text>
+            <Text>{description}</Text>
             <Spacer />
-            {Pages[activeStep].component}
-
+            <Suspense fallback={<LoaderUI progress={50} height="150px" />}>
+              <CurrenPageComponent />
+            </Suspense>
             <Stepper size="sm" index={activeStep} colorScheme="magenta">
-              {steps.map((step, index) => (
+              {steps.map(({ label }, index) => (
                 <Step
-                  key={index}
+                  key={activeKey}
                   onClick={() => {
                     setActiveStep(index);
                   }}
                 >
-                  <StepIndicator>
-                    <StepStatus complete={<StepIcon />} />
-                  </StepIndicator>
-                  <Box flexShrink="0">
-                    <StepDescription>{step.description}</StepDescription>
+                  <Box display="flex" alignItems="center">
+                    <StepIndicator marginRight="1">
+                      <StepStatus
+                        complete={<StepIcon />}
+                        incomplete={<StepNumber />}
+                        active={<StepNumber />}
+                      />
+                    </StepIndicator>
+
+                    <Box flexShrink="1">
+                      <StepDescription>{label}</StepDescription>
+                    </Box>
                   </Box>
                 </Step>
               ))}
             </Stepper>
             <Spacer />
+            <ModalFooter>
+              <Button colorScheme="magenta" onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
           </VStack>
         </ModalBody>
       </ModalContent>
