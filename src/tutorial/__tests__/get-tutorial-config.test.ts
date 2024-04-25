@@ -1,7 +1,7 @@
 import getTutorialConfig from '../get-tutorial-config.ts';
 
 describe('getTutorialConfig', () => {
-  it.each([['Tooltips'], ['Controls'], ['Settings'], ['Disclaimer']])(
+  it.each([['Tooltips'], ['AR'], ['Non-AR'], ['Settings'], ['Disclaimer']])(
     `should return a tutorial step for %s`,
     (label) => {
       const { steps } = getTutorialConfig();
