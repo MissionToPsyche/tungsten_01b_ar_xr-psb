@@ -74,7 +74,7 @@ const TutorialModal: React.FC<{
                     }}
                   >
                     <Box display="flex" alignItems="center" paddingBottom="2">
-                      <StepIndicator marginRight="1">
+                      <StepIndicator marginRight="3">
                         <StepStatus
                           complete={<StepIcon />}
                           incomplete={<StepNumber />}
@@ -82,7 +82,7 @@ const TutorialModal: React.FC<{
                         />
                       </StepIndicator>
 
-                      <Box flexShrink="1">
+                      <Box flexShrink="0">
                         <StepDescription>{label}</StepDescription>
                       </Box>
                     </Box>
