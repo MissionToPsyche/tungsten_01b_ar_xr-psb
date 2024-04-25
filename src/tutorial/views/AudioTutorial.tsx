@@ -6,7 +6,7 @@ const AudioTutorial: React.FC = () => {
       mx="auto"
       display="block"
       src={'/assets/images/audio-on.png'}
-      alt="Settings Image"
+      alt="Audio Settings Image"
     />
   );
 };
