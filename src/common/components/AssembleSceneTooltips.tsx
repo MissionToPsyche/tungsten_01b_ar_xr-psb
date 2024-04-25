@@ -58,6 +58,16 @@ const AssembleSceneTooltips = () => {
           <ARTooltip />
         </ExplodeElement>
       </FactsModalTrigger>
+      <FactsModalTrigger factName="xBandRadio">
+        <ExplodeElement
+          startPosition={[0, 3.5, 3.5]}
+          startRotation={[0, 0, 0]}
+          explodedPosition={[0, 6, 3.5]}
+          explodedRotation={[0, 0, 0]}
+        >
+          <ARTooltip />
+        </ExplodeElement>
+      </FactsModalTrigger>
     </RenderIf>
   );
 };
