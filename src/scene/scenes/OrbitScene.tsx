@@ -163,21 +163,21 @@ const OrbitScene: SceneComponent = () => {
       <FactsModalTrigger factName="psycheOrbitA">
         <RenderIf shouldRender={!isTransitioning}>
           <ARTooltip position={[6, 0, 7]} />
-          {torusObjects.map((torusProps, index) => (
-            <Torus
-              key={index}
-              args={torusProps.args as [number, number, number, number, number]}
-              position={torusProps.position}
-              rotation={torusProps.rotation}
-              material={
-                currentScene === torusProps.scene && !isTransitioning
-                  ? activeTorusMaterial
-                  : torusMaterial
-              }
-            />
-          ))}
         </RenderIf>
       </FactsModalTrigger>
+      {torusObjects.map((torusProps, index) => (
+        <Torus
+          key={index}
+          args={torusProps.args as [number, number, number, number, number]}
+          position={torusProps.position}
+          rotation={torusProps.rotation}
+          material={
+            currentScene === torusProps.scene && !isTransitioning
+              ? activeTorusMaterial
+              : torusMaterial
+          }
+        />
+      ))}
       <FactsModalTrigger factName="psycheOrbitB">
         <RenderIf shouldRender={!isTransitioning}>
           <ARTooltip position={[6, 2, 5]} />
