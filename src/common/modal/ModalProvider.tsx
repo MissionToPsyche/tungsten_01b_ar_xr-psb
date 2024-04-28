@@ -3,15 +3,12 @@ import {
   Image,
   Modal,
   ModalBody,
-  Button,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Spacer,
-  useDisclosure,
-  VStack
+  useDisclosure
 } from '@chakra-ui/react';
 import React, { PropsWithChildren, useCallback, useState } from 'react';
 import ModalContext from './modal-context';
@@ -58,11 +55,6 @@ const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
                 />
               </RenderIf>
             </ModalBody>
-            <VStack>
-              <ModalFooter>
-                <Button onClick={onClose}>Close</Button>
-              </ModalFooter>
-            </VStack>
           </ModalContent>
         </Modal>
       </DarkMode>
