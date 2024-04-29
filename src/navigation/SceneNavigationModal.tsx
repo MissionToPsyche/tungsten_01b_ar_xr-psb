@@ -3,8 +3,6 @@ import {
   Modal,
   ModalBody,
   ModalCloseButton,
-  ModalFooter,
-  VStack,
   ModalContent,
   ModalHeader,
   ModalOverlay,
@@ -53,13 +51,6 @@ const SceneNavigationModal: React.FC<{
             {sceneNavigationButtons}
           </SimpleGrid>
         </ModalBody>
-        <VStack>
-          <ModalFooter>
-            <Button colorScheme="magenta" onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
-        </VStack>
       </ModalContent>
     </Modal>
   );
